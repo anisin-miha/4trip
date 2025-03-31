@@ -3,6 +3,7 @@ import Link from "next/link";
 import Header from "./components/Header";
 import BookingForm from "./components/BookingForm";
 import type { Metadata } from "next";
+import BaseImage from "@/components/BaseImage";
 
 export const metadata: Metadata = {
   title: "Экскурсия в Парк Патриот | Путешествия на автобусе в Москву",
@@ -35,7 +36,7 @@ export default function Home() {
           id="hero"
           className="relative h-screen flex items-center justify-center"
         >
-          <Image
+          <BaseImage
             src="/images/cathedral-hero.jpg"
             alt="Главный храм Вооруженных сил России"
             fill
@@ -68,7 +69,7 @@ export default function Home() {
             </h2>
             <div className="grid md:grid-cols-2 gap-8">
               <div className="text-center">
-                <Image
+                <BaseImage
                   src="/images/comfortable-bus.png"
                   alt="Комфортабельный автобус"
                   width={200}
@@ -84,7 +85,7 @@ export default function Home() {
                 </p>
               </div>
               <div className="text-center">
-                <Image
+                <BaseImage
                   src="/images/expert-guide.png"
                   alt="Опытный гид"
                   width={200}
@@ -114,7 +115,7 @@ export default function Home() {
 
             <div className="grid md:grid-cols-2 gap-12 mb-12">
               <div className="bg-white rounded-lg shadow-md overflow-hidden">
-                <Image
+                <BaseImage
                   src="/images/road-of-memory.png"
                   alt="Музей 'Дорога памяти'"
                   width={600}
@@ -146,7 +147,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="bg-white rounded-lg shadow-md overflow-hidden">
-                <Image
+                <BaseImage
                   src="/images/armed-forces-cathedral.png"
                   alt="Храм Вооруженных сил"
                   width={600}
@@ -328,28 +329,28 @@ export default function Home() {
               Фотогалерея
             </h2>
             <div className="grid md:grid-cols-4 gap-4">
-              <Image
+              <BaseImage
                 src="/images/gallery1.png"
                 alt="Галерея 1"
                 width={300}
                 height={200}
                 className="w-full h-64 object-cover rounded-lg"
               />
-              <Image
+              <BaseImage
                 src="/images/gallery2.png"
                 alt="Галерея 2"
                 width={300}
                 height={200}
                 className="w-full h-64 object-cover rounded-lg"
               />
-              <Image
+              <BaseImage
                 src="/images/gallery3.png"
                 alt="Галерея 3"
                 width={300}
                 height={200}
                 className="w-full h-64 object-cover rounded-lg"
               />
-              <Image
+              <BaseImage
                 src="/images/gallery4.png"
                 alt="Галерея 4"
                 width={300}

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import BaseImage from "@/components/BaseImage";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -21,7 +22,7 @@ export default function Header() {
     >
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <Link href="/" className="flex items-center">
-          <Image
+          <BaseImage
             src="/images/logo.png"
             alt="Парк Патриот Лого"
             width={50}
