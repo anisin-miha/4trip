@@ -1,6 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
 import Header from "./components/Header";
+import Link from "next/link";
 import BookingForm from "./components/BookingForm";
 import type { Metadata } from "next";
 
