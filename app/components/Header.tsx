@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import BaseImage from "@/components/BaseImage";
 
 export default function Header() {
@@ -18,7 +17,8 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-white shadow-md" : "bg-transparent"}`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-white shadow-md" : "bg-transparent"
+        }`}
     >
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <Link href="/" className="flex items-center">
@@ -29,72 +29,41 @@ export default function Header() {
             height={50}
           />
           <span
-            className={`ml-2 font-bold text-xl ${isScrolled ? "text-gray-800" : "text-white"}`}
+            className={`ml-2 font-bold text-xl ${isScrolled ? "text-gray-800" : "text-white"
+              }`}
           >
             Парк Патриот Тур
           </span>
         </Link>
+
         <nav className="hidden md:block">
           <ul className="flex space-x-6">
-            <li>
-              <Link
-                href="#hero"
-                className={`hover:text-blue-600 ${isScrolled ? "text-gray-800" : "text-white"}`}
-              >
-                Главная
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="#usp"
-                className={`hover:text-blue-600 ${isScrolled ? "text-gray-800" : "text-white"}`}
-              >
-                Преимущества
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="#attractions"
-                className={`hover:text-blue-600 ${isScrolled ? "text-gray-800" : "text-white"}`}
-              >
-                Описание
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="#info"
-                className={`hover:text-blue-600 ${isScrolled ? "text-gray-800" : "text-white"}`}
-              >
-                Информация
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="#booking"
-                className={`hover:text-blue-600 ${isScrolled ? "text-gray-800" : "text-white"}`}
-              >
-                Бронирование
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="#gallery"
-                className={`hover:text-blue-600 ${isScrolled ? "text-gray-800" : "text-white"}`}
-              >
-                Галерея
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="#faq"
-                className={`hover:text-blue-600 ${isScrolled ? "text-gray-800" : "text-white"}`}
-              >
-                FAQ
-              </Link>
-            </li>
+            {[
+              { href: "#hero", label: "Главная" },
+              { href: "#usp", label: "Преимущества" },
+              { href: "#attractions", label: "Описание" },
+              { href: "#info", label: "Информация" },
+              { href: "#booking", label: "Бронирование" },
+              { href: "#gallery", label: "Галерея" },
+              { href: "#faq", label: "FAQ" },
+            ].map(({ href, label }) => (
+              <li key={href}>
+                <Link
+                  href={href}
+                  className={`hover:text-blue-600 ${isScrolled ? "text-gray-800" : "text-white"
+                    }`}
+                >
+                  {label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </nav>
-        <button className="md:hidden text-white">
+
+        <button
+          className={`md:hidden ${isScrolled ? "text-gray-800" : "text-white"}`}
+          aria-label="Открыть меню"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
