@@ -6,8 +6,8 @@ try {
 }
 
 /** @type {import('next').NextConfig} */
-const isProd = process.env.NODE_ENV === "production";
-const repo = "patriot";
+// const isProd = process.env.NODE_ENV === "production";
+// const repo = "patriot";
 
 const nextConfig = {
   eslint: {
@@ -29,8 +29,8 @@ const nextConfig = {
   },
   // 👇 для GitHub Pages и статического экспорта
   output: "export",
-  basePath: isProd ? `/${repo}` : "",
-  assetPrefix: isProd ? `/${repo}/` : "",
+  basePath: "",
+  assetPrefix: "",  
   env: {
     // папка с исходными картинками (по умолчанию public/images)
     nextImageExportOptimizer_imageFolderPath: "public/images",

@@ -1,16 +1,16 @@
 const contactInfo = {
   phone: "+7 (977) 984-51-40",
   email: "info@patriot-tour.ru",
-  address: "г. Москва, ул. Примерная, д. 1",
+  // address: "г. Москва, ул. Примерная, д. 1",
   links: {
     privacyPolicy: "/privacy-policy",
     terms: "/terms",
-    sitemap: "#", // если позже замените на реальную ссылку
+    sitemap: "#",
+    seryoga_tg: 'https://t.me/chetverochka_ya'
   },
   social: {
     vk: "#",
-    facebook: "#",
-    instagram: "#",
+    telegram: "https://t.me/fourtrip",
   },
 };
 
