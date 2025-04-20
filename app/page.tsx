@@ -29,6 +29,8 @@ export const metadata: Metadata = {
   },
 };
 
+const basePath = process.env.NODE_ENV === 'production' ? '/patriot' : ''
+
 export default function Home() {
   return (
     <div className="font-sans bg-gray-100">
@@ -37,7 +39,7 @@ export default function Home() {
       <main>
         <section id="hero" className="relative h-screen flex items-center">
           <BaseImage
-            src="/images/cathedral-hero.png"
+            src={basePath + "/images/cathedral-hero.png"}
             alt="Главный храм Вооруженных сил России"
             fill
             priority
@@ -297,10 +299,10 @@ export default function Home() {
             <div className="grid md:grid-cols-2 gap-8">
               <div className="w-full h-96 rounded-lg overflow-hidden shadow-md">
                 <iframe
-                  src="https://maps.google.com/maps?q=55.73640,37.51613&hl=ru&z=15&output=embed"
+                  src="https://yandex.ru/map-widget/v1/?ll=37.51613%2C55.73640&z=15"
                   width="100%"
                   height="100%"
-                  style={{ border: 0 }}
+                  frameBorder="0"
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
@@ -326,6 +328,7 @@ export default function Home() {
             </div>
           </div>
         </section>
+
 
         <section id="booking" className="py-16 bg-white">
           <div className="container mx-auto px-4">
