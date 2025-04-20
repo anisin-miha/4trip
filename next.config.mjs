@@ -17,7 +17,10 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    unoptimized: true,
+    // можно перечислить один или несколько форматов
+    formats: ["image/webp"],
+    // остальные настройки, например:
+    // domains, deviceSizes, remotePatterns и т.д.
   },
   experimental: {
     webpackBuildWorker: true,
