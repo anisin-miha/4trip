@@ -256,6 +256,7 @@ export default function Home() {
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
+                  title="Место встречи"
                 />
               </div>
 

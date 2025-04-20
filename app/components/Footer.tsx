@@ -15,13 +15,13 @@ export default function Footer() {
             <h3 className="text-xl font-bold mb-4">Контакты</h3>
             <p>
               Телефон:&nbsp;
-              <a href={`tel:${phone}`} className="hover:underline">
+              <a href={`tel:${phone}`} title="Телефон" className="hover:underline">
                 {phone}
               </a>
             </p>
             <p>
               Email:&nbsp;
-              <a href={`mailto:${email}`} className="hover:underline">
+              <a href={`mailto:${email}`} title="Почта" className="hover:underline">
                 {email}
               </a>
             </p>
@@ -31,17 +31,17 @@ export default function Footer() {
             <h3 className="text-xl font-bold mb-4">Полезные ссылки</h3>
             <ul className="space-y-2">
               <li>
-                <Link href={links.privacyPolicy} className="hover:underline">
+                <Link href={links.privacyPolicy} title="Политика конфиденциальности" className="hover:underline">
                   Политика конфиденциальности
                 </Link>
               </li>
               <li>
-                <Link href={links.terms} className="hover:underline">
+                <Link href={links.terms} title="Публичная оферта" className="hover:underline">
                   Публичная оферта
                 </Link>
               </li>
               <li>
-                <Link href={links.sitemap} className="hover:underline">
+                <Link href={links.sitemap} title="Карта сайта" className="hover:underline">
                   Карта сайта
                 </Link>
               </li>
