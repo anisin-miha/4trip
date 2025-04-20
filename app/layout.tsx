@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     images: ["/images/park-patriot-hero.jpg"],
   },
   icons: {
-    icon: basePath + "/images/logo-favicon.png",
+    icon: basePath + "/images/patriot/logo-favicon.png",
   },
 };
 
