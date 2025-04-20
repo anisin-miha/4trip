@@ -5,6 +5,8 @@ import type { Metadata } from "next";
 import BaseImage from "@/components/BaseImage";
 import Footer from "./components/Footer";
 
+const basePath = process.env.NODE_ENV === 'production' ? '/patriot' : ''
+
 export const metadata: Metadata = {
   title: "Экскурсия в Парк Патриот | Путешествия на автобусе в Москву",
   description:
@@ -25,21 +27,20 @@ export const metadata: Metadata = {
     images: ["/images/park-patriot-hero.jpg"],
   },
   icons: {
-    icon: "/images/logo-favicon.png",
+    icon: basePath + "/images/logo-favicon.png",
   },
 };
 
-const basePath = process.env.NODE_ENV === 'production' ? '/patriot' : ''
 
 export default function Home() {
   return (
-    <div className="font-sans bg-gray-100">
+    <div className="font-sans bg-gray-100 scroll-smooth">
       <Header />
 
       <main>
-        <section id="hero" className="relative h-screen flex items-center">
+        <section id="hero" className="relative h-screen flex items-center scroll-mt-16">
           <BaseImage
-            src={basePath + "/images/cathedral-hero.png"}
+            src={"/images/cathedral-hero.png"}
             alt="Главный храм Вооруженных сил России"
             fill
             priority
@@ -69,7 +70,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="attractions" className="py-16 bg-gray-100">
+        <section id="attractions" className="py-16 bg-gray-100 scroll-mt-16">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-center mb-12">
               Описание экскурсии
@@ -198,7 +199,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="bg-blue-50 rounded-lg shadow-md p-8">
+            <div className="bg-blue-50 rounded-lg shadow-md p-8 mb-12">
               <h3 className="text-2xl font-semibold mb-6 text-center">
                 Важно знать:
               </h3>
@@ -229,7 +230,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="testimonials" className="py-16 bg-white">
+        <section id="testimonials" className="py-16 bg-white scroll-mt-16">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-center mb-12">
               Отзывы наших клиентов
@@ -265,7 +266,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="info" className="py-16 bg-gray-100">
+        <section id="info" className="py-16 bg-gray-100 scroll-mt-16">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-center mb-8">
               Информация о&nbsp;туре
@@ -291,7 +292,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="meeting" className="py-16 bg-white">
+        <section id="meeting" className="py-16 bg-white scroll-mt-16">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-center mb-8">
               Место встречи и маршрут
@@ -299,10 +300,10 @@ export default function Home() {
             <div className="grid md:grid-cols-2 gap-8">
               <div className="w-full h-96 rounded-lg overflow-hidden shadow-md">
                 <iframe
-                  src="https://yandex.ru/map-widget/v1/?ll=37.51613%2C55.73640&z=15"
+                  src="https://maps.google.com/maps?q=55.73640,37.51613&hl=ru&z=15&output=embed"
                   width="100%"
                   height="100%"
-                  frameBorder="0"
+                  style={{ border: 0 }}
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
@@ -329,8 +330,7 @@ export default function Home() {
           </div>
         </section>
 
-
-        <section id="booking" className="py-16 bg-white">
+        <section id="booking" className="py-16 bg-white scroll-mt-16">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-center mb-4">
               Забронируйте свое место на&nbsp;экскурсию
@@ -343,7 +343,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="gallery" className="py-16 bg-gray-100">
+        <section id="gallery" className="py-16 bg-gray-100 scroll-mt-16">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-center mb-12">
               Фотогалерея
