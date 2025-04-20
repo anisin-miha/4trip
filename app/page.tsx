@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import BookingForm from "./components/BookingForm";
 import type { Metadata } from "next";
 import BaseImage from "@/components/BaseImage";
+import Footer from "./components/Footer";
 
 export const metadata: Metadata = {
   title: "Экскурсия в Парк Патриот | Путешествия на автобусе в Москву",
@@ -22,6 +23,9 @@ export const metadata: Metadata = {
     description:
       "Присоединяйтесь к уникальной экскурсии на автобусе в Парк Патриот. Посетите музей Дорога памяти, храм Вооруженных сил, смотровую площадку и насладитесь полевой кухней. Забронируйте тур по субботам!",
     images: ["/images/park-patriot-hero.jpg"],
+  },
+  icons: {
+    icon: "/images/logo-favicon.png",
   },
 };
 
@@ -62,49 +66,6 @@ export default function Home() {
             </div>
           </div>
         </section>
-
-        {/* <section id="usp" className="py-16 bg-white">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12">
-              Почему выбирают нашу экскурсию?
-            </h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="text-center">
-                <BaseImage
-                  src="/images/comfortable-bus.png"
-                  alt="Комфортабельный автобус"
-                  width={200}
-                  height={200}
-                  className="mx-auto rounded-full mb-4"
-                />
-                <h3 className="text-xl font-semibold mb-2">
-                  Комфортабельный автобус
-                </h3>
-                <p>
-                  Путешествуйте с&nbsp;комфортом в&nbsp;современном автобусе с
-                  кондиционером и&nbsp;Wi-Fi
-                </p>
-              </div>
-              <div className="text-center">
-                <BaseImage
-                  src="/images/expert-guide.png"
-                  alt="Опытный гид"
-                  width={200}
-                  height={200}
-                  className="mx-auto rounded-full mb-4"
-                />
-                <h3 className="text-xl font-semibold mb-2">
-                  Погружение в&nbsp;атмосферу военного времени
-                </h3>
-                <p>
-                  Продуманная программа экскурсий с&nbsp;опытными
-                  гидами&nbsp;&mdash; настоящими экспертами в&nbsp;военной
-                  истории России
-                </p>
-              </div>
-            </div>
-          </div>
-        </section> */}
 
         <section id="attractions" className="py-16 bg-gray-100">
           <div className="container mx-auto px-4">
@@ -328,6 +289,44 @@ export default function Home() {
           </div>
         </section>
 
+        <section id="meeting" className="py-16 bg-white">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold text-center mb-8">
+              Место встречи и маршрут
+            </h2>
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="w-full h-96 rounded-lg overflow-hidden shadow-md">
+                <iframe
+                  src="https://maps.google.com/maps?q=55.73640,37.51613&hl=ru&z=15&output=embed"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
+
+              <div className="flex flex-col justify-center">
+                <h3 className="text-xl font-semibold mb-4">Время и место встречи</h3>
+                <p className="mb-6">
+                  Сбор группы в&nbsp;<strong>08:45</strong> у станции метро
+                  <strong>&nbsp;Парк Победы</strong> (синяя линия), на
+                  парковке туристических автобусов около музея.
+                </p>
+
+                <h3 className="text-xl font-semibold mb-4">Продолжительность маршрута</h3>
+                <p>
+                  Общая длительность поездки&nbsp;&mdash; около
+                  9&nbsp;часов, включая дорогу туда и&nbsp;обратно, посещение
+                  музея &laquo;Дорога памяти&raquo; и&nbsp;Главного храма
+                  Вооружённых Сил.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section id="booking" className="py-16 bg-white">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-center mb-4">
@@ -419,60 +418,7 @@ export default function Home() {
           </div>
         </section>
 
-        <footer id="footer" className="bg-gray-800 text-white py-12">
-          <div className="container mx-auto px-4">
-            <div className="grid md:grid-cols-3 gap-8">
-              <div>
-                <h3 className="text-xl font-bold mb-4">Контакты</h3>
-                <p>Телефон: +7 (495) 123-45-67</p>
-                <p>Email: info@patriot-tour.ru</p>
-                <p>Адрес: г. Москва, ул. Примерная, д.&nbsp;1</p>
-              </div>
-              <div>
-                <h3 className="text-xl font-bold mb-4">Полезные ссылки</h3>
-                <ul className="space-y-2">
-                  <li>
-                    <Link href="/privacy-policy" className="hover:underline">
-                      Политика конфиденциальности
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/terms" className="hover:underline">
-                      Публичная оферта
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="#" className="hover:underline">
-                      Карта сайта
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="text-xl font-bold mb-4">
-                  Мы&nbsp;в&nbsp;соцсетях
-                </h3>
-                <div className="flex space-x-4">
-                  <a href="#" className="text-white hover:text-gray-300">
-                    <i className="fab fa-vk fa-2x"></i>
-                  </a>
-                  <a href="#" className="text-white hover:text-gray-300">
-                    <i className="fab fa-facebook fa-2x"></i>
-                  </a>
-                  <a href="#" className="text-white hover:text-gray-300">
-                    <i className="fab fa-instagram fa-2x"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="mt-8 text-center">
-              <p>
-                &copy;&nbsp;2025 Экскурсии в&nbsp;Парк Патриот. Все права
-                защищены.
-              </p>
-            </div>
-          </div>
-        </footer>
+        <Footer />
       </main>
     </div>
   );
