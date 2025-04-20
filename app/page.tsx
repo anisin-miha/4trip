@@ -1,35 +1,8 @@
 import Link from "next/link";
 import Header from "./components/Header";
 import BookingForm from "./components/BookingForm";
-import type { Metadata } from "next";
 import BaseImage from "@/components/BaseImage";
 import Footer from "./components/Footer";
-
-const basePath = process.env.NODE_ENV === "production" ? "/patriot" : "";
-
-export const metadata: Metadata = {
-  title: "Экскурсия в Парк Патриот | Путешествия на автобусе в Москву",
-  description:
-    "Присоединяйтесь к уникальной экскурсии на автобусе в Парк Патриот. Посетите музей Дорога памяти, храм Вооруженных сил, смотровую площадку и насладитесь полевой кухней. Забронируйте тур по субботам!",
-  keywords:
-    "экскурсия Парк Патриот, тур Парк Патриот, экскурсия на автобусе, музей Дорога памяти, храм Вооруженных сил, полевая кухня, экскурсия из Москвы, исторический тур, семейная экскурсия",
-  openGraph: {
-    title: "Экскурсия в Парк Патриот | Путешествия на автобусе в Москву",
-    description:
-      "Присоединяйтесь к уникальной экскурсии на автобусе в Парк Патриот. Посетите музей Дорога памяти, храм Вооруженных сил, смотровую площадку и насладитесь полевой кухней. Забронируйте тур по субботам!",
-    images: ["/images/park-patriot-hero.jpg"],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Экскурсия в Парк Патриот | Путешествия на автобусе в Москву",
-    description:
-      "Присоединяйтесь к уникальной экскурсии на автобусе в Парк Патриот. Посетите музей Дорога памяти, храм Вооруженных сил, смотровую площадку и насладитесь полевой кухней. Забронируйте тур по субботам!",
-    images: ["/images/park-patriot-hero.jpg"],
-  },
-  icons: {
-    icon: basePath + "/images/logo-favicon.png",
-  },
-};
 
 export default function Home() {
   return (
@@ -268,33 +241,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="info" className="py-16 bg-gray-100 scroll-mt-16">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-8">
-              Информация о&nbsp;туре
-            </h2>
-            <div className="grid md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-              <div className="bg-white p-6 rounded-lg shadow-md text-center">
-                <h3 className="font-semibold mb-2">Место встречи</h3>
-                <p>м. Парк Победы, на&nbsp;парковке автобусов около музея</p>
-              </div>
-              <div className="bg-white p-6 rounded-lg shadow-md text-center">
-                <h3 className="font-semibold mb-2">Тип экскурсии</h3>
-                <p>Групповая сборная, автобусно-пешеходная 9&nbsp;ч.</p>
-              </div>
-              <div className="bg-white p-6 rounded-lg shadow-md text-center">
-                <h3 className="font-semibold mb-2">Размер группы</h3>
-                <p>До&nbsp;50&nbsp;человек</p>
-              </div>
-              <div className="bg-white p-6 rounded-lg shadow-md text-center">
-                <h3 className="font-semibold mb-2">Для кого</h3>
-                <p>Можно с&nbsp;детьми</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="meeting" className="py-16 bg-white  scroll-mt-16">
+        <section id="meeting" className="py-16 bg-gray-100  scroll-mt-16">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-center mb-8">
               Место встречи и маршрут
@@ -312,25 +259,48 @@ export default function Home() {
                 />
               </div>
 
-              <div className="flex flex-col justify-center">
-                <h3 className="text-xl font-semibold mb-4">
-                  Время и место встречи
-                </h3>
-                <p className="mb-6">
-                  Сбор группы в&nbsp;<strong>08:45</strong> у станции метро
-                  <strong>&nbsp;Парк Победы</strong> (синяя линия), на парковке
-                  туристических автобусов около музея.
-                </p>
-
-                <h3 className="text-xl font-semibold mb-4">
-                  Продолжительность маршрута
-                </h3>
-                <p>
-                  Общая длительность поездки&nbsp;&mdash; около 9&nbsp;часов,
-                  включая дорогу туда и&nbsp;обратно, посещение музея
-                  &laquo;Дорога памяти&raquo; и&nbsp;Главного храма Вооружённых
-                  Сил.
-                </p>
+              {/* Правый столбец — блок информации */}
+              <div className="p-6 rounded-lg">
+                <ul className="space-y-4 text-gray-800">
+                  <li>
+                    <span className="font-semibold">Тип экскурсии:</span>{" "}
+                    Групповая сборная
+                  </li>
+                  <li>
+                    <span className="font-semibold">Время начала:</span> 08:45
+                  </li>
+                  <li>
+                    <span className="font-semibold">Длительность:</span> около 9
+                    ч.
+                  </li>
+                  <li>
+                    <span className="font-semibold">Место встречи:</span>{" "}
+                    метро Парк Победы
+                    <span className="inline-block w-2 h-2 bg-blue-500 rounded-full mx-1 align-middle"></span>
+                    <span className="text-sm text-gray-600">синяя линия</span>,
+                    на парковке туристических автобусов около музея
+                  </li>
+                  <li>
+                    <span className="font-semibold">Место окончания:</span>{" "}
+                    метро Парк Победы, парковка около музея
+                  </li>
+                  <li>
+                    <span className="font-semibold">Размер группы:</span> До 50
+                    человек
+                  </li>
+                  <li>
+                    <span className="font-semibold">Для кого:</span> Можно с
+                    детьми
+                  </li>
+                  <li>
+                    <span className="font-semibold">Язык экскурсии:</span>{" "}
+                    русский
+                  </li>
+                  <li>
+                    <span className="font-semibold">Стоимость:</span> 2 500 ₽ с
+                    человека
+                  </li>
+                </ul>
               </div>
             </div>
           </div>

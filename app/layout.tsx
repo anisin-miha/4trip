@@ -1,10 +1,30 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
+const basePath = process.env.NODE_ENV === "production" ? "/patriot" : "";
+
 export const metadata: Metadata = {
-  title: "v0 App",
-  description: "Created with v0",
-  generator: "v0.dev",
+  title: "Экскурсия в Парк Патриот | Путешествия на автобусе в Москву",
+  description:
+    "Присоединяйтесь к уникальной экскурсии на автобусе в Парк Патриот. Посетите музей Дорога памяти, храм Вооруженных сил, смотровую площадку и насладитесь полевой кухней. Забронируйте тур по субботам!",
+  keywords:
+    "экскурсия Парк Патриот, тур Парк Патриот, экскурсия на автобусе, музей Дорога памяти, храм Вооруженных сил, полевая кухня, экскурсия из Москвы, исторический тур, семейная экскурсия",
+  openGraph: {
+    title: "Экскурсия в Парк Патриот | Путешествия на автобусе в Москву",
+    description:
+      "Присоединяйтесь к уникальной экскурсии на автобусе в Парк Патриот. Посетите музей Дорога памяти, храм Вооруженных сил, смотровую площадку и насладитесь полевой кухней. Забронируйте тур по субботам!",
+    images: ["/images/park-patriot-hero.jpg"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Экскурсия в Парк Патриот | Путешествия на автобусе в Москву",
+    description:
+      "Присоединяйтесь к уникальной экскурсии на автобусе в Парк Патриот. Посетите музей Дорога памяти, храм Вооруженных сил, смотровую площадку и насладитесь полевой кухней. Забронируйте тур по субботам!",
+    images: ["/images/park-patriot-hero.jpg"],
+  },
+  icons: {
+    icon: basePath + "/images/logo-favicon.png",
+  },
 };
 
 export default function RootLayout({
@@ -13,7 +33,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="ru">
       <body>{children}</body>
     </html>
   );
