@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 import BaseImage from "@/components/BaseImage";
 import Footer from "./components/Footer";
 
-const basePath = process.env.NODE_ENV === 'production' ? '/patriot' : ''
+const basePath = process.env.NODE_ENV === "production" ? "/patriot" : "";
 
 export const metadata: Metadata = {
   title: "Экскурсия в Парк Патриот | Путешествия на автобусе в Москву",
@@ -31,14 +31,16 @@ export const metadata: Metadata = {
   },
 };
 
-
 export default function Home() {
   return (
     <div className="font-sans bg-gray-100 scroll-smooth">
       <Header />
 
       <main>
-        <section id="hero" className="relative h-screen flex items-center scroll-mt-16">
+        <section
+          id="hero"
+          className="relative h-screen flex items-center scroll-mt-16"
+        >
           <BaseImage
             src={"/images/cathedral-hero.png"}
             alt="Главный храм Вооруженных сил России"
@@ -292,7 +294,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="meeting" className="py-16 bg-white scroll-mt-16">
+        <section id="meeting" className="py-16 bg-white  scroll-mt-16">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-center mb-8">
               Место встречи и маршрут
@@ -300,10 +302,10 @@ export default function Home() {
             <div className="grid md:grid-cols-2 gap-8">
               <div className="w-full h-96 rounded-lg overflow-hidden shadow-md">
                 <iframe
-                  src="https://maps.google.com/maps?q=55.73640,37.51613&hl=ru&z=15&output=embed"
+                  src="https://yandex.ru/map-widget/v1/?ll=37.523504,55.740533&z=16&pt=37.523504,55.740533,pm2rdm"
                   width="100%"
                   height="100%"
-                  style={{ border: 0 }}
+                  frameBorder="0"
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
@@ -311,19 +313,23 @@ export default function Home() {
               </div>
 
               <div className="flex flex-col justify-center">
-                <h3 className="text-xl font-semibold mb-4">Время и место встречи</h3>
+                <h3 className="text-xl font-semibold mb-4">
+                  Время и место встречи
+                </h3>
                 <p className="mb-6">
                   Сбор группы в&nbsp;<strong>08:45</strong> у станции метро
-                  <strong>&nbsp;Парк Победы</strong> (синяя линия), на
-                  парковке туристических автобусов около музея.
+                  <strong>&nbsp;Парк Победы</strong> (синяя линия), на парковке
+                  туристических автобусов около музея.
                 </p>
 
-                <h3 className="text-xl font-semibold mb-4">Продолжительность маршрута</h3>
+                <h3 className="text-xl font-semibold mb-4">
+                  Продолжительность маршрута
+                </h3>
                 <p>
-                  Общая длительность поездки&nbsp;&mdash; около
-                  9&nbsp;часов, включая дорогу туда и&nbsp;обратно, посещение
-                  музея &laquo;Дорога памяти&raquo; и&nbsp;Главного храма
-                  Вооружённых Сил.
+                  Общая длительность поездки&nbsp;&mdash; около 9&nbsp;часов,
+                  включая дорогу туда и&nbsp;обратно, посещение музея
+                  &laquo;Дорога памяти&raquo; и&nbsp;Главного храма Вооружённых
+                  Сил.
                 </p>
               </div>
             </div>

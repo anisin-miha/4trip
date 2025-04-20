@@ -1,9 +1,7 @@
-// src/components/Footer.tsx
+"use client";
 
-'use client';
-
-import Link from 'next/link';
-import contactInfo from '../config/contactInfo';
+import Link from "next/link";
+import contactInfo from "../config/contactInfo";
 
 export default function Footer() {
   const { phone, email, address, links, social } = contactInfo;
@@ -55,10 +53,16 @@ export default function Footer() {
               <a href={social.vk} className="text-white hover:text-gray-300">
                 <i className="fab fa-vk fa-2x"></i>
               </a>
-              <a href={social.facebook} className="text-white hover:text-gray-300">
+              <a
+                href={social.facebook}
+                className="text-white hover:text-gray-300"
+              >
                 <i className="fab fa-facebook fa-2x"></i>
               </a>
-              <a href={social.instagram} className="text-white hover:text-gray-300">
+              <a
+                href={social.instagram}
+                className="text-white hover:text-gray-300"
+              >
                 <i className="fab fa-instagram fa-2x"></i>
               </a>
             </div>
@@ -66,7 +70,8 @@ export default function Footer() {
         </div>
         <div className="mt-8 text-center">
           <p>
-            &copy;&nbsp;{currentYear} Экскурсии в Парк Патриот. Все права защищены.
+            &copy;&nbsp;{currentYear} Экскурсии в Парк Патриот. Все права
+            защищены.
           </p>
         </div>
       </div>

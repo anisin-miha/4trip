@@ -25,7 +25,8 @@ export default function Header() {
   ];
 
   const linkClasses = (scrolled: boolean) =>
-    `block py-2 lg:py-0 hover:text-blue-600 ${scrolled ? "text-gray-800" : "text-white"
+    `block py-2 lg:py-0 hover:text-blue-600 ${
+      scrolled ? "text-gray-800" : "text-white"
     }`;
 
   return (
@@ -40,8 +41,9 @@ export default function Header() {
       )}
 
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-white shadow-md" : "bg-transparent"
-          }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isScrolled ? "bg-white shadow-md" : "bg-transparent"
+        }`}
       >
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           {/* Логотип */}
@@ -57,8 +59,9 @@ export default function Header() {
               height={50}
             />
             <span
-              className={`ml-2 font-bold text-xl ${isScrolled ? "text-gray-800" : "text-white"
-                }`}
+              className={`ml-2 font-bold text-xl ${
+                isScrolled ? "text-gray-800" : "text-white"
+              }`}
             >
               Парк Патриот Тур
             </span>
@@ -79,8 +82,9 @@ export default function Header() {
 
           {/* Бургер (< 1024 px) */}
           <button
-            className={`lg:hidden focus:outline-none ${isScrolled ? "text-gray-800" : "text-white"
-              }`}
+            className={`lg:hidden focus:outline-none ${
+              isScrolled ? "text-gray-800" : "text-white"
+            }`}
             aria-label="Открыть меню"
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((prev) => !prev)}
@@ -124,8 +128,9 @@ export default function Header() {
 
       {/* Выдвижное мобильное меню */}
       <nav
-        className={`fixed top-0 right-0 h-full w-64 bg-white z-50 shadow-lg transform transition-transform duration-300 lg:hidden ${menuOpen ? "translate-x-0" : "translate-x-full"
-          }`}
+        className={`fixed top-0 right-0 h-full w-64 bg-white z-50 shadow-lg transform transition-transform duration-300 lg:hidden ${
+          menuOpen ? "translate-x-0" : "translate-x-full"
+        }`}
         aria-hidden={!menuOpen}
       >
         <ul className="flex flex-col mt-24 space-y-6 px-8">
