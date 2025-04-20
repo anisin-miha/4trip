@@ -1,8 +1,14 @@
-// components/BaseImage.tsx
-import Image, { ImageProps } from "next/image";
+import ExportedImage from 'next-image-export-optimizer';
 
-const basePath = process.env.NODE_ENV === "production" ? "/patriot" : "";
+// Добавляем базовый префикс для GitHub Pages
+const basePath = process.env.NODE_ENV === 'production' ? '/patriot' : '';
 
-export default function BaseImage(props: ImageProps) {
-  return <Image {...props} src={`${basePath}${props.src}`} />;
-}
+export default function BaseImage(props: any) {
+  // Пропускаем props.src через basePath и рендерим ExportedImage
+  return (
+    <ExportedImage
+      {...props}
+      src={`${basePath}${props.src}`}
+    />
+  );
+};
