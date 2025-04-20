@@ -50,21 +50,23 @@ export default function Footer() {
           <div>
             <h3 className="text-xl font-bold mb-4">Мы в соцсетях</h3>
             <div className="flex space-x-4">
-              <a href={social.vk} className="text-white hover:text-gray-300">
+              <a href={social.vk} title="Вконтакте" className="text-white hover:text-gray-300">
                 <i className="fab fa-vk fa-2x"></i>
               </a>
-              <a
+              {/* <a
                 href={social.facebook}
+                title="Facebook"
                 className="text-white hover:text-gray-300"
               >
                 <i className="fab fa-facebook fa-2x"></i>
               </a>
               <a
                 href={social.instagram}
+                title="Instagram"
                 className="text-white hover:text-gray-300"
               >
                 <i className="fab fa-instagram fa-2x"></i>
-              </a>
+              </a> */}
             </div>
           </div>
         </div>
