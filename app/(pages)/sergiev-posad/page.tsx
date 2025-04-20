@@ -16,7 +16,7 @@ export default function SergievPosad() {
           className="relative h-screen flex items-center scroll-mt-16"
         >
           <BaseImage
-            src="/images/sergiev_posad/hero.jpg"
+            src="/images/sergiev_posad/hero.png"
             alt="Панорама Троице-Сергиевой лавры"
             fill
             priority
@@ -212,28 +212,28 @@ export default function SergievPosad() {
             </h2>
             <div className="grid md:grid-cols-4 gap-4">
               <BaseImage
-                src="/images/sergiev_posad/gallery1.jpg"
+                src="/images/sergiev_posad/gallery1.png"
                 alt="Галерея 1 Сергеев Посад"
                 width={300}
                 height={200}
                 className="w-full h-64 object-cover rounded-lg"
               />
               <BaseImage
-                src="/images/sergiev_posad/gallery2.jpg"
+                src="/images/sergiev_posad/gallery2.png"
                 alt="Галерея 2 Сергиев Посад"
                 width={300}
                 height={200}
                 className="w-full h-64 object-cover rounded-lg"
               />
               <BaseImage
-                src="/images/sergiev_posad/gallery3.jpg"
+                src="/images/sergiev_posad/gallery3.png"
                 alt="Галерея 3 Сергиев Посад"
                 width={300}
                 height={200}
                 className="w-full h-64 object-cover rounded-lg"
               />
               <BaseImage
-                src="/images/sergiev_posad/gallery4.jpg"
+                src="/images/sergiev_posad/gallery4.png"
                 alt="Галерея 4 Сергиев Посад"
                 width={300}
                 height={200}
