@@ -5,7 +5,7 @@ import { YandexMetricaProvider } from "next-yandex-metrica";
 export default function Providers({ children }: { children: React.ReactNode }) {
   return (
     <YandexMetricaProvider
-      tagID={Number(process.env.NEXT_PUBLIC_YM_TAG_ID)}
+      tagID={101206958}
       initParameters={{
         clickmap: true,
         trackLinks: true,
