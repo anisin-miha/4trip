@@ -6,7 +6,7 @@ const contactInfo = {
     privacyPolicy: "/privacy-policy",
     terms: "/terms",
     sitemap: "#",
-    seryoga_tg: 'https://t.me/chetverochka_ya'
+    seryoga_tg: "https://t.me/chetverochka_ya",
   },
   social: {
     vk: "#",

@@ -1,3 +1,12 @@
+import withPWA from "next-pwa";
+
+const withPWAWrapped = withPWA({
+  dest: "public",
+  register: true,
+  skipWaiting: true,
+  disable: process.env.NODE_ENV === "development",
+});
+
 let userConfig = undefined;
 try {
   userConfig = await import("./v0-user-next.config");
@@ -6,7 +15,7 @@ try {
 }
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+let nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -28,7 +37,7 @@ const nextConfig = {
     config.module.rules.push({
       test: /\.svg$/i,
       issuer: /\.[jt]sx?$/,
-      use: ['@svgr/webpack'],
+      use: ["@svgr/webpack"],
     });
 
     return config;
@@ -49,6 +58,11 @@ const nextConfig = {
 
 mergeConfig(nextConfig, userConfig);
 
+// 👇 применяем PWA-обёртку в самом конце
+nextConfig = withPWAWrapped(nextConfig);
+
+export default nextConfig;
+
 function mergeConfig(nextConfig, userConfig) {
   if (!userConfig) return;
 
@@ -66,5 +80,3 @@ function mergeConfig(nextConfig, userConfig) {
     }
   }
 }
-
-export default nextConfig;

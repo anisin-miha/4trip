@@ -8,7 +8,7 @@ import Footer from "@/app/components/Footer";
 export default function SergievPosad() {
   return (
     <div className="font-sans bg-gray-100 scroll-smooth">
-      <Header title="Сергиев Посад Тур"  />
+      <Header title="Сергиев Посад Тур" />
 
       <main>
         <section
@@ -32,8 +32,8 @@ export default function SergievPosad() {
                   Экскурсия в&nbsp;Сергиев Посад
                 </h1>
                 <p className="text-xl md:text-2xl mb-8 text-gray-100">
-                  Откройте для себя духовный центр России и
-                  прикоснитесь к&nbsp;великим традициям русского монашества
+                  Откройте для себя духовный центр России и прикоснитесь
+                  к&nbsp;великим традициям русского монашества
                 </p>
                 <Link
                   href="#booking"
@@ -67,8 +67,8 @@ export default function SergievPosad() {
                   </h3>
                   <p>
                     Главная святыня города, основанная преподобным Сергием
-                    Радонежским в&nbsp;14 веке. Подлинные фрески Андрея
-                    Рублева, древние колокола и&nbsp;духовная атмосфера.
+                    Радонежским в&nbsp;14 веке. Подлинные фрески Андрея Рублева,
+                    древние колокола и&nbsp;духовная атмосфера.
                   </p>
                 </div>
               </div>
@@ -85,8 +85,8 @@ export default function SergievPosad() {
                     Фарфоровый завод и&nbsp;музей
                   </h3>
                   <p>
-                    Посетим легендарный завод Императорского фарфора, узнаем
-                    о процессе создания изящных сервизов и&nbsp;посмотрим
+                    Посетим легендарный завод Императорского фарфора, узнаем о
+                    процессе создания изящных сервизов и&nbsp;посмотрим
                     коллекции 18–20 веков.
                   </p>
                 </div>
@@ -117,15 +117,14 @@ export default function SergievPosad() {
             <div className="grid md:grid-cols-3 gap-8">
               <div className="bg-gray-100 p-6 rounded-lg shadow-md">
                 <p className="mb-4 italic">
-                  «Невероятно душевно и познавательно. Лавра произвела
-                  глубокое впечатление.»
+                  «Невероятно душевно и познавательно. Лавра произвела глубокое
+                  впечатление.»
                 </p>
                 <p className="font-bold">— Анна, Ярославль</p>
               </div>
               <div className="bg-gray-100 p-6 rounded-lg shadow-md">
                 <p className="mb-4 italic">
-                  «Замечательный гид, интересные факты и красивая
-                  архитектура.»
+                  «Замечательный гид, интересные факты и красивая архитектура.»
                 </p>
                 <p className="font-bold">— Дмитрий, Москва</p>
               </div>
@@ -169,23 +168,29 @@ export default function SergievPosad() {
                     <span className="font-semibold">Время начала:</span> 09:00
                   </li>
                   <li>
-                    <span className="font-semibold">Длительность:</span> около 8 ч.
+                    <span className="font-semibold">Длительность:</span> около 8
+                    ч.
                   </li>
                   <li>
                     <span className="font-semibold">Место встречи:</span>{" "}
-                    Москва, метро "Комсомольская", выход к Ленинградскому вокзалу
+                    Москва, метро "Комсомольская", выход к Ленинградскому
+                    вокзалу
                   </li>
                   <li>
-                    <span className="font-semibold">Размер группы:</span> До 30 человек
+                    <span className="font-semibold">Размер группы:</span> До 30
+                    человек
                   </li>
                   <li>
-                    <span className="font-semibold">Для кого:</span> Можно с детьми
+                    <span className="font-semibold">Для кого:</span> Можно с
+                    детьми
                   </li>
                   <li>
-                    <span className="font-semibold">Язык экскурсии:</span> русский
+                    <span className="font-semibold">Язык экскурсии:</span>{" "}
+                    русский
                   </li>
                   <li>
-                    <span className="font-semibold">Стоимость:</span> 3 000 ₽ с человека
+                    <span className="font-semibold">Стоимость:</span> 3 000 ₽ с
+                    человека
                   </li>
                 </ul>
               </div>
@@ -253,17 +258,13 @@ export default function SergievPosad() {
                 <h3 className="text-xl font-bold mb-2">
                   Сколько длится экскурсия?
                 </h3>
-                <p>
-                  Экскурсия длится примерно 8 часов, включая переезд.
-                </p>
+                <p>Экскурсия длится примерно 8 часов, включая переезд.</p>
               </div>
               <div>
-                <h3 className="text-xl font-bold mb-2">
-                  Включен ли трансфер?
-                </h3>
+                <h3 className="text-xl font-bold mb-2">Включен ли трансфер?</h3>
                 <p>
-                  Да, автобус от метро "Комсомольская" до Сергиева Посада
-                  и обратно включен.
+                  Да, автобус от метро "Комсомольская" до Сергиева Посада и
+                  обратно включен.
                 </p>
               </div>
               <div>

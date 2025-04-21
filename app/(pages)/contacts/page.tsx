@@ -17,22 +17,41 @@ export default function ContactsPage() {
         ]}
       />
 
-
       <main className="flex-grow container mx-auto px-4 py-16 mt-16">
-        <h1 className="text-4xl font-bold text-center mb-12">Свяжитесь с нами</h1>
+        <h1 className="text-4xl font-bold text-center mb-12">
+          Свяжитесь с нами
+        </h1>
 
         <div className="max-w-xl mx-auto space-y-6 text-lg text-gray-800">
           <p>
-            Мы всегда рады ответить на ваши вопросы и помочь с выбором экскурсии.
+            Мы всегда рады ответить на ваши вопросы и помочь с выбором
+            экскурсии.
           </p>
           <p>
-            <strong>Телефон:</strong> <a href={`tel:${phone}`} className="text-blue-600 hover:underline">{phone}</a>
+            <strong>Телефон:</strong>{" "}
+            <a href={`tel:${phone}`} className="text-blue-600 hover:underline">
+              {phone}
+            </a>
           </p>
           <p>
-            <strong>Telegram:</strong> <a href={social.telegram} target="_blank" className="text-blue-600 hover:underline">написать в Telegram</a>
+            <strong>Telegram:</strong>{" "}
+            <a
+              href={social.telegram}
+              target="_blank"
+              className="text-blue-600 hover:underline"
+            >
+              написать в Telegram
+            </a>
           </p>
           <p>
-            <strong>ВКонтакте:</strong> <a href={social.vk} target="_blank" className="text-blue-600 hover:underline">наша страница</a>
+            <strong>ВКонтакте:</strong>{" "}
+            <a
+              href={social.vk}
+              target="_blank"
+              className="text-blue-600 hover:underline"
+            >
+              наша страница
+            </a>
           </p>
         </div>
       </main>

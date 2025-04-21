@@ -1,4 +1,4 @@
-import ExportedImage from 'next-image-export-optimizer';
+import ExportedImage from "next-image-export-optimizer";
 
 // Добавляем базовый префикс для GitHub Pages
 // const basePath = process.env.NODE_ENV === 'production' ? '/patriot' : '';
@@ -12,4 +12,4 @@ export default function BaseImage(props: any) {
       src={props.src}
     />
   );
-};
+}

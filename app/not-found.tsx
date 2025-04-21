@@ -11,7 +11,8 @@ export default function NotFound() {
         <div className="text-center max-w-xl">
           <h1 className="text-5xl font-bold mb-6">404 — Страница не найдена</h1>
           <p className="text-lg text-gray-600 mb-8">
-            Кажется, вы свернули не туда. Такой страницы не существует или она была перемещена.
+            Кажется, вы свернули не туда. Такой страницы не существует или она
+            была перемещена.
           </p>
           <Link
             href="/"

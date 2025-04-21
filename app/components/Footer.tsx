@@ -96,7 +96,8 @@ export default function Footer() {
 
         <div className="mt-8 text-center text-sm text-gray-500">
           <p>
-            &copy;&nbsp;{currentYear} Экскурсии в Парк Патриот. Все права защищены.
+            &copy;&nbsp;{currentYear} Экскурсии в Парк Патриот. Все права
+            защищены.
           </p>
         </div>
       </div>
