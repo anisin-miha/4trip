@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://4-trip.ru
+
+# Sitemaps
+Sitemap: https://4-trip.ru/sitemap.xml
