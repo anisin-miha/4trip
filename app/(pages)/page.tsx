@@ -1,6 +1,7 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import TourCard from "../components/TourCard";
+import BookingForm from "../components/BookingForm";
 
 export default function Home() {
   return (
@@ -36,6 +37,18 @@ export default function Home() {
               title="Сергиев Посад"
               description="Поездка в духовную столицу России с посещением Троице-Сергиевой лавры"
             />
+          </div>
+        </section>
+        <section id="booking" className="py-16 bg-white scroll-mt-16">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold text-center mb-4">
+              Забронируйте свое место на&nbsp;экскурсию
+            </h2>
+            <p className="text-center mb-8">
+              Заполните форму, и&nbsp;мы&nbsp;свяжемся с&nbsp;вами для
+              подтверждения бронирования. Места ограничены!
+            </p>
+            <BookingForm />
           </div>
         </section>
       </main>
