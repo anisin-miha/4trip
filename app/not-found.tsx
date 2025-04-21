@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function NotFound() {
   return (
     <div className="font-sans bg-white text-gray-900 scroll-smooth min-h-screen flex flex-col">
-      <Header title="" />
+      <Header title="" main />
 
       <main className="flex-grow flex items-center justify-center px-4">
         <div className="text-center max-w-xl">
