@@ -1,8 +1,8 @@
 import Link from "next/link";
-
 import BaseImage from "@/components/BaseImage";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import TourCard from "../components/TourCard";
 
 export default function Home() {
   return (
@@ -10,7 +10,7 @@ export default function Home() {
       <Header title="" main />
 
       <main className="py-16">
-        <section className="container mx-auto px-4 mb-16 text-center">
+        <section className="container mx-auto px-4 mb-16 mt-24 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
             Ваш путь к увлекательным поездкам
           </h1>
@@ -24,39 +24,20 @@ export default function Home() {
             Наши экскурсии
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
-            <Link href="/patriot" className="block rounded-lg overflow-hidden shadow-md hover:shadow-xl transition">
-              <div className="relative h-64">
-                <BaseImage
-                  src="/images/patriot/pencil.png"
-                  alt="Парк Патриот"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="p-4">
-                <h3 className="text-xl font-semibold mb-2">Парк Патриот</h3>
-                <p className="text-gray-600">
-                  Экскурсия к Главному храму Вооруженных Сил России и музею "Дорога памяти"
-                </p>
-              </div>
-            </Link>
-
-            <Link href="/sergiev-posad" className="block rounded-lg overflow-hidden shadow-md hover:shadow-xl transition">
-              <div className="relative h-64">
-                <BaseImage
-                  src="/images/sergiev_posad/pencil.png"
-                  alt="Сергиев Посад"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="p-4">
-                <h3 className="text-xl font-semibold mb-2">Сергиев Посад</h3>
-                <p className="text-gray-600">
-                  Поездка в духовную столицу России с посещением Троице-Сергиевой лавры
-                </p>
-              </div>
-            </Link>
+            <TourCard
+              href="/patriot"
+              imageSrc="/images/patriot/pencil.png"
+              imageAlt="Парк Патриот"
+              title="Парк Патриот"
+              description="Экскурсия к Главному храму Вооруженных Сил России и музею 'Дорога памяти'"
+            />
+            <TourCard
+              href="/sergiev-posad"
+              imageSrc="/images/sergiev_posad/pencil.png"
+              imageAlt="Сергиев Посад"
+              title="Сергиев Посад"
+              description="Поездка в духовную столицу России с посещением Троице-Сергиевой лавры"
+            />
           </div>
         </section>
       </main>
