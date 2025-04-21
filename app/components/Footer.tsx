@@ -24,7 +24,7 @@ export default function Footer() {
                 {phone}
               </a>
             </p>
-            <p>
+            {/* <p>
               Email:&nbsp;
               <a
                 href={`mailto:${email}`}
@@ -33,10 +33,10 @@ export default function Footer() {
               >
                 {email}
               </a>
-            </p>
+            </p> */}
           </div>
 
-          <div>
+          {/* <div>
             <h3 className="text-xl font-bold mb-4">Полезные ссылки</h3>
             <ul className="space-y-2">
               <li>
@@ -67,7 +67,7 @@ export default function Footer() {
                 </Link>
               </li>
             </ul>
-          </div>
+          </div> */}
 
           <div>
             <h3 className="text-xl font-bold mb-4">Мы в соцсетях</h3>
