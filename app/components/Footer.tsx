@@ -77,6 +77,7 @@ export default function Footer() {
                 title="Telegram"
                 className="hover:opacity-80 transition"
                 target="_blank"
+                rel="noopener"
               >
                 <TgIcon width={24} height={24} />
               </a>
@@ -84,6 +85,8 @@ export default function Footer() {
                 href={social.vk}
                 title="Вконтакте"
                 className="text-black hover:text-gray-600 transition"
+                target="_blank"
+                rel="noopener"
               >
                 <i className="fab fa-vk fa-2x"></i>
               </a>
