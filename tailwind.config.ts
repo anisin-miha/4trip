@@ -9,6 +9,17 @@ const config: Config = {
     "*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    container: {
+      center: true,
+      padding: "1rem",
+      screens: {
+        sm: "100%",
+        md: "640px",
+        lg: "800px",
+        xl: "960px",
+        "2xl": "1080px", // можно ещё уже, например: "1024px"
+      },
+    },
     extend: {
       colors: {
         background: "hsl(var(--background))",
