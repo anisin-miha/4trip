@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import contactInfo from "../config/contactInfo";
+import TgIcon from "../../public/images/telegram-svgrepo-com.svg"
 
 export default function Footer() {
-  const { phone, email, address, links, social } = contactInfo;
+  const { phone, email, links, social } = contactInfo;
   const currentYear = new Date().getFullYear();
 
   return (
@@ -25,7 +26,7 @@ export default function Footer() {
                 {email}
               </a>
             </p>
-            <p>Адрес: {address}</p>
+            {/* <p>Адрес: {address}</p> */}
           </div>
           <div>
             <h3 className="text-xl font-bold mb-4">Полезные ссылки</h3>
@@ -50,23 +51,12 @@ export default function Footer() {
           <div>
             <h3 className="text-xl font-bold mb-4">Мы в соцсетях</h3>
             <div className="flex space-x-4">
+              <a href={social.telegram} title="Telegram" className="text-white hover:text-gray-300" target="_blank">
+                <TgIcon width={20} height={20} color="#fff" />
+              </a>
               <a href={social.vk} title="Вконтакте" className="text-white hover:text-gray-300">
                 <i className="fab fa-vk fa-2x"></i>
               </a>
-              {/* <a
-                href={social.facebook}
-                title="Facebook"
-                className="text-white hover:text-gray-300"
-              >
-                <i className="fab fa-facebook fa-2x"></i>
-              </a>
-              <a
-                href={social.instagram}
-                title="Instagram"
-                className="text-white hover:text-gray-300"
-              >
-                <i className="fab fa-instagram fa-2x"></i>
-              </a> */}
             </div>
           </div>
         </div>

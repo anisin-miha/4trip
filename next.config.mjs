@@ -6,9 +6,6 @@ try {
 }
 
 /** @type {import('next').NextConfig} */
-// const isProd = process.env.NODE_ENV === "production";
-// const repo = "patriot";
-
 const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
@@ -27,24 +24,25 @@ const nextConfig = {
     parallelServerBuildTraces: true,
     parallelServerCompiles: true,
   },
-  // 👇 для GitHub Pages и статического экспорта
+  webpack(config, { isServer }) {
+    config.module.rules.push({
+      test: /\.svg$/i,
+      issuer: /\.[jt]sx?$/,
+      use: ['@svgr/webpack'],
+    });
+
+    return config;
+  },
   output: "export",
   basePath: "",
-  assetPrefix: "",  
+  assetPrefix: "",
   env: {
-    // папка с исходными картинками (по умолчанию public/images)
     nextImageExportOptimizer_imageFolderPath: "public/images",
-    // куда положить готовый экспорт (по умолчанию out)
     nextImageExportOptimizer_exportFolderPath: "out",
-    // качество WebP (0–100)
     nextImageExportOptimizer_quality: "75",
-    // хранить в WEBP
     nextImageExportOptimizer_storePicturesInWEBP: "true",
-    // имя вложенной папки внутри export-а
     nextImageExportOptimizer_exportFolderName: "nextImageExportOptimizer",
-    // генерировать и использовать размазанные placeholder-ы
     nextImageExportOptimizer_generateAndUseBlurImages: "true",
-    // TTL кеша для remote-картинок в секундах
     nextImageExportOptimizer_remoteImageCacheTTL: "0",
   },
 };
