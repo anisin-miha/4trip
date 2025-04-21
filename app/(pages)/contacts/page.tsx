@@ -29,9 +29,6 @@ export default function ContactsPage() {
             <strong>Телефон:</strong> <a href={`tel:${phone}`} className="text-blue-600 hover:underline">{phone}</a>
           </p>
           <p>
-            <strong>Email:</strong> <a href={`mailto:${email}`} className="text-blue-600 hover:underline">{email}</a>
-          </p>
-          <p>
             <strong>Telegram:</strong> <a href={social.telegram} target="_blank" className="text-blue-600 hover:underline">написать в Telegram</a>
           </p>
           <p>
