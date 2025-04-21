@@ -1,5 +1,3 @@
-import Link from "next/link";
-import BaseImage from "@/components/BaseImage";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import TourCard from "../components/TourCard";

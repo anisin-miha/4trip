@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import Providers from "./providers";
 
-// const basePath = process.env.NODE_ENV === "production" ? "/patriot" : "";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Экскурсия в Парк Патриот | Путешествия на автобусе в Москву",
@@ -35,7 +35,10 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <body>
-        {children}</body>
+        <Providers>
+          {children}
+        </Providers>
+      </body>
     </html>
   );
 }

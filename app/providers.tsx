@@ -1,10 +1,11 @@
-// pages/_app.tsx
+"use client";
+
 import { YandexMetricaProvider } from "next-yandex-metrica";
 
-export default function MyApp({ Component, pageProps }: any) {
+export default function Providers({ children }: { children: React.ReactNode }) {
   return (
     <YandexMetricaProvider
-      tagID={Number(process.env.YM_TAG_ID)}
+      tagID={Number(process.env.NEXT_PUBLIC_YM_TAG_ID)}
       initParameters={{
         clickmap: true,
         trackLinks: true,
@@ -12,7 +13,7 @@ export default function MyApp({ Component, pageProps }: any) {
         webvisor: true,
       }}
     >
-      <Component {...pageProps} />
+      {children}
     </YandexMetricaProvider>
   );
 }
