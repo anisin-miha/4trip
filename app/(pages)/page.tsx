@@ -34,9 +34,9 @@ export default function Home() {
             <TourCard
               href="/patriot"
               imageSrc="/images/patriot/pencil.png"
-              imageAlt="Парк Патриот"
-              title="Парк Патриот"
-              description="Экскурсия к Главному храму Вооруженных Сил России и музею 'Дорога памяти'"
+              imageAlt="Парк «Патриот»"
+              title="Парк «Патриот»"
+              description="Экскурсия к Главному храму Вооруженных Сил России и музею «Дорога памяти»"
             />
             <TourCard
               href="/sergiev-posad"

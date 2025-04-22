@@ -8,7 +8,7 @@ import Footer from "@/app/components/Footer";
 export default function SergievPosad() {
   return (
     <div className="font-sans bg-gray-100 scroll-smooth">
-      <Header title="Сергиев Посад Тур" />
+      <Header title="Сергиев Посад" />
 
       <main>
         <section

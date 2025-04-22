@@ -94,12 +94,12 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 text-center text-sm text-gray-500">
+        {/* <div className="mt-8 text-center text-sm text-gray-500">
           <p>
-            &copy;&nbsp;{currentYear} Экскурсии в Парк Патриот. Все права
+            &copy;&nbsp;{currentYear} 4trip. Все права
             защищены.
           </p>
-        </div>
+        </div> */}
       </div>
     </footer>
   );

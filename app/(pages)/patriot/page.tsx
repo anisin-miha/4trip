@@ -7,7 +7,7 @@ import Footer from "../../components/Footer";
 export default function Home() {
   return (
     <div className="font-sans bg-gray-100 scroll-smooth">
-      <Header title="Парк Патриот Тур" />
+      <Header title="Парк «Патриот»" />
 
       <main>
         <section
@@ -28,7 +28,7 @@ export default function Home() {
             <div className="container mx-auto px-4">
               <div className="max-w-md text-white text-left">
                 <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-                  Экскурсия в&nbsp;Парк Патриот
+                  Парк «Патриот»
                 </h1>
                 <p className="text-xl md:text-2xl mb-8 text-gray-100">
                   Посетите величественный храм Вооруженных сил
@@ -48,11 +48,8 @@ export default function Home() {
         <section id="attractions" className="py-16 bg-gray-100 scroll-mt-16">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-center mb-12">
-              Описание экскурсии
+              Вы&nbsp;посетите:
             </h2>
-            <p className="text-xl text-center mb-12">
-              На&nbsp;экскурсии вы&nbsp;посетите:
-            </p>
 
             <div className="grid md:grid-cols-2 gap-12 mb-12">
               <div className="bg-white rounded-lg shadow-md overflow-hidden">
@@ -127,7 +124,7 @@ export default function Home() {
 
             <div className="bg-white rounded-lg shadow-md p-8 mb-12">
               <h3 className="text-2xl font-semibold mb-6 text-center">
-                На&nbsp;экскурсии вы&nbsp;узнаете:
+                Вы&nbsp;узнаете:
               </h3>
               <div className="grid md:grid-cols-2 gap-4">
                 <ul className="list-disc pl-6 space-y-2">
@@ -176,7 +173,7 @@ export default function Home() {
 
             <div className="bg-blue-50 rounded-lg shadow-md p-8 mb-12">
               <h3 className="text-2xl font-semibold mb-6 text-center">
-                Важно знать:
+                Важные детали:
               </h3>
               <ul className="list-disc pl-6 space-y-3">
                 <li>
