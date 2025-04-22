@@ -29,7 +29,7 @@ export default function SergievPosad() {
             <div className="container mx-auto px-4">
               <div className="max-w-md text-white text-left">
                 <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-                  Экскурсия в&nbsp;Сергиев Посад
+                  Сергиев Посад
                 </h1>
                 <p className="text-xl md:text-2xl mb-8 text-gray-100">
                   Откройте для себя духовный центр России и прикоснитесь
