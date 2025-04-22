@@ -276,7 +276,7 @@ export default function Home() {
                     метро Парк Победы
                     <span className="inline-block w-2 h-2 bg-blue-500 rounded-full mx-1 align-middle"></span>
                     <span className="text-sm text-gray-600">синяя линия</span>,
-                    на парковке туристических автобусов около музея
+                    парковка у музея Бородинской битвы
                   </li>
                   <li>
                     <span className="font-semibold">Место окончания:</span>{" "}
