@@ -50,11 +50,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   // Обрабатываем телефон один раз
-  const phoneFormatted = contactInfo.phone.replace(/\s|\(|\)|-/g, '');
+  const phoneFormatted = contactInfo.phone.replace(/\s|\(|\)|-/g, "");
 
   // Фильтруем рабочие соцсети
   const socialLinks = Object.values(contactInfo.social).filter(
-    (link) => link && link !== "#"
+    (link) => link && link !== "#",
   );
 
   return (
@@ -62,7 +62,10 @@ export default function RootLayout({
       <head>
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#ffffff" />
-        <meta name="keywords" content="групповые экскурсии Подмосковье, туры по Подмосковью, экскурсия Парк Патриот, экскурсия Сергиев Посад, автобусные туры Москва" />
+        <meta
+          name="keywords"
+          content="групповые экскурсии Подмосковье, туры по Подмосковью, экскурсия Парк Патриот, экскурсия Сергиев Посад, автобусные туры Москва"
+        />
         <link
           rel="apple-touch-icon"
           href="/favicon/web-app-manifest-192x192.png"
@@ -89,32 +92,33 @@ export default function RootLayout({
               {
                 "@context": "https://schema.org",
                 "@type": "Organization",
-                "name": "4-trip.ru",
-                "url": "https://4-trip.ru/",
-                "logo": "https://4-trip.ru/images/logo.png",
-                "contactPoint": {
+                name: "4-trip.ru",
+                url: "https://4-trip.ru/",
+                logo: "https://4-trip.ru/images/logo.png",
+                contactPoint: {
                   "@type": "ContactPoint",
-                  "telephone": phoneFormatted,
-                  "contactType": "customer service",
-                  "areaServed": "RU",
-                  "availableLanguage": ["Russian"]
+                  telephone: phoneFormatted,
+                  contactType: "customer service",
+                  areaServed: "RU",
+                  availableLanguage: ["Russian"],
                 },
-                "sameAs": socialLinks
+                sameAs: socialLinks,
               },
               {
                 "@context": "https://schema.org",
                 "@type": "WebSite",
-                "url": "https://4-trip.ru/",
-                "name": "Экскурсии по Подмосковью — 4-trip.ru",
-                "description": "Групповые экскурсии по Подмосковью: Парк «Патриот», Сергиев Посад и другие направления. Комфортные поездки с профессиональными гидами!",
-                "inLanguage": "ru",
-                "potentialAction": {
+                url: "https://4-trip.ru/",
+                name: "Экскурсии по Подмосковью — 4-trip.ru",
+                description:
+                  "Групповые экскурсии по Подмосковью: Парк «Патриот», Сергиев Посад и другие направления. Комфортные поездки с профессиональными гидами!",
+                inLanguage: "ru",
+                potentialAction: {
                   "@type": "SearchAction",
-                  "target": "https://4-trip.ru/search?q={search_term_string}",
-                  "query-input": "required name=search_term_string"
-                }
-              }
-            ])
+                  target: "https://4-trip.ru/search?q={search_term_string}",
+                  "query-input": "required name=search_term_string",
+                },
+              },
+            ]),
           }}
         />
       </head>
