@@ -24,50 +24,23 @@ export default function Footer() {
                 {phone}
               </a>
             </p>
-            {/* <p>
-              Email:&nbsp;
-              <a
-                href={`mailto:${email}`}
-                title="Почта"
-                className="hover:underline text-gray-800"
-              >
-                {email}
-              </a>
-            </p> */}
           </div>
 
-          {/* <div>
+          <div>
             <h3 className="text-xl font-bold mb-4">Полезные ссылки</h3>
             <ul className="space-y-2">
               <li>
                 <Link
-                  href={links.privacyPolicy}
+                  href="/privacy-policy"
                   title="Политика конфиденциальности"
                   className="hover:underline text-gray-800"
                 >
                   Политика конфиденциальности
                 </Link>
               </li>
-              <li>
-                <Link
-                  href={links.terms}
-                  title="Публичная оферта"
-                  className="hover:underline text-gray-800"
-                >
-                  Публичная оферта
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={links.sitemap}
-                  title="Карта сайта"
-                  className="hover:underline text-gray-800"
-                >
-                  Карта сайта
-                </Link>
-              </li>
             </ul>
-          </div> */}
+          </div>
+
 
           <div>
             <h3 className="text-xl font-bold mb-4">Мы в соцсетях</h3>
@@ -94,12 +67,12 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* <div className="mt-8 text-center text-sm text-gray-500">
+        <div className="mt-8 text-sm text-gray-500">
           <p>
-            &copy;&nbsp;{currentYear} 4trip. Все права
+            &copy;&nbsp;{currentYear} 4-trip. Все права
             защищены.
           </p>
-        </div> */}
+        </div>
       </div>
     </footer>
   );
