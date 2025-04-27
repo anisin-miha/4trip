@@ -16,7 +16,7 @@ export default function PrivacyPolicyPage() {
 
       <main className="flex-grow container px-4 py-16 mt-16">
         <div className="max-w-3xl">
-          <h1 className="text-4xl font-extrabold leading-tight mb-16">
+          <h1 className="text-3xl sm:text-4xl font-extrabold leading-tight mb-16 break-words max-w-full">
             Политика конфиденциальности и&nbsp;защита персональных данных
           </h1>
 

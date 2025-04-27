@@ -406,6 +406,7 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
                   <input
                     id="people"
                     type="number"
+                    inputMode="numeric"
                     {...register("people", {
                       onChange: (e) => {
                         const onlyNumbers = e.target.value.replace(/\D/g, "");
