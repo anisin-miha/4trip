@@ -1,6 +1,29 @@
+import { Metadata } from "next";
 import Footer from "@/app/components/Footer";
 import Header from "@/app/components/Header";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Блог об экскурсиях — 4-trip.ru",
+  description: "Читайте статьи о лучших экскурсиях по Подмосковью и полезные советы для путешественников на блоге 4-trip.ru.",
+  openGraph: {
+    title: "Блог об экскурсиях — 4-trip.ru",
+    description: "Интересные статьи о парках, городах и маршрутах для путешествий по Подмосковью и не только. Советы, идеи и подборки от 4-trip.ru.",
+    url: "https://4-trip.ru/blog",
+    type: "website",
+    images: [
+      {
+        url: "https://4-trip.ru/images/cover.png",
+        width: 1200,
+        height: 630,
+        alt: "4-trip.ru",
+      },
+    ],
+  },
+  alternates: {
+    canonical: "https://4-trip.ru/blog",
+  },
+};
 
 export default function BlogPage() {
   return (

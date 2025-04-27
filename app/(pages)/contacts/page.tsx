@@ -1,6 +1,29 @@
+import { Metadata } from "next";
 import Footer from "@/app/components/Footer";
 import Header from "@/app/components/Header";
 import contactInfo from "@/app/config/contactInfo";
+
+export const metadata: Metadata = {
+  title: "Контакты — 4-trip.ru",
+  description: "Свяжитесь с командой 4-trip.ru: телефон, email, Telegram и ВКонтакте. Поможем выбрать экскурсию и ответим на все вопросы.",
+  openGraph: {
+    title: "Контакты — 4-trip.ru",
+    description: "Актуальные контакты команды 4-trip.ru: телефоны, мессенджеры и социальные сети для связи по вопросам экскурсий.",
+    url: "https://4-trip.ru/contacts",
+    type: "website",
+    images: [
+      {
+        url: "https://4-trip.ru/images/cover.png",
+        width: 1200,
+        height: 630,
+        alt: "4-trip.ru",
+      },
+    ],
+  },
+  alternates: {
+    canonical: "https://4-trip.ru/contacts",
+  },
+};
 
 export default function ContactsPage() {
   const { phone, email, social } = contactInfo;
@@ -38,6 +61,7 @@ export default function ContactsPage() {
             <a
               href={social.telegram}
               target="_blank"
+              rel="noopener noreferrer"
               className="text-blue-600 hover:underline"
             >
               написать в Telegram
@@ -48,6 +72,7 @@ export default function ContactsPage() {
             <a
               href={social.vk}
               target="_blank"
+              rel="noopener noreferrer"
               className="text-blue-600 hover:underline"
             >
               наша страница

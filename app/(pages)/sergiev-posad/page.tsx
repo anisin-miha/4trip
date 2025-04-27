@@ -1,6 +1,11 @@
-import { sergievPosadTour } from "@/app/config/tours/sergiev-posad";
+// app/sergiev-posad/page.tsx
+
+
+import { sergievPosadTourWithMeta } from "@/app/config/tours/sergiev-posad";
 import TourPage from "../../components/TourPage";
 
-export default function SergievPosadPage() {
-  return <TourPage data={sergievPosadTour} />;
+export const { metadata, ...data } = sergievPosadTourWithMeta;
+
+export default function SergievPosadTourPage() {
+  return <TourPage data={data} />;
 }

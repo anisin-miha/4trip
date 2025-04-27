@@ -1,5 +1,33 @@
 // configs/tours/sergiev-posad-tour.ts
 
+// configs/tours/sergiev-posad-tour-metadata.ts
+
+import { Metadata } from "next";
+
+export const sergievPosadTourMetadata: Metadata = {
+  title: "Экскурсия в Сергиев Посад | Автобусные туры из Москвы",
+  description:
+    "Откройте духовное наследие России в Сергиевом Посаде. Посетите Троице-Сергиеву лавру и музей фарфора в одном туре.",
+  keywords:
+    "Сергиев Посад, экскурсия Сергиев Посад, автобусный тур, Троице-Сергиева лавра, музей фарфора, тур из Москвы",
+  openGraph: {
+    title: "Экскурсия в Сергиев Посад | Автобусные туры из Москвы",
+    description:
+      "Откройте для себя духовный центр России — Сергиев Посад. Тур с посещением Лавры и музея фарфора.",
+    images: ["/images/sergiev_posad/hero.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Экскурсия в Сергиев Посад",
+    description:
+      "Автобусная экскурсия в Сергиев Посад с посещением Троице-Сергиевой Лавры и музея фарфора.",
+    images: ["/images/sergiev_posad/hero.png"],
+  },
+  icons: {
+    icon: "/images/4trip-logo-black.svg",
+  },
+};
+
 export const sergievPosadTour = {
   slug: "sergiev-posad",
   title: "Сергиев Посад",
@@ -95,4 +123,9 @@ export const sergievPosadTour = {
         "Экскурсия подходит для всей семьи, дети от 7 лет в сопровождении взрослых.",
     },
   ],
+};
+
+export const sergievPosadTourWithMeta = {
+  ...sergievPosadTour,
+  metadata: sergievPosadTourMetadata,
 };

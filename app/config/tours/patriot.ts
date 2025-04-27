@@ -1,5 +1,32 @@
 // configs/tours/patriot-tour.ts
 
+// configs/tours/patriot-tour-metadata.ts
+
+import { Metadata } from "next";
+
+export const patriotTourMetadata: Metadata = {
+  title: "Экскурсия в Парк «Патриот» | Автобусные туры из Москвы",
+  description:
+    "Посетите величественный храм Вооруженных сил и музей 'Дорога памяти'. Тур в Парк «Патриот» с отправлением из Москвы каждую субботу!",
+  keywords:
+    "Парк Патриот, экскурсия Парк Патриот, тур Москва, храм Вооруженных сил, музей Дорога памяти, автобусный тур",
+  openGraph: {
+    title: "Экскурсия в Парк «Патриот» | Автобусные туры из Москвы",
+    description:
+      "Уникальное путешествие в Парк «Патриот»: музей, храм, полевая кухня.",
+    images: ["/images/patriot/cathedral-hero.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Экскурсия в Парк «Патриот»",
+    description: "Тур в Парк «Патриот» с посещением храма и музея.",
+    images: ["/images/patriot/cathedral-hero.png"],
+  },
+  icons: {
+    icon: "/images/4trip-logo-black.svg",
+  },
+};
+
 export const patriotTour = {
   slug: "patriot",
   title: "Парк «Патриот»",
@@ -93,4 +120,9 @@ export const patriotTour = {
         "Да, экскурсия подходит для всей семьи. Дети до 7 лет могут посетить парк по согласованию, а дети от 7 до 18 лет — только в сопровождении законных представителей.",
     },
   ],
+};
+
+export const patriotTourWithMeta = {
+  ...patriotTour,
+  metadata: patriotTourMetadata,
 };

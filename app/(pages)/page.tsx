@@ -1,7 +1,29 @@
+import { Metadata } from "next";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import TourCard from "../components/TourCard";
-import BookingForm from "../components/BookingForm";
+
+export const metadata: Metadata = {
+  title: "Экскурсии по Подмосковью — 4-trip.ru",
+  description: "Организуем групповые экскурсии по Подмосковью: Парк «Патриот», Сергиев Посад и другие направления. Надёжно, удобно, интересно!",
+  openGraph: {
+    title: "Экскурсии по Подмосковью — 4-trip.ru",
+    description: "Групповые туры по Подмосковью от 4-trip.ru: увлекательные маршруты, профессиональные гиды, комфортные поездки.",
+    url: "https://4-trip.ru/",
+    type: "website",
+    images: [
+      {
+        url: "https://4-trip.ru/images/cover.png",
+        width: 1200,
+        height: 630,
+        alt: "4-trip.ru",
+      },
+    ],
+  },
+  alternates: {
+    canonical: "https://4-trip.ru/",
+  },
+};
 
 export default function Home() {
   return (
