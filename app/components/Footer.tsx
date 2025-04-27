@@ -41,7 +41,6 @@ export default function Footer() {
             </ul>
           </div>
 
-
           <div>
             <h3 className="text-xl font-bold mb-4">Мы в соцсетях</h3>
             <div className="flex space-x-4 items-center">
@@ -68,10 +67,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-8 text-sm text-gray-500">
-          <p>
-            &copy;&nbsp;{currentYear} 4-trip. Все права
-            защищены.
-          </p>
+          <p>&copy;&nbsp;{currentYear} 4-trip. Все права защищены.</p>
         </div>
       </div>
     </footer>

@@ -304,9 +304,7 @@ export default function Home() {
           </div>
         </section>
 
-
         <BookingForm price={2500} tourName={"Парк патриот"} />
-
 
         <section id="gallery" className="py-16 bg-gray-100 scroll-mt-16">
           <div className="container mx-auto px-4">

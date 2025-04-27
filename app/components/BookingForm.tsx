@@ -26,28 +26,41 @@ const availableDates = [
 
 // ---- ВАЛИДАЦИЯ через zod ----
 const bookingSchema = z.object({
-  name: z.string().optional().refine((val) => !val || val.length >= 2, {
-    message: "Имя должно быть не короче 2 символов",
-  }),
-  phone: z.string().nonempty("Введите номер телефона").refine((val) => {
-    // Убираем всё кроме цифр
-    const digits = val.replace(/\D/g, "");
-    return digits.length === 11; // Для России: 11 цифр (+7 и 10 цифр номера)
-  }, {
-    message: "Введите корректный номер телефона",
-  }),
-  email: z.string().optional().refine((val) => !val || /\S+@\S+\.\S+/.test(val), {
-    message: "Введите корректный email",
-  }),
-  date: z.string().nonempty("Выберите дату"),
-  people: z
+  name: z
     .string()
-    .refine((val) => {
+    .optional()
+    .refine((val) => !val || val.length >= 2, {
+      message: "Имя должно быть не короче 2 символов",
+    }),
+  phone: z
+    .string()
+    .nonempty("Введите номер телефона")
+    .refine(
+      (val) => {
+        // Убираем всё кроме цифр
+        const digits = val.replace(/\D/g, "");
+        return digits.length === 11; // Для России: 11 цифр (+7 и 10 цифр номера)
+      },
+      {
+        message: "Введите корректный номер телефона",
+      },
+    ),
+  email: z
+    .string()
+    .optional()
+    .refine((val) => !val || /\S+@\S+\.\S+/.test(val), {
+      message: "Введите корректный email",
+    }),
+  date: z.string().nonempty("Выберите дату"),
+  people: z.string().refine(
+    (val) => {
       const num = parseInt(val, 10);
       return !isNaN(num) && num >= 1;
-    }, {
+    },
+    {
       message: "Минимум 1 человек",
-    }),
+    },
+  ),
   consent: z.literal(true, {
     errorMap: () => ({ message: "Необходимо согласие на обработку данных" }),
   }),
@@ -92,7 +105,7 @@ async function sendMessageToTelegram(
   📅 Дата: ${date}
   👥 Кол-во человек: ${people}
   🚩 Тур: ${tourName}
-      `.trim()
+      `.trim(),
     }),
   });
 }
@@ -107,7 +120,10 @@ const BookingCalendar: React.FC<{
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
+      if (
+        wrapperRef.current &&
+        !wrapperRef.current.contains(event.target as Node)
+      ) {
         setOpen(false);
       }
     }
@@ -156,7 +172,7 @@ const BookingCalendar: React.FC<{
             }}
             disabled={(day) =>
               !availableDates.some(
-                (available) => available.toDateString() === day.toDateString()
+                (available) => available.toDateString() === day.toDateString(),
               )
             }
             locale={ru}
@@ -205,7 +221,7 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
         data.email || "",
         formattedDate,
         data.people,
-        tourName
+        tourName,
       );
 
       setSent(true);
@@ -240,7 +256,9 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
   return (
     <section id="booking" className="py-16 bg-white scroll-mt-16">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-4">Забронируйте место</h2>
+        <h2 className="text-3xl font-bold text-center mb-4">
+          Забронируйте место
+        </h2>
         <p className="text-center mb-8">
           После заполнения мы свяжемся с вами и подтвердим вашу бронь
         </p>
@@ -249,18 +267,24 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
           <form onSubmit={handleSubmit(onSubmit)}>
             {/* Имя */}
             <div className="mb-4">
-              <label htmlFor="name" className="block mb-2 font-semibold">Имя</label>
+              <label htmlFor="name" className="block mb-2 font-semibold">
+                Имя
+              </label>
               <input
                 id="name"
                 {...register("name")}
                 className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
               />
-              {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
+              {errors.name && (
+                <p className="text-red-500 text-sm">{errors.name.message}</p>
+              )}
             </div>
 
             {/* Телефон */}
             <div className="mb-4">
-              <label htmlFor="phone" className="block mb-2 font-semibold">Телефон</label>
+              <label htmlFor="phone" className="block mb-2 font-semibold">
+                Телефон
+              </label>
 
               <Controller
                 name="phone"
@@ -278,7 +302,7 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
                     track={(trackingData) => {
                       const { inputType, data } = trackingData;
 
-                      if (inputType === 'insert' && data && data.length > 1) {
+                      if (inputType === "insert" && data && data.length > 1) {
                         let digits = data.replace(/\D/g, "");
 
                         if (digits.length === 11) {
@@ -299,34 +323,42 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
                 )}
               />
 
-
-              {errors.phone && <p className="text-red-500 text-sm">{errors.phone.message}</p>}
+              {errors.phone && (
+                <p className="text-red-500 text-sm">{errors.phone.message}</p>
+              )}
             </div>
 
             {/* Email */}
             <div className="mb-4">
-              <label htmlFor="email" className="block mb-2 font-semibold">Email</label>
+              <label htmlFor="email" className="block mb-2 font-semibold">
+                Email
+              </label>
               <input
                 id="email"
                 {...register("email")}
                 className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
               />
-              {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
+              {errors.email && (
+                <p className="text-red-500 text-sm">{errors.email.message}</p>
+              )}
             </div>
 
             {/* Дата */}
             <div className="mb-4">
-
               <BookingCalendar
                 date={date}
                 onChange={(value) => setValue("date", value)}
               />
-              {errors.date && <p className="text-red-500 text-sm">{errors.date.message}</p>}
+              {errors.date && (
+                <p className="text-red-500 text-sm">{errors.date.message}</p>
+              )}
             </div>
 
             {/* Количество человек */}
             <div className="mb-4">
-              <label htmlFor="people" className="block mb-2 font-semibold">Количество человек</label>
+              <label htmlFor="people" className="block mb-2 font-semibold">
+                Количество человек
+              </label>
               <input
                 id="people"
                 type="number"
@@ -345,7 +377,9 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
                 className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
               />
 
-              {errors.people && <p className="text-red-500 text-sm">{errors.people.message}</p>}
+              {errors.people && (
+                <p className="text-red-500 text-sm">{errors.people.message}</p>
+              )}
             </div>
 
             {/* Чекбокс согласия */}
@@ -369,17 +403,21 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
                   </a>
                   .
                 </label>
-
               </div>
-              {errors.consent && <p className="text-red-500 text-sm">{errors.consent.message}</p>}
+              {errors.consent && (
+                <p className="text-red-500 text-sm">{errors.consent.message}</p>
+              )}
             </div>
 
             {/* Кнопка */}
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`w-full bg-blue-600 text-white px-6 py-3 rounded-lg transition duration-300 font-semibold ${isSubmitting ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-700"
-                }`}
+              className={`w-full bg-blue-600 text-white px-6 py-3 rounded-lg transition duration-300 font-semibold ${
+                isSubmitting
+                  ? "opacity-50 cursor-not-allowed"
+                  : "hover:bg-blue-700"
+              }`}
             >
               {isSubmitting ? "Отправка..." : "Отправить заявку"}
             </button>
