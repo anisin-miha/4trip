@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { toast } from "sonner";
 
 async function sendMessageToTelegram(
   name: string,
@@ -22,11 +23,18 @@ export default function BookingForm() {
   const [email, setEmail] = useState("");
   const [date, setDate] = useState("");
   const [people, setPeople] = useState(1);
+  const [consent, setConsent] = useState(false);
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!consent) {
+      toast("Пожалуйста, подтвердите согласие на обработку персональных данных.");
+      return;
+    }
+
     setLoading(true);
 
     const formattedDate = new Date(date).toLocaleDateString("ru-RU", {
@@ -40,7 +48,7 @@ export default function BookingForm() {
       setSent(true);
     } catch (error) {
       console.error("Ошибка при отправке:", error);
-      alert("Ошибка при отправке. Попробуйте позже.");
+      toast.error("Ошибка при отправке. Попробуйте позже.");
     } finally {
       setLoading(false);
     }
@@ -53,6 +61,7 @@ export default function BookingForm() {
     setEmail("");
     setDate("");
     setPeople(1);
+    setConsent(false);
   };
 
   return (
@@ -68,7 +77,6 @@ export default function BookingForm() {
               id="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              // required
               className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
             />
           </div>
@@ -94,7 +102,6 @@ export default function BookingForm() {
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              // required
               className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
             />
           </div>
@@ -107,7 +114,6 @@ export default function BookingForm() {
               id="date"
               value={date}
               onChange={(e) => setDate(e.target.value)}
-              // required
               className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
             />
           </div>
@@ -121,16 +127,37 @@ export default function BookingForm() {
               value={people}
               onChange={(e) => setPeople(parseInt(e.target.value))}
               min="1"
-              // required
               className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
             />
           </div>
+
+          <div className="flex items-start space-x-2 mb-6">
+            <input
+              id="consent"
+              type="checkbox"
+              checked={consent}
+              onChange={(e) => setConsent(e.target.checked)}
+              className="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+            />
+            <label htmlFor="consent" className="text-sm text-gray-700">
+              Я соглашаюсь с{" "}
+              <a
+                href="/privacy-policy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 underline hover:text-blue-800"
+              >
+                политикой конфиденциальности
+              </a>
+              .
+            </label>
+          </div>
+
           <button
             type="submit"
             disabled={loading}
-            className={`w-full bg-blue-600 text-white px-6 py-3 rounded-lg transition duration-300 font-semibold ${
-              loading ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-700"
-            }`}
+            className={`w-full bg-blue-600 text-white px-6 py-3 rounded-lg transition duration-300 font-semibold ${loading ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-700"
+              }`}
           >
             {loading ? "Отправка..." : "Отправить заявку"}
           </button>
