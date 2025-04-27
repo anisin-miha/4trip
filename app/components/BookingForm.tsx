@@ -93,7 +93,7 @@ async function sendMessageToTelegram(
   people: number,
   tourName: string,
 ) {
-  await fetch("https://your-api.com/api/send", {
+  await fetch("https://telegram-proxy-tau.vercel.app/api/send", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
