@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: "https://4-trip.ru", // или другой домен
+  siteUrl: "https://4-trip.ru",
   generateRobotsTxt: true,
   sitemapSize: 7000,
   changefreq: "daily",

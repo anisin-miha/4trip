@@ -17,17 +17,21 @@ export default function TourPage({ data }: { data: TourData }) {
         {/* Hero Section */}
         <section
           id="hero"
-          className="relative h-screen flex items-center scroll-mt-16"
+          className="relative h-screen flex items-center overflow-hidden scroll-mt-16"
         >
-          <BaseImage
-            src={data.hero.image}
-            alt={data.title}
-            fill
-            priority
-            className="object-cover"
-            quality={100}
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/20" />
+          {/* Картинка как фон */}
+          <div className="absolute inset-0">
+            <BaseImage
+              src={data.hero.image}
+              alt={data.title}
+              fill
+              priority
+              className="object-cover w-full h-full"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/20" />
+          </div>
+
+          {/* Контент поверх */}
           <div className="relative z-10 w-full">
             <div className="container mx-auto px-4">
               <div className="max-w-md text-white text-left">
@@ -70,9 +74,13 @@ export default function TourPage({ data }: { data: TourData }) {
                     <BaseImage
                       src={attr.image}
                       alt={attr.alt}
-                      layout="fill"
-                      objectFit="cover"
-                      className="rounded-t-lg"
+                      // width={600}
+                      // height={400}
+                      // layout="fill"
+                      fill
+                      // objectFit="cover"
+                      className="object-cover"
+                    // className="rounded-t-lg"
                     />
                   </div>
                   <div className="flex flex-col flex-grow p-6">

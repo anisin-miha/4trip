@@ -28,12 +28,14 @@ export default function GallerySection({ title, images }: GallerySectionProps) {
               type="button"
               onClick={() => setIndex(i)}
               className="focus:outline-none"
+              style={{ height: 240 }}
             >
               <BaseImage
                 src={img.src}
                 alt={img.alt}
-                width={300}
-                height={200}
+                // width={300}
+                // height={200}
+                fill
                 className="w-full h-64 object-cover rounded-lg"
               />
             </button>
