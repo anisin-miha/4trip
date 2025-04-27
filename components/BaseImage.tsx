@@ -10,7 +10,7 @@ interface BaseImageProps {
   className?: string;
 }
 
-function getOptimizedSrc(src: string): string {
+export function getOptimizedSrc(src: string): string {
   // Если формат уже оптимальный — ничего не трогаем
   if (src.match(/\.(svg|gif|webp)$/i)) {
     return src;
