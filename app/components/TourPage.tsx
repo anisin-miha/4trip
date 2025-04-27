@@ -74,13 +74,8 @@ export default function TourPage({ data }: { data: TourData }) {
                     <BaseImage
                       src={attr.image}
                       alt={attr.alt}
-                      // width={600}
-                      // height={400}
-                      // layout="fill"
                       fill
-                      // objectFit="cover"
-                      className="object-cover"
-                      // className="rounded-t-lg"
+                      className="rounded-t-lg object-cover"
                     />
                   </div>
                   <div className="flex flex-col flex-grow p-6">
