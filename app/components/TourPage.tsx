@@ -166,12 +166,14 @@ export default function TourPage({ data }: { data: TourData }) {
         </section>
 
         {/* Booking Section */}
-        <section id="booking">
+        <section id="booking" className="py-16 bg-white scroll-mt-16">
           <BookingForm price={data.price} tourName={data.title} />
         </section>
 
         {/* Gallery Section */}
-        <GallerySection title="Фотогалерея" images={data.gallery} />
+        <section id="gallery" className="py-16 bg-gray-100 scroll-mt-16">
+          <GallerySection title="Фотогалерея" images={data.gallery} />
+        </section>
 
         {/* FAQ Section */}
         <section id="faq" className="py-16 bg-white">

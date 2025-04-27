@@ -239,267 +239,261 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
   }
 
   return (
-    <section id="booking" className="py-16 bg-white scroll-mt-16">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-4">
-          Забронируйте место
-        </h2>
-        <p className="text-center mb-8">
-          {programType === "standard"
-            ? "После заполнения мы свяжемся с вами и подтвердим вашу бронь"
-            : "После заполнения мы свяжемся с вами для согласования деталей"}
-        </p>
+    <div className="container mx-auto px-4">
+      <h2 className="text-3xl font-bold text-center mb-4">
+        Забронируйте место
+      </h2>
+      <p className="text-center mb-8">
+        {programType === "standard"
+          ? "После заполнения мы свяжемся с вами и подтвердим вашу бронь"
+          : "После заполнения мы свяжемся с вами для согласования деталей"}
+      </p>
 
-        {/* Переключатель программ */}
-        <div className="flex justify-center mb-8 gap-4">
-          <button
-            onClick={() => setProgramType("standard")}
-            className={`px-4 py-2 rounded-lg font-semibold ${
-              programType === "standard"
-                ? "bg-blue-600 text-white"
-                : "bg-gray-200 hover:bg-gray-300"
-            }`}
-          >
-            Стандартная программа
-          </button>
-          <button
-            onClick={() => setProgramType("individual")}
-            className={`px-4 py-2 rounded-lg font-semibold ${
-              programType === "individual"
-                ? "bg-blue-600 text-white"
-                : "bg-gray-200 hover:bg-gray-300"
-            }`}
-          >
-            Индивидуальная программа
-          </button>
+      {/* Переключатель программ */}
+      <div className="flex justify-center mb-8 gap-4">
+        <button
+          onClick={() => setProgramType("standard")}
+          className={`px-4 py-2 rounded-lg font-semibold ${
+            programType === "standard"
+              ? "bg-blue-600 text-white"
+              : "bg-gray-200 hover:bg-gray-300"
+          }`}
+        >
+          Стандартная программа
+        </button>
+        <button
+          onClick={() => setProgramType("individual")}
+          className={`px-4 py-2 rounded-lg font-semibold ${
+            programType === "individual"
+              ? "bg-blue-600 text-white"
+              : "bg-gray-200 hover:bg-gray-300"
+          }`}
+        >
+          Индивидуальная программа
+        </button>
+      </div>
+
+      {/* Индивидуальная программа текст */}
+      {programType === "individual" && (
+        <div className="max-w-2xl mx-auto mb-8 bg-blue-50 border-l-4 border-blue-500 p-6 rounded-lg shadow">
+          <h3 className="text-xl font-bold mb-4 text-blue-700">
+            Индивидуальные экскурсии для организованных групп
+          </h3>
+          <ul className="list-disc list-inside space-y-2 text-gray-700">
+            <li>Удобную для вас дату и время</li>
+            <li>Место подачи автобуса</li>
+            <li>Индивидуальную программу экскурсий</li>
+            <li>Детскую экскурсию</li>
+            <li>
+              Возможность выбрать и добавить к посещению дополнительные
+              объекты{" "}
+            </li>
+            <li>Для организованных групп от 15 человек*</li>
+          </ul>
+          <p className="mt-4 text-gray-800">
+            Мы разработаем маршрут специально под ваши пожелания! 🚍
+          </p>
         </div>
+      )}
 
-        {/* Индивидуальная программа текст */}
-        {programType === "individual" && (
-          <div className="max-w-2xl mx-auto mb-8 bg-blue-50 border-l-4 border-blue-500 p-6 rounded-lg shadow">
-            <h3 className="text-xl font-bold mb-4 text-blue-700">
-              Индивидуальные экскурсии для организованных групп
-            </h3>
-            <ul className="list-disc list-inside space-y-2 text-gray-700">
-              <li>Удобную для вас дату и время</li>
-              <li>Место подачи автобуса</li>
-              <li>Индивидуальную программу экскурсий</li>
-              <li>Детскую экскурсию</li>
-              <li>
-                Возможность выбрать и добавить к посещению дополнительные
-                объекты{" "}
-              </li>
-              <li>Для организованных групп от 15 человек*</li>
-            </ul>
-            <p className="mt-4 text-gray-800">
-              Мы разработаем маршрут специально под ваши пожелания! 🚍
-            </p>
+      {/* Форма */}
+      <div className="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
+        <form onSubmit={handleSubmit(onSubmit)}>
+          {/* Имя */}
+          <div className="mb-4">
+            <label htmlFor="name" className="block mb-2 font-semibold">
+              Имя
+            </label>
+            <input
+              id="name"
+              {...register("name")}
+              autoComplete="name"
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+            />
+            {errors.name && (
+              <p className="text-red-500 text-sm">{errors.name.message}</p>
+            )}
           </div>
-        )}
 
-        {/* Форма */}
-        <div className="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
-          <form onSubmit={handleSubmit(onSubmit)}>
-            {/* Имя */}
-            <div className="mb-4">
-              <label htmlFor="name" className="block mb-2 font-semibold">
-                Имя
-              </label>
-              <input
-                id="name"
-                {...register("name")}
-                autoComplete="name"
-                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
-              />
-              {errors.name && (
-                <p className="text-red-500 text-sm">{errors.name.message}</p>
-              )}
-            </div>
+          {/* Телефон */}
+          <div className="mb-4">
+            <label htmlFor="phone" className="block mb-2 font-semibold">
+              Телефон
+            </label>
+            <Controller
+              name="phone"
+              control={control}
+              render={({ field: { onChange, value, ref, ...rest } }) => (
+                <InputMask
+                  id="phone"
+                  mask="+7 (___) ___-__-__"
+                  replacement={{ _: /\d/ }}
+                  showMask
+                  value={value ?? ""}
+                  onChange={onChange}
+                  ref={ref}
+                  inputMode="tel"
+                  autoComplete="tel"
+                  {...rest}
+                  track={(trackingData) => {
+                    const { inputType, data } = trackingData;
 
-            {/* Телефон */}
-            <div className="mb-4">
-              <label htmlFor="phone" className="block mb-2 font-semibold">
-                Телефон
-              </label>
-              <Controller
-                name="phone"
-                control={control}
-                render={({ field: { onChange, value, ref, ...rest } }) => (
-                  <InputMask
-                    id="phone"
-                    mask="+7 (___) ___-__-__"
-                    replacement={{ _: /\d/ }}
-                    showMask
-                    value={value ?? ""}
-                    onChange={onChange}
-                    ref={ref}
-                    inputMode="tel"
-                    autoComplete="tel"
-                    {...rest}
-                    track={(trackingData) => {
-                      const { inputType, data } = trackingData;
+                    if (inputType === "insert" && data && data.length > 1) {
+                      let digits = data.replace(/\D/g, "");
 
-                      if (inputType === "insert" && data && data.length > 1) {
-                        let digits = data.replace(/\D/g, "");
-
-                        if (digits.length === 11) {
-                          if (digits.startsWith("8")) {
-                            digits = digits.substring(1);
-                          } else if (digits.startsWith("7")) {
-                            digits = digits.substring(1);
-                          }
+                      if (digits.length === 11) {
+                        if (digits.startsWith("8")) {
+                          digits = digits.substring(1);
+                        } else if (digits.startsWith("7")) {
+                          digits = digits.substring(1);
                         }
-
-                        return digits;
                       }
 
-                      return undefined;
-                    }}
-                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
-                  />
-                )}
-              />
-              {errors.phone && (
-                <p className="text-red-500 text-sm">{errors.phone.message}</p>
-              )}
-            </div>
+                      return digits;
+                    }
 
-            {/* Email */}
-            <div className="mb-4">
-              <label htmlFor="email" className="block mb-2 font-semibold">
-                Email
-              </label>
-              <input
-                id="email"
-                type="email"
-                inputMode="email"
-                autoComplete="email"
-                {...register("email")}
-                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
-              />
-              {errors.email && (
-                <p className="text-red-500 text-sm">{errors.email.message}</p>
-              )}
-            </div>
-
-            {/* Дата и кол-во человек (только для стандартной) */}
-            {programType === "standard" && (
-              <>
-                {/* Дата */}
-                <div className="mb-4">
-                  <BookingCalendar
-                    date={date}
-                    onChange={(value) => setValue("date", value)}
-                  />
-                  {errors.date && (
-                    <p className="text-red-500 text-sm">
-                      {errors.date.message}
-                    </p>
-                  )}
-                </div>
-
-                {/* Кол-во человек */}
-                <div className="mb-4">
-                  <label htmlFor="people" className="block mb-2 font-semibold">
-                    Количество человек
-                  </label>
-                  <input
-                    id="people"
-                    type="number"
-                    inputMode="numeric"
-                    {...register("people", {
-                      onChange: (e) => {
-                        const onlyNumbers = e.target.value.replace(/\D/g, "");
-                        e.target.value = onlyNumbers;
-                      },
-                      onBlur: (e) => {
-                        const value = parseInt(e.target.value, 10);
-                        if (!value || value < 1) {
-                          e.target.value = "1";
-                        }
-                      },
-                    })}
-                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
-                  />
-                  {errors.people && (
-                    <p className="text-red-500 text-sm">
-                      {errors.people.message}
-                    </p>
-                  )}
-                </div>
-              </>
-            )}
-
-            {/* Комментарий (только для групповой) */}
-            {programType === "individual" && (
-              <div className="mb-4">
-                <label htmlFor="comment" className="block mb-2 font-semibold">
-                  Комментарий
-                </label>
-                <textarea
-                  id="comment"
-                  {...register("comment")}
-                  rows={4}
+                    return undefined;
+                  }}
                   className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
                 />
-                {errors.comment && (
+              )}
+            />
+            {errors.phone && (
+              <p className="text-red-500 text-sm">{errors.phone.message}</p>
+            )}
+          </div>
+
+          {/* Email */}
+          <div className="mb-4">
+            <label htmlFor="email" className="block mb-2 font-semibold">
+              Email
+            </label>
+            <input
+              id="email"
+              type="email"
+              inputMode="email"
+              autoComplete="email"
+              {...register("email")}
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+            />
+            {errors.email && (
+              <p className="text-red-500 text-sm">{errors.email.message}</p>
+            )}
+          </div>
+
+          {/* Дата и кол-во человек (только для стандартной) */}
+          {programType === "standard" && (
+            <>
+              {/* Дата */}
+              <div className="mb-4">
+                <BookingCalendar
+                  date={date}
+                  onChange={(value) => setValue("date", value)}
+                />
+                {errors.date && (
+                  <p className="text-red-500 text-sm">{errors.date.message}</p>
+                )}
+              </div>
+
+              {/* Кол-во человек */}
+              <div className="mb-4">
+                <label htmlFor="people" className="block mb-2 font-semibold">
+                  Количество человек
+                </label>
+                <input
+                  id="people"
+                  type="number"
+                  inputMode="numeric"
+                  {...register("people", {
+                    onChange: (e) => {
+                      const onlyNumbers = e.target.value.replace(/\D/g, "");
+                      e.target.value = onlyNumbers;
+                    },
+                    onBlur: (e) => {
+                      const value = parseInt(e.target.value, 10);
+                      if (!value || value < 1) {
+                        e.target.value = "1";
+                      }
+                    },
+                  })}
+                  className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                />
+                {errors.people && (
                   <p className="text-red-500 text-sm">
-                    {errors.comment.message}
+                    {errors.people.message}
                   </p>
                 )}
               </div>
-            )}
+            </>
+          )}
 
-            {/* Чекбокс согласия */}
-            <div className="mb-6">
-              <div className="flex items-start space-x-2">
-                <input
-                  id="consent"
-                  type="checkbox"
-                  {...register("consent")}
-                  className="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                />
-                <label htmlFor="consent" className="text-sm text-gray-700">
-                  Я соглашаюсь с{" "}
-                  <a
-                    href="/privacy-policy"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-600 underline hover:text-blue-800"
-                  >
-                    политикой конфиденциальности
-                  </a>
-                  .
-                </label>
-              </div>
-              {errors.consent && (
-                <p className="text-red-500 text-sm">{errors.consent.message}</p>
+          {/* Комментарий (только для групповой) */}
+          {programType === "individual" && (
+            <div className="mb-4">
+              <label htmlFor="comment" className="block mb-2 font-semibold">
+                Комментарий
+              </label>
+              <textarea
+                id="comment"
+                {...register("comment")}
+                rows={4}
+                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+              />
+              {errors.comment && (
+                <p className="text-red-500 text-sm">{errors.comment.message}</p>
               )}
             </div>
+          )}
 
-            {/* Кнопка */}
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className={`w-full bg-blue-600 text-white px-6 py-3 rounded-lg transition duration-300 font-semibold ${
-                isSubmitting
-                  ? "opacity-50 cursor-not-allowed"
-                  : "hover:bg-blue-700"
-              }`}
-            >
-              {isSubmitting ? "Отправка..." : "Отправить заявку"}
-            </button>
-
-            {/* Итоговая стоимость */}
-            {programType === "standard" && (
-              <div className="mt-6 text-center text-xl font-semibold text-gray-900">
-                Итого: {totalPrice.toLocaleString("ru-RU")} ₽
-              </div>
+          {/* Чекбокс согласия */}
+          <div className="mb-6">
+            <div className="flex items-start space-x-2">
+              <input
+                id="consent"
+                type="checkbox"
+                {...register("consent")}
+                className="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+              />
+              <label htmlFor="consent" className="text-sm text-gray-700">
+                Я соглашаюсь с{" "}
+                <a
+                  href="/privacy-policy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 underline hover:text-blue-800"
+                >
+                  политикой конфиденциальности
+                </a>
+                .
+              </label>
+            </div>
+            {errors.consent && (
+              <p className="text-red-500 text-sm">{errors.consent.message}</p>
             )}
-          </form>
-        </div>
+          </div>
+
+          {/* Кнопка */}
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className={`w-full bg-blue-600 text-white px-6 py-3 rounded-lg transition duration-300 font-semibold ${
+              isSubmitting
+                ? "opacity-50 cursor-not-allowed"
+                : "hover:bg-blue-700"
+            }`}
+          >
+            {isSubmitting ? "Отправка..." : "Отправить заявку"}
+          </button>
+
+          {/* Итоговая стоимость */}
+          {programType === "standard" && (
+            <div className="mt-6 text-center text-xl font-semibold text-gray-900">
+              Итого: {totalPrice.toLocaleString("ru-RU")} ₽
+            </div>
+          )}
+        </form>
       </div>
-    </section>
+    </div>
   );
 }
 

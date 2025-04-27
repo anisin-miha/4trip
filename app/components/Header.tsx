@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import Logo from "@/public/images/4trip-logo.svg"
+import Logo from "@/public/images/4trip-logo.svg";
 
 type NavLink = {
   href: string;
@@ -50,11 +50,13 @@ export default function Header({
   const showWhiteBg = isScrolled || forceDark;
   const showShadow = isScrolled;
 
-  const headerClasses = `fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${showWhiteBg ? "bg-white" : "bg-transparent"
-    } ${showShadow ? "shadow-md" : ""}`;
+  const headerClasses = `fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    showWhiteBg ? "bg-white" : "bg-transparent"
+  } ${showShadow ? "shadow-md" : ""}`;
 
-  const linkClasses = `block py-2 lg:py-0 hover:text-blue-600 ${forceDark || isScrolled ? "text-gray-800" : "text-white"
-    }`;
+  const linkClasses = `block py-2 lg:py-0 hover:text-blue-600 ${
+    forceDark || isScrolled ? "text-gray-800" : "text-white"
+  }`;
 
   const titleColor = forceDark || isScrolled ? "text-gray-800" : "text-white";
   const iconColor = forceDark || isScrolled ? "text-gray-800" : "text-white";
@@ -76,10 +78,7 @@ export default function Header({
             className={"flex items-center " + iconColor}
             onClick={() => setMenuOpen(false)}
           >
-            <Logo
-              width={50}
-              height={50}
-            />
+            <Logo width={50} height={50} />
             <span className={`ml-2 font-bold text-xl ${titleColor}`}>
               {title}
             </span>
@@ -145,8 +144,9 @@ export default function Header({
 
       {/* Мобильное меню */}
       <nav
-        className={`fixed top-0 right-0 h-full w-64 bg-white z-50 shadow-lg transform transition-transform duration-300 lg:hidden ${menuOpen ? "translate-x-0" : "translate-x-full"
-          }`}
+        className={`fixed top-0 right-0 h-full w-64 bg-white z-50 shadow-lg transform transition-transform duration-300 lg:hidden ${
+          menuOpen ? "translate-x-0" : "translate-x-full"
+        }`}
         aria-hidden={!menuOpen}
       >
         <ul className="flex flex-col mt-24 space-y-6 px-8">
