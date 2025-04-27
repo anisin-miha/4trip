@@ -302,6 +302,8 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
               <li>Место подачи автобуса</li>
               <li>Индивидуальную программу экскурсий</li>
               <li>Детскую экскурсию</li>
+              <li>Возможность выбрать и добавить к посещению дополнительные объекты 
+              </li>
               <li>Для организованных групп от 15 человек*</li>
             </ul>
             <p className="mt-4 text-gray-800">
