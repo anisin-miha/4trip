@@ -304,18 +304,9 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="booking" className="py-16 bg-white scroll-mt-16">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-4">
-              Забронируйте свое место на&nbsp;экскурсию
-            </h2>
-            <p className="text-center mb-8">
-              Заполните форму, и&nbsp;мы&nbsp;свяжемся с&nbsp;вами для
-              подтверждения бронирования. Места ограничены!
-            </p>
-            <BookingForm />
-          </div>
-        </section>
+
+        <BookingForm price={2500} tourName={"Парк патриот"} />
+
 
         <section id="gallery" className="py-16 bg-gray-100 scroll-mt-16">
           <div className="container mx-auto px-4">
