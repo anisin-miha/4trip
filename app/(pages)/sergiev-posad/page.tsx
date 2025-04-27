@@ -4,6 +4,7 @@ import BaseImage from "@/components/BaseImage";
 import Header from "@/app/components/Header";
 import BookingForm from "@/app/components/BookingForm";
 import Footer from "@/app/components/Footer";
+import GallerySection from "@/app/components/GallerySection";
 
 export default function SergievPosad() {
   return (
@@ -109,7 +110,7 @@ export default function SergievPosad() {
           </div>
         </section>
 
-        <section id="testimonials" className="py-16 bg-white scroll-mt-16">
+        {/* <section id="testimonials" className="py-16 bg-white scroll-mt-16">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-center mb-12">
               Отзывы участников
@@ -137,7 +138,7 @@ export default function SergievPosad() {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
         <section id="meeting" className="py-16 bg-gray-100 scroll-mt-16">
           <div className="container mx-auto px-4">
@@ -200,43 +201,15 @@ export default function SergievPosad() {
 
         <BookingForm price={3500} tourName={"Сергиев Посад"} />
 
-        <section id="gallery" className="py-16 bg-gray-100 scroll-mt-16">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12">
-              Фотогалерея
-            </h2>
-            <div className="grid md:grid-cols-4 gap-4">
-              <BaseImage
-                src="/images/sergiev_posad/gallery1.png"
-                alt="Галерея 1 Сергеев Посад"
-                width={300}
-                height={200}
-                className="w-full h-64 object-cover rounded-lg"
-              />
-              <BaseImage
-                src="/images/sergiev_posad/gallery2.png"
-                alt="Галерея 2 Сергиев Посад"
-                width={300}
-                height={200}
-                className="w-full h-64 object-cover rounded-lg"
-              />
-              <BaseImage
-                src="/images/sergiev_posad/gallery3.png"
-                alt="Галерея 3 Сергиев Посад"
-                width={300}
-                height={200}
-                className="w-full h-64 object-cover rounded-lg"
-              />
-              <BaseImage
-                src="/images/sergiev_posad/gallery4.png"
-                alt="Галерея 4 Сергиев Посад"
-                width={300}
-                height={200}
-                className="w-full h-64 object-cover rounded-lg"
-              />
-            </div>
-          </div>
-        </section>
+        <GallerySection
+          title="Фотогалерея"
+          images={[
+            { src: "/images/sergiev_posad/gallery1.png", alt: "Галерея 1 Сергиев Посад" },
+            { src: "/images/sergiev_posad/gallery2.png", alt: "Галерея 2 Сергиев Посад" },
+            { src: "/images/sergiev_posad/gallery3.png", alt: "Галерея 3 Сергиев Посад" },
+            { src: "/images/sergiev_posad/gallery4.png", alt: "Галерея 4 Сергиев Посад" },
+          ]}
+        />
 
         <section id="faq" className="py-16 bg-white">
           <div className="container mx-auto px-4">
