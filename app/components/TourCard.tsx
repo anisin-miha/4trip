@@ -26,6 +26,7 @@ export default function TourCard({
           src={imageSrc}
           alt={imageAlt}
           fill
+          width={640}
           className="tour-card__image object-cover"
         />
       </div>

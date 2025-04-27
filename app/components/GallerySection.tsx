@@ -32,6 +32,7 @@ export default function GallerySection({ title, images }: GallerySectionProps) {
             <BaseImage
               src={img.src}
               alt={img.alt}
+              width={384}
               fill
               className="w-full h-64 object-cover rounded-lg"
             />

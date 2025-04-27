@@ -24,6 +24,7 @@ export default function TourPage({ data }: { data: TourData }) {
             <BaseImage
               src={data.hero.image}
               alt={data.title}
+              width={1200}
               fill
               priority
               className="object-cover w-full h-full"
@@ -74,6 +75,7 @@ export default function TourPage({ data }: { data: TourData }) {
                     <BaseImage
                       src={attr.image}
                       alt={attr.alt}
+                      width={640}
                       fill
                       className="rounded-t-lg object-cover"
                     />
