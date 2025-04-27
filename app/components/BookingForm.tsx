@@ -84,7 +84,6 @@ z.setErrorMap((issue, ctx) => {
   return { message: ctx.defaultError };
 });
 
-
 const groupSchema = z.object({
   name: z.string().min(2, "Имя должно быть не короче 2 символов"),
   phone: z
@@ -269,29 +268,29 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
             : "После заполнения мы свяжемся с вами для согласования деталей"}
         </p>
 
-
         {/* Переключатель программ */}
         <div className="flex justify-center mb-8 gap-4">
           <button
             onClick={() => setProgramType("standard")}
-            className={`px-4 py-2 rounded-lg font-semibold ${programType === "standard"
-              ? "bg-blue-600 text-white"
-              : "bg-gray-200 hover:bg-gray-300"
-              }`}
+            className={`px-4 py-2 rounded-lg font-semibold ${
+              programType === "standard"
+                ? "bg-blue-600 text-white"
+                : "bg-gray-200 hover:bg-gray-300"
+            }`}
           >
             Стандартная программа
           </button>
           <button
             onClick={() => setProgramType("individual")}
-            className={`px-4 py-2 rounded-lg font-semibold ${programType === "individual"
-              ? "bg-blue-600 text-white"
-              : "bg-gray-200 hover:bg-gray-300"
-              }`}
+            className={`px-4 py-2 rounded-lg font-semibold ${
+              programType === "individual"
+                ? "bg-blue-600 text-white"
+                : "bg-gray-200 hover:bg-gray-300"
+            }`}
           >
             Индивидуальная программа
           </button>
         </div>
-
 
         {programType === "individual" && (
           <div className="max-w-2xl mx-auto mb-8 bg-blue-50 border-l-4 border-blue-500 p-6 rounded-lg shadow">
@@ -402,7 +401,9 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
                     onChange={(value) => setValue("date", value)}
                   />
                   {errors.date && (
-                    <p className="text-red-500 text-sm">{errors.date.message}</p>
+                    <p className="text-red-500 text-sm">
+                      {errors.date.message}
+                    </p>
                   )}
                 </div>
 
@@ -488,10 +489,11 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`w-full bg-blue-600 text-white px-6 py-3 rounded-lg transition duration-300 font-semibold ${isSubmitting
-                ? "opacity-50 cursor-not-allowed"
-                : "hover:bg-blue-700"
-                }`}
+              className={`w-full bg-blue-600 text-white px-6 py-3 rounded-lg transition duration-300 font-semibold ${
+                isSubmitting
+                  ? "opacity-50 cursor-not-allowed"
+                  : "hover:bg-blue-700"
+              }`}
             >
               {isSubmitting ? "Отправка..." : "Отправить заявку"}
             </button>
