@@ -1,15 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Calendar } from "@/components/ui/calendar";
 import { ru } from "date-fns/locale";
 import { CalendarIcon } from "lucide-react";
-import { toast } from "sonner";
 import { InputMask } from "@react-input/mask";
-import { Controller } from "react-hook-form";
+import { toast } from "sonner";
 
 // ---- ДАННЫЕ ----
 const availableDates = [
@@ -24,8 +23,16 @@ const availableDates = [
   new Date(2025, 4, 31),
 ];
 
-// ---- ВАЛИДАЦИЯ через zod ----
-const bookingSchema = z.object({
+// ---- ТИПЫ ----
+interface BookingFormProps {
+  price: number;
+  tourName: string;
+}
+
+type ProgramType = "standard" | "individual";
+
+// ---- СХЕМЫ ВАЛИДАЦИИ ----
+const standardSchema = z.object({
   name: z
     .string()
     .optional()
@@ -77,38 +84,22 @@ z.setErrorMap((issue, ctx) => {
   return { message: ctx.defaultError };
 });
 
-type BookingFormValues = z.infer<typeof bookingSchema>;
 
-interface BookingFormProps {
-  price: number;
-  tourName: string;
-}
-
-// ---- ОТПРАВКА ----
-async function sendMessageToTelegram(
-  name: string,
-  phone: string,
-  email: string,
-  date: string,
-  people: number,
-  tourName: string,
-) {
-  await fetch("https://telegram-proxy-tau.vercel.app/api/send", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      message: `
-  📩 <b>Новая заявка</b>
-  👤 Имя: ${name}
-  📞 Телефон: ${phone}
-  📧 Email: ${email}
-  📅 Дата: ${date}
-  👥 Кол-во человек: ${people}
-  🚩 Тур: ${tourName}
-      `.trim(),
-    }),
-  });
-}
+const groupSchema = z.object({
+  name: z.string().min(2, "Имя должно быть не короче 2 символов"),
+  phone: z
+    .string()
+    .nonempty("Введите номер телефона")
+    .refine((val) => {
+      const digits = val.replace(/\D/g, "");
+      return digits.length === 11;
+    }, "Введите корректный номер телефона"),
+  email: z.string().email("Введите корректный email").optional(),
+  comment: z.string().min(10, "Опишите ваши пожелания подробнее"),
+  consent: z.literal(true, {
+    errorMap: () => ({ message: "Необходимо согласие на обработку данных" }),
+  }),
+});
 
 // ---- BookingCalendar ----
 const BookingCalendar: React.FC<{
@@ -185,44 +176,57 @@ const BookingCalendar: React.FC<{
 
 // ---- BookingForm ----
 export default function BookingForm({ price, tourName }: BookingFormProps) {
+  const [programType, setProgramType] = useState<ProgramType>("standard");
   const [sent, setSent] = useState(false);
 
   const {
-    control,
     register,
     handleSubmit,
     setValue,
     watch,
-    formState: { errors, isSubmitting },
     reset,
-  } = useForm<BookingFormValues>({
-    resolver: zodResolver(bookingSchema),
-    defaultValues: {
-      people: "1",
-      consent: false,
-    },
+    control,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    resolver: zodResolver(
+      programType === "standard" ? standardSchema : groupSchema,
+    ),
+    defaultValues:
+      programType === "standard"
+        ? { people: "1", consent: false }
+        : { consent: false },
   });
 
   const date = watch("date");
   const people = watch("people") || 1;
   const totalPrice = price * people;
 
-  const onSubmit = async (data: BookingFormValues) => {
+  const onSubmit = async (data: any) => {
     try {
-      const formattedDate = new Date(data.date).toLocaleDateString("ru-RU", {
-        day: "numeric",
-        month: "long",
-        year: "numeric",
-      });
+      if (programType === "standard") {
+        const formattedDate = new Date(data.date).toLocaleDateString("ru-RU", {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        });
 
-      await sendMessageToTelegram(
-        data.name,
-        data.phone,
-        data.email || "",
-        formattedDate,
-        data.people,
-        tourName,
-      );
+        await sendMessageToTelegram(
+          data.name,
+          data.phone,
+          data.email || "",
+          formattedDate,
+          data.people,
+          tourName,
+        );
+      } else {
+        await sendGroupRequest(
+          data.name,
+          data.phone,
+          data.email || "",
+          data.comment,
+          tourName,
+        );
+      }
 
       setSent(true);
     } catch (error) {
@@ -260,9 +264,54 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
           Забронируйте место
         </h2>
         <p className="text-center mb-8">
-          После заполнения мы свяжемся с вами и подтвердим вашу бронь
+          {programType === "standard"
+            ? "После заполнения мы свяжемся с вами и подтвердим вашу бронь"
+            : "После заполнения мы свяжемся с вами для согласования деталей"}
         </p>
 
+
+        {/* Переключатель программ */}
+        <div className="flex justify-center mb-8 gap-4">
+          <button
+            onClick={() => setProgramType("standard")}
+            className={`px-4 py-2 rounded-lg font-semibold ${programType === "standard"
+              ? "bg-blue-600 text-white"
+              : "bg-gray-200 hover:bg-gray-300"
+              }`}
+          >
+            Стандартная программа
+          </button>
+          <button
+            onClick={() => setProgramType("individual")}
+            className={`px-4 py-2 rounded-lg font-semibold ${programType === "individual"
+              ? "bg-blue-600 text-white"
+              : "bg-gray-200 hover:bg-gray-300"
+              }`}
+          >
+            Индивидуальная программа
+          </button>
+        </div>
+
+
+        {programType === "individual" && (
+          <div className="max-w-2xl mx-auto mb-8 bg-blue-50 border-l-4 border-blue-500 p-6 rounded-lg shadow">
+            <h3 className="text-xl font-bold mb-4 text-blue-700">
+              Индивидуальные экскурсии для организованных групп
+            </h3>
+            <ul className="list-disc list-inside space-y-2 text-gray-700">
+              <li>Удобную для вас дату и время</li>
+              <li>Место подачи автобуса</li>
+              <li>Индивидуальную программу экскурсий</li>
+              <li>Детскую экскурсию</li>
+              <li>Для организованных групп от 15 человек*</li>
+            </ul>
+            <p className="mt-4 text-gray-800">
+              Мы разработаем маршрут специально под ваши пожелания! 🚍
+            </p>
+          </div>
+        )}
+
+        {/* Блок с формой */}
         <div className="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
           <form onSubmit={handleSubmit(onSubmit)}>
             {/* Имя */}
@@ -343,48 +392,74 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
               )}
             </div>
 
-            {/* Дата */}
-            <div className="mb-4">
-              <BookingCalendar
-                date={date}
-                onChange={(value) => setValue("date", value)}
-              />
-              {errors.date && (
-                <p className="text-red-500 text-sm">{errors.date.message}</p>
-              )}
-            </div>
+            {/* Дата и кол-во человек (только для стандартной) */}
+            {programType === "standard" && (
+              <>
+                {/* Дата */}
+                <div className="mb-4">
+                  <BookingCalendar
+                    date={date}
+                    onChange={(value) => setValue("date", value)}
+                  />
+                  {errors.date && (
+                    <p className="text-red-500 text-sm">{errors.date.message}</p>
+                  )}
+                </div>
 
-            {/* Количество человек */}
-            <div className="mb-4">
-              <label htmlFor="people" className="block mb-2 font-semibold">
-                Количество человек
-              </label>
-              <input
-                id="people"
-                type="number"
-                {...register("people", {
-                  onChange: (e) => {
-                    const onlyNumbers = e.target.value.replace(/\D/g, "");
-                    e.target.value = onlyNumbers;
-                  },
-                  onBlur: (e) => {
-                    const value = parseInt(e.target.value, 10);
-                    if (!value || value < 1) {
-                      e.target.value = "1";
-                    }
-                  },
-                })}
-                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
-              />
+                {/* Кол-во человек */}
+                <div className="mb-4">
+                  <label htmlFor="people" className="block mb-2 font-semibold">
+                    Количество человек
+                  </label>
+                  <input
+                    id="people"
+                    type="number"
+                    {...register("people", {
+                      onChange: (e) => {
+                        const onlyNumbers = e.target.value.replace(/\D/g, "");
+                        e.target.value = onlyNumbers;
+                      },
+                      onBlur: (e) => {
+                        const value = parseInt(e.target.value, 10);
+                        if (!value || value < 1) {
+                          e.target.value = "1";
+                        }
+                      },
+                    })}
+                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                  />
+                  {errors.people && (
+                    <p className="text-red-500 text-sm">
+                      {errors.people.message}
+                    </p>
+                  )}
+                </div>
+              </>
+            )}
 
-              {errors.people && (
-                <p className="text-red-500 text-sm">{errors.people.message}</p>
-              )}
-            </div>
+            {/* Комментарий (только для групповой) */}
+            {programType === "individual" && (
+              <div className="mb-4">
+                <label htmlFor="comment" className="block mb-2 font-semibold">
+                  Комментарий
+                </label>
+                <textarea
+                  id="comment"
+                  {...register("comment")}
+                  rows={4}
+                  className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                />
+                {errors.comment && (
+                  <p className="text-red-500 text-sm">
+                    {errors.comment.message}
+                  </p>
+                )}
+              </div>
+            )}
 
             {/* Чекбокс согласия */}
             <div className="mb-6">
-              <div className="flex items-start space-x-2 ">
+              <div className="flex items-start space-x-2">
                 <input
                   id="consent"
                   type="checkbox"
@@ -413,22 +488,72 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`w-full bg-blue-600 text-white px-6 py-3 rounded-lg transition duration-300 font-semibold ${
-                isSubmitting
-                  ? "opacity-50 cursor-not-allowed"
-                  : "hover:bg-blue-700"
-              }`}
+              className={`w-full bg-blue-600 text-white px-6 py-3 rounded-lg transition duration-300 font-semibold ${isSubmitting
+                ? "opacity-50 cursor-not-allowed"
+                : "hover:bg-blue-700"
+                }`}
             >
               {isSubmitting ? "Отправка..." : "Отправить заявку"}
             </button>
 
             {/* Итоговая стоимость */}
-            <div className="mt-6 text-center text-xl font-semibold text-gray-900">
-              Итого: {totalPrice.toLocaleString("ru-RU")} ₽
-            </div>
+            {programType === "standard" && (
+              <div className="mt-6 text-center text-xl font-semibold text-gray-900">
+                Итого: {totalPrice.toLocaleString("ru-RU")} ₽
+              </div>
+            )}
           </form>
         </div>
       </div>
     </section>
   );
+}
+
+// ---- ОТПРАВКА ЗАЯВОК ----
+async function sendMessageToTelegram(
+  name: string,
+  phone: string,
+  email: string,
+  date: string,
+  people: number,
+  tourName: string,
+) {
+  await fetch("https://telegram-proxy-tau.vercel.app/api/send", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      message: `
+📩 <b>Новая заявка на стандартный тур</b>
+👤 Имя: ${name}
+📞 Телефон: ${phone}
+📧 Email: ${email}
+📅 Дата: ${date}
+👥 Кол-во человек: ${people}
+🚩 Тур: ${tourName}
+      `.trim(),
+    }),
+  });
+}
+
+async function sendGroupRequest(
+  name: string,
+  phone: string,
+  email: string,
+  comment: string,
+  tourName: string,
+) {
+  await fetch("https://telegram-proxy-tau.vercel.app/api/send", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      message: `
+📩 <b>Индивидуальная программа для группы</b>
+👤 Имя: ${name}
+📞 Телефон: ${phone}
+📧 Email: ${email}
+📝 Комментарий: ${comment}
+🚩 Тур: ${tourName}
+      `.trim(),
+    }),
+  });
 }
