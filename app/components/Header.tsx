@@ -22,9 +22,17 @@ export default function Header({
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
     const handleScroll = () => setIsScrolled(window.scrollY > 10);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   const defaultLinks: NavLink[] = [
@@ -40,7 +48,7 @@ export default function Header({
 
   const forceDark = main;
   const showWhiteBg = isScrolled || forceDark;
-  const showShadow = isScrolled && !forceDark;
+  const showShadow = isScrolled;
 
   const headerClasses = `fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${showWhiteBg ? "bg-white" : "bg-transparent"
     } ${showShadow ? "shadow-md" : ""}`;
