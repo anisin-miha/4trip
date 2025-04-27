@@ -1,6 +1,29 @@
+import { Metadata } from "next";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Страница не найдена — 4-trip.ru",
+  description: "Страница, которую вы ищете, не существует. Вернитесь на главную 4-trip.ru и найдите своё идеальное путешествие!",
+  openGraph: {
+    title: "Страница не найдена — 4-trip.ru",
+    description: "Ошибка 404: страница не найдена. Перейдите на главную страницу сайта 4-trip.ru.",
+    url: "https://4-trip.ru/404",
+    type: "website",
+    images: [
+      {
+        url: "https://4-trip.ru/images/cover.png",
+        width: 1200,
+        height: 630,
+        alt: "4-trip.ru",
+      },
+    ],
+  },
+  alternates: {
+    canonical: "https://4-trip.ru/404",
+  },
+};
 
 export default function NotFound() {
   return (
