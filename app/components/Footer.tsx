@@ -67,7 +67,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-8 text-sm text-gray-500">
-          <p>&copy;&nbsp;{currentYear} 4-trip. Все права защищены.</p>
+          <p>&copy;&nbsp;{currentYear} 4-trip.ru Все права защищены.</p>
         </div>
       </div>
     </footer>
