@@ -80,7 +80,7 @@ export default function TourPage({ data }: { data: TourData }) {
                       fill
                       // objectFit="cover"
                       className="object-cover"
-                    // className="rounded-t-lg"
+                      // className="rounded-t-lg"
                     />
                   </div>
                   <div className="flex flex-col flex-grow p-6">

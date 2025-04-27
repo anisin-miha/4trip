@@ -42,16 +42,9 @@ const standardSchema = z.object({
   phone: z
     .string()
     .nonempty("Введите номер телефона")
-    .refine(
-      (val) => {
-        // Убираем всё кроме цифр
-        const digits = val.replace(/\D/g, "");
-        return digits.length === 11; // Для России: 11 цифр (+7 и 10 цифр номера)
-      },
-      {
-        message: "Введите корректный номер телефона",
-      },
-    ),
+    .refine((val) => val.replace(/\D/g, "").length === 11, {
+      message: "Введите корректный номер телефона",
+    }),
   email: z
     .string()
     .optional()
@@ -64,9 +57,7 @@ const standardSchema = z.object({
       const num = parseInt(val, 10);
       return !isNaN(num) && num >= 1;
     },
-    {
-      message: "Минимум 1 человек",
-    },
+    { message: "Минимум 1 человек" },
   ),
   consent: z.literal(true, {
     errorMap: () => ({ message: "Необходимо согласие на обработку данных" }),
@@ -74,12 +65,8 @@ const standardSchema = z.object({
 });
 
 z.setErrorMap((issue, ctx) => {
-  switch (issue.code) {
-    case "invalid_type":
-      if (issue.received === "undefined") {
-        return { message: "Обязательное поле" };
-      }
-      break;
+  if (issue.code === "invalid_type" && issue.received === "undefined") {
+    return { message: "Обязательное поле" };
   }
   return { message: ctx.defaultError };
 });
@@ -89,10 +76,10 @@ const groupSchema = z.object({
   phone: z
     .string()
     .nonempty("Введите номер телефона")
-    .refine((val) => {
-      const digits = val.replace(/\D/g, "");
-      return digits.length === 11;
-    }, "Введите корректный номер телефона"),
+    .refine(
+      (val) => val.replace(/\D/g, "").length === 11,
+      "Введите корректный номер телефона",
+    ),
   email: z.string().email("Введите корректный email").optional(),
   comment: z.string().min(10, "Опишите ваши пожелания подробнее"),
   consent: z.literal(true, {
@@ -109,20 +96,19 @@ const BookingCalendar: React.FC<{
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
+    const handleClickOutside = (event: MouseEvent) => {
       if (
         wrapperRef.current &&
         !wrapperRef.current.contains(event.target as Node)
       ) {
         setOpen(false);
       }
-    }
-    function handleEscape(event: KeyboardEvent) {
+    };
+    const handleEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setOpen(false);
       }
-    }
-
+    };
     document.addEventListener("mousedown", handleClickOutside);
     document.addEventListener("keydown", handleEscape);
     return () => {
@@ -136,7 +122,6 @@ const BookingCalendar: React.FC<{
       <label htmlFor="date" className="block mb-2 font-semibold">
         Выберите дату
       </label>
-
       <button
         type="button"
         onClick={() => setOpen(!open)}
@@ -147,7 +132,6 @@ const BookingCalendar: React.FC<{
         </span>
         <CalendarIcon className="w-5 h-5 text-gray-500 ml-2" />
       </button>
-
       {open && (
         <div className="absolute z-10 mt-2 bg-white border rounded-lg p-2 shadow-md">
           <Calendar
@@ -208,7 +192,6 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
           month: "long",
           year: "numeric",
         });
-
         await sendMessageToTelegram(
           data.name,
           data.phone,
@@ -226,7 +209,6 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
           tourName,
         );
       }
-
       setSent(true);
     } catch (error) {
       console.error("Ошибка отправки:", error);
@@ -292,6 +274,7 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
           </button>
         </div>
 
+        {/* Индивидуальная программа текст */}
         {programType === "individual" && (
           <div className="max-w-2xl mx-auto mb-8 bg-blue-50 border-l-4 border-blue-500 p-6 rounded-lg shadow">
             <h3 className="text-xl font-bold mb-4 text-blue-700">
@@ -302,7 +285,9 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
               <li>Место подачи автобуса</li>
               <li>Индивидуальную программу экскурсий</li>
               <li>Детскую экскурсию</li>
-              <li>Возможность выбрать и добавить к посещению дополнительные объекты 
+              <li>
+                Возможность выбрать и добавить к посещению дополнительные
+                объекты{" "}
               </li>
               <li>Для организованных групп от 15 человек*</li>
             </ul>
@@ -312,7 +297,7 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
           </div>
         )}
 
-        {/* Блок с формой */}
+        {/* Форма */}
         <div className="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
           <form onSubmit={handleSubmit(onSubmit)}>
             {/* Имя */}
@@ -323,6 +308,7 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
               <input
                 id="name"
                 {...register("name")}
+                autoComplete="name"
                 className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
               />
               {errors.name && (
@@ -335,7 +321,6 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
               <label htmlFor="phone" className="block mb-2 font-semibold">
                 Телефон
               </label>
-
               <Controller
                 name="phone"
                 control={control}
@@ -348,6 +333,8 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
                     value={value ?? ""}
                     onChange={onChange}
                     ref={ref}
+                    inputMode="tel"
+                    autoComplete="tel"
                     {...rest}
                     track={(trackingData) => {
                       const { inputType, data } = trackingData;
@@ -372,7 +359,6 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
                   />
                 )}
               />
-
               {errors.phone && (
                 <p className="text-red-500 text-sm">{errors.phone.message}</p>
               )}
@@ -385,6 +371,9 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
               </label>
               <input
                 id="email"
+                type="email"
+                inputMode="email"
+                autoComplete="email"
                 {...register("email")}
                 className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
               />

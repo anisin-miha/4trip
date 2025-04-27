@@ -45,7 +45,10 @@ export default function GallerySection({ title, images }: GallerySectionProps) {
         <Lightbox
           open={index !== undefined}
           close={() => setIndex(undefined)}
-          slides={images.map((img) => ({ src: getOptimizedSrc(img.src), alt: img.alt }))}
+          slides={images.map((img) => ({
+            src: getOptimizedSrc(img.src),
+            alt: img.alt,
+          }))}
           index={index}
           on={{ view: ({ index }) => setIndex(index) }}
         />
