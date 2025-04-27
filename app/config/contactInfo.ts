@@ -7,7 +7,6 @@ const contactInfo = {
     seryoga_tg: "https://t.me/chetverochka_ya",
   },
   social: {
-    vk: "#",
     telegram: "https://t.me/fourtrip",
   },
 };

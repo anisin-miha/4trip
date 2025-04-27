@@ -69,7 +69,7 @@ export default function ContactsPage() {
               написать в Telegram
             </a>
           </p>
-          <p>
+          {/* <p>
             <strong>ВКонтакте:</strong>{" "}
             <a
               href={social.vk}
@@ -79,7 +79,7 @@ export default function ContactsPage() {
             >
               наша страница
             </a>
-          </p>
+          </p> */}
         </div>
       </main>
 

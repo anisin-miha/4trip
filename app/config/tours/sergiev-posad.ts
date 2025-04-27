@@ -24,7 +24,7 @@ export const sergievPosadTourMetadata: Metadata = {
     images: ["/images/sergiev_posad/hero.png"],
   },
   icons: {
-    icon: "/images/4trip-logo-black.svg",
+    // icon: "/images/4trip-logo-black.svg",
   },
 };
 
