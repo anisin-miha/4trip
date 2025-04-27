@@ -1,6 +1,5 @@
 // app/sergiev-posad/page.tsx
 
-
 import { sergievPosadTourWithMeta } from "@/app/config/tours/sergiev-posad";
 import TourPage from "../../components/TourPage";
 

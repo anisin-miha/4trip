@@ -4,10 +4,12 @@ import Header from "@/app/components/Header";
 
 export const metadata: Metadata = {
   title: "Политика конфиденциальности — 4-trip.ru",
-  description: "Политика обработки персональных данных пользователей сайта 4-trip.ru. Защита личной информации, условия обработки данных, права пользователей.",
+  description:
+    "Политика обработки персональных данных пользователей сайта 4-trip.ru. Защита личной информации, условия обработки данных, права пользователей.",
   openGraph: {
     title: "Политика конфиденциальности — 4-trip.ru",
-    description: "Узнайте, как мы защищаем и обрабатываем ваши персональные данные на сайте 4-trip.ru.",
+    description:
+      "Узнайте, как мы защищаем и обрабатываем ваши персональные данные на сайте 4-trip.ru.",
     url: "https://4-trip.ru/privacy-policy",
     type: "website",
     images: [
@@ -38,7 +40,7 @@ export default function PrivacyPolicyPage() {
       />
 
       <main className="flex-grow container px-4 py-16 mt-16">
-      <div className="max-w-3xl">
+        <div className="max-w-3xl">
           <h1 className="text-3xl sm:text-4xl font-extrabold leading-tight mb-16 break-words max-w-full">
             Политика конфиденциальности и&nbsp;защита персональных данных
           </h1>

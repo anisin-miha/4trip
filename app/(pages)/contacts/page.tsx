@@ -5,10 +5,12 @@ import contactInfo from "@/app/config/contactInfo";
 
 export const metadata: Metadata = {
   title: "Контакты — 4-trip.ru",
-  description: "Свяжитесь с командой 4-trip.ru: телефон, email, Telegram и ВКонтакте. Поможем выбрать экскурсию и ответим на все вопросы.",
+  description:
+    "Свяжитесь с командой 4-trip.ru: телефон, email, Telegram и ВКонтакте. Поможем выбрать экскурсию и ответим на все вопросы.",
   openGraph: {
     title: "Контакты — 4-trip.ru",
-    description: "Актуальные контакты команды 4-trip.ru: телефоны, мессенджеры и социальные сети для связи по вопросам экскурсий.",
+    description:
+      "Актуальные контакты команды 4-trip.ru: телефоны, мессенджеры и социальные сети для связи по вопросам экскурсий.",
     url: "https://4-trip.ru/contacts",
     type: "website",
     images: [

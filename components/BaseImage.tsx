@@ -13,7 +13,6 @@ export type AllowedImageWidth =
   | 2048
   | 3840;
 
-
 interface BaseImageProps {
   src: string;
   alt: string;
@@ -46,7 +45,6 @@ export function getOptimizedSrc(src: string, width?: number): string {
   return src;
 }
 
-
 export default function BaseImage({
   src,
   alt,
@@ -64,9 +62,7 @@ export default function BaseImage({
       <ExportedImage
         src={optimizedSrc}
         alt={alt}
-        {...(fill
-          ? { fill: true }
-          : { width, height })}
+        {...(fill ? { fill: true } : { width, height })}
         priority={priority}
         className={className}
         unoptimized={true}
