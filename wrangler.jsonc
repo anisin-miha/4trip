@@ -1,0 +1,10 @@
+{
+  "name": "four-trip-static",
+  "compatibility_date": "2025-08-17",
+  "main": "worker.mjs",
+  "assets": {
+    "directory": "./out",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application"
+  }
+}
