@@ -30,7 +30,7 @@ export const patriotTourMetadata: Metadata = {
 export const patriotTour = {
   slug: "patriot",
   title: "Парк «Патриот»",
-  price: 2500,
+  price: 2600,
   hero: {
     image: "/images/patriot/cathedral-hero.png",
     description:
