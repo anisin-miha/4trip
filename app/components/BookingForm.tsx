@@ -23,7 +23,7 @@ function getWeekendsUntilEndOfYear(start: Date): Date[] {
 
   while (d <= end) {
     const dow = d.getDay(); // 0=вс, 6=сб
-    if (dow === 6 || dow === 0) {
+    if (dow === 6) { // только субботы
       res.push(new Date(d));
     }
     d.setDate(d.getDate() + 1);
@@ -271,8 +271,8 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
         <button
           onClick={() => setProgramType("standard")}
           className={`px-4 py-2 rounded-lg font-semibold ${programType === "standard"
-              ? "bg-blue-600 text-white"
-              : "bg-gray-200 hover:bg-gray-300"
+            ? "bg-blue-600 text-white"
+            : "bg-gray-200 hover:bg-gray-300"
             }`}
         >
           Стандартная программа
@@ -280,8 +280,8 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
         <button
           onClick={() => setProgramType("individual")}
           className={`px-4 py-2 rounded-lg font-semibold ${programType === "individual"
-              ? "bg-blue-600 text-white"
-              : "bg-gray-200 hover:bg-gray-300"
+            ? "bg-blue-600 text-white"
+            : "bg-gray-200 hover:bg-gray-300"
             }`}
         >
           Индивидуальная программа
@@ -515,8 +515,8 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
                 type="submit"
                 disabled={isSubmitting}
                 className={`w-full md:w-auto bg-blue-600 text-white px-6 py-3 rounded-lg transition duration-300 font-semibold ${isSubmitting
-                    ? "opacity-50 cursor-not-allowed"
-                    : "hover:bg-blue-700"
+                  ? "opacity-50 cursor-not-allowed"
+                  : "hover:bg-blue-700"
                   }`}
               >
                 {isSubmitting ? "Отправка..." : "Отправить заявку"}
