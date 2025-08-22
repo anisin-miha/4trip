@@ -124,6 +124,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen flex flex-col">
         <Providers>{children}</Providers>
+        <script src="//code.jivo.ru/widget/3wd3G0IExH" async></script>
       </body>
     </html>
   );
