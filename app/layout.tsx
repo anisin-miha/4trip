@@ -2,6 +2,7 @@
 import Providers from "./providers";
 import "./globals.css";
 import contactInfo from "./config/contactInfo";
+import Cookie from "./components/Cookie";
 
 // // Актуальная мета для главной страницы
 // export const metadata: Metadata = {
@@ -124,6 +125,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen flex flex-col">
         <Providers>{children}</Providers>
+        <Cookie />
         <script src="//code.jivo.ru/widget/3wd3G0IExH" async></script>
       </body>
     </html>
