@@ -19,7 +19,10 @@ $BOTTOM_GAP: 80px; // зазор над нижним виджетом на мо�
   backdrop-filter: blur(10px);
   opacity: 0;
   z-index: -1;
-  transition: z-index 0.2s ease-out, opacity 0.2s ease-out, transform 0.2s ease-out;
+  transition:
+    z-index 0.2s ease-out,
+    opacity 0.2s ease-out,
+    transform 0.2s ease-out;
   box-sizing: border-box;
 
   width: auto;
@@ -89,7 +92,8 @@ $BOTTOM_GAP: 80px; // зазор над нижним виджетом на мо�
   background-color: #000000;
   color: #fbf6fe;
   cursor: pointer;
-  transition: background-color 0.25s cubic-bezier(0.23, 1, 0.32, 1),
+  transition:
+    background-color 0.25s cubic-bezier(0.23, 1, 0.32, 1),
     border-color 0.25s cubic-bezier(0.23, 1, 0.32, 1),
     color 0.25s cubic-bezier(0.23, 1, 0.32, 1);
 }

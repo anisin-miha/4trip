@@ -23,7 +23,8 @@ function getWeekendsUntilEndOfYear(start: Date): Date[] {
 
   while (d <= end) {
     const dow = d.getDay(); // 0=вс, 6=сб
-    if (dow === 6) { // только субботы
+    if (dow === 6) {
+      // только субботы
       res.push(new Date(d));
     }
     d.setDate(d.getDate() + 1);
@@ -134,7 +135,10 @@ const BookingCalendar: React.FC<{
   return (
     <div className="relative" ref={wrapperRef}>
       {renderLabel && (
-        <label htmlFor={buttonId ?? "date"} className="block mb-2 font-semibold">
+        <label
+          htmlFor={buttonId ?? "date"}
+          className="block mb-2 font-semibold"
+        >
           Выберите дату
         </label>
       )}
@@ -270,19 +274,21 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
       <div className="flex justify-center mb-8 gap-4">
         <button
           onClick={() => setProgramType("standard")}
-          className={`px-4 py-2 rounded-lg font-semibold ${programType === "standard"
-            ? "bg-blue-600 text-white"
-            : "bg-gray-200 hover:bg-gray-300"
-            }`}
+          className={`px-4 py-2 rounded-lg font-semibold ${
+            programType === "standard"
+              ? "bg-blue-600 text-white"
+              : "bg-gray-200 hover:bg-gray-300"
+          }`}
         >
           Стандартная программа
         </button>
         <button
           onClick={() => setProgramType("individual")}
-          className={`px-4 py-2 rounded-lg font-semibold ${programType === "individual"
-            ? "bg-blue-600 text-white"
-            : "bg-gray-200 hover:bg-gray-300"
-            }`}
+          className={`px-4 py-2 rounded-lg font-semibold ${
+            programType === "individual"
+              ? "bg-blue-600 text-white"
+              : "bg-gray-200 hover:bg-gray-300"
+          }`}
         >
           Индивидуальная программа
         </button>
@@ -306,7 +312,8 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
             Мы разработаем маршрут с учётом ваших пожеланий! 🚍
           </p>
           <p className="mt-2 text-sm text-gray-500">
-            *Минимальный размер группы — 15 человек. Для меньших групп условия оговариваются отдельно.
+            *Минимальный размер группы — 15 человек. Для меньших групп условия
+            оговариваются отдельно.
           </p>
         </div>
       )}
@@ -316,7 +323,10 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           {/* Имя */}
           <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-6">
-            <label htmlFor="name" className="md:w-56 font-semibold md:text-right">
+            <label
+              htmlFor="name"
+              className="md:w-56 font-semibold md:text-right"
+            >
               Имя
             </label>
             <div className="flex-1">
@@ -327,14 +337,19 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
                 className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
               />
               {errors.name && (
-                <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.name.message}
+                </p>
               )}
             </div>
           </div>
 
           {/* Телефон */}
           <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-6">
-            <label htmlFor="phone" className="md:w-56 font-semibold md:text-right">
+            <label
+              htmlFor="phone"
+              className="md:w-56 font-semibold md:text-right"
+            >
               Телефон
             </label>
             <div className="flex-1">
@@ -374,14 +389,19 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
                 )}
               />
               {errors.phone && (
-                <p className="text-red-500 text-sm mt-1">{errors.phone.message}</p>
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.phone.message}
+                </p>
               )}
             </div>
           </div>
 
           {/* Email */}
           <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-6">
-            <label htmlFor="email" className="md:w-56 font-semibold md:text-right">
+            <label
+              htmlFor="email"
+              className="md:w-56 font-semibold md:text-right"
+            >
               Email
             </label>
             <div className="flex-1">
@@ -394,7 +414,9 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
                 className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
               />
               {errors.email && (
-                <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.email.message}
+                </p>
               )}
             </div>
           </div>
@@ -404,7 +426,10 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
             <>
               {/* Дата */}
               <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-6">
-                <label htmlFor="date" className="md:w-56 font-semibold md:text-right">
+                <label
+                  htmlFor="date"
+                  className="md:w-56 font-semibold md:text-right"
+                >
                   Дата
                 </label>
                 <div className="flex-1">
@@ -424,7 +449,10 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
 
               {/* Кол-во человек */}
               <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-6">
-                <label htmlFor="people" className="md:w-56 font-semibold md:text-right">
+                <label
+                  htmlFor="people"
+                  className="md:w-56 font-semibold md:text-right"
+                >
                   Количество человек
                 </label>
                 <div className="flex-1">
@@ -459,7 +487,10 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
           {/* Комментарий (только для групповой) */}
           {programType === "individual" && (
             <div className="flex flex-col md:flex-row md:items-start gap-2 md:gap-6">
-              <label htmlFor="comment" className="md:w-56 font-semibold md:text-right pt-2">
+              <label
+                htmlFor="comment"
+                className="md:w-56 font-semibold md:text-right pt-2"
+              >
                 Комментарий
               </label>
               <div className="flex-1">
@@ -517,10 +548,11 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`w-full md:w-auto bg-blue-600 text-white px-6 py-3 rounded-lg transition duration-300 font-semibold ${isSubmitting
-                  ? "opacity-50 cursor-not-allowed"
-                  : "hover:bg-blue-700"
-                  }`}
+                className={`w-full md:w-auto bg-blue-600 text-white px-6 py-3 rounded-lg transition duration-300 font-semibold ${
+                  isSubmitting
+                    ? "opacity-50 cursor-not-allowed"
+                    : "hover:bg-blue-700"
+                }`}
               >
                 {isSubmitting ? "Отправка..." : "Отправить заявку"}
               </button>

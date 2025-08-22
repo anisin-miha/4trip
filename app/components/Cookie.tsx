@@ -43,10 +43,12 @@ export default function CookieAlert() {
   };
 
   return (
-    <div className={`${styles.cookieAlert} ${visible ? styles.cookieAlertVisible : ""}`}>
+    <div
+      className={`${styles.cookieAlert} ${visible ? styles.cookieAlertVisible : ""}`}
+    >
       <span className={styles.cookieAlertText}>
-        Оставаясь на&nbsp;сайте, вы&nbsp;даете согласие на&nbsp;применение cookie
-        и&nbsp;обработку данных. Подробнее&nbsp;&mdash; в&nbsp;
+        Оставаясь на&nbsp;сайте, вы&nbsp;даете согласие на&nbsp;применение
+        cookie и&nbsp;обработку данных. Подробнее&nbsp;&mdash; в&nbsp;
         <Link
           href="/privacy-policy"
           className={styles.cookieAlertLink + " text-blue-600"}
@@ -56,7 +58,11 @@ export default function CookieAlert() {
           политике
         </Link>
       </span>
-      <button className={styles.cookieAlertButton} type="button" onClick={handleAccept}>
+      <button
+        className={styles.cookieAlertButton}
+        type="button"
+        onClick={handleAccept}
+      >
         Согласен
       </button>
     </div>
