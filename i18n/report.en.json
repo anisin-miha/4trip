@@ -1,0 +1,1367 @@
+{
+  "replaced": 187,
+  "missing": [
+    {
+      "file": "app/components/Header.tsx",
+      "value": "Закрыть меню",
+      "id": "закрыть-меню__980d22e3",
+      "where": "<@aria-label>"
+    },
+    {
+      "file": "app/config/tours/sergiev-posad.ts",
+      "value": "Экскурсия в Сергиев Посад | Автобусные туры из Москвы",
+      "id": "экскурсия-в-сергиев-посад-автобусные-тур__f9d9cc0a",
+      "where": "<metadata>"
+    },
+    {
+      "file": "app/config/tours/sergiev-posad.ts",
+      "value": "Экскурсия в Сергиев Посад | Автобусные туры из Москвы",
+      "id": "экскурсия-в-сергиев-посад-автобусные-тур__f9d9cc0a",
+      "where": "<metadata>"
+    },
+    {
+      "file": "app/(pages)/ru/page.tsx",
+      "value": "Групповые экскурсии по Подмосковью от 4-trip.ru: Парк «Патриот», Сергиев Посад и другие маршруты с профессиональными гидами.",
+      "id": "групповые-экскурсии-по-подмосковью-от-4-__37e297af",
+      "where": "<metadata>"
+    },
+    {
+      "file": "app/(pages)/ru/page.tsx",
+      "value": "Групповые туры по Подмосковью от 4-trip.ru: увлекательные маршруты, профессиональные гиды, комфортные поездки.",
+      "id": "групповые-туры-по-подмосковью-от-4-trip-__a4446bb5",
+      "where": "<metadata>"
+    },
+    {
+      "file": "app/(pages)/ru/page.tsx",
+      "value": "Групповые экскурсии по Подмосковью",
+      "id": "групповые-экскурсии-по-подмосковью__0e47b3a2",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/page.tsx",
+      "value": "Откройте для себя Подмосковье по-новому — живописные маршруты, исторические места и атмосфера настоящего путешествия ждут вас!",
+      "id": "откройте-для-себя-подмосковье-по-новому-__e117454f",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/page.tsx",
+      "value": "Каждая наша экскурсия — это возможность вдохновиться культурой, историей и природой родного края. Незабываемые эмоции, новые знакомства и удивительные открытия начинаются здесь.",
+      "id": "каждая-наша-экскурсия-это-возможность-вд__abef23ab",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/page.tsx",
+      "value": "Популярные экскурсии",
+      "id": "популярные-экскурсии__26c2f5c5",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/page.tsx",
+      "value": "Экскурсия в Коломну",
+      "id": "экскурсия-в-коломну__e35fb484",
+      "where": "<@title>"
+    },
+    {
+      "file": "app/(pages)/ru/page.tsx",
+      "value": "Почему выбирают 4-trip.ru",
+      "id": "почему-выбирают-4-trip-ru__30bb8af9",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/page.tsx",
+      "value": "Мы заботимся о каждой детали, чтобы ваше путешествие было действительно комфортным. Современные автобусы, удобные маршруты и поддержка на каждом этапе — стандарт для всех наших экскурсий по Подмосковью.",
+      "id": "мы-заботимся-о-каждой-детали-чтобы-ваше-__48a02595",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/page.tsx",
+      "value": "Парк «Патриот», Сергиев Посад и другие направления — тщательно проработанные программы с посещением ключевых достопримечательностей. Всё для того, чтобы вы получили максимум впечатлений без лишней спешки и суеты.",
+      "id": "парк-патриот-сергиев-посад-и-другие-напр__5b19d993",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/page.tsx",
+      "value": "Опытные гиды, которые умеют интересно и доступно рассказать об истории и культуре, сопровождают вас на протяжении всего тура, превращая поездку в настоящее приключение.",
+      "id": "опытные-гиды-которые-умеют-интересно-и-д__0ccacf92",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/page.tsx",
+      "value": "Присоединяйтесь к путешествиям с 4-trip.ru — мы знаем, как превратить экскурсию в незабываемое событие!",
+      "id": "присоединяйтесь-к-путешествиям-с-4-trip-__d70203cc",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/page.tsx",
+      "value": "Читайте статьи о лучших экскурсиях по Подмосковью и полезные советы для путешественников на блоге 4-trip.ru.",
+      "id": "читайте-статьи-о-лучших-экскурсиях-по-по__5cd555bb",
+      "where": "<metadata>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/page.tsx",
+      "value": "Интересные статьи о парках, городах и маршрутах для путешествий по Подмосковью и не только. Советы, идеи и подборки от 4-trip.ru.",
+      "id": "интересные-статьи-о-парках-городах-и-мар__b687d159",
+      "where": "<metadata>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/page.tsx",
+      "value": "Блог",
+      "id": "блог__c31cdbd0",
+      "where": "<@title>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/page.tsx",
+      "value": "Блог об экскурсиях и путешествиях",
+      "id": "блог-об-экскурсиях-и-путешествиях__6ce083b8",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/page.tsx",
+      "value": "Что посмотреть в Парке «Патриот»: обзор всех экспозиций",
+      "id": "что-посмотреть-в-парке-патриот-обзор-все__27f95211",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/page.tsx",
+      "value": "Рассказываем, почему это место стоит посетить хотя бы раз: от главного храма до интерактивной военной техники.",
+      "id": "рассказываем-почему-это-место-стоит-посе__ee1c6b0e",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/page.tsx",
+      "value": "Читать далее →",
+      "id": "читать-далее__6e57a85a",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/bus/page.tsx",
+      "value": "Заказ автобуса по Москве и Подмосковью — 4-trip",
+      "id": "заказ-автобуса-по-москве-и-подмосковью-4__251a41e7",
+      "where": "<metadata>"
+    },
+    {
+      "file": "app/(pages)/ru/bus/page.tsx",
+      "value": "Заказ автобуса — 4-trip",
+      "id": "заказ-автобуса-4-trip__b4b9e10a",
+      "where": "<metadata>"
+    },
+    {
+      "file": "app/(pages)/ru/bus/page.tsx",
+      "value": "Заказ автобуса",
+      "id": "заказ-автобуса__5b8fb2c8",
+      "where": "<@title>"
+    },
+    {
+      "file": "app/(pages)/ru/bus/page.tsx",
+      "value": "Заказ автобуса по Москве и МО",
+      "id": "заказ-автобуса-по-москве-и-мо__57074ace",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/bus/page.tsx",
+      "value": "Экскурсии, корпоративы, свадьбы, трансферы. Легально, быстро, по честной ставке — от",
+      "id": "экскурсии-корпоративы-свадьбы-трансферы-__8785d493",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/bus/page.tsx",
+      "value": "2 800 ₽/час",
+      "id": "2-800-час__df18dbb7",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/bus/page.tsx",
+      "value": "Оставить заявку в Telegram",
+      "id": "оставить-заявку-в-telegram__def5211b",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/bus/page.tsx",
+      "value": "Позвонить",
+      "id": "позвонить__0701381c",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/bus/page.tsx",
+      "value": "* Минимальный заказ: от 4 часов (стандарт для рынка). Уточним по вашему маршруту.",
+      "id": "минимальный-заказ-от-4-часов-стандарт-дл__7456b22a",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/bus/page.tsx",
+      "value": "Быстрый расчёт стоимости",
+      "id": "быстрый-расч-т-стоимости__4118fa02",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/bus/page.tsx",
+      "value": "Расчёт ориентировочный, финальная цена зависит от маршрута, простоев и пробега. Мы всё посчитаем прозрачно перед подтверждением.",
+      "id": "расч-т-ориентировочный-финальная-цена-за__0cc7f865",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/bus/page.tsx",
+      "value": "Почему это удобно",
+      "id": "почему-это-удобно__b62c1ddc",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/bus/page.tsx",
+      "value": "#",
+      "id": "text__334359b9",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/bus/page.tsx",
+      "value": "Как это работает",
+      "id": "как-это-работает__b9f1fffe",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/bus/page.tsx",
+      "value": "Оставляете маршрут и время",
+      "id": "оставляете-маршрут-и-время__1ccf8423",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/bus/page.tsx",
+      "value": "Подбираем автобус и считаем стоимость",
+      "id": "подбираем-автобус-и-считаем-стоимость__9e5bf2a1",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/bus/page.tsx",
+      "value": "Договор/подтверждение + предоплата",
+      "id": "договор-подтверждение-предоплата__cd8210d0",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/bus/page.tsx",
+      "value": "Поездка и закрывающие (чек самозанятого)",
+      "id": "поездка-и-закрывающие-чек-самозанятого__88538cf3",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/bus/page.tsx",
+      "value": "Перевозку выполняет партнёр-перевозчик, имеющий необходимые лицензии/допуски. 4-trip выступает организатором (агентом).",
+      "id": "перевозку-выполняет-партн-р-перевозчик-и__85b389b0",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/bus/page.tsx",
+      "value": "На какие задачи",
+      "id": "на-какие-задачи__9713db4b",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/bus/page.tsx",
+      "value": "FAQ",
+      "id": "faq__dbc468a1",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/bus/page.tsx",
+      "value": "Это легально? Кто фактически перевозит?",
+      "id": "это-легально-кто-фактически-перевозит__4619be77",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/bus/page.tsx",
+      "value": "Да. Перевозку выполняет лицензированная транспортная компания. Мы занимаемся организацией (агентская услуга) и выдаём чек самозанятого за организацию.",
+      "id": "да-перевозку-выполняет-лицензированная-т__b6a83f55",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/bus/page.tsx",
+      "value": "От чего зависит итоговая цена?",
+      "id": "от-чего-зависит-итоговая-цена__7814c7e2",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/bus/page.tsx",
+      "value": "От класса автобуса, количества часов, пробега и простоев. Внесём всё в смету заранее.",
+      "id": "от-класса-автобуса-количества-часов-проб__746efac7",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/bus/page.tsx",
+      "value": "Можно безнал и закрывающие?",
+      "id": "можно-безнал-и-закрывающие__51ad89d8",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/bus/page.tsx",
+      "value": "Да. Предоставляем чек самозанятого за организацию. По запросу оформим договор.",
+      "id": "да-предоставляем-чек-самозанятого-за-орг__94b5004a",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/bus/page.tsx",
+      "value": "Обсудить маршрут в Telegram",
+      "id": "обсудить-маршрут-в-telegram__14fac214",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/contacts/page.tsx",
+      "value": "Свяжитесь с командой 4-trip.ru: телефон, email, Telegram и ВКонтакте. Поможем выбрать экскурсию и ответим на все вопросы.",
+      "id": "свяжитесь-с-командой-4-trip-ru-телефон-e__b8051f4d",
+      "where": "<metadata>"
+    },
+    {
+      "file": "app/(pages)/ru/contacts/page.tsx",
+      "value": "Актуальные контакты команды 4-trip.ru: телефоны, мессенджеры и социальные сети для связи по вопросам экскурсий.",
+      "id": "актуальные-контакты-команды-4-trip-ru-те__d661d772",
+      "where": "<metadata>"
+    },
+    {
+      "file": "app/(pages)/ru/contacts/page.tsx",
+      "value": "Свяжитесь с нами",
+      "id": "свяжитесь-с-нами__f8699059",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/contacts/page.tsx",
+      "value": "Мы всегда рады ответить на ваши вопросы и помочь с выбором экскурсии.",
+      "id": "мы-всегда-рады-ответить-на-ваши-вопросы-__2cf9815a",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/contacts/page.tsx",
+      "value": "Telegram:",
+      "id": "telegram__d087dd81",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/contacts/page.tsx",
+      "value": "написать в Telegram",
+      "id": "написать-в-telegram__dd76640f",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/privacy-policy/page.tsx",
+      "value": "Политика обработки персональных данных пользователей сайта 4-trip.ru. Защита личной информации, условия обработки данных, права пользователей.",
+      "id": "политика-обработки-персональных-данных-п__0f6132aa",
+      "where": "<metadata>"
+    },
+    {
+      "file": "app/(pages)/ru/privacy-policy/page.tsx",
+      "value": "Узнайте, как мы защищаем и обрабатываем ваши персональные данные на сайте 4-trip.ru.",
+      "id": "узнайте-как-мы-защищаем-и-обрабатываем-в__9e3241a1",
+      "where": "<metadata>"
+    },
+    {
+      "file": "app/(pages)/ru/privacy-policy/page.tsx",
+      "value": "Политика конфиденциальности и защита персональных данных",
+      "id": "политика-конфиденциальности-и-защита-пер__a0e64fe1",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/privacy-policy/page.tsx",
+      "value": "1. Общие положения",
+      "id": "1-общие-положения__79ae42b5",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/privacy-policy/page.tsx",
+      "value": "1.1 Настоящая политика обработки персональных данных составлена в соответствии с требованиями Федерального закона от 27.07.2006 № 152-ФЗ «О персональных данных» и определяет порядок обработки персональных данных и меры по обеспечению их безопасности. Предпринимает их Самозанятый Сенчуров Сергей Сергеевич (далее — Оператор).",
+      "id": "1-1-настоящая-политика-обработки-персона__6eaced4a",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/privacy-policy/page.tsx",
+      "value": "1.2 Оператор ставит своей важнейшей целью соблюдение прав и свобод человека и гражданина при обработке его персональных данных, в том числе защиту прав на неприкосновенность частной жизни, личную и семейную тайну.",
+      "id": "1-2-оператор-ставит-своей-важнейшей-цель__2e916960",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/privacy-policy/page.tsx",
+      "value": "1.3 Настоящая политика применяется ко всей информации, которую Оператор может получить о посетителях сайта",
+      "id": "1-3-настоящая-политика-применяется-ко-вс__be4d438a",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/privacy-policy/page.tsx",
+      "value": "https://4-trip.ru/",
+      "id": "https-4-trip-ru__5c62dcf8",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/privacy-policy/page.tsx",
+      "value": "1.4 Использование сайта означает безоговорочное согласие пользователя с настоящей Политикой и указанными в ней условиями. В случае несогласия пользователь должен воздержаться от использования сервисов сайта.",
+      "id": "1-4-использование-сайта-означает-безогов__76b601c0",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/privacy-policy/page.tsx",
+      "value": "1.5 Основные положения Политики конфиденциальности:",
+      "id": "1-5-основные-положения-политики-конфиден__39f08553",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/privacy-policy/page.tsx",
+      "value": "Оператор обязуется не передавать Вашу персональную информацию третьим лицам.",
+      "id": "оператор-обязуется-не-передавать-вашу-пе__0fe2b475",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/privacy-policy/page.tsx",
+      "value": "Оператор обязуется сохранять конфиденциальность Вашей контактной информации и не оглашать её без Вашего согласия.",
+      "id": "оператор-обязуется-сохранять-конфиденциа__a1526127",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/privacy-policy/page.tsx",
+      "value": "Только Вы решаете, в каком объёме хотите раскрыть свою персональную информацию.",
+      "id": "только-вы-решаете-в-каком-объ-ме-хотите-__7e4d9def",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/privacy-policy/page.tsx",
+      "value": "1.6 Оператор не проверяет достоверность персональных данных, предоставляемых пользователем.",
+      "id": "1-6-оператор-не-проверяет-достоверность-__6941d6a3",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/privacy-policy/page.tsx",
+      "value": "2. Персональная информация пользователей",
+      "id": "2-персональная-информация-пользователей__093c1455",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/privacy-policy/page.tsx",
+      "value": "2.1 При простом посещении сайта никакая персональная информация о Вас не собирается, кроме обезличенных данных для счётчика посещаемости.",
+      "id": "2-1-при-простом-посещении-сайта-никакая-__05668d54",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/privacy-policy/page.tsx",
+      "value": "2.2 Оператор получает и обрабатывает только ту информацию, которую пользователь предоставляет добровольно при заполнении форм обратной связи.",
+      "id": "2-2-оператор-получает-и-обрабатывает-тол__b30fbe82",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/privacy-policy/page.tsx",
+      "value": "2.3 Сайт использует сервис",
+      "id": "2-3-сайт-использует-сервис__452f5b29",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/privacy-policy/page.tsx",
+      "value": "Yandex.Metrika",
+      "id": "yandex-metrika__3ecd15e2",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/privacy-policy/page.tsx",
+      "value": ", который собирает следующие обезличенные данные:",
+      "id": "который-собирает-следующие-обезличенные-__6e197ff5",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/privacy-policy/page.tsx",
+      "value": "Количество посетителей сайта (повторные и новые), количество просмотренных страниц без предоставления персональных данных.",
+      "id": "количество-посетителей-сайта-повторные-и__d1282160",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/privacy-policy/page.tsx",
+      "value": "Источники переходов и порядок просмотра страниц.",
+      "id": "источники-переходов-и-порядок-просмотра-__83e72f36",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/privacy-policy/page.tsx",
+      "value": "Страна посетителя, операционная система, браузер, время и продолжительность визита.",
+      "id": "страна-посетителя-операционная-система-б__c9ea599b",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/privacy-policy/page.tsx",
+      "value": "Запись действий пользователя (движения мышью, скроллинг, клики) через вебвизор с анонимизацией данных в конфиденциальных полях.",
+      "id": "запись-действий-пользователя-движения-мы__33731b9b",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/privacy-policy/page.tsx",
+      "value": "Вы можете запретить сохранение cookies в настройках своего браузера или использовать режим «Инкогнито».",
+      "id": "вы-можете-запретить-сохранение-cookies-в__b1248145",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/privacy-policy/page.tsx",
+      "value": "Все собранные данные используются только для анализа посещаемости и повышения качества сайта. Персональная информация и пароли не сохраняются и не передаются оператору.",
+      "id": "все-собранные-данные-используются-только__4b538e98",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/privacy-policy/page.tsx",
+      "value": "2.4 При обработке данных Yandex руководствуется Федеральным законом РФ «О персональных данных».",
+      "id": "2-4-при-обработке-данных-yandex-руководс__f13b3335",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/privacy-policy/page.tsx",
+      "value": "3. Цели сбора и обработки данных",
+      "id": "3-цели-сбора-и-обработки-данных__f8bbaca3",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/privacy-policy/page.tsx",
+      "value": "Обеспечение обратной связи с пользователем и предоставление услуг.",
+      "id": "обеспечение-обратной-связи-с-пользовател__cab42dd8",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/privacy-policy/page.tsx",
+      "value": "Оповещение пользователя о новых услугах и обработка запросов и заявок.",
+      "id": "оповещение-пользователя-о-новых-услугах-__f3383199",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/privacy-policy/page.tsx",
+      "value": "Повышение качества услуг и удобства пользования сайтом.",
+      "id": "повышение-качества-услуг-и-удобства-поль__87bbab67",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/privacy-policy/page.tsx",
+      "value": "Проведение статистических и иных исследований на основе обезличенных данных.",
+      "id": "проведение-статистических-и-иных-исследо__a628a5c2",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/privacy-policy/page.tsx",
+      "value": "4. Защита персональных данных",
+      "id": "4-защита-персональных-данных__9ca05d6e",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/privacy-policy/page.tsx",
+      "value": "4.1 Оператор использует современные методы защиты информации, включая программные средства сетевой безопасности, процедуры проверки доступа и внутренние правила конфиденциальности.",
+      "id": "4-1-оператор-использует-современные-мето__7f20a212",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/privacy-policy/page.tsx",
+      "value": "4.2 Сайт принимает все необходимые организационные и технические меры для предотвращения неправомерного доступа, уничтожения, изменения, копирования или распространения персональных данных.",
+      "id": "4-2-сайт-принимает-все-необходимые-орган__2f9d6c01",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/privacy-policy/page.tsx",
+      "value": "5. Заключительные положения",
+      "id": "5-заключительные-положения__fa44d037",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/privacy-policy/page.tsx",
+      "value": "5.1 Настоящая Политика конфиденциальности не является договором между Оператором сайта и пользователем.",
+      "id": "5-1-настоящая-политика-конфиденциальност__5fc5df5e",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/privacy-policy/page.tsx",
+      "value": "5.2 Сайт вправе вносить изменения в Политику конфиденциальности. Дата последнего обновления указывается в новой редакции.",
+      "id": "5-2-сайт-вправе-вносить-изменения-в-поли__4065ace7",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/privacy-policy/page.tsx",
+      "value": "5.3 Новая редакция вступает в силу с момента её размещения на сайте, если иное не предусмотрено.",
+      "id": "5-3-новая-редакция-вступает-в-силу-с-мом__228142ff",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/privacy-policy/page.tsx",
+      "value": "5.4 К отношениям между пользователем и сайтом применяется право Российской Федерации.",
+      "id": "5-4-к-отношениям-между-пользователем-и-с__7d11c072",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/privacy-policy/page.tsx",
+      "value": "5.5 Ссылка на актуальную Политику конфиденциальности размещена на странице",
+      "id": "5-5-ссылка-на-актуальную-политику-конфид__850f75cf",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/privacy-policy/page.tsx",
+      "value": "https://4-trip.ru/",
+      "id": "https-4-trip-ru__5c62dcf8",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Читайте статьи о лучших экскурсиях по Подмосковью и полезные советы для путешественников на блоге 4-trip.ru.",
+      "id": "читайте-статьи-о-лучших-экскурсиях-по-по__5cd555bb",
+      "where": "<metadata>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Интересные статьи о парках, городах и маршрутах для путешествий по Подмосковью и не только. Советы, идеи и подборки от 4-trip.ru.",
+      "id": "интересные-статьи-о-парках-городах-и-мар__b687d159",
+      "where": "<metadata>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Полный гид по Парку «Патриот»: Главный храм ВС РФ, «Дорога Памяти», Танковый музей (Кубинка), авиация и ПВО, «Партизанская деревня», маршруты на 1 день, советы и билеты.",
+      "id": "полный-гид-по-парку-патриот-главный-храм__577a7e5d",
+      "where": "<metadata>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Блог",
+      "id": "блог__c31cdbd0",
+      "where": "<@title>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Что посмотреть в Парке «Патриот»: обзор всех экспозиций",
+      "id": "что-посмотреть-в-парке-патриот-обзор-все__27f95211",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "На связи команда",
+      "id": "на-связи-команда__ff997b93",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "4-trip",
+      "id": "4-trip__3f38b724",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "— мы подготовили для вас практичный гид по Парку «Патриот»: что обязательно увидеть, как оптимально выстроить маршрут на один день, сколько времени закладывать на ключевые экспозиции и на что обратить внимание, чтобы поездка прошла идеально.",
+      "id": "мы-подготовили-для-вас-практичный-гид-по__1c60bc89",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Кому подойдёт:",
+      "id": "кому-подойд-т__6c9035d6",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "семейные поездки, школьные группы, туристы с интересом к истории и технике, военные реконструкторы, инженеры и просто любопытные.",
+      "id": "семейные-поездки-школьные-группы-туристы__7bb33b9c",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Содержание",
+      "id": "содержание__15efcfe5",
+      "where": "<@aria-label>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Содержание",
+      "id": "содержание__15efcfe5",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Главные объекты «по умолчанию»",
+      "id": "главные-объекты-по-умолчанию__03fef6b4",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Главный храм Вооружённых Сил РФ",
+      "id": "главный-храм-вооруж-нных-сил-рф__533ee61c",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Музейный комплекс «Дорога Памяти»",
+      "id": "музейный-комплекс-дорога-памяти__7e06ea59",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Техника и музеи: что внутри",
+      "id": "техника-и-музеи-что-внутри__1a1eb3b9",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Танковый музей (Кубинка)",
+      "id": "танковый-музей-кубинка__f4e4c138",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Авиация и ПВО",
+      "id": "авиация-и-пво__b9c4f170",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Открытые площадки и «Поле Победы»",
+      "id": "открытые-площадки-и-поле-победы__492f0bec",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Военно-исторический комплекс «Партизанская деревня»",
+      "id": "военно-исторический-комплекс-партизанска__2da80bec",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Маршрут на один насыщенный день",
+      "id": "маршрут-на-один-насыщенный-день__c7385d8d",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Практика: билеты, время работы, как добраться",
+      "id": "практика-билеты-время-работы-как-добрать__787f01e1",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Лайфхаки и подготовка",
+      "id": "лайфхаки-и-подготовка__0a760741",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "FAQ",
+      "id": "faq__dbc468a1",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Главные объекты «по умолчанию»",
+      "id": "главные-объекты-по-умолчанию__03fef6b4",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Главный храм Вооружённых Сил РФ",
+      "id": "главный-храм-вооруж-нных-сил-рф__533ee61c",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Монументальный собор — архитектурная доминанта Парка «Патриот». Внешне — современное прочтение русской храмовой традиции; внутри — обширные экспозиции, смотровые площадки и сакральные символы, посвящённые вкладу народа и армии. Если вы в парке впервые, начинайте именно отсюда: пространства спроектированы так, чтобы задать эмоциональный тон всей поездке.",
+      "id": "монументальный-собор-архитектурная-домин__311edcab",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Что не пропустить:",
+      "id": "что-не-пропустить__6ffaebd4",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Панорамные виды со смотровых площадок.",
+      "id": "панорамные-виды-со-смотровых-площадок__a57d61a0",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Тематические залы с мультимедийными инсталляциями.",
+      "id": "тематические-залы-с-мультимедийными-инст__89990a43",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Экскурсионные программы по комплексу.",
+      "id": "экскурсионные-программы-по-комплексу__60a0e9f0",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Время: 60–90 минут.",
+      "id": "время-60-90-минут__0afff05a",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Музейный комплекс «Дорога Памяти»",
+      "id": "музейный-комплекс-дорога-памяти__7e06ea59",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Большая иммерсивная экспозиция, проходящая вокруг храма. Концепция:",
+      "id": "большая-иммерсивная-экспозиция-проходяща__f3222997",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "1418 шагов",
+      "id": "1418-шагов__60062a1a",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "— по числу дней Великой Отечественной войны. Вдоль маршрута — тематические залы с погружением, хроника по дням, личные истории и огромная база фотографий участников (можно искать своих родственников).",
+      "id": "по-числу-дней-великой-отечественной-войн__c00aad65",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Что не пропустить:",
+      "id": "что-не-пропустить__6ffaebd4",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Иммерсивные залы с реконструкциями ключевых эпизодов войны.",
+      "id": "иммерсивные-залы-с-реконструкциями-ключе__712d7d37",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Поиск участников в цифровой базе.",
+      "id": "поиск-участников-в-цифровой-базе__e28a3886",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Связка «храм → галерея → открытые площадки».",
+      "id": "связка-храм-галерея-открытые-площадки__ffb52336",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Время: 60–90 минут.",
+      "id": "время-60-90-минут__0afff05a",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Техника и музеи: что внутри",
+      "id": "техника-и-музеи-что-внутри__1a1eb3b9",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Танковый музей (Кубинка)",
+      "id": "танковый-музей-кубинка__f4e4c138",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Один из самых известных в мире музеев бронетехники (история — с 1938 года). Несколько павильонов плюс открытые площадки: советская школа, техника союзников и стран Оси, редчайшие прототипы и трофеи. Для любителей инженерии — must-see.",
+      "id": "один-из-самых-известных-в-мире-музеев-бр__c63ef096",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Хайлайты коллекции:",
+      "id": "хайлайты-коллекции__79ad6e5e",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Уникаты:",
+      "id": "уникаты__b7ed6460",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "сверхтяжёлый прототип Panzer VIII «Maus», мортира Karl-Gerät, опытный «Объект 279», СУ-100-Y.",
+      "id": "сверхтяж-лый-прототип-panzer-viii-maus-м__99cccf66",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Классика Второй мировой:",
+      "id": "классика-второй-мировой__402b734b",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Tiger I, «Пантера», Т-34, ИС-2 и др.",
+      "id": "tiger-i-пантера-т-34-ис-2-и-др__bb388dd8",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Поствоенная эпоха:",
+      "id": "поствоенная-эпоха__791dae51",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "обширная линейка отечественных и зарубежных образцов.",
+      "id": "обширная-линейка-отечественных-и-зарубеж__35248b75",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Время: от 2 часов (минимум) до полудня для вдумчивого осмотра.",
+      "id": "время-от-2-часов-минимум-до-полудня-для-__24690ae9",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Авиация и ПВО",
+      "id": "авиация-и-пво__b9c4f170",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Открытые экспозиции и павильоны с образцами отечественной авиации нескольких поколений. Здесь же — вертолётные экспонаты, включая Ми-26.",
+      "id": "открытые-экспозиции-и-павильоны-с-образц__0851d72d",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Что посмотреть:",
+      "id": "что-посмотреть__5121bcff",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Реактивные самолёты: МиГ-17, МиГ-19, МиГ-29; фронтовые бомбардировщики Су-24 и штурмовики Су-25.",
+      "id": "реактивные-самол-ты-миг-17-миг-19-миг-29__44e8f61c",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Военно-транспортная авиация (Ан-12, Ан-26) и средства ПВО.",
+      "id": "военно-транспортная-авиация-ан-12-ан-26-__ac2ae438",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Время: 60–90 минут (до 2–3 часов для энтузиастов).",
+      "id": "время-60-90-минут-до-2-3-часов-для-энтуз__5e8d7013",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Открытые площадки и «Поле Победы»",
+      "id": "открытые-площадки-и-поле-победы__492f0bec",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Под открытым небом — единицы техники, диорамы и инсталляции, посвящённые обороне Москвы и ключевым эпизодам войны. Отличный вариант для прогулки между музейными блоками.",
+      "id": "под-открытым-небом-единицы-техники-диора__d5ff37b6",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Время: 45–60 минут.",
+      "id": "время-45-60-минут__39fa99a7",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Военно-исторический комплекс «Партизанская деревня»",
+      "id": "военно-исторический-комплекс-партизанска__2da80bec",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Интерактивный музей с реконструкцией партизанского лагеря: блиндажи, штаб, «школа диверсанта», связь, быт, оружейный склад. Экскурсии часто с элементами участия — детям и подросткам обычно «заходит».",
+      "id": "интерактивный-музей-с-реконструкцией-пар__a1064a0a",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Время: 40–60 минут.",
+      "id": "время-40-60-минут__6fb4bc1e",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Маршрут на один насыщенный день",
+      "id": "маршрут-на-один-насыщенный-день__c7385d8d",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "09:50–10:00",
+      "id": "09-50-10-00__e678f3e8",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "— вход, ориентирование, кофе.",
+      "id": "вход-ориентирование-кофе__47cdea9e",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "10:00–11:30",
+      "id": "10-00-11-30__0b49106b",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "— Главный храм (интерьеры + смотровая).",
+      "id": "главный-храм-интерьеры-смотровая__464d6c56",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "11:30–12:45",
+      "id": "11-30-12-45__8175d7be",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "— «Дорога Памяти».",
+      "id": "дорога-памяти__0b42aa68",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "12:45–13:30",
+      "id": "12-45-13-30__2b5668fd",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "— обед (в сезон закладывайте буфер).",
+      "id": "обед-в-сезон-закладывайте-буфер__bd288188",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "13:30–15:30",
+      "id": "13-30-15-30__92306938",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "— Танковый музей (Кубинка).",
+      "id": "танковый-музей-кубинка__b8cbe32f",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "15:30–16:30",
+      "id": "15-30-16-30__b2219442",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "— Авиация и ПВО.",
+      "id": "авиация-и-пво__fc2d5839",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "16:30–17:15",
+      "id": "16-30-17-15__d8e1d052",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "— «Партизанская деревня».",
+      "id": "партизанская-деревня__9913142a",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "17:15–18:00",
+      "id": "17-15-18-00__818e1def",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "— сувениры, «Поле Победы», выезд.",
+      "id": "сувениры-поле-победы-выезд__05b5c8f2",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "С детьми чередуйте формат «зал → улица», на технику закладывайте больше времени.",
+      "id": "с-детьми-чередуйте-формат-зал-улица-на-т__ec6a6a80",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Практика: билеты, время работы, как добраться",
+      "id": "практика-билеты-время-работы-как-добрать__787f01e1",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Время работы (ориентиры)",
+      "id": "время-работы-ориентиры__18819bdd",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Вт–Пт:",
+      "id": "вт-пт__0529110b",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "10:00–18:00 (кассы до 17:00)",
+      "id": "10-00-18-00-кассы-до-17-00__a05957a3",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Сб–Вс:",
+      "id": "сб-вс__0b9e1d27",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "10:00–19:00 (кассы до 18:00)",
+      "id": "10-00-19-00-кассы-до-18-00__27aaa3cf",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Пн:",
+      "id": "пн__a5bbe9b5",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "выходной",
+      "id": "выходной__e0d69ae0",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Расписание и цены периодически меняются — проверяйте на официальных страницах перед поездкой.",
+      "id": "расписание-и-цены-периодически-меняются-__e1b039c8",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Билеты и экскурсии",
+      "id": "билеты-и-экскурсии__1001c078",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "На многие локации действуют отдельные билеты и экскурсионные программы.",
+      "id": "на-многие-локации-действуют-отдельные-би__e7f8e3e7",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Онлайн-покупка ускоряет вход и бронирование популярных слотов.",
+      "id": "онлайн-покупка-ускоряет-вход-и-бронирова__c54071f1",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Как добраться",
+      "id": "как-добраться__345025d4",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Авто:",
+      "id": "авто__87ab8289",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Минское шоссе, ~55-й км (парковки у кластеров).",
+      "id": "минское-шоссе-55-й-км-парковки-у-кластер__8408c588",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Общественный транспорт:",
+      "id": "общественный-транспорт__f3d82b05",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "станции Кубинка/Голицыно + такси/шаттл. В дни форума «АРМИЯ» возможны изменения движения.",
+      "id": "станции-кубинка-голицыно-такси-шаттл-в-д__20f0d823",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Лайфхаки и подготовка",
+      "id": "лайфхаки-и-подготовка__0a760741",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Время:",
+      "id": "время__308bf72f",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "полный осмотр — минимум 6–7 часов; для глубины — 2 дня.",
+      "id": "полный-осмотр-минимум-6-7-часов-для-глуб__cf6e3f90",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Обувь и погода:",
+      "id": "обувь-и-погода__99141971",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "много открытых площадок; удобная обувь, вода, головной убор.",
+      "id": "много-открытых-площадок-удобная-обувь-во__7479bc02",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Питание:",
+      "id": "питание__2754f98d",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "в высокий сезон очереди в кафе — планируйте буфер.",
+      "id": "в-высокий-сезон-очереди-в-кафе-планируйт__710cebe9",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Фото/видео:",
+      "id": "фото-видео__07e4bc3c",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "бытовая съёмка обычно свободна; профессиональная — по правилам площадки.",
+      "id": "бытовая-съ-мка-обычно-свободна-профессио__6abb07fd",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "С детьми:",
+      "id": "с-детьми__fdc9c34d",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "«Партизанская деревня», открытые площадки, интерактивы — идеальный микс.",
+      "id": "партизанская-деревня-открытые-площадки-и__23fc0f9f",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "FAQ",
+      "id": "faq__dbc468a1",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Сколько времени закладывать на Парк «Патриот»?",
+      "id": "сколько-времени-закладывать-на-парк-патр__07eaaf4d",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Минимум один полный день (6–7 часов). Для вдумчивого осмотра техники и всех музеев планируйте 2 дня.",
+      "id": "минимум-один-полный-день-6-7-часов-для-в__6ae3ef4f",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Можно ли обойтись без авто?",
+      "id": "можно-ли-обойтись-без-авто__baba432d",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Да, но логистика сложнее: электричка/МКЦ до станций в Одинцовском округе + такси/шаттл. С детьми и большой компанией удобнее ехать на автобусном туре.",
+      "id": "да-но-логистика-сложнее-электричка-мкц-д__38411d98",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Нужна ли предварительная запись на экскурсии?",
+      "id": "нужна-ли-предварительная-запись-на-экску__06bb43e7",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "На популярные программы и подъём на смотровые площадки лучше бронировать заранее онлайн.",
+      "id": "на-популярные-программы-и-подъ-м-на-смот__0437beda",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Подходит ли для школьных групп?",
+      "id": "подходит-ли-для-школьных-групп__1c425d39",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Да. Есть обзорные и тематические экскурсии, образовательные форматы и интерактивы.",
+      "id": "да-есть-обзорные-и-тематические-экскурси__aa4c1d3f",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "Оставить заявку на тур в Парк «Патриот»",
+      "id": "оставить-заявку-на-тур-в-парк-патриот__1778fb4d",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "На главную",
+      "id": "на-главную__ad94907f",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "См. также:",
+      "id": "см-также__f9f5b266",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "как добраться",
+      "id": "как-добраться__24bfd063",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": ",",
+      "id": "text__d03502c4",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "куда пойти с детьми",
+      "id": "куда-пойти-с-детьми__07cd1847",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": ",",
+      "id": "text__d03502c4",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "обзор техники Кубинки",
+      "id": "обзор-техники-кубинки__8cb47c0b",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": ",",
+      "id": "text__d03502c4",
+      "where": "<JSXText>"
+    },
+    {
+      "file": "app/(pages)/ru/blog/park-patriot-chto-posmotret/page.tsx",
+      "value": "лучшие фото-точки",
+      "id": "лучшие-фото-точки__30e04cb4",
+      "where": "<JSXText>"
+    }
+  ]
+}

@@ -2,7 +2,7 @@ const contactInfo = {
   phone: "+7 (905) 503-21-45",
   links: {
     privacyPolicy: "/privacy-policy",
-    terms: "/terms",
+    // terms: "/terms", // будет добавлено, когда появится страница
     sitemap: "#",
     seryoga_tg: "https://t.me/chetverochka_ya",
   },

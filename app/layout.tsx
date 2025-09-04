@@ -4,51 +4,55 @@ import "./globals.css";
 import contactInfo from "./config/contactInfo";
 import Cookie from "./components/Cookie";
 
-// // Актуальная мета для главной страницы
-// export const metadata: Metadata = {
-//   title: "Экскурсии по Подмосковью — групповые туры от 4-trip.ru",
-//   description:
-//     "Групповые экскурсии по Подмосковью: Парк «Патриот», Сергиев Посад и другие направления. Комфортные поездки с профессиональными гидами!",
-//   keywords:
-//     "групповые экскурсии Подмосковье, туры по Подмосковью, экскурсия Парк Патриот, экскурсия Сергиев Посад, автобусные туры Москва",
-//   openGraph: {
-//     title: "Экскурсии по Подмосковью — 4-trip.ru",
-//     description:
-//       "Групповые туры по Подмосковью от 4-trip.ru: увлекательные маршруты, профессиональные гиды, комфортные поездки.",
-//     url: "https://4-trip.ru/",
-//     type: "website",
-//     images: [
-//       {
-//         url: "https://4-trip.ru/images/cover.png",
-//         width: 1200,
-//         height: 630,
-//         alt: "4-trip.ru — Экскурсии по Подмосковью",
-//       },
-//     ],
-//   },
-//   twitter: {
-//     card: "summary_large_image",
-//     title: "Экскурсии по Подмосковью — 4-trip.ru",
-//     description:
-//       "Групповые туры по Подмосковью: Парк «Патриот», Сергиев Посад и другие маршруты.",
-//     images: [
-//       {
-//         url: "https://4-trip.ru/images/cover.png",
-//         width: 1200,
-//         height: 630,
-//         alt: "4-trip.ru — Экскурсии по Подмосковью",
-//       },
-//     ],
-//   },
-//   icons: {
-//     icon: "/images/4trip-logo-black.svg",
-//   },
-// };
+import { NextIntlClientProvider, hasLocale } from "next-intl";
+import { routing } from "@/i18n/routing";
 
-export default function RootLayout({
+import type { Metadata } from "next";
+
+// Базовые метаданные/OG по умолчанию для всех страниц (можно переопределить на уровне страницы)
+export const metadata: Metadata = {
+  metadataBase: new URL("https://4-trip.ru"),
+  title: {
+    default: "Экскурсии по Подмосковью — 4-trip.ru",
+    template: "%s — 4-trip.ru",
+  },
+  description:
+    "Групповые экскурсии по Подмосковью: Парк «Патриот», Сергиев Посад и другие направления. Комфортные поездки с профессиональными гидами!",
+  openGraph: {
+    type: "website",
+    url: "https://4-trip.ru/",
+    siteName: "4-trip.ru",
+    images: [
+      {
+        url: "https://4-trip.ru/images/cover.png",
+        width: 1200,
+        height: 630,
+        alt: "4-trip.ru — Экскурсии по Подмосковью",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Экскурсии по Подмосковью — 4-trip.ru",
+    description:
+      "Групповые туры по Подмосковью: Парк «Патриот», Сергиев Посад и другие маршруты.",
+    images: [
+      {
+        url: "https://4-trip.ru/images/cover.png",
+        width: 1200,
+        height: 630,
+        alt: "4-trip.ru — Экскурсии по Подмосковью",
+      },
+    ],
+  },
+};
+
+export default async function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params?: { locale?: string };
 }>) {
   // Обрабатываем телефон один раз
   const phoneFormatted = contactInfo.phone.replace(/\s|\(|\)|-/g, "");
@@ -58,8 +62,19 @@ export default function RootLayout({
     (link) => link && link !== "#",
   );
 
+  // Ensure that the incoming `locale` is valid
+  const locale = params?.locale ?? "ru";
+
+  if (!hasLocale(routing.locales, locale)) {
+    return (
+      <html>
+        <body></body>
+      </html>
+    );
+  }
+
   return (
-    <html lang="ru">
+    <html lang={locale}>
       <head>
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#ffffff" />
@@ -124,8 +139,12 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen flex flex-col">
-        <Providers>{children}</Providers>
-        <Cookie />
+        <NextIntlClientProvider>
+          <Providers>
+            {children}
+            <Cookie />
+          </Providers>
+        </NextIntlClientProvider>
         <script src="//code.jivo.ru/widget/3wd3G0IExH" async></script>
       </body>
     </html>

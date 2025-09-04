@@ -22,15 +22,16 @@ export const patriotTourMetadata: Metadata = {
     description: "Тур в Парк «Патриот» с посещением храма и музея.",
     images: ["/images/patriot/cathedral-hero.png"],
   },
-  icons: {
-    // icon: "/images/4trip-logo-black.svg",
-  },
+  icons: {},
 };
+
+const cost = 2600
 
 export const patriotTour = {
   slug: "patriot",
   title: "Парк «Патриот»",
-  price: 2600,
+  location: "Московская область, Одинцовский округ (Парк «Патриот»)",
+  price: cost,
   hero: {
     image: "/images/patriot/cathedral-hero.png",
     description:
@@ -94,7 +95,7 @@ export const patriotTour = {
       { label: "Размер группы", value: "До 50 человек" },
       { label: "Для кого", value: "Можно с детьми" },
       { label: "Язык экскурсии", value: "Русский" },
-      { label: "Стоимость", value: "2 500 ₽ с человека" },
+      { label: "Стоимость", value: `${cost} ₽ с человека` },
     ],
   },
   gallery: [

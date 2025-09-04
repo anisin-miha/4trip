@@ -30,9 +30,9 @@ $BOTTOM_GAP: 80px; // зазор над нижним виджетом на мо�
 
   @media (max-width: 768px) {
     /* поднимаем над другим нижним виджетом */
-    bottom: calc(max(16px, env(safe-area-inset-bottom)) + #{$BOTTOM_GAP});
+    // bottom: calc(max(16px, env(safe-area-inset-bottom)) + #{$BOTTOM_GAP});
     max-width: none;
-    width: calc(100% - 32px);
+    width: calc(100% - 200px);
     padding: 12px 14px;
   }
 }

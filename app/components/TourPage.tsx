@@ -1,17 +1,32 @@
-import Link from "next/link";
-import Header from "./Header";
+import { Link } from "@/i18n/navigation";
+import SiteHeader from "@/app/components/SiteHeader";
+import { Footer } from "@4trip/shared-ui";
+import { Link as IntlLink } from "@/i18n/navigation";
+import contactInfo from "@/app/config/contactInfo";
 import BaseImage from "@/components/BaseImage";
 import BookingForm from "./BookingForm";
-import Footer from "./Footer";
 import GallerySection from "./GallerySection";
+import LearnList from "./LearnList";
 import { patriotTour } from "../config/tours/patriot";
+import RelatedTours from "./RelatedTours";
 
 type TourData = typeof patriotTour;
 
 export default function TourPage({ data }: { data: TourData }) {
   return (
     <div className="font-sans bg-gray-100 scroll-smooth">
-      <Header title={data.title} />
+      <SiteHeader
+        title={data.title}
+        project="trip"
+        links={[
+          { href: "#hero", label: "Главная" },
+          { href: "#attractions", label: "Описание" },
+          { href: "#meeting", label: "Место встречи" },
+          { href: "#booking", label: "Бронирование" },
+          { href: "#gallery", label: "Галерея" },
+          { href: "#faq", label: "FAQ" },
+        ]}
+      />
 
       <main>
         {/* Hero Section */}
@@ -60,12 +75,12 @@ export default function TourPage({ data }: { data: TourData }) {
         </section>
 
         {/* Attractions Section */}
-        <section id="attractions" className="py-16 bg-gray-100 scroll-mt-16">
-          <div className="container mx-auto px-4">
+        <section id="attractions" className="py-16 pb-0 bg-gray-100 scroll-mt-16">
+          <div className="container pb-16 mx-auto px-4">
             <h2 className="text-3xl font-bold text-center mb-12">
               Вы посетите:
             </h2>
-            <div className="grid md:grid-cols-2 gap-12 mb-12">
+            <div className="grid md:grid-cols-2 gap-12 mb-0">
               {data.attractions.map((attr, idx) => (
                 <div
                   key={idx}
@@ -92,40 +107,21 @@ export default function TourPage({ data }: { data: TourData }) {
               ))}
             </div>
 
-            {/* Learn More Section */}
-            <div className="bg-white rounded-lg shadow-md p-8 mb-12">
-              <h3 className="text-2xl font-semibold mb-6 text-center">
-                Вы узнаете:
-              </h3>
-              <div className="grid md:grid-cols-2 gap-4">
-                <ul className="list-disc pl-6 space-y-2">
-                  {data.learnMore
-                    .slice(0, Math.ceil(data.learnMore.length / 2))
-                    .map((item, idx) => (
-                      <li
-                        key={idx}
-                        dangerouslySetInnerHTML={{ __html: item }}
-                      />
-                    ))}
-                </ul>
-                <ul className="list-disc pl-6 space-y-2">
-                  {data.learnMore
-                    .slice(Math.ceil(data.learnMore.length / 2))
-                    .map((item, idx) => (
-                      <li
-                        key={idx}
-                        dangerouslySetInnerHTML={{ __html: item }}
-                      />
-                    ))}
-                </ul>
-              </div>
-            </div>
+          </div>
 
-            {/* Important Details Section */}
-            <div className="bg-blue-50 rounded-lg shadow-md p-8 mb-12">
-              <h3 className="text-2xl font-semibold mb-6 text-center">
-                Важные детали:
-              </h3>
+          {/* Learn More Section (animated cards, full-bleed background) */}
+          <div className="relative left-1/2 -ml-[50vw] w-screen bg-gradient-to-b from-blue-100 via-blue-50 to-white">
+            <div className="container mx-auto px-4 pt-16 md:pt-24 pb-0">
+              <LearnList items={data.learnMore} />
+            </div>
+          </div>
+        </section>
+
+        {/* Important Details */}
+        <section id="details" className="pt-16 pb-24 bg-white scroll-mt-16">
+          <div className="container mx-auto px-4">
+            <div className="rounded-lg shadow-md p-8">
+              <h3 className="text-2xl font-semibold mb-6 text-center">Важные детали:</h3>
               <ul className="list-disc pl-6 space-y-3">
                 {data.details.map((detail, idx) => (
                   <li key={idx}>{detail}</li>
@@ -194,7 +190,12 @@ export default function TourPage({ data }: { data: TourData }) {
           </div>
         </section>
 
-        <Footer />
+        {/* Related Tours */}
+        <section id="related" className="py-16 bg-white scroll-mt-16">
+          <RelatedTours currentSlug={data.slug} />
+        </section>
+
+        <Footer project="trip" contacts={{ phone: contactInfo.phone, social: contactInfo.social }} />
       </main>
     </div>
   );

@@ -1,7 +1,9 @@
 import { Metadata } from "next";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Link from "next/link";
+import SiteHeader from "@/app/components/SiteHeader";
+import { Footer } from "@4trip/shared-ui";
+import { Link as IntlLink } from "@/i18n/navigation";
+import contactInfo from "@/app/config/contactInfo";
+import { Link } from "@/i18n/navigation";
 
 export const metadata: Metadata = {
   title: "Страница не найдена — 4-trip.ru",
@@ -30,15 +32,7 @@ export const metadata: Metadata = {
 export default function NotFound() {
   return (
     <div className="font-sans bg-white text-gray-900 scroll-smooth min-h-screen flex flex-col">
-      <Header
-        title=""
-        main
-        links={[
-          { href: "/", label: "Главная" },
-          { href: "/blog", label: "Блог" },
-          { href: "/contacts", label: "Контакты" },
-        ]}
-      />
+      <SiteHeader title="" main project="trip" links={[{ href: "/ru", label: "Главная" }, { href: "/ru/blog", label: "Блог" }, { href: "/ru/contacts", label: "Контакты" }]} />
 
       <main className="flex-grow flex items-center justify-center px-4">
         <div className="text-center max-w-xl">
@@ -58,7 +52,7 @@ export default function NotFound() {
         </div>
       </main>
 
-      <Footer />
+      <Footer project="trip" contacts={{ phone: contactInfo.phone, social: contactInfo.social }} />
     </div>
   );
 }

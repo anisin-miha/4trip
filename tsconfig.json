@@ -19,7 +19,9 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@4trip/shared-ui": ["packages/shared-ui/src/index.ts"],
+      "@4trip/shared-ui/*": ["packages/shared-ui/src/*"]
     }
   },
   "include": [

@@ -31,6 +31,7 @@ export const sergievPosadTourMetadata: Metadata = {
 export const sergievPosadTour = {
   slug: "sergiev-posad",
   title: "Сергиев Посад",
+  location: "Сергиев Посад, Московская область",
   price: 3500,
   hero: {
     image: "/images/sergiev_posad/hero.png",

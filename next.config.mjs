@@ -1,4 +1,5 @@
 import withPWA from "next-pwa";
+import createNextIntlPlugin from 'next-intl/plugin';
 
 const withPWAWrapped = withPWA({
   dest: "public",
@@ -27,16 +28,27 @@ let nextConfig = {
     imageSizes: [128, 256, 384],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
   },
-  transpilePackages: ["next-image-export-optimizer"],
+  transpilePackages: ["next-image-export-optimizer", "@4trip/shared-ui"],
   experimental: {
     webpackBuildWorker: true,
     parallelServerBuildTraces: true,
     parallelServerCompiles: true,
   },
   webpack(config, { isServer }) {
+    // Exclude .svg from existing asset loaders so SVGR can handle it
+    const fileLoaderRule = config.module.rules.find((rule) =>
+      typeof rule.test === "object" && rule.test?.test?.(".svg"),
+    );
+    if (fileLoaderRule) {
+      fileLoaderRule.exclude = Array.isArray(fileLoaderRule.exclude)
+        ? [...fileLoaderRule.exclude, /\.svg$/i]
+        : /\.svg$/i;
+    }
+
+    // Use SVGR for React SVG components
     config.module.rules.push({
       test: /\.svg$/i,
-      issuer: /\.[jt]sx?$/,
+      issuer: { and: [/\.[jt]sx?$/] },
       use: ["@svgr/webpack"],
     });
 
@@ -60,7 +72,8 @@ mergeConfig(nextConfig, userConfig);
 
 nextConfig = withPWAWrapped(nextConfig);
 
-export default nextConfig;
+const withNextIntl = createNextIntlPlugin();
+export default withNextIntl(nextConfig);
 
 function mergeConfig(nextConfig, userConfig) {
   if (!userConfig) return;

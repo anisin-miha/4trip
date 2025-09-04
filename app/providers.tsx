@@ -9,6 +9,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
       <Toaster richColors />
       <YandexMetricaProvider
         tagID={101206958}
+        router="app"
         initParameters={{
           clickmap: true,
           trackLinks: true,
