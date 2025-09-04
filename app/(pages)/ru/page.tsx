@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import SiteHeader from "@/app/components/SiteHeader";
-import { Footer } from "@4trip/shared-ui";
+import SiteFooter from "@/app/components/SiteFooter";
 import contactInfo from "@/app/config/contactInfo";
 import TourCard from "../../components/TourCard";
 import { patriotTour } from "../../config/tours/patriot";
@@ -174,7 +174,7 @@ export default function Home() {
         </section>
       </main>
 
-      <Footer project="trip" contacts={{ phone: contactInfo.phone, social: contactInfo.social }} />
+      <SiteFooter project="trip" contacts={{ phone: contactInfo.phone, social: contactInfo.social }} />
     </div>
   );
 }

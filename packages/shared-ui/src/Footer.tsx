@@ -14,6 +14,7 @@ import {
   ArrowRight,
   Send,
   Link as LinkIcon,
+  FileText,
 } from "lucide-react";
 import { SHOW_BUS_LINKS } from "./config";
 
@@ -24,7 +25,19 @@ type Contacts = {
   address?: string;
 };
 
-export default function Footer({ project, contacts }: { project?: "bus" | "trip"; contacts?: Contacts }) {
+export default function Footer({
+  project,
+  contacts,
+  LinkComponent,
+}: {
+  project?: "bus" | "trip";
+  contacts?: Contacts;
+  LinkComponent?: React.ComponentType<{
+    href: string;
+    className?: string;
+    children?: React.ReactNode;
+  }>;
+}) {
   const currentYear = new Date().getFullYear();
   const { tripUrl, busUrl } = useMemo(() => {
     const isProd = process.env.NODE_ENV === "production";
@@ -33,7 +46,9 @@ export default function Footer({ project, contacts }: { project?: "bus" | "trip"
       busUrl: isProd ? "https://4-bus.ru/" : "http://localhost:3001/",
     };
   }, []);
-  const prefix = project === "trip" ? "/ru" : "";
+  const LinkTag: any = LinkComponent || NextLink;
+  // Если используем intl‑Link, он сам добавит локаль → префикс не нужен
+  const prefix = LinkComponent ? "" : project === "trip" ? "/ru" : "";
   const IconWrap = ({ children }: { children: React.ReactNode }) => (
     <span className="text-gray-400" aria-hidden>
       {children}
@@ -47,24 +62,24 @@ export default function Footer({ project, contacts }: { project?: "bus" | "trip"
             <h3 className="text-lg font-semibold mb-4">Компания</h3>
             <ul className="space-y-2 text-gray-300">
               <li>
-                <NextLink href={`${prefix}/`} className="hover:text-white transition inline-flex items-center gap-2">
+                <LinkTag href={`${prefix}/`} className="hover:text-white transition inline-flex items-center gap-2">
                   <IconWrap><Home size={16} /></IconWrap>
                   <span>Главная</span>
-                </NextLink>
+                </LinkTag>
               </li>
               {project === "trip" && (
                 <li>
-                  <NextLink href={`${prefix}/blog`} className="hover:text-white transition inline-flex items-center gap-2">
+                  <LinkTag href={`${prefix}/blog`} className="hover:text-white transition inline-flex items-center gap-2">
                     <IconWrap><Newspaper size={16} /></IconWrap>
                     <span>Блог</span>
-                  </NextLink>
+                  </LinkTag>
                 </li>
               )}
               <li>
-                <NextLink href={`${prefix}/contacts`} className="hover:text-white transition inline-flex items-center gap-2">
+                <LinkTag href={`${prefix}/contacts`} className="hover:text-white transition inline-flex items-center gap-2">
                   <IconWrap><PhoneIcon size={16} /></IconWrap>
                   <span>Контакты</span>
-                </NextLink>
+                </LinkTag>
               </li>
             </ul>
           </div>
@@ -74,16 +89,16 @@ export default function Footer({ project, contacts }: { project?: "bus" | "trip"
               <h3 className="text-lg font-semibold mb-4">Услуги</h3>
               <ul className="space-y-2 text-gray-300">
                 <li>
-                  <NextLink href="/zakaz-avtobusa" className="hover:text-white transition inline-flex items-center gap-2">
+                  <LinkTag href="/zakaz-avtobusa" className="hover:text-white transition inline-flex items-center gap-2">
                     <IconWrap><BusIcon size={16} /></IconWrap>
                     <span>Заказ автобуса</span>
-                  </NextLink>
+                  </LinkTag>
                 </li>
                 <li>
-                  <NextLink href="/arenda-mikroavtobusa" className="hover:text-white transition inline-flex items-center gap-2">
+                  <LinkTag href="/arenda-mikroavtobusa" className="hover:text-white transition inline-flex items-center gap-2">
                     <IconWrap><CarIcon size={16} /></IconWrap>
                     <span>Аренда микроавтобуса</span>
-                  </NextLink>
+                  </LinkTag>
                 </li>
               </ul>
             </div>
@@ -92,34 +107,36 @@ export default function Footer({ project, contacts }: { project?: "bus" | "trip"
               <h3 className="text-lg font-semibold mb-4">Экскурсии</h3>
               <ul className="space-y-2 text-gray-300">
                 <li>
-                  <NextLink href="/ru/patriot" className="hover:text-white transition inline-flex items-center gap-2">
+                  <LinkTag href={`${prefix}/patriot`} className="hover:text-white transition inline-flex items-center gap-2">
                     <IconWrap><Landmark size={16} /></IconWrap>
                     <span>Парк «Патриот»</span>
-                  </NextLink>
+                  </LinkTag>
                 </li>
                 <li>
-                  <NextLink href="/ru/sergiev-posad" className="hover:text-white transition inline-flex items-center gap-2">
+                  <LinkTag href={`${prefix}/sergiev-posad`} className="hover:text-white transition inline-flex items-center gap-2">
                     <IconWrap><Building2 size={16} /></IconWrap>
                     <span>Сергиев Посад</span>
-                  </NextLink>
+                  </LinkTag>
                 </li>
                 <li>
-                  <NextLink href="/ru/kolomna" className="hover:text-white transition inline-flex items-center gap-2">
+                  <LinkTag href={`${prefix}/kolomna`} className="hover:text-white transition inline-flex items-center gap-2">
                     <IconWrap><MapPin size={16} /></IconWrap>
                     <span>Коломна</span>
-                  </NextLink>
+                  </LinkTag>
                 </li>
               </ul>
             </div>
           )}
 
+          {/* Клиентам / Политики */}
           <div>
             <h3 className="text-lg font-semibold mb-4">Клиентам</h3>
             <ul className="space-y-2 text-gray-300">
               <li>
-                <NextLink href="/privacy-policy" className="hover:text-white transition">
-                  Политика конфиденциальности
-                </NextLink>
+                <LinkTag href={`${prefix}/privacy-policy`} className="hover:text-white transition inline-flex items-center gap-2">
+                  <IconWrap><FileText size={16} /></IconWrap>
+                  <span>Политика конфиденциальности</span>
+                </LinkTag>
               </li>
             </ul>
           </div>

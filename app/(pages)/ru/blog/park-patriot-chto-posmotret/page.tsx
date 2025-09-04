@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import SiteHeader from "@/app/components/SiteHeader";
-import { Header, Footer } from "@4trip/shared-ui";
+import { Header } from "@4trip/shared-ui";
+import SiteFooter from "@/app/components/SiteFooter";
 import { Link as IntlLink } from "@/i18n/navigation";
 import contactInfo from "@/app/config/contactInfo";
 import { Link } from "@/i18n/navigation";
@@ -548,7 +549,7 @@ export default function BlogPage() {
         <BookingForm price={0} tourName={"Парк «Патриот»"} />
       </div> */}
 
-      <Footer project="trip" contacts={{ phone: contactInfo.phone, social: contactInfo.social }} />
+      <SiteFooter project="trip" contacts={{ phone: contactInfo.phone, social: contactInfo.social }} />
     </div>
   );
 }

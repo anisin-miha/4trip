@@ -2,7 +2,8 @@
 import type { Metadata } from "next";
 import { Link } from "@/i18n/navigation";
 import Script from "next/script";
-import { Header, Footer, Logo4Trip } from "@4trip/shared-ui";
+import SiteHeader from "@/app/components/SiteHeader";
+import SiteFooter from "@/app/components/SiteFooter";
 import contactInfo from "@/app/config/contactInfo";
 import BusCalculator from "@/app/components/BusCalculator";
 
@@ -35,7 +36,7 @@ export default function Page() {
 
   return (
     <div className="font-sans bg-white text-gray-900 scroll-smooth min-h-screen flex flex-col">
-      <Header title="Заказ автобуса" main project="trip" Logo={Logo4Trip} links={[{ href: "/ru", label: "Главная" }, { href: "/ru/blog", label: "Блог" }, { href: "/ru/contacts", label: "Контакты" }, { href: "/ru/bus", label: "Заказать автобус" }]} />
+      <SiteHeader title="Заказ автобуса" main project="trip" links={[{ href: "/ru", label: "Главная" }, { href: "/ru/blog", label: "Блог" }, { href: "/ru/contacts", label: "Контакты" }, { href: "/ru/bus", label: "Заказать автобус" }]} />
 
       <main>
         {/* HERO */}
@@ -218,7 +219,7 @@ export default function Page() {
         </section>
       </main>
 
-      <Footer project="trip" contacts={{ phone: contactInfo.phone, social: contactInfo.social }} />
+      <SiteFooter project="trip" contacts={{ phone: contactInfo.phone, social: contactInfo.social }} />
 
       {/* JSON-LD */}
       <Script

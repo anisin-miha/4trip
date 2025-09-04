@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import SiteHeader from "@/app/components/SiteHeader";
-import { Footer } from "@4trip/shared-ui";
+import SiteFooter from "@/app/components/SiteFooter";
 import { Link as IntlLink } from "@/i18n/navigation";
 import contactInfo from "@/app/config/contactInfo";
 
@@ -252,7 +252,7 @@ export default function PrivacyPolicyPage() {
         </div>
       </main>
 
-      <Footer project="trip" contacts={{ phone: contactInfo.phone, social: contactInfo.social }} />
+      <SiteFooter project="trip" contacts={{ phone: contactInfo.phone, social: contactInfo.social }} />
     </div>
   );
 }
