@@ -3,12 +3,13 @@ import withPWA from "next-pwa";
 import createNextIntlPlugin from "next-intl/plugin";
 
 // ===== GitHub Pages (project pages) basePath/assetPrefix =====
-const repoSlug = process.env.GITHUB_REPOSITORY?.split("/")[1] ?? ""; // "4trip"
+const repoSlug = process.env.GITHUB_REPOSITORY?.split("/")[1] ?? ""; // e.g. "4trip"
 const isProd = process.env.NODE_ENV === "production";
 // user/org pages = repo name заканчивается на .github.io
 const isUserOrOrgPagesRepo = /\.github\.io$/i.test(repoSlug);
 // Для project pages нужен basePath "/<repo>"
-const ghBase = isProd && !isUserOrOrgPagesRepo ? `/${repoSlug}` : "";
+// Only set basePath for project pages when repoSlug is non-empty
+const ghBase = isProd && repoSlug && !isUserOrOrgPagesRepo ? `/${repoSlug}` : "";
 const pwaScope = ghBase ? `${ghBase}/` : "/";
 
 // ===== Необязательный пользовательский конфиг =====
