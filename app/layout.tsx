@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     siteName: "4-trip.ru",
     images: [
       {
-        url: "https://4-trip.ru/images/cover.png",
+        url: "https://4-trip.ru/images/patriot/cathedral-hero.png",
         width: 1200,
         height: 630,
         alt: "4-trip.ru — Экскурсии по Подмосковью",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
       "Групповые туры по Подмосковью: Парк «Патриот», Сергиев Посад и другие маршруты.",
     images: [
       {
-        url: "https://4-trip.ru/images/cover.png",
+        url: "https://4-trip.ru/images/patriot/cathedral-hero.png",
         width: 1200,
         height: 630,
         alt: "4-trip.ru — Экскурсии по Подмосковью",
