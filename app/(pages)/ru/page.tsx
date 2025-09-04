@@ -48,6 +48,7 @@ export default function Home() {
     patriotTour.meetingPoint.info,
     "Место встречи"
   );
+  const patriotCity = patriotTour.city;
 
   const spDuration = pickInfo(
     sergievPosadTour.meetingPoint.info,
@@ -61,6 +62,7 @@ export default function Home() {
     sergievPosadTour.meetingPoint.info,
     "Место встречи"
   );
+  const spCity = sergievPosadTour.city;
   const kolDuration = pickInfo(
     kolomnaTour.meetingPoint.info,
     "Длительность"
@@ -73,6 +75,7 @@ export default function Home() {
     kolomnaTour.meetingPoint.info,
     "Место встречи"
   );
+  const kolCity = kolomnaTour.city;
   return (
     <div className="font-sans bg-white text-gray-900 scroll-smooth">
       <SiteHeader
@@ -108,39 +111,42 @@ export default function Home() {
             Популярные экскурсии
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
-            <TourCard
-              href="/patriot"
-              imageSrc="/images/patriot/pencil.png"
-              imageAlt="Парк «Патриот»"
-              title={`Экскурсия в ${ruAccusativeAfterV(patriotTour.title)}`}
-              description="Посещение Главного храма Вооружённых Сил России и музея «Дорога памяти» в рамках группового тура."
-              price={patriotTour.price}
-              duration={patriotDuration}
-              languages={patriotLang ? [patriotLang] : undefined}
-              meetingPoint={patriotMeeting}
-            />
-            <TourCard
-              href="/sergiev-posad"
-              imageSrc="/images/sergiev_posad/pencil.png"
-              imageAlt="Сергиев Посад"
-              title={`Экскурсия в ${ruAccusativeAfterV(sergievPosadTour.title)}`}
-              description="Поездка в духовную столицу России с экскурсией по Троице-Сергиевой лавре."
-              price={sergievPosadTour.price}
-              duration={spDuration}
-              languages={spLang ? [spLang] : undefined}
-              meetingPoint={spMeeting}
-            />
-            <TourCard
-              href="/kolomna"
-              imageSrc="/images/kolomna/hero.png"
-              imageAlt="Коломна"
-              title={`Экскурсия в ${ruAccusativeAfterV(kolomnaTour.title)}`}
-              description={kolomnaTour.hero.description}
-              price={kolomnaTour.price}
-              duration={kolDuration}
-              languages={kolLang ? [kolLang] : undefined}
-              meetingPoint={kolMeeting}
-            />
+          <TourCard
+            href="/patriot"
+            imageSrc="/images/patriot/pencil.png"
+            imageAlt="Парк «Патриот»"
+            title={`Экскурсия в ${ruAccusativeAfterV(patriotTour.title)}`}
+            description="Посещение Главного храма Вооружённых Сил России и музея «Дорога памяти» в рамках группового тура."
+            price={patriotTour.price}
+            duration={patriotDuration}
+            languages={patriotLang ? [patriotLang] : undefined}
+            city={patriotCity}
+            meetingPoint={patriotMeeting}
+          />
+          <TourCard
+            href="/sergiev-posad"
+            imageSrc="/images/sergiev_posad/pencil.png"
+            imageAlt="Сергиев Посад"
+            title={`Экскурсия в ${ruAccusativeAfterV(sergievPosadTour.title)}`}
+            description="Поездка в духовную столицу России с экскурсией по Троице-Сергиевой лавре."
+            price={sergievPosadTour.price}
+            duration={spDuration}
+            languages={spLang ? [spLang] : undefined}
+            city={spCity}
+            meetingPoint={spMeeting}
+          />
+          <TourCard
+            href="/kolomna"
+            imageSrc="/images/kolomna/hero.png"
+            imageAlt="Коломна"
+            title={`Экскурсия в ${ruAccusativeAfterV(kolomnaTour.title)}`}
+            description={kolomnaTour.hero.description}
+            price={kolomnaTour.price}
+            duration={kolDuration}
+            languages={kolLang ? [kolLang] : undefined}
+            city={kolCity}
+            meetingPoint={kolMeeting}
+          />
           </div>
         </section>
 

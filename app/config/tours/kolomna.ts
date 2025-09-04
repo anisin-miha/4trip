@@ -27,6 +27,7 @@ export const kolomnaTour = {
   slug: "kolomna",
   title: "Коломна",
   location: "Коломна, Московская область",
+  city: "Москва",
   price: 3200,
   hero: {
     image: "/images/kolomna/hero.png",

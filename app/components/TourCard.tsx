@@ -17,6 +17,7 @@ type TourCardProps = {
   price?: number | string;
   duration?: string;
   languages?: string[];
+  city?: string;
   meetingPoint?: string;
   badges?: string[];
   rating?: Rating;
@@ -31,6 +32,7 @@ export default function TourCard({
   price,
   duration,
   languages,
+  city,
   meetingPoint,
   badges,
   rating,
@@ -94,7 +96,7 @@ export default function TourCard({
         </Link>
         <p className="tour-card__description text-gray-600">{description}</p>
 
-        {(duration || (languages && languages.length) || meetingPoint) && (
+        {(duration || (languages && languages.length) || city || meetingPoint) && (
           <div className="mt-1 flex flex-wrap items-center gap-2 text-sm">
             {duration && (
               <span className="inline-flex items-center gap-1 bg-gray-100 text-gray-800 px-2 py-1 rounded">
@@ -104,6 +106,11 @@ export default function TourCard({
             {languages && languages.length > 0 && (
               <span className="inline-flex items-center gap-1 bg-gray-100 text-gray-800 px-2 py-1 rounded">
                 <span className="opacity-70">🌐</span> {languages.join(", ")}
+              </span>
+            )}
+            {city && (
+              <span className="inline-flex items-center gap-1 bg-gray-100 text-gray-800 px-2 py-1 rounded">
+                <span className="opacity-70">🏙️</span> {city}
               </span>
             )}
             {meetingPoint && (

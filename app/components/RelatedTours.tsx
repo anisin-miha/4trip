@@ -25,6 +25,7 @@ export default function RelatedTours({ currentSlug, limit = 3 }: Props) {
           const duration = pickInfo(t.meetingPoint.info, "Длительность");
           const lang = pickInfo(t.meetingPoint.info, "Язык экскурсии");
           const meeting = pickInfo(t.meetingPoint.info, "Место встречи");
+          const city = t.city;
 
           return (
             <TourCard
@@ -37,6 +38,7 @@ export default function RelatedTours({ currentSlug, limit = 3 }: Props) {
               price={t.price}
               duration={duration}
               languages={lang ? [lang] : undefined}
+              city={city}
               meetingPoint={meeting}
             />
           );

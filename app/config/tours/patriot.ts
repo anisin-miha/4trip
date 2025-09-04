@@ -31,6 +31,7 @@ export const patriotTour = {
   slug: "patriot",
   title: "Парк «Патриот»",
   location: "Московская область, Одинцовский округ (Парк «Патриот»)",
+  city: "Москва",
   price: cost,
   hero: {
     image: "/images/patriot/cathedral-hero.png",

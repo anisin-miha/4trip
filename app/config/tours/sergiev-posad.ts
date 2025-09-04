@@ -32,6 +32,7 @@ export const sergievPosadTour = {
   slug: "sergiev-posad",
   title: "Сергиев Посад",
   location: "Сергиев Посад, Московская область",
+  city: "Москва",
   price: 3500,
   hero: {
     image: "/images/sergiev_posad/hero.png",
@@ -82,7 +83,7 @@ export const sergievPosadTour = {
       { label: "Длительность", value: "около 8 ч." },
       {
         label: "Место встречи",
-        value: 'Москва, метро "Комсомольская", выход к Ленинградскому вокзалу',
+        value: "метро Комсомольская, выход к Ленинградскому вокзалу",
       },
       { label: "Размер группы", value: "До 30 человек" },
       { label: "Для кого", value: "Можно с детьми" },
