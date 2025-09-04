@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: "Блог об экскурсиях — 4-trip.ru",
     description:
       "Интересные статьи о парках, городах и маршрутах для путешествий по Подмосковью и не только. Советы, идеи и подборки от 4-trip.ru.",
-    url: "https://4-trip.ru/blog",
+    url: "https://4-trip.ru/ru/blog",
     type: "website",
     images: [
       {
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     ],
   },
   alternates: {
-    canonical: "https://4-trip.ru/blog",
+    canonical: "https://4-trip.ru/ru/blog",
   },
 };
 

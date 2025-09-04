@@ -79,15 +79,18 @@ let nextConfig = {
 mergeConfig(nextConfig, userConfig);
 
 // PWA-обёртка после вычисления ghBase/pwaScope
-// PWA в Pages часто конфликтует, отключаем полностью для стабильности экспорта
+// PWA: возвращаем поддержку. По умолчанию включено в production, выключено в dev и на CI (Pages).
+// Можно форсировать включение через ENABLE_PWA=true
 const isCI = !!process.env.GITHUB_ACTIONS;
+const enablePWAEnv = process.env.ENABLE_PWA === "true" || process.env.ENABLE_PWA === "1";
+const disablePWA = !(enablePWAEnv || (process.env.NODE_ENV === "production" && !isCI));
+
 const withPWAWrapped = withPWA({
   dest: "public",
   register: true,
   skipWaiting: true,
-  // Полностью отключаем генерацию SW (и в CI, и локально)
-  disable: true,
-  // ВАЖНО: чтобы service worker имел корректный scope под /4trip/
+  disable: disablePWA,
+  // корректный scope с учётом basePath
   scope: pwaScope,
   sw: "sw.js",
 });

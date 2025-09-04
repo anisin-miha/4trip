@@ -9,11 +9,13 @@ import BookingForm from "@/app/components/BookingForm";
 import { TelegramComments } from "@/app/components/TelegramComments";
 import SocialShare from "@/app/components/SocialShare";
 
-const ARTICLE_URL = "https://4-trip.ru/blog/park-patriot-chto-posmotret";
+// Фактический путь страницы в проекте локалей — с префиксом /ru
+const ARTICLE_URL = "https://4-trip.ru/ru/blog/park-patriot-chto-posmotret";
 const ARTICLE_TITLE = "Что посмотреть в Парке «Патриот»: обзор всех экспозиций";
 const ARTICLE_DESC =
   "Полный гид по Парку «Патриот»: Главный храм ВС РФ, «Дорога Памяти», Танковый музей (Кубинка), авиация и ПВО, «Партизанская деревня», маршрут на 1 день, советы и билеты.";
-const ARTICLE_IMAGE = "https://4-trip.ru/images/park-patriot/cover.jpg";
+// Используем реальный файл из public/images/patriot
+const ARTICLE_IMAGE = "https://4-trip.ru/images/patriot/cathedral-hero.png";
 
 export const metadata: Metadata = {
   title: ARTICLE_TITLE,
@@ -24,6 +26,10 @@ export const metadata: Metadata = {
     url: ARTICLE_URL,
     title: ARTICLE_TITLE,
     description: ARTICLE_DESC,
+    // Эти поля помогают Telegram/FB корректнее распознавать статью
+    publishedTime: "2025-08-14",
+    modifiedTime: "2025-08-14",
+    authors: ["4-trip"],
     images: [
       {
         url: ARTICLE_IMAGE,
@@ -93,7 +99,7 @@ export default function BlogPage() {
     dateModified: "2025-08-14",
     author: { "@type": "Organization", name: "4-trip" },
     publisher: { "@type": "Organization", name: "4-trip" },
-    mainEntityOfPage: { "@type": "WebPage", "@id": "https://4-trip.ru/blog" },
+    mainEntityOfPage: { "@type": "WebPage", "@id": ARTICLE_URL },
   };
 
   return (
