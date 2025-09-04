@@ -83,13 +83,14 @@ let nextConfig = {
 mergeConfig(nextConfig, userConfig);
 
 // PWA-обёртка после вычисления ghBase/pwaScope
+// PWA в Pages часто конфликтует, отключаем полностью для стабильности экспорта
 const isCI = !!process.env.GITHUB_ACTIONS;
 const withPWAWrapped = withPWA({
   dest: "public",
   register: true,
   skipWaiting: true,
-  // На GH Actions/Pages отключаем генерацию SW, чтобы избежать сбоев
-  disable: process.env.NODE_ENV === "development" || isCI,
+  // Полностью отключаем генерацию SW (и в CI, и локально)
+  disable: true,
   // ВАЖНО: чтобы service worker имел корректный scope под /4trip/
   scope: pwaScope,
   sw: "sw.js",
