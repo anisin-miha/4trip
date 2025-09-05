@@ -2,12 +2,10 @@ import { Metadata } from "next";
 import SiteHeader from "@/app/components/SiteHeader";
 import { Header } from "@4trip/shared-ui";
 import SiteFooter from "@/app/components/SiteFooter";
-import { Link as IntlLink } from "@/i18n/navigation";
 import contactInfo from "@/app/config/contactInfo";
-import { Link } from "@/i18n/navigation";
-import BookingForm from "@/app/components/BookingForm";
 import { TelegramComments } from "@/app/components/TelegramComments";
 import SocialShare from "@/app/components/SocialShare";
+import PatriotPlanner from "@/app/components/PatriotPlanner";
 
 // Фактический путь страницы в проекте локалей — с префиксом /ru
 const ARTICLE_URL = "https://4-trip.ru/ru/blog/park-patriot-chto-posmotret";
@@ -533,6 +531,13 @@ export default function BlogPage() {
             .
           </div> */}
         </article>
+
+        <section id="planner" className="mt-12">
+          <h2 className="text-3xl font-semibold mb-4">Соберите свой план на день</h2>
+          <div className="not-prose">
+            <PatriotPlanner />
+          </div>
+        </section>
         <SocialShare
           url={ARTICLE_URL}
           title={ARTICLE_TITLE}
