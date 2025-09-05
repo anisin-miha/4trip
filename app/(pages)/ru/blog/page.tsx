@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import SiteHeader from "@/app/components/SiteHeader";
 import SiteFooter from "@/app/components/SiteFooter";
-import { Link as IntlLink } from "@/i18n/navigation";
 import contactInfo from "@/app/config/contactInfo";
 import { Link } from "@/i18n/navigation";
 
@@ -49,21 +48,20 @@ export default function BlogPage() {
           Блог об экскурсиях и путешествиях
         </h1>
         <div className="grid md:grid-cols-2 gap-10">
-          <div className="border p-6 rounded-lg shadow hover:shadow-md transition">
-            <h2 className="text-2xl font-semibold mb-3">
+          <Link
+            href="/blog/park-patriot-chto-posmotret"
+            aria-label="Что посмотреть в Парке Патриот: обзор всех экспозиций"
+            className="group block border p-6 rounded-lg shadow hover:shadow-md transition focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <h2 className="text-2xl font-semibold mb-3 group-hover:underline">
               Что посмотреть в Парке «Патриот»: обзор всех экспозиций
             </h2>
             <p className="text-gray-600 mb-4">
               Рассказываем, почему это место стоит посетить хотя бы раз: от
               главного храма до интерактивной военной техники.
             </p>
-            <Link
-              href="/blog/park-patriot-chto-posmotret"
-              className="text-blue-600 hover:underline"
-            >
-              Читать далее →
-            </Link>
-          </div>
+            <span className="text-blue-600 hover:underline">Читать далее →</span>
+          </Link>
         </div>
       </main>
 
