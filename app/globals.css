@@ -85,6 +85,16 @@ nav[aria-label="Содержание"] li {
   }
 }
 
+/* Prevent fixed header from covering anchors when navigating via in-page links */
+html {
+  scroll-padding-top: 80px; /* approximate header height incl. spacing */
+}
+
+/* Extra safety: any anchor target inside article content keeps clear offset */
+.prose [id] {
+  /* scroll-margin-top: 6.5rem; */
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

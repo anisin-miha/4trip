@@ -56,6 +56,10 @@ export default function BlogPage() {
             <h2 className="text-2xl font-semibold mb-3 group-hover:underline">
               Что посмотреть в Парке «Патриот»: обзор всех экспозиций
             </h2>
+            <div className="inline-flex items-center gap-2 text-sm font-medium px-3 py-1 rounded-full bg-yellow-50 text-yellow-800 border border-yellow-200 mb-4">
+              <span>⚡️ Интерактив внутри статьи:</span>
+              <span className="whitespace-nowrap">соберите план на день</span>
+            </div>
             <p className="text-gray-600 mb-4">
               Рассказываем, почему это место стоит посетить хотя бы раз: от
               главного храма до интерактивной военной техники.

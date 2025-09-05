@@ -117,9 +117,14 @@ export default function BlogPage() {
 
         <article className="prose prose-lg max-w-3xl prose-h2:mt-12 prose-h3:mt-8 prose-ul:list-disc">
           {/* заголовок */}
-          <h1 className="text-4xl font-bold mb-6">
+          <h1 className="text-4xl font-bold mb-2">
             Что посмотреть в Парке «Патриот»: обзор всех экспозиций
           </h1>
+          {/* badge: обозначаем наличие интерактива в статье */}
+          <div className="inline-flex items-center gap-2 text-sm font-medium px-3 py-1 rounded-full bg-yellow-50 text-yellow-800 border border-yellow-200 mb-4">
+            <span>⚡️ Интерактив внутри статьи:</span>
+            <span className="whitespace-nowrap">соберите план на день</span>
+          </div>
 
           {/* НОВЫЙ персонализированный абзац */}
           <p className="text-lg mb-4 text-gray-800">
@@ -137,6 +142,18 @@ export default function BlogPage() {
               инженеры и просто любопытные.
             </p>
           </blockquote>
+
+          {/* Placeholder hero illustration */}
+          {/*
+          <figure className="my-8">
+            <div className="relative w-full aspect-[16/9] bg-gray-100 border rounded flex items-center justify-center text-gray-500">
+              <span>public/images/blog/patriot/hero-cathedral-entrance.jpg</span>
+            </div>
+            <figcaption className="mt-2 text-sm text-gray-600">
+              Главный храм ВС РФ — общий вид (герой фото для статьи)
+            </figcaption>
+          </figure>
+          */}
 
           {/* Оглавление */}
           <nav aria-label="Содержание" className="mt-8 mb-10">
@@ -214,11 +231,11 @@ export default function BlogPage() {
               Главные объекты «по умолчанию»
             </h2>
 
-            <div id="main-temple" className="mt-6">
-              <h3 className="text-2xl font-semibold">
-                Главный храм Вооружённых Сил РФ
-              </h3>
-              <p>
+          <div id="main-temple" className="mt-6">
+            <h3 className="text-2xl font-semibold">
+              Главный храм Вооружённых Сил РФ
+            </h3>
+            <p>
                 Монументальный собор — архитектурная доминанта Парка «Патриот».
                 Внешне — современное прочтение русской храмовой традиции; внутри
                 — обширные экспозиции, смотровые площадки и сакральные символы,
@@ -239,7 +256,7 @@ export default function BlogPage() {
               <h3 className="text-2xl font-semibold">
                 Музейный комплекс «Дорога Памяти»
               </h3>
-              <p>
+            <p>
                 Большая иммерсивная экспозиция, проходящая вокруг храма.
                 Концепция:
                 <strong> 1418 шагов</strong> — по числу дней Великой
@@ -256,6 +273,17 @@ export default function BlogPage() {
                 <li>Связка «храм → галерея → открытые площадки».</li>
               </ul>
               <p className="text-sm text-gray-600">Время: 60–90 минут.</p>
+              {/* Placeholder: Memory Road gallery corridor */}
+              {/*
+              <figure className="my-6">
+                <div className="relative w-full aspect-[16/9] bg-gray-100 border rounded flex items-center justify-center text-gray-500">
+                  <span>public/images/blog/patriot/memory-road-gallery.jpg</span>
+                </div>
+                <figcaption className="mt-2 text-sm text-gray-600">
+                  «Дорога Памяти» — галерея с мультимедийными инсталляциями
+                </figcaption>
+              </figure>
+              */}
             </div>
           </section>
 
@@ -292,6 +320,17 @@ export default function BlogPage() {
               <p className="text-sm text-gray-600">
                 Время: от 2 часов (минимум) до полудня для вдумчивого осмотра.
               </p>
+              {/* Placeholder: Kubinka tanks hall */}
+              {/*
+              <figure className="my-6">
+                <div className="relative w-full aspect-[16/9] bg-gray-100 border rounded flex items-center justify-center text-gray-500">
+                  <span>public/images/blog/patriot/kubinka-tanks-hall.jpg</span>
+                </div>
+                <figcaption className="mt-2 text-sm text-gray-600">
+                  Павильон танков в Кубинке — ряд экспонатов под одной крышей
+                </figcaption>
+              </figure>
+              */}
             </div>
 
             <div id="air-defense" className="mt-8">
@@ -314,6 +353,17 @@ export default function BlogPage() {
               <p className="text-sm text-gray-600">
                 Время: 60–90 минут (до 2–3 часов для энтузиастов).
               </p>
+              {/* Placeholder: Aviation lineup */}
+              {/*
+              <figure className="my-6">
+                <div className="relative w-full aspect-[16/9] bg-gray-100 border rounded flex items-center justify-center text-gray-500">
+                  <span>public/images/blog/patriot/aviation-pvo-lineup.jpg</span>
+                </div>
+                <figcaption className="mt-2 text-sm text-gray-600">
+                  Открытая экспозиция авиации и средств ПВО
+                </figcaption>
+              </figure>
+              */}
             </div>
 
             <div id="open-areas" className="mt-8">
@@ -326,6 +376,17 @@ export default function BlogPage() {
                 вариант для прогулки между музейными блоками.
               </p>
               <p className="text-sm text-gray-600">Время: 45–60 минут.</p>
+              {/* Placeholder: Field of Victory */}
+              {/*
+              <figure className="my-6">
+                <div className="relative w-full aspect-[16/9] bg-gray-100 border rounded flex items-center justify-center text-gray-500">
+                  <span>public/images/blog/patriot/open-areas-field-of-victory.jpg</span>
+                </div>
+                <figcaption className="mt-2 text-sm text-gray-600">
+                  «Поле Победы» — открытые площадки с крупной техникой
+                </figcaption>
+              </figure>
+              */}
             </div>
 
             <div id="partisan" className="mt-8">
@@ -339,6 +400,17 @@ export default function BlogPage() {
                 «заходит».
               </p>
               <p className="text-sm text-gray-600">Время: 40–60 минут.</p>
+              {/* Placeholder: Partisan village interactive */}
+              {/*
+              <figure className="my-6">
+                <div className="relative w-full aspect-[16/9] bg-gray-100 border rounded flex items-center justify-center text-gray-500">
+                  <span>public/images/blog/patriot/partisan-village-exhibit.jpg</span>
+                </div>
+                <figcaption className="mt-2 text-sm text-gray-600">
+                  «Партизанская деревня» — интерактивные точки и реконструкции
+                </figcaption>
+              </figure>
+              */}
             </div>
           </section>
 
@@ -346,6 +418,17 @@ export default function BlogPage() {
             <h2 className="text-3xl font-semibold">
               Маршрут на один насыщенный день
             </h2>
+            {/* Placeholder: suggested day route map */}
+            {/*
+            <figure className="my-4">
+              <div className="relative w-full aspect-[16/9] bg-gray-100 border rounded flex items-center justify-center text-gray-500">
+                <span>public/images/blog/patriot/day-route-map.png</span>
+              </div>
+              <figcaption className="mt-2 text-sm text-gray-600">
+                Карта предложенного маршрута по Парку «Патриот»
+              </figcaption>
+            </figure>
+            */}
             <ul>
               <li>
                 <strong>09:50–10:00</strong> — вход, ориентирование, кофе.
@@ -533,7 +616,6 @@ export default function BlogPage() {
         </article>
 
         <section id="planner" className="mt-12">
-          <h2 className="text-3xl font-semibold mb-4">Соберите свой план на день</h2>
           <div className="not-prose">
             <PatriotPlanner />
           </div>
