@@ -232,11 +232,11 @@ export default function BlogPage() {
               Главные объекты «по умолчанию»
             </h2>
 
-          <div id="main-temple" className="mt-6">
-            <h3 className="text-2xl font-semibold">
-              Главный храм Вооружённых Сил РФ
-            </h3>
-            <p>
+            <div id="main-temple" className="mt-6">
+              <h3 className="text-2xl font-semibold">
+                Главный храм Вооружённых Сил РФ
+              </h3>
+              <p>
                 Монументальный собор — архитектурная доминанта Парка «Патриот».
                 Внешне — современное прочтение русской храмовой традиции; внутри
                 — обширные экспозиции, смотровые площадки и сакральные символы,
@@ -257,7 +257,7 @@ export default function BlogPage() {
               <h3 className="text-2xl font-semibold">
                 Музейный комплекс «Дорога Памяти»
               </h3>
-            <p>
+              <p>
                 Большая иммерсивная экспозиция, проходящая вокруг храма.
                 Концепция:
                 <strong> 1418 шагов</strong> — по числу дней Великой
@@ -644,7 +644,7 @@ export default function BlogPage() {
       </div> */}
 
 
-        {/* Related tours (готовый блок)
+      {/* Related tours (готовый блок)
         <div className="mt-12">
           <RelatedTours  />
         </div> */}

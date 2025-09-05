@@ -41,17 +41,30 @@ function minutesToTime(total: number): string {
 export default function PatriotPlanner() {
   const [startTime, setStartTime] = useState<string>("11:00");
   const [pace, setPace] = useState<Pace>("normal");
+  // Important: initialize deterministically to avoid hydration mismatch.
+  // Load localStorage selection after mount.
   const [selected, setSelected] = useState<Record<string, boolean>>(() => {
-    if (typeof window !== "undefined") {
-      try {
-        const raw = localStorage.getItem("patriotPlanner:selected");
-        if (raw) return JSON.parse(raw);
-      } catch {}
-    }
     const init: Record<string, boolean> = {};
     ALL_ATTRACTIONS.forEach((a) => (init[a.id] = !!a.defaultSelected));
     return init;
   });
+
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem("patriotPlanner:selected");
+      if (raw) {
+        const saved = JSON.parse(raw) as Record<string, boolean>;
+        setSelected((prev) => {
+          // merge only if actually different to avoid extra re-render
+          const keys = Object.keys(prev);
+          const isSame =
+            keys.length === Object.keys(saved).length &&
+            keys.every((k) => !!prev[k] === !!saved[k]);
+          return isSame ? prev : { ...prev, ...saved };
+        });
+      }
+    } catch {}
+  }, []);
 
   useEffect(() => {
     try {
