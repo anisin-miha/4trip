@@ -6,6 +6,7 @@ import contactInfo from "@/app/config/contactInfo";
 import { TelegramComments } from "@/app/components/TelegramComments";
 import SocialShare from "@/app/components/SocialShare";
 import PatriotPlanner from "@/app/components/PatriotPlanner";
+// import RelatedTours from "@/app/components/RelatedTours";
 
 // Фактический путь страницы в проекте локалей — с префиксом /ru
 const ARTICLE_URL = "https://4-trip.ru/ru/blog/park-patriot-chto-posmotret";
@@ -635,12 +636,19 @@ export default function BlogPage() {
           networks={["telegram", "vk", "whatsapp", "x", "facebook"]} // порядок важен
           className="mt-6 mb-10"
         />
-        <TelegramComments discussion={"fourtrip/12"} />
+        <TelegramComments discussion={"fourtrip/13"} />
       </main>
       {/* 
       <div id="booking" className="scroll-mt-24">
         <BookingForm price={0} tourName={"Парк «Патриот»"} />
       </div> */}
+
+
+        {/* Related tours (готовый блок)
+        <div className="mt-12">
+          <RelatedTours  />
+        </div> */}
+
 
       <SiteFooter project="trip" contacts={{ phone: contactInfo.phone, social: contactInfo.social }} />
     </div>
