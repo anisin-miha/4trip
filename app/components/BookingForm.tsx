@@ -11,7 +11,7 @@ import { InputMask } from "@react-input/mask";
 import { toast } from "sonner";
 
 // ---- УТИЛИТЫ ----
-/** Возвращает все даты выходных (сб/вс) от start до конца года (включительно). */
+/** Возвращает все даты выходных (сб и вс) от start до конца года (включительно). */
 function getWeekendsUntilEndOfYear(start: Date): Date[] {
   const res: Date[] = [];
   const year = start.getFullYear();
@@ -22,9 +22,9 @@ function getWeekendsUntilEndOfYear(start: Date): Date[] {
   d.setHours(0, 0, 0, 0);
 
   while (d <= end) {
-    const dow = d.getDay(); // 0=вс, 6=сб
-    if (dow === 6) {
-      // только субботы
+    const dow = d.getDay(); // 0=вс (Sunday), 6=сб (Saturday)
+    if (dow === 6 || dow === 0) {
+      // добавляем и субботы, и воскресенья
       res.push(new Date(d));
     }
     d.setDate(d.getDate() + 1);
