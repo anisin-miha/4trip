@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import styles from "./Cookie.module.scss";
+import I18nLink from "./i18nLink";
 
 const COOKIE_NAME = "cookie-accepted";
 const TRANSITION_MS = 300;
@@ -49,14 +50,14 @@ export default function CookieAlert() {
       <span className={styles.cookieAlertText}>
         Оставаясь на&nbsp;сайте, вы&nbsp;даете согласие на&nbsp;применение
         cookie и&nbsp;обработку данных. Подробнее&nbsp;&mdash; в&nbsp;
-        <Link
+        <I18nLink
           href="/privacy-policy"
           className={styles.cookieAlertLink + " text-blue-600"}
           target="_blank"
           rel="noopener noreferrer"
         >
           политике
-        </Link>
+        </I18nLink>
       </span>
       <button
         className={styles.cookieAlertButton}
