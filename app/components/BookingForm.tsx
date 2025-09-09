@@ -93,8 +93,8 @@ const standardSchema = z.object({
       const today = new Date();
       today.setHours(0, 0, 0, 0);
       const picked = new Date(d.getFullYear(), d.getMonth(), d.getDate());
-      return picked >= today;
-    }, "Нельзя бронировать прошедшую дату"),
+      return picked > today; // запрещаем сегодня и прошлые даты
+    }, "Нельзя бронировать на сегодня и прошедшие даты"),
   people: z.string().refine(
     (val) => {
       const num = parseInt(val, 10);
@@ -244,11 +244,11 @@ const BookingCalendar: React.FC<{
               const today = new Date();
               today.setHours(0, 0, 0, 0);
               const d = new Date(day.getFullYear(), day.getMonth(), day.getDate());
-              const isPast = d < today;
+              const isPastOrToday = d <= today;
               const isAvailable = availableDates.some(
                 (available) => available.toDateString() === day.toDateString(),
               );
-              return isPast || !isAvailable;
+              return isPastOrToday || !isAvailable;
             }}
             locale={ru}
           />
@@ -737,6 +737,8 @@ async function sendMessageToTelegram(
   utm: { source: string; medium: string; campaign: string },
   referrer: string,
 ) {
+  const traffic = trafficLabel(trafficSource);
+  const refNice = formatReferrer(referrer);
   await fetch("https://telegram-proxy-tau.vercel.app/api/send", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -749,9 +751,12 @@ async function sendMessageToTelegram(
 📅 Дата: ${date}
 👥 Кол-во человек: ${people}
 🚩 Тур: ${tourName}
-🧭 Источник: ${trafficSource || "—"}${trafficDetails ? ` (${trafficDetails})` : ""}
-🔗 UTM: ${[utm.source && `source=${utm.source}`, utm.medium && `medium=${utm.medium}`, utm.campaign && `campaign=${utm.campaign}`].filter(Boolean).join(", ") || "—"}
-↩️ Referrer: ${referrer || "—"}
+🧭 Источник: ${traffic}${trafficDetails ? ` — ${trafficDetails}` : ""}
+🔗 UTM-метки:
+• Источник (utm_source): ${utm.source || "—"}
+• Канал (utm_medium): ${utm.medium || "—"}
+• Кампания (utm_campaign): ${utm.campaign || "—"}
+↩️ Реферер: ${refNice}
       `.trim(),
     }),
   });
@@ -768,6 +773,8 @@ async function sendGroupRequest(
   utm: { source: string; medium: string; campaign: string },
   referrer: string,
 ) {
+  const traffic = trafficLabel(trafficSource);
+  const refNice = formatReferrer(referrer);
   await fetch("https://telegram-proxy-tau.vercel.app/api/send", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -779,10 +786,28 @@ async function sendGroupRequest(
 📧 Email: ${email}
 📝 Комментарий: ${comment}
 🚩 Тур: ${tourName}
-🧭 Источник: ${trafficSource || "—"}${trafficDetails ? ` (${trafficDetails})` : ""}
-🔗 UTM: ${[utm.source && `source=${utm.source}`, utm.medium && `medium=${utm.medium}`, utm.campaign && `campaign=${utm.campaign}`].filter(Boolean).join(", ") || "—"}
-↩️ Referrer: ${referrer || "—"}
+🧭 Источник: ${traffic}${trafficDetails ? ` — ${trafficDetails}` : ""}
+🔗 UTM-метки:
+• Источник (utm_source): ${utm.source || "—"}
+• Канал (utm_medium): ${utm.medium || "—"}
+• Кампания (utm_campaign): ${utm.campaign || "—"}
+↩️ Реферер: ${refNice}
       `.trim(),
     }),
   });
+}
+
+function trafficLabel(value: string): string {
+  const found = TRAFFIC_OPTIONS.find((o) => o.value === (value as any));
+  return found?.label || "—";
+}
+
+function formatReferrer(referrer: string): string {
+  if (!referrer) return "—";
+  try {
+    const u = new URL(referrer);
+    return u.hostname || referrer;
+  } catch {
+    return referrer;
+  }
 }
