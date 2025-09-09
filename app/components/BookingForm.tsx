@@ -83,7 +83,18 @@ const standardSchema = z.object({
     .refine((val) => !val || /\S+@\S+\.\S+/.test(val), {
       message: "Введите корректный email",
     }),
-  date: z.string().nonempty("Выберите дату"),
+  date: z
+    .string()
+    .nonempty("Выберите дату")
+    .refine((val) => {
+      if (!val) return false;
+      const d = new Date(val);
+      if (isNaN(d.getTime())) return false;
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const picked = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+      return picked >= today;
+    }, "Нельзя бронировать прошедшую дату"),
   people: z.string().refine(
     (val) => {
       const num = parseInt(val, 10);
@@ -229,11 +240,16 @@ const BookingCalendar: React.FC<{
                 setOpen(false);
               }
             }}
-            disabled={(day) =>
-              !availableDates.some(
+            disabled={(day) => {
+              const today = new Date();
+              today.setHours(0, 0, 0, 0);
+              const d = new Date(day.getFullYear(), day.getMonth(), day.getDate());
+              const isPast = d < today;
+              const isAvailable = availableDates.some(
                 (available) => available.toDateString() === day.toDateString(),
-              )
-            }
+              );
+              return isPast || !isAvailable;
+            }}
             locale={ru}
           />
         </div>
