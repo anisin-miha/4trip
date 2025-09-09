@@ -101,12 +101,6 @@ export default function ContactsPage() {
             <h2 className="text-2xl font-semibold mb-2">Реквизиты исполнителя</h2>
             <p>ФИО: {performer.fullName}</p>
             <p>ИНН: {performer.inn} (самозанятый, НПД)</p>
-            <p>
-              Сайт: {" "}
-              <a href={site.url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
-                {site.url}
-              </a>
-            </p>
           </section>
         </div>
       </main>
