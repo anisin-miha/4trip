@@ -112,7 +112,6 @@ const standardSchema = z.object({
   utmSource: z.string().optional(),
   utmMedium: z.string().optional(),
   utmCampaign: z.string().optional(),
-  referrer: z.string().optional(),
 });
 
 z.setErrorMap((issue, ctx) => {
@@ -143,7 +142,6 @@ const groupSchema = z.object({
   utmSource: z.string().optional(),
   utmMedium: z.string().optional(),
   utmCampaign: z.string().optional(),
-  referrer: z.string().optional(),
 });
 
 // ---- Автосбор UTM/Referrer ----
@@ -158,18 +156,12 @@ function parseSearchParams(search: string) {
 
 function detectTrafficSource(
   utm: { utmSource: string; utmMedium: string },
-  referrer: string,
 ): TrafficSource {
   const src = (utm.utmSource || "").toLowerCase();
   const med = (utm.utmMedium || "").toLowerCase();
-  const ref = (referrer || "").toLowerCase();
   const is = (s: string, arr: string[]) => arr.some((x) => s.includes(x));
-  if (is(src, ["yandex", "google"]) || is(ref, ["yandex", "google"])) return "search";
-  if (
-    is(src, ["t.me", "telegram", "vk", "instagram", "facebook"]) ||
-    is(ref, ["t.me", "telegram", "vk", "instagram", "facebook"]) 
-  )
-    return "social";
+  if (is(src, ["yandex", "google"])) return "search";
+  if (is(src, ["t.me", "telegram", "vk", "instagram", "facebook"])) return "social";
   if (is(med, ["cpc", "ppc", "ads", "adwords", "context"])) return "ads";
   if (is(src, ["blog"])) return "blog";
   return "unknown";
@@ -277,8 +269,8 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
     ),
     defaultValues:
       programType === "standard"
-        ? { people: "1", consent: false, trafficSource: undefined, trafficDetails: "", utmSource: "", utmMedium: "", utmCampaign: "", referrer: "" }
-        : { consent: false, trafficSource: undefined, trafficDetails: "", utmSource: "", utmMedium: "", utmCampaign: "", referrer: "" },
+        ? { people: "1", consent: false, trafficSource: undefined, trafficDetails: "", utmSource: "", utmMedium: "", utmCampaign: "" }
+        : { consent: false, trafficSource: undefined, trafficDetails: "", utmSource: "", utmMedium: "", utmCampaign: "" },
   });
 
   const date = watch("date");
@@ -292,12 +284,10 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
     const { utmSource, utmMedium, utmCampaign } = parseSearchParams(
       window.location.search || "",
     );
-    const referrer = document.referrer || "";
     setValue("utmSource", utmSource);
     setValue("utmMedium", utmMedium);
     setValue("utmCampaign", utmCampaign);
-    setValue("referrer", referrer);
-    const detected = detectTrafficSource({ utmSource, utmMedium }, referrer);
+    const detected = detectTrafficSource({ utmSource, utmMedium });
     if (detected) setValue("trafficSource", detected);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -320,7 +310,6 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
           data.trafficSource || "",
           data.trafficDetails || "",
           { source: data.utmSource || "", medium: data.utmMedium || "", campaign: data.utmCampaign || "" },
-          data.referrer || "",
         );
       } else {
         await sendGroupRequest(
@@ -332,7 +321,6 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
           data.trafficSource || "",
           data.trafficDetails || "",
           { source: data.utmSource || "", medium: data.utmMedium || "", campaign: data.utmCampaign || "" },
-          data.referrer || "",
         );
       }
       setSent(true);
@@ -735,10 +723,8 @@ async function sendMessageToTelegram(
   trafficSource: string,
   trafficDetails: string,
   utm: { source: string; medium: string; campaign: string },
-  referrer: string,
 ) {
   const traffic = trafficLabel(trafficSource);
-  const refNice = formatReferrer(referrer);
   await fetch("https://telegram-proxy-tau.vercel.app/api/send", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -756,7 +742,6 @@ async function sendMessageToTelegram(
 • Источник (utm_source): ${utm.source || "—"}
 • Канал (utm_medium): ${utm.medium || "—"}
 • Кампания (utm_campaign): ${utm.campaign || "—"}
-↩️ Реферер: ${refNice}
       `.trim(),
     }),
   });
@@ -771,10 +756,8 @@ async function sendGroupRequest(
   trafficSource: string,
   trafficDetails: string,
   utm: { source: string; medium: string; campaign: string },
-  referrer: string,
 ) {
   const traffic = trafficLabel(trafficSource);
-  const refNice = formatReferrer(referrer);
   await fetch("https://telegram-proxy-tau.vercel.app/api/send", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -791,7 +774,6 @@ async function sendGroupRequest(
 • Источник (utm_source): ${utm.source || "—"}
 • Канал (utm_medium): ${utm.medium || "—"}
 • Кампания (utm_campaign): ${utm.campaign || "—"}
-↩️ Реферер: ${refNice}
       `.trim(),
     }),
   });
@@ -802,12 +784,4 @@ function trafficLabel(value: string): string {
   return found?.label || "—";
 }
 
-function formatReferrer(referrer: string): string {
-  if (!referrer) return "—";
-  try {
-    const u = new URL(referrer);
-    return u.hostname || referrer;
-  } catch {
-    return referrer;
-  }
-}
+//
