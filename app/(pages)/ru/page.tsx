@@ -86,7 +86,6 @@ export default function Home() {
           { href: "/ru", label: "Главная" },
           { href: "/ru/blog", label: "Блог" },
           { href: "/ru/contacts", label: "Контакты" },
-          { href: "/ru/bus", label: "Заказать автобус" },
         ]}
       />
 
@@ -180,7 +179,7 @@ export default function Home() {
         </section>
       </main>
 
-      <SiteFooter project="trip" contacts={{ phone: contactInfo.phone, social: contactInfo.social }} />
+      <SiteFooter project="trip" contacts={{ phone: contactInfo.phone, email: contactInfo.email, social: contactInfo.social }} />
     </div>
   );
 }

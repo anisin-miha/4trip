@@ -252,7 +252,7 @@ export default function PrivacyPolicyPage() {
         </div>
       </main>
 
-      <SiteFooter project="trip" contacts={{ phone: contactInfo.phone, social: contactInfo.social }} />
+      <SiteFooter project="trip" contacts={{ phone: contactInfo.phone, email: contactInfo.email, social: contactInfo.social }} />
     </div>
   );
 }

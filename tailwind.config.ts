@@ -18,8 +18,8 @@ const config: Config = {
         sm: "100%",
         md: "640px",
         lg: "800px",
-        xl: "960px",
-        "2xl": "1080px", // можно ещё уже, например: "1024px"
+        xl: "1200px",
+        "2xl": "1200px",
       },
     },
     extend: {

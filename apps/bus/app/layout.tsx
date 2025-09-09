@@ -1,5 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
+import { Footer } from "@4trip/shared-ui";
+import { BusSidebar } from "./components/BusSidebar";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://4-bus.ru"),
@@ -32,7 +34,15 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ru">
-      <body>{children}</body>
+      <body>
+        <div className="container mx-auto px-4 pt-8 md:pt-10 pb-4">
+          <div className="flex gap-6">
+            <BusSidebar />
+            <main className="flex-1 min-w-0">{children}</main>
+          </div>
+        </div>
+        <Footer project="bus" />
+      </body>
     </html>
   );
 }

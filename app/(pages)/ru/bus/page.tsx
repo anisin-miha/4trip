@@ -36,7 +36,7 @@ export default function Page() {
 
   return (
     <div className="font-sans bg-white text-gray-900 scroll-smooth min-h-screen flex flex-col">
-      <SiteHeader title="Заказ автобуса" main project="trip" links={[{ href: "/ru", label: "Главная" }, { href: "/ru/blog", label: "Блог" }, { href: "/ru/contacts", label: "Контакты" }, { href: "/ru/bus", label: "Заказать автобус" }]} />
+      <SiteHeader title="Заказ автобуса" main project="trip" links={[{ href: "/ru", label: "Главная" }, { href: "/ru/blog", label: "Блог" }, { href: "/ru/contacts", label: "Контакты" }]} />
 
       <main>
         {/* HERO */}
@@ -219,7 +219,7 @@ export default function Page() {
         </section>
       </main>
 
-      <SiteFooter project="trip" contacts={{ phone: contactInfo.phone, social: contactInfo.social }} />
+      <SiteFooter project="trip" contacts={{ phone: contactInfo.phone, email: contactInfo.email, social: contactInfo.social }} />
 
       {/* JSON-LD */}
       <Script

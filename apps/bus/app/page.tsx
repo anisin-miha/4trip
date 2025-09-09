@@ -1,6 +1,17 @@
-import { Header, Footer, BusCalculator, Logo4Trip } from "@4trip/shared-ui";
+import { Header, BusCalculator, Logo4Trip } from "@4trip/shared-ui";
 import NextLink from "next/link";
 import Script from "next/script";
+
+const headerLinks = [
+  { href: "/", label: "Главная" },
+  { href: "/avtopark", label: "Автопарк" },
+  { href: "/tarify", label: "Тарифы и цены" },
+  { href: "/usloviya-arendy", label: "Условия аренды" },
+  { href: "/oplata", label: "Оплата" },
+  { href: "/faq", label: "FAQ" },
+  { href: "/otzyvy", label: "Отзывы" },
+  { href: "/contacts", label: "Контакты" },
+] as const;
 
 export default function Page() {
   return (
@@ -10,11 +21,7 @@ export default function Page() {
         main
         Logo={Logo4Trip}
         project="bus"
-        links={[
-          { href: "/", label: "Главная" },
-          { href: "/zakaz-avtobusa", label: "Заказ автобуса" },
-          { href: "/arenda-mikroavtobusa", label: "Микроавтобусы" },
-        ]}
+        links={headerLinks as any}
       />
 
       <main>
@@ -138,8 +145,6 @@ export default function Page() {
           </div>
         </section>
       </main>
-
-      <Footer project="bus" />
 
       <Script
         id="ld-bus"

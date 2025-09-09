@@ -44,6 +44,25 @@ interface BookingFormProps {
 
 type ProgramType = "standard" | "individual";
 
+type TrafficSource =
+  | "search"
+  | "ads"
+  | "social"
+  | "referral"
+  | "blog"
+  | "other"
+  | "unknown";
+
+const TRAFFIC_OPTIONS: { value: TrafficSource; label: string }[] = [
+  { value: "search", label: "Поиск (Яндекс/Google)" },
+  { value: "ads", label: "Реклама" },
+  { value: "social", label: "Соцсети" },
+  { value: "referral", label: "Рекомендация друзей" },
+  { value: "blog", label: "Из блога/статьи" },
+  { value: "other", label: "Другое" },
+  { value: "unknown", label: "Не помню" },
+];
+
 // ---- СХЕМЫ ВАЛИДАЦИИ ----
 const standardSchema = z.object({
   name: z
@@ -75,6 +94,14 @@ const standardSchema = z.object({
   consent: z.literal(true, {
     errorMap: () => ({ message: "Необходимо согласие на обработку данных" }),
   }),
+  trafficSource: z
+    .enum(["search", "ads", "social", "referral", "blog", "other", "unknown"] as const)
+    .optional(),
+  trafficDetails: z.string().optional(),
+  utmSource: z.string().optional(),
+  utmMedium: z.string().optional(),
+  utmCampaign: z.string().optional(),
+  referrer: z.string().optional(),
 });
 
 z.setErrorMap((issue, ctx) => {
@@ -98,7 +125,44 @@ const groupSchema = z.object({
   consent: z.literal(true, {
     errorMap: () => ({ message: "Необходимо согласие на обработку данных" }),
   }),
+  trafficSource: z
+    .enum(["search", "ads", "social", "referral", "blog", "other", "unknown"] as const)
+    .optional(),
+  trafficDetails: z.string().optional(),
+  utmSource: z.string().optional(),
+  utmMedium: z.string().optional(),
+  utmCampaign: z.string().optional(),
+  referrer: z.string().optional(),
 });
+
+// ---- Автосбор UTM/Referrer ----
+function parseSearchParams(search: string) {
+  const params = new URLSearchParams(search);
+  return {
+    utmSource: params.get("utm_source") || "",
+    utmMedium: params.get("utm_medium") || "",
+    utmCampaign: params.get("utm_campaign") || "",
+  } as const;
+}
+
+function detectTrafficSource(
+  utm: { utmSource: string; utmMedium: string },
+  referrer: string,
+): TrafficSource {
+  const src = (utm.utmSource || "").toLowerCase();
+  const med = (utm.utmMedium || "").toLowerCase();
+  const ref = (referrer || "").toLowerCase();
+  const is = (s: string, arr: string[]) => arr.some((x) => s.includes(x));
+  if (is(src, ["yandex", "google"]) || is(ref, ["yandex", "google"])) return "search";
+  if (
+    is(src, ["t.me", "telegram", "vk", "instagram", "facebook"]) ||
+    is(ref, ["t.me", "telegram", "vk", "instagram", "facebook"]) 
+  )
+    return "social";
+  if (is(med, ["cpc", "ppc", "ads", "adwords", "context"])) return "ads";
+  if (is(src, ["blog"])) return "blog";
+  return "unknown";
+}
 
 // ---- BookingCalendar ----
 const BookingCalendar: React.FC<{
@@ -197,13 +261,30 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
     ),
     defaultValues:
       programType === "standard"
-        ? { people: "1", consent: false }
-        : { consent: false },
+        ? { people: "1", consent: false, trafficSource: undefined, trafficDetails: "", utmSource: "", utmMedium: "", utmCampaign: "", referrer: "" }
+        : { consent: false, trafficSource: undefined, trafficDetails: "", utmSource: "", utmMedium: "", utmCampaign: "", referrer: "" },
   });
 
   const date = watch("date");
   const people = watch("people") || 1;
   const totalPrice = price * people;
+  const selectedTrafficSource = watch("trafficSource");
+
+  // Автозаполнение UTM и источника при монтировании
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const { utmSource, utmMedium, utmCampaign } = parseSearchParams(
+      window.location.search || "",
+    );
+    const referrer = document.referrer || "";
+    setValue("utmSource", utmSource);
+    setValue("utmMedium", utmMedium);
+    setValue("utmCampaign", utmCampaign);
+    setValue("referrer", referrer);
+    const detected = detectTrafficSource({ utmSource, utmMedium }, referrer);
+    if (detected) setValue("trafficSource", detected);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const onSubmit = async (data: any) => {
     try {
@@ -220,6 +301,10 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
           formattedDate,
           data.people,
           tourName,
+          data.trafficSource || "",
+          data.trafficDetails || "",
+          { source: data.utmSource || "", medium: data.utmMedium || "", campaign: data.utmCampaign || "" },
+          data.referrer || "",
         );
       } else {
         await sendGroupRequest(
@@ -228,6 +313,10 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
           data.email || "",
           data.comment,
           tourName,
+          data.trafficSource || "",
+          data.trafficDetails || "",
+          { source: data.utmSource || "", medium: data.utmMedium || "", campaign: data.utmCampaign || "" },
+          data.referrer || "",
         );
       }
       setSent(true);
@@ -484,6 +573,49 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
             </>
           )}
 
+          {/* Источник трафика */}
+          <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-6">
+            <label
+              htmlFor="trafficSource"
+              className="md:w-56 font-semibold md:text-right"
+            >
+              Как вы о нас узнали?
+            </label>
+            <div className="flex-1">
+              <select
+                id="trafficSource"
+                {...register("trafficSource")}
+                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-white"
+                defaultValue={selectedTrafficSource}
+              >
+                <option value="">Выберите вариант</option>
+                {TRAFFIC_OPTIONS.map((o) => (
+                  <option key={o.value} value={o.value}>
+                    {o.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          {selectedTrafficSource === "other" && (
+            <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-6">
+              <label
+                htmlFor="trafficDetails"
+                className="md:w-56 font-semibold md:text-right"
+              >
+                Уточните, пожалуйста
+              </label>
+              <div className="flex-1">
+                <input
+                  id="trafficDetails"
+                  {...register("trafficDetails")}
+                  className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                />
+              </div>
+            </div>
+          )}
+
           {/* Комментарий (только для групповой) */}
           {programType === "individual" && (
             <div className="flex flex-col md:flex-row md:items-start gap-2 md:gap-6">
@@ -584,6 +716,10 @@ async function sendMessageToTelegram(
   date: string,
   people: number,
   tourName: string,
+  trafficSource: string,
+  trafficDetails: string,
+  utm: { source: string; medium: string; campaign: string },
+  referrer: string,
 ) {
   await fetch("https://telegram-proxy-tau.vercel.app/api/send", {
     method: "POST",
@@ -597,6 +733,9 @@ async function sendMessageToTelegram(
 📅 Дата: ${date}
 👥 Кол-во человек: ${people}
 🚩 Тур: ${tourName}
+🧭 Источник: ${trafficSource || "—"}${trafficDetails ? ` (${trafficDetails})` : ""}
+🔗 UTM: ${[utm.source && `source=${utm.source}`, utm.medium && `medium=${utm.medium}`, utm.campaign && `campaign=${utm.campaign}`].filter(Boolean).join(", ") || "—"}
+↩️ Referrer: ${referrer || "—"}
       `.trim(),
     }),
   });
@@ -608,6 +747,10 @@ async function sendGroupRequest(
   email: string,
   comment: string,
   tourName: string,
+  trafficSource: string,
+  trafficDetails: string,
+  utm: { source: string; medium: string; campaign: string },
+  referrer: string,
 ) {
   await fetch("https://telegram-proxy-tau.vercel.app/api/send", {
     method: "POST",
@@ -620,6 +763,9 @@ async function sendGroupRequest(
 📧 Email: ${email}
 📝 Комментарий: ${comment}
 🚩 Тур: ${tourName}
+🧭 Источник: ${trafficSource || "—"}${trafficDetails ? ` (${trafficDetails})` : ""}
+🔗 UTM: ${[utm.source && `source=${utm.source}`, utm.medium && `medium=${utm.medium}`, utm.campaign && `campaign=${utm.campaign}`].filter(Boolean).join(", ") || "—"}
+↩️ Referrer: ${referrer || "—"}
       `.trim(),
     }),
   });

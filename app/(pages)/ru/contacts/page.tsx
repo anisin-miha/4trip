@@ -29,54 +29,89 @@ export const metadata: Metadata = {
 };
 
 export default function ContactsPage() {
-  const { phone, email, social } = contactInfo;
+  const { phone, email, address, social, links, performer, site } = contactInfo;
+  const phoneHref = `tel:${phone.replace(/\s|\(|\)|-/g, "")}`;
 
   return (
     <div className="font-sans bg-white text-gray-900 scroll-smooth min-h-screen flex flex-col">
-      <SiteHeader title="Контакты" main project="trip" links={[{ href: "/ru", label: "Главная" }, { href: "/ru/blog", label: "Блог" }, { href: "/ru/contacts", label: "Контакты" }, { href: "/ru/bus", label: "Заказать автобус" }]} />
+      <SiteHeader
+        title="Контакты"
+        main
+        project="trip"
+        links={[
+          { href: "/ru", label: "Главная" },
+          { href: "/ru/blog", label: "Блог" },
+          { href: "/ru/contacts", label: "Контакты" },
+        ]}
+      />
 
       <main className="flex-grow container mx-auto px-4 py-16 mt-16">
-        <h1 className="text-4xl font-bold text-center mb-12">
-          Свяжитесь с нами
-        </h1>
+        <h1 className="text-4xl font-bold text-center mb-12">Свяжитесь с нами</h1>
 
-        <div className="max-w-xl mx-auto space-y-6 text-lg text-gray-800">
-          <p>
-            Мы всегда рады ответить на ваши вопросы и помочь с выбором
-            экскурсии.
-          </p>
-          <p>
-            <strong>Телефон:</strong>{" "}
-            <a href={`tel:${phone}`} className="text-blue-600 hover:underline">
-              {phone}
-            </a>
-          </p>
-          <p>
-            <strong>Telegram:</strong>{" "}
-            <a
-              href={social.telegram}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 hover:underline"
-            >
-              написать в Telegram
-            </a>
-          </p>
-          {/* <p>
-            <strong>ВКонтакте:</strong>{" "}
-            <a
-              href={social.vk}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 hover:underline"
-            >
-              наша страница
-            </a>
-          </p> */}
+        <div className="max-w-2xl mx-auto space-y-8 text-lg text-gray-800">
+          <section className="space-y-4">
+            <p>Мы всегда рады ответить на ваши вопросы и помочь с выбором экскурсии.</p>
+            <p>
+              <strong>Телефон:</strong>{" "}
+              <a href={phoneHref} className="text-blue-600 hover:underline">
+                {phone}
+              </a>
+            </p>
+            {email && (
+              <p>
+                <strong>Email:</strong>{" "}
+                <a href={`mailto:${email}`} className="text-blue-600 hover:underline">
+                  {email}
+                </a>
+              </p>
+            )}
+            <p>
+              <strong>Telegram:</strong>{" "}
+              <a
+                href={social.telegram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline"
+              >
+                написать в Telegram
+              </a>
+              {links.seryoga_tg && (
+                <>
+                  {" "}
+                  <span className="text-gray-500">·</span>{" "}
+                  <a
+                    href={links.seryoga_tg}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:underline"
+                  >
+                    связаться с Сергеем
+                  </a>
+                </>
+              )}
+            </p>
+            {address && (
+              <p>
+                <strong>Адрес:</strong> {address}
+              </p>
+            )}
+          </section>
+
+          <section className="space-y-2 text-base text-gray-700">
+            <h2 className="text-2xl font-semibold mb-2">Реквизиты исполнителя</h2>
+            <p>ФИО: {performer.fullName}</p>
+            <p>ИНН: {performer.inn} (самозанятый, НПД)</p>
+            <p>
+              Сайт: {" "}
+              <a href={site.url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+                {site.url}
+              </a>
+            </p>
+          </section>
         </div>
       </main>
 
-      <SiteFooter project="trip" contacts={{ phone: contactInfo.phone, social: contactInfo.social }} />
+      <SiteFooter project="trip" contacts={{ phone: contactInfo.phone, email: contactInfo.email, social: contactInfo.social }} />
     </div>
   );
 }

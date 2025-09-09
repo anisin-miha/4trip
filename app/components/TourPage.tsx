@@ -195,7 +195,7 @@ export default function TourPage({ data }: { data: TourData }) {
           <RelatedTours currentSlug={data.slug} />
         </section>
 
-        <Footer project="trip" contacts={{ phone: contactInfo.phone, social: contactInfo.social }} />
+        <Footer project="trip" contacts={{ phone: contactInfo.phone, email: contactInfo.email, social: contactInfo.social }} />
       </main>
     </div>
   );

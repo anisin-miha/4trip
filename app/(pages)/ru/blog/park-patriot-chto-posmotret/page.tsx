@@ -650,7 +650,7 @@ export default function BlogPage() {
         </div> */}
 
 
-      <SiteFooter project="trip" contacts={{ phone: contactInfo.phone, social: contactInfo.social }} />
+      <SiteFooter project="trip" contacts={{ phone: contactInfo.phone, email: contactInfo.email, social: contactInfo.social }} />
     </div>
   );
 }

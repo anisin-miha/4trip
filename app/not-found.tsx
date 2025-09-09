@@ -52,7 +52,7 @@ export default function NotFound() {
         </div>
       </main>
 
-      <Footer project="trip" contacts={{ phone: contactInfo.phone, social: contactInfo.social }} />
+      <Footer project="trip" contacts={{ phone: contactInfo.phone, email: contactInfo.email, social: contactInfo.social }} />
     </div>
   );
 }
