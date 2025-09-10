@@ -8,6 +8,7 @@ import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { routing } from "@/i18n/routing";
 
 import type { Metadata } from "next";
+import MailRuCounter from "./components/MailRuCounter";
 
 // Базовые метаданные/OG по умолчанию для всех страниц (можно переопределить на уровне страницы)
 export const metadata: Metadata = {
@@ -148,6 +149,9 @@ export default async function RootLayout({
           </Providers>
         </NextIntlClientProvider>
         <script src="//code.jivo.ru/widget/3wd3G0IExH" async></script>
+
+        <MailRuCounter counterId="3691918" />
+
       </body>
     </html>
   );
