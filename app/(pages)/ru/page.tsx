@@ -2,10 +2,11 @@ import { Metadata } from "next";
 import SiteHeader from "@/app/components/SiteHeader";
 import SiteFooter from "@/app/components/SiteFooter";
 import contactInfo from "@/app/config/contactInfo";
-import TourCard from "../../components/TourCard";
-import { patriotTour } from "../../config/tours/patriot";
-import { sergievPosadTour } from "../../config/tours/sergiev-posad";
-import { kolomnaTour } from "../../config/tours/kolomna";
+import TourCard from "@/app/components/TourCard";
+import { patriotTour } from "@/app/config/tours/patriot";
+import { sergievPosadTour } from "@/app/config/tours/sergiev-posad";
+import { kolomnaTour } from "@/app/config/tours/kolomna";
+import { moscowSightseeingCard } from "@/app/config/tours/moscow-sightseeing";
 import { ruAccusativeAfterV } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://4-trip.ru/images/patriot/cathedral-hero.png",
+        url: "https://4-trip.ru/images/tours/patriot/cathedral-hero.png",
         width: 1200,
         height: 630,
         alt: "Экскурсии 4-trip.ru",
@@ -33,49 +34,6 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  const pickInfo = (arr: { label: string; value: string }[], label: string) =>
-    arr.find((i) => i.label === label)?.value;
-
-  const patriotDuration = pickInfo(
-    patriotTour.meetingPoint.info,
-    "Длительность"
-  );
-  const patriotLang = pickInfo(
-    patriotTour.meetingPoint.info,
-    "Язык экскурсии"
-  );
-  const patriotMeeting = pickInfo(
-    patriotTour.meetingPoint.info,
-    "Место встречи"
-  );
-  const patriotCity = patriotTour.city;
-
-  const spDuration = pickInfo(
-    sergievPosadTour.meetingPoint.info,
-    "Длительность"
-  );
-  const spLang = pickInfo(
-    sergievPosadTour.meetingPoint.info,
-    "Язык экскурсии"
-  );
-  const spMeeting = pickInfo(
-    sergievPosadTour.meetingPoint.info,
-    "Место встречи"
-  );
-  const spCity = sergievPosadTour.city;
-  const kolDuration = pickInfo(
-    kolomnaTour.meetingPoint.info,
-    "Длительность"
-  );
-  const kolLang = pickInfo(
-    kolomnaTour.meetingPoint.info,
-    "Язык экскурсии"
-  );
-  const kolMeeting = pickInfo(
-    kolomnaTour.meetingPoint.info,
-    "Место встречи"
-  );
-  const kolCity = kolomnaTour.city;
   return (
     <div className="font-sans bg-white text-gray-900 scroll-smooth">
       <SiteHeader
@@ -84,6 +42,7 @@ export default function Home() {
         project="trip"
         links={[
           { href: "/ru", label: "Главная" },
+          // { href: "/ru/excursions", label: "Экскурсии" },
           { href: "/ru/blog", label: "Блог" },
           { href: "/ru/contacts", label: "Контакты" },
         ]}
@@ -109,42 +68,55 @@ export default function Home() {
           <h2 className="text-3xl font-bold text-center mb-10">
             Популярные экскурсии
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           <TourCard
-            href="/patriot"
-            imageSrc="/images/patriot/pencil.png"
+            href="/excursions/patriot"
+            imageSrc="/images/tours/patriot/cathedral-hero.png"
             imageAlt="Парк «Патриот»"
             title={`Экскурсия в ${ruAccusativeAfterV(patriotTour.title)}`}
             description="Посещение Главного храма Вооружённых Сил России и музея «Дорога памяти» в рамках группового тура."
             price={patriotTour.price}
-            duration={patriotDuration}
-            languages={patriotLang ? [patriotLang] : undefined}
-            city={patriotCity}
-            meetingPoint={patriotMeeting}
+            duration={patriotTour.duration}
+            languages={patriotTour.languages}
+            city={patriotTour.city}
+            meetingPoint={patriotTour.meetingPoint.address}
           />
           <TourCard
-            href="/sergiev-posad"
-            imageSrc="/images/sergiev_posad/pencil.png"
+            href="/excursions/sergiev-posad"
+            imageSrc="/images/tours/sergiev_posad/hero.png"
             imageAlt="Сергиев Посад"
             title={`Экскурсия в ${ruAccusativeAfterV(sergievPosadTour.title)}`}
             description="Поездка в духовную столицу России с экскурсией по Троице-Сергиевой лавре."
             price={sergievPosadTour.price}
-            duration={spDuration}
-            languages={spLang ? [spLang] : undefined}
-            city={spCity}
-            meetingPoint={spMeeting}
+            duration={sergievPosadTour.duration}
+            languages={sergievPosadTour.languages}
+            city={sergievPosadTour.city}
+            meetingPoint={sergievPosadTour.meetingPoint.address}
           />
           <TourCard
-            href="/kolomna"
-            imageSrc="/images/kolomna/hero.png"
+            href="/excursions/kolomna"
+            imageSrc="/images/tours/kolomna/hero.png"
             imageAlt="Коломна"
             title={`Экскурсия в ${ruAccusativeAfterV(kolomnaTour.title)}`}
             description={kolomnaTour.hero.description}
             price={kolomnaTour.price}
-            duration={kolDuration}
-            languages={kolLang ? [kolLang] : undefined}
-            city={kolCity}
-            meetingPoint={kolMeeting}
+            duration={kolomnaTour.duration}
+            languages={kolomnaTour.languages}
+            city={kolomnaTour.city}
+            meetingPoint={kolomnaTour.meetingPoint.address}
+          />
+          <TourCard
+            href={moscowSightseeingCard.href}
+            imageSrc={moscowSightseeingCard.imageSrc}
+            imageAlt={moscowSightseeingCard.imageAlt}
+            title={moscowSightseeingCard.title}
+            description={moscowSightseeingCard.description}
+            price={moscowSightseeingCard.price}
+            duration={moscowSightseeingCard.duration}
+            languages={moscowSightseeingCard.languages}
+            city={moscowSightseeingCard.city}
+            meetingPoint={moscowSightseeingCard.meetingPoint}
+            rating={moscowSightseeingCard.rating}
           />
           </div>
         </section>

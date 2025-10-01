@@ -7,13 +7,10 @@ body {
 }
 
 .tour-card__image {
-  filter: grayscale(1);
-  transition: 0.5s ease;
+  /* Images are always full color; no grayscale */
 }
 
-.tour-card:hover .tour-card__image {
-  filter: grayscale(0);
-}
+/* Hover should not alter image color; shadow is handled via Tailwind on the card */
 
 .tour-card__image-wrapper {
 }

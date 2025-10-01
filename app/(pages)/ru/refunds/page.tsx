@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://4-trip.ru/images/patriot/cathedral-hero.png",
+        url: "https://4-trip.ru/images/tours/patriot/cathedral-hero.png",
         width: 1200,
         height: 630,
         alt: "4-trip.ru",
@@ -50,6 +50,7 @@ export default function RefundsPage() {
         project="trip"
         links={[
           { href: "/ru", label: "Главная" },
+          // { href: "/ru/excursions", label: "Экскурсии" },
           { href: "/ru/blog", label: "Блог" },
           { href: "/ru/contacts", label: "Контакты" },
         ]}

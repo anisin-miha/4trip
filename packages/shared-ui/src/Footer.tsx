@@ -135,19 +135,28 @@ export default function Footer({
               <h3 className="text-lg font-semibold mb-4">Экскурсии</h3>
               <ul className="space-y-2 text-gray-300">
                 <li>
-                  <LinkTag href={`${prefix}/patriot`} className="hover:text-white transition inline-flex items-center gap-2">
+                  <LinkTag
+                    href={`${prefix}/excursions`}
+                    className="hover:text-white transition inline-flex items-center gap-2"
+                  >
+                    <IconWrap><LinkIcon size={16} /></IconWrap>
+                    <span>Все экскурсии</span>
+                  </LinkTag>
+                </li>
+                <li>
+                  <LinkTag href={`${prefix}/excursions/patriot`} className="hover:text-white transition inline-flex items-center gap-2">
                     <IconWrap><Landmark size={16} /></IconWrap>
                     <span>Парк «Патриот»</span>
                   </LinkTag>
                 </li>
                 <li>
-                  <LinkTag href={`${prefix}/sergiev-posad`} className="hover:text-white transition inline-flex items-center gap-2">
+                  <LinkTag href={`${prefix}/excursions/sergiev-posad`} className="hover:text-white transition inline-flex items-center gap-2">
                     <IconWrap><Building2 size={16} /></IconWrap>
                     <span>Сергиев Посад</span>
                   </LinkTag>
                 </li>
                 <li>
-                  <LinkTag href={`${prefix}/kolomna`} className="hover:text-white transition inline-flex items-center gap-2">
+                  <LinkTag href={`${prefix}/excursions/kolomna`} className="hover:text-white transition inline-flex items-center gap-2">
                     <IconWrap><MapPin size={16} /></IconWrap>
                     <span>Коломна</span>
                   </LinkTag>

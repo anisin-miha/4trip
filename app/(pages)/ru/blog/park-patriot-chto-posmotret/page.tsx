@@ -13,8 +13,8 @@ const ARTICLE_URL = "https://4-trip.ru/ru/blog/park-patriot-chto-posmotret";
 const ARTICLE_TITLE = "Что посмотреть в Парке «Патриот»: обзор всех экспозиций";
 const ARTICLE_DESC =
   "Полный гид по Парку «Патриот»: Главный храм ВС РФ, «Дорога Памяти», Танковый музей (Кубинка), авиация и ПВО, «Партизанская деревня», маршрут на 1 день, советы и билеты.";
-// Используем реальный файл из public/images/patriot
-const ARTICLE_IMAGE = "https://4-trip.ru/images/patriot/cathedral-hero.png";
+// Используем реальный файл из public/images/tours/patriot
+const ARTICLE_IMAGE = "https://4-trip.ru/images/tours/patriot/cathedral-hero.png";
 
 export const metadata: Metadata = {
   title: ARTICLE_TITLE,
@@ -103,7 +103,17 @@ export default function BlogPage() {
 
   return (
     <div className="font-sans bg-white text-gray-900 scroll-smooth min-h-screen flex flex-col">
-      <SiteHeader title="Блог" main project="trip" links={[{ href: "/ru", label: "Главная" }, { href: "/ru/blog", label: "Блог" }, { href: "/ru/contacts", label: "Контакты" }]} />
+      <SiteHeader
+        title="Блог"
+        main
+        project="trip"
+        links={[
+          { href: "/ru", label: "Главная" },
+          // { href: "/ru/excursions", label: "Экскурсии" },
+          { href: "/ru/blog", label: "Блог" },
+          { href: "/ru/contacts", label: "Контакты" },
+        ]}
+      />
 
       <main className="flex-grow container mx-auto px-4 py-16 mt-16">
         {/* JSON-LD (микроразметка) */}

@@ -1,5 +1,6 @@
 // config/tours/kolomna-metadata.ts
 import type { Metadata } from "next";
+import { createMeetingPoint } from "./helpers";
 
 export const kolomnaTourMetadata: Metadata = {
   title: "Экскурсия в Коломну из Москвы — Кремль, пастила и калачи | 4-trip",
@@ -11,17 +12,31 @@ export const kolomnaTourMetadata: Metadata = {
     title: "Экскурсия в Коломну из Москвы — Кремль, пастила и калачи | 4-trip",
     description:
       "Коломна на один день: древний Кремль, дегустация пастилы и «Калачная».",
-    images: ["/images/kolomna/hero.png"],
+    images: ["/images/tours/kolomna/hero.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Экскурсия в Коломну — Кремль, пастила, калачи",
     description:
       "Однодневный тур из Москвы с дегустациями и прогулкой по набережной Оки.",
-    images: ["/images/kolomna/hero.png"],
+    images: ["/images/tours/kolomna/hero.png"],
   },
   icons: {},
 };
+
+const kolomnaMeetingPoint = createMeetingPoint({
+  mapSrc:
+    "https://yandex.ru/map-widget/v1/?ll=37.8636,55.6740&z=16&pt=37.8636,55.6740,pm2rdm",
+  type: "Групповая сборная",
+  startTime: "08:00",
+  duration: "около 12–13 ч.",
+  address: "метро Котельники, автобусная парковка (Новорязанское направление)",
+  endAddress: "метро Котельники",
+  groupSize: "До 50 человек",
+  forWhom: "Можно с детьми",
+  language: "Русский",
+  price: "3 200 ₽ с человека",
+});
 
 export const kolomnaTour = {
   slug: "kolomna",
@@ -29,14 +44,18 @@ export const kolomnaTour = {
   location: "Коломна, Московская область",
   city: "Москва",
   price: 3200,
+  duration: kolomnaMeetingPoint.duration,
+  languages: kolomnaMeetingPoint.language
+    ? [kolomnaMeetingPoint.language]
+    : undefined,
   hero: {
-    image: "/images/kolomna/hero.png",
+    image: "/images/tours/kolomna/hero.png",
     description:
       "Древнерусский город на Оке: мощные стены Кремля, дегустация пастилы и тёплый калач «на руку».",
   },
   attractions: [
     {
-      image: "/images/kolomna/kremlin.png",
+      image: "/images/tours/kolomna/kremlin.png",
       alt: "Коломенский кремль",
       title: "Коломенский кремль",
       description: [
@@ -45,7 +64,7 @@ export const kolomnaTour = {
       ],
     },
     {
-      image: "/images/kolomna/pastila.jpg",
+      image: "/images/tours/kolomna/pastila.jpg",
       alt: "Музей коломенской пастилы",
       title: "Музей коломенской пастилы",
       description: [
@@ -54,7 +73,7 @@ export const kolomnaTour = {
       ],
     },
     {
-      image: "/images/kolomna/kalachnaya.jpg",
+      image: "/images/tours/kolomna/kalachnaya.jpg",
       alt: "Музей «Калачная»",
       title: "«Калачная»",
       description: [
@@ -63,7 +82,7 @@ export const kolomnaTour = {
       ],
     },
     {
-      image: "/images/kolomna/bobrenev.jpg",
+      image: "/images/tours/kolomna/bobrenev.jpg",
       alt: "Бобренев монастырь",
       title: "Бобренев монастырь",
       description: [
@@ -89,33 +108,12 @@ export const kolomnaTour = {
     "доплаты за музеи/мастер-классы — по выбору (можно «лайт»-версию без музеев);",
     "фотосъёмка разрешена в большинстве локаций (уточняется на месте).",
   ],
-  meetingPoint: {
-    mapSrc:
-      "https://yandex.ru/map-widget/v1/?ll=37.8636,55.6740&z=16&pt=37.8636,55.6740,pm2rdm",
-    info: [
-      { label: "Тип экскурсии", value: "Групповая сборная" },
-      { label: "Время начала", value: "08:00" },
-      { label: "Длительность", value: "около 12–13 ч." },
-      {
-        label: "Место встречи",
-        value:
-          "метро Котельники, автобусная парковка (Новорязанское направление)",
-      },
-      {
-        label: "Место окончания",
-        value: "метро Котельники",
-      },
-      { label: "Размер группы", value: "До 50 человек" },
-      { label: "Для кого", value: "Можно с детьми" },
-      { label: "Язык экскурсии", value: "Русский" },
-      { label: "Стоимость", value: "3 200 ₽ с человека" },
-    ],
-  },
+  meetingPoint: kolomnaMeetingPoint,
   gallery: [
-    { src: "/images/kolomna/gallery1.jpg", alt: "Соборная площадь Коломны" },
-    { src: "/images/kolomna/gallery2.jpg", alt: "Дегустация пастилы" },
-    { src: "/images/kolomna/gallery3.jpg", alt: "Калач «на руку»" },
-    { src: "/images/kolomna/gallery4.jpg", alt: "Вид на Оку" },
+    { src: "/images/tours/kolomna/gallery1.jpg", alt: "Соборная площадь Коломны" },
+    { src: "/images/tours/kolомna/gallery2.jpg", alt: "Дегустация пастилы" },
+    { src: "/images/tours/kolомna/gallery3.jpg", alt: "Калач «на руку»" },
+    { src: "/images/tours/kolомna/gallery4.jpg", alt: "Вид на Оку" },
   ],
   faq: [
     {

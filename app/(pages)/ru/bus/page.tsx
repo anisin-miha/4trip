@@ -36,7 +36,17 @@ export default function Page() {
 
   return (
     <div className="font-sans bg-white text-gray-900 scroll-smooth min-h-screen flex flex-col">
-      <SiteHeader title="Заказ автобуса" main project="trip" links={[{ href: "/ru", label: "Главная" }, { href: "/ru/blog", label: "Блог" }, { href: "/ru/contacts", label: "Контакты" }]} />
+      <SiteHeader
+        title="Заказ автобуса"
+        main
+        project="trip"
+        links={[
+          { href: "/ru", label: "Главная" },
+          // { href: "/ru/excursions", label: "Экскурсии" },
+          { href: "/ru/blog", label: "Блог" },
+          { href: "/ru/contacts", label: "Контакты" },
+        ]}
+      />
 
       <main>
         {/* HERO */}

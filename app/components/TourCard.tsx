@@ -57,7 +57,7 @@ export default function TourCard({
           go();
         }
       }}
-      className="tour-card rounded-lg overflow-hidden shadow-md hover:shadow-xl transition bg-white flex flex-col cursor-pointer group"
+      className="tour-card rounded-lg overflow-hidden shadow-md hover:shadow-xl transition bg-white flex flex-col cursor-pointer"
     >
       <div className="tour-card__image-wrapper relative h-64">
         <BaseImage
@@ -90,7 +90,7 @@ export default function TourCard({
 
       <div className={`tour-card__content p-4 flex flex-col gap-3 flex-1`}>
         <Link href={href} className="block" onClick={(e) => e.stopPropagation()}>
-          <h3 className="tour-card__title text-xl font-semibold group-hover:underline">
+          <h3 className="tour-card__title text-xl font-semibold">
             {title}
           </h3>
         </Link>

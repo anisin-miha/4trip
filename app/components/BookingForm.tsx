@@ -9,6 +9,7 @@ import { ru } from "date-fns/locale";
 import { CalendarIcon } from "lucide-react";
 import { InputMask } from "@react-input/mask";
 import { toast } from "sonner";
+import I18nLink from "./i18nLink";
 
 // ---- УТИЛИТЫ ----
 /** Возвращает все даты выходных (сб и вс) от start до конца года (включительно). */
@@ -300,6 +301,7 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
           month: "long",
           year: "numeric",
         });
+        const orderId = `tour-${tourName.replace(/\s+/g, "-").toLowerCase()}-${Date.now()}`;
         await sendMessageToTelegram(
           data.name,
           data.phone,
@@ -311,6 +313,33 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
           data.trafficDetails || "",
           { source: data.utmSource || "", medium: data.utmMedium || "", campaign: data.utmCampaign || "" },
         );
+
+        // Попытка создать платёжную ссылку (если настроен backend)
+        try {
+          const origin = typeof window !== "undefined" ? window.location.origin : "https://4-trip.ru";
+          const res = await fetch("/api/pay", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              amount: Number(price) * Number(data.people || 1),
+              currency: "RUB",
+              orderId,
+              description: `Оплата тура: ${tourName} (${formattedDate})`,
+              customer: { email: data.email || undefined, phone: data.phone },
+              successUrl: `${origin}/ru?payment=success&order=${orderId}`,
+              failUrl: `${origin}/ru?payment=failed&order=${orderId}`,
+            }),
+          });
+          const json = await res.json();
+          if (res.ok && json?.url) {
+            window.location.href = json.url as string;
+            return; // прерываем — далее редирект
+          }
+          // если не ок — просто продолжаем как обычная заявка
+          console.warn("Payment link was not created:", json);
+        } catch (err) {
+          console.warn("Payment link creation failed:", err);
+        }
       } else {
         await sendGroupRequest(
           data.name,
@@ -658,14 +687,14 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
                 />
                 <label htmlFor="consent" className="text-sm text-gray-700">
                   Я соглашаюсь с{" "}
-                  <a
+                  <I18nLink
                     href="/privacy-policy"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-blue-600 underline hover:text-blue-800"
                   >
                     политикой конфиденциальности
-                  </a>
+                  </I18nLink>
                   .
                 </label>
               </div>

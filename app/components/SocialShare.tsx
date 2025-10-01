@@ -9,7 +9,7 @@ import {
   SiOdnoklassniki,
   SiViber,
 } from "@icons-pack/react-simple-icons";
-// import DzenIcon from "../../public/images/dzen.svg"; // положи сюда официальный PD-икон dzen.svg
+// import DzenIcon from "@/public/images/dzen.svg"; // положи сюда официальный PD-икон dzen.svg
 
 type Social = "telegram" | "vk" | "whatsapp" | "ok" | "viber" | "dzen";
 

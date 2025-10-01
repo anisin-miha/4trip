@@ -3,6 +3,7 @@
 // configs/tours/patriot-tour-metadata.ts
 
 import { Metadata } from "next";
+import { createMeetingPoint } from "./helpers";
 
 export const patriotTourMetadata: Metadata = {
   title: "Экскурсия в Парк «Патриот» | Автобусные туры из Москвы",
@@ -14,18 +15,32 @@ export const patriotTourMetadata: Metadata = {
     title: "Экскурсия в Парк «Патриот» | Автобусные туры из Москвы",
     description:
       "Уникальное путешествие в Парк «Патриот»: музей, храм, полевая кухня.",
-    images: ["/images/patriot/cathedral-hero.png"],
+    images: ["/images/tours/patriot/cathedral-hero.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Экскурсия в Парк «Патриот»",
     description: "Тур в Парк «Патриот» с посещением храма и музея.",
-    images: ["/images/patriot/cathedral-hero.png"],
+    images: ["/images/tours/patriot/cathedral-hero.png"],
   },
   icons: {},
 };
 
-const cost = 2600
+const cost = 2600;
+
+const patriotMeetingPoint = createMeetingPoint({
+  mapSrc:
+    "https://yandex.ru/map-widget/v1/?ll=37.523504,55.740533&z=16&pt=37.523504,55.740533,pm2rdm",
+  type: "Групповая сборная",
+  startTime: "11:00",
+  duration: "около 6 ч.",
+  address: "метро Парк Победы, парковка у музея Бородинской битвы",
+  endAddress: "метро Парк Победы, парковка около музея",
+  groupSize: "До 50 человек",
+  forWhom: "Можно с детьми",
+  language: "Русский",
+  price: `${cost} ₽ с человека`,
+});
 
 export const patriotTour = {
   slug: "patriot",
@@ -33,14 +48,18 @@ export const patriotTour = {
   location: "Московская область, Одинцовский округ (Парк «Патриот»)",
   city: "Москва",
   price: cost,
+  duration: patriotMeetingPoint.duration,
+  languages: patriotMeetingPoint.language
+    ? [patriotMeetingPoint.language]
+    : undefined,
   hero: {
-    image: "/images/patriot/cathedral-hero.png",
+    image: "/images/tours/patriot/cathedral-hero.png",
     description:
       "Посетите величественный храм Вооруженных сил и прикоснитесь к истории России",
   },
   attractions: [
     {
-      image: "/images/patriot/road-of-memory.png",
+      image: "/images/tours/patriot/road-of-memory.png",
       alt: "Музей 'Дорога памяти'",
       title: "Музей «Дорога памяти»",
       description: [
@@ -50,7 +69,7 @@ export const patriotTour = {
       ],
     },
     {
-      image: "/images/patriot/armed-forces-cathedral.png",
+      image: "/images/tours/patriot/armed-forces-cathedral.png",
       alt: "Храм Вооруженных сил",
       title: "Главный храм Вооруженных Сил России",
       description: [
@@ -78,32 +97,12 @@ export const patriotTour = {
     "одеваемся по погоде;",
     "фотосъемка разрешена.",
   ],
-  meetingPoint: {
-    mapSrc:
-      "https://yandex.ru/map-widget/v1/?ll=37.523504,55.740533&z=16&pt=37.523504,55.740533,pm2rdm",
-    info: [
-      { label: "Тип экскурсии", value: "Групповая сборная" },
-      { label: "Время начала", value: "11:00" },
-      { label: "Длительность", value: "около 6 ч." },
-      {
-        label: "Место встречи",
-        value: "метро Парк Победы, парковка у музея Бородинской битвы",
-      },
-      {
-        label: "Место окончания",
-        value: "метро Парк Победы, парковка около музея",
-      },
-      { label: "Размер группы", value: "До 50 человек" },
-      { label: "Для кого", value: "Можно с детьми" },
-      { label: "Язык экскурсии", value: "Русский" },
-      { label: "Стоимость", value: `${cost} ₽ с человека` },
-    ],
-  },
+  meetingPoint: patriotMeetingPoint,
   gallery: [
-    { src: "/images/patriot/gallery1.png", alt: "Галерея 1" },
-    { src: "/images/patriot/gallery2.png", alt: "Галерея 2" },
-    { src: "/images/patriot/gallery3.png", alt: "Галерея 3" },
-    { src: "/images/patriot/gallery4.png", alt: "Галерея 4" },
+    { src: "/images/tours/patriot/gallery1.png", alt: "Галерея 1" },
+    { src: "/images/tours/patriot/gallery2.png", alt: "Галерея 2" },
+    { src: "/images/tours/patriot/gallery3.png", alt: "Галерея 3" },
+    { src: "/images/tours/patriot/gallery4.png", alt: "Галерея 4" },
   ],
   faq: [
     {

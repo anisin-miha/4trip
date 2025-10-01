@@ -8,10 +8,40 @@ export type AllowedImageWidth =
   | 640
   | 750
   | 828
+  | 1080
   | 1200
   | 1920
   | 2048
   | 3840;
+
+const ALLOWED_SIZES: AllowedImageWidth[] = [
+  10,
+  128,
+  256,
+  384,
+  640,
+  750,
+  828,
+  1080,
+  1200,
+  1920,
+  2048,
+  3840,
+];
+
+function pickClosestSize(requested?: number): AllowedImageWidth {
+  const target = requested ?? 1080;
+  let closest = ALLOWED_SIZES[0];
+  let minDiff = Math.abs(target - closest);
+  for (const size of ALLOWED_SIZES) {
+    const diff = Math.abs(target - size);
+    if (diff < minDiff) {
+      closest = size;
+      minDiff = diff;
+    }
+  }
+  return closest;
+}
 
 interface BaseImageProps {
   src: string;
@@ -37,7 +67,7 @@ export function getOptimizedSrc(src: string, width?: number): string {
     const file = relativePath.substring(lastSlashIndex + 1);
 
     const filenameWithoutExt = file.replace(/\.(png|jpg|jpeg)$/i, "");
-    const size = width ?? 1080; // если width нет — использовать 1080 по умолчанию
+    const size = pickClosestSize(width);
     return `/images/${folder}/nextImageExportOptimizer/${filenameWithoutExt}-opt-${size}.WEBP`;
   }
 

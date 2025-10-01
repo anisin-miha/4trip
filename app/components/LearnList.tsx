@@ -3,10 +3,27 @@
 import { useEffect, useMemo, useRef } from "react";
 import { useInView } from "@/hooks/use-in-view";
 
+type LearnListItem = string | { title?: string; text?: string | null };
+
 type LearnListProps = {
   title?: string;
-  items: string[];
+  items: LearnListItem[];
 };
+
+function normalizeItem(item: LearnListItem) {
+  if (typeof item === "string") {
+    return { heading: undefined, body: item };
+  }
+
+  if (!item) {
+    return { heading: undefined, body: "" };
+  }
+
+  return {
+    heading: item.title || undefined,
+    body: item.text ?? "",
+  };
+}
 
 export default function LearnList({ title = "Вы узнаете:", items }: LearnListProps) {
   const { ref, inView } = useInView<HTMLDivElement>();
@@ -14,7 +31,11 @@ export default function LearnList({ title = "Вы узнаете:", items }: Lea
   useScrollDrive(cardRefs, true);
 
   const enriched = useMemo(
-    () => items.map((text, idx) => ({ text, delay: 220 * idx })),
+    () =>
+      items.map((item, idx) => {
+        const { heading, body } = normalizeItem(item);
+        return { heading, body, delay: 220 * idx };
+      }),
     [items],
   );
 
@@ -23,7 +44,7 @@ export default function LearnList({ title = "Вы узнаете:", items }: Lea
       <h3 className="text-3xl md:text-4xl font-semibold mb-10 text-center">{title}</h3>
 
       <div className="grid sm:grid-cols-2 gap-6 md:gap-8">
-        {enriched.map(({ text, delay }, i) => (
+        {enriched.map(({ heading, body, delay }, i) => (
           <div
             key={i}
             ref={(el) => (cardRefs.current[i] = el)}
@@ -34,7 +55,8 @@ export default function LearnList({ title = "Вы узнаете:", items }: Lea
             ].join(" ")}
           >
             <p className="text-gray-900 leading-snug text-lg md:text-xl">
-              {text.replace(/[.;]+\s*$/u, "")}
+              {heading ? <span className="block font-semibold text-base md:text-lg text-blue-700 mb-1">{heading}</span> : null}
+              {(body || "").replace(/[.;]+\s*$/u, "")}
             </p>
           </div>
         ))}

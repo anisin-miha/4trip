@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     siteName: "4-bus",
     images: [
       {
-        url: "https://4-trip.ru/images/patriot/cathedral-hero.png",
+        url: "https://4-trip.ru/images/tours/patriot/cathedral-hero.png",
         width: 1200,
         height: 630,
         alt: "4-bus",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "4-bus — Заказ автобусов",
     description: "Заказ автобусов и микроавтобусов в Москве и МО.",
-    images: ["https://4-trip.ru/images/patriot/cathedral-hero.png"],
+    images: ["https://4-trip.ru/images/tours/patriot/cathedral-hero.png"],
   },
 };
 

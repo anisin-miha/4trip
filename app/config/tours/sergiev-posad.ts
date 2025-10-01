@@ -3,6 +3,7 @@
 // configs/tours/sergiev-posad-tour-metadata.ts
 
 import { Metadata } from "next";
+import { createMeetingPoint } from "./helpers";
 
 export const sergievPosadTourMetadata: Metadata = {
   title: "Экскурсия в Сергиев Посад | Автобусные туры из Москвы",
@@ -14,19 +15,32 @@ export const sergievPosadTourMetadata: Metadata = {
     title: "Экскурсия в Сергиев Посад | Автобусные туры из Москвы",
     description:
       "Откройте для себя духовный центр России — Сергиев Посад. Тур с посещением Лавры и музея фарфора.",
-    images: ["/images/sergiev_posad/hero.png"],
+    images: ["/images/tours/sergiev_posad/hero.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Экскурсия в Сергиев Посад",
     description:
       "Автобусная экскурсия в Сергиев Посад с посещением Троице-Сергиевой Лавры и музея фарфора.",
-    images: ["/images/sergiev_posad/hero.png"],
+    images: ["/images/tours/sergiev_posad/hero.png"],
   },
   icons: {
     // icon: "/images/4trip-logo-black.svg",
   },
 };
+
+const sergievPosadMeetingPoint = createMeetingPoint({
+  mapSrc:
+    "https://yandex.ru/map-widget/v1/?ll=38.126953,56.315941&z=14&pt=38.126953,56.315941,pm2rdm",
+  type: "Групповая сборная",
+  startTime: "09:00",
+  duration: "около 8 ч.",
+  address: "метро Комсомольская, выход к Ленинградскому вокзалу",
+  groupSize: "До 30 человек",
+  forWhom: "Можно с детьми",
+  language: "Русский",
+  price: "3 500 ₽ с человека",
+});
 
 export const sergievPosadTour = {
   slug: "sergiev-posad",
@@ -34,14 +48,18 @@ export const sergievPosadTour = {
   location: "Сергиев Посад, Московская область",
   city: "Москва",
   price: 3500,
+  duration: sergievPosadMeetingPoint.duration,
+  languages: sergievPosadMeetingPoint.language
+    ? [sergievPosadMeetingPoint.language]
+    : undefined,
   hero: {
-    image: "/images/sergiev_posad/hero.png",
+    image: "/images/tours/sergiev_posad/hero.png",
     description:
       "Откройте для себя духовный центр России и прикоснитесь к великим традициям русского монашества",
   },
   attractions: [
     {
-      image: "/images/sergiev_posad/Trinity-Lavra-of-St.-Sergius.png",
+      image: "/images/tours/sergiev_posad/Trinity-Lavra-of-St.-Sergius.png",
       alt: "Интерьер Троице-Сергиевой лавры",
       title: "Троице-Сергиева лавра",
       description: [
@@ -50,7 +68,7 @@ export const sergievPosadTour = {
       ],
     },
     {
-      image: "/images/sergiev_posad/Porcelain-Factory-and-Museum.png",
+      image: "/images/tours/sergiev_posad/Porcelain-Factory-and-Museum.png",
       alt: "Музей фарфора",
       title: "Фарфоровый завод и музей",
       description: [
@@ -74,38 +92,22 @@ export const sergievPosadTour = {
     "одеваемся по погоде;",
     "фотосъемка разрешена.",
   ],
-  meetingPoint: {
-    mapSrc:
-      "https://yandex.ru/map-widget/v1/?ll=38.126953,56.315941&z=14&pt=38.126953,56.315941,pm2rdm",
-    info: [
-      { label: "Тип экскурсии", value: "Групповая сборная" },
-      { label: "Время начала", value: "09:00" },
-      { label: "Длительность", value: "около 8 ч." },
-      {
-        label: "Место встречи",
-        value: "метро Комсомольская, выход к Ленинградскому вокзалу",
-      },
-      { label: "Размер группы", value: "До 30 человек" },
-      { label: "Для кого", value: "Можно с детьми" },
-      { label: "Язык экскурсии", value: "Русский" },
-      { label: "Стоимость", value: "3 500 ₽ с человека" },
-    ],
-  },
+  meetingPoint: sergievPosadMeetingPoint,
   gallery: [
     {
-      src: "/images/sergiev_posad/gallery1.png",
+      src: "/images/tours/sergiev_posad/gallery1.png",
       alt: "Галерея 1 Сергиев Посад",
     },
     {
-      src: "/images/sergiev_posad/gallery2.png",
+      src: "/images/tours/sergiev_posad/gallery2.png",
       alt: "Галерея 2 Сергиев Посад",
     },
     {
-      src: "/images/sergiev_posad/gallery3.png",
+      src: "/images/tours/sergiev_posad/gallery3.png",
       alt: "Галерея 3 Сергиев Посад",
     },
     {
-      src: "/images/sergiev_posad/gallery4.png",
+      src: "/images/tours/sergiev_posad/gallery4.png",
       alt: "Галерея 4 Сергиев Посад",
     },
   ],

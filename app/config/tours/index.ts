@@ -6,3 +6,9 @@ export const tours = [patriotTour, sergievPosadTour, kolomnaTour];
 
 export type Tour = typeof patriotTour;
 
+export {
+  moscowSightseeingTour,
+  moscowSightseeingTourWithMeta,
+  moscowSightseeingMetadata,
+  moscowSightseeingCard,
+} from "./moscow-sightseeing";
