@@ -10,13 +10,13 @@ import { moscowSightseeingCard } from "@/app/config/tours/moscow-sightseeing";
 import { ruAccusativeAfterV } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Экскурсии по Подмосковью — групповые туры от 4-trip.ru",
+  title: "Экскурсии по Москве и Подмосковью — групповые туры от 4-trip.ru",
   description:
-    "Групповые экскурсии по Подмосковью от 4-trip.ru: Парк «Патриот», Сергиев Посад и другие маршруты с профессиональными гидами.",
+    "Групповые экскурсии по Москве и Подмосковью от 4-trip.ru: обзорная по столице, Парк «Патриот», Сергиев Посад и другие маршруты с профессиональными гидами.",
   openGraph: {
-    title: "Экскурсии по Подмосковью — 4-trip.ru",
+    title: "Экскурсии по Москве и Подмосковью — 4-trip.ru",
     description:
-      "Групповые туры по Подмосковью от 4-trip.ru: увлекательные маршруты, профессиональные гиды, комфортные поездки.",
+      "Групповые туры по Москве и Подмосковью: обзорная по столице, Парк «Патриот», Сергиев Посад и другие направления.",
     url: "https://4-trip.ru/",
     type: "website",
     images: [
@@ -51,16 +51,16 @@ export default function Home() {
       <main className="py-16">
         <section className="container mx-auto px-4 mb-16 mt-24 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            Групповые экскурсии по Подмосковью
+            Групповые экскурсии по Москве и Подмосковью
           </h1>
           <p className="text-xl text-gray-600 mb-8">
-            Откройте для себя Подмосковье по-новому — живописные маршруты,
+            Откройте для себя Москву и Подмосковье — живописные маршруты,
             исторические места и атмосфера настоящего путешествия ждут вас!
           </p>
           <p className="max-w-2xl mx-auto text-gray-700">
-            Каждая наша экскурсия — это возможность вдохновиться культурой,
-            историей и природой родного края. Незабываемые эмоции, новые
-            знакомства и удивительные открытия начинаются здесь.
+            Каждая наша экскурсия — это возможность вдохновиться культурой
+            столицы и Подмосковья, их историей и природой. Незабываемые эмоции,
+            новые знакомства и открытия начинаются здесь.
           </p>
         </section>
 
@@ -69,68 +69,67 @@ export default function Home() {
             Популярные экскурсии
           </h2>
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-          <TourCard
-            href="/excursions/patriot"
-            imageSrc="/images/tours/patriot/cathedral-hero.png"
-            imageAlt="Парк «Патриот»"
-            title={`Экскурсия в ${ruAccusativeAfterV(patriotTour.title)}`}
-            description="Посещение Главного храма Вооружённых Сил России и музея «Дорога памяти» в рамках группового тура."
-            price={patriotTour.price}
-            duration={patriotTour.duration}
-            languages={patriotTour.languages}
-            city={patriotTour.city}
-            meetingPoint={patriotTour.meetingPoint.address}
-          />
-          <TourCard
-            href="/excursions/sergiev-posad"
-            imageSrc="/images/tours/sergiev_posad/hero.png"
-            imageAlt="Сергиев Посад"
-            title={`Экскурсия в ${ruAccusativeAfterV(sergievPosadTour.title)}`}
-            description="Поездка в духовную столицу России с экскурсией по Троице-Сергиевой лавре."
-            price={sergievPosadTour.price}
-            duration={sergievPosadTour.duration}
-            languages={sergievPosadTour.languages}
-            city={sergievPosadTour.city}
-            meetingPoint={sergievPosadTour.meetingPoint.address}
-          />
-          <TourCard
-            href="/excursions/kolomna"
-            imageSrc="/images/tours/kolomna/hero.png"
-            imageAlt="Коломна"
-            title={`Экскурсия в ${ruAccusativeAfterV(kolomnaTour.title)}`}
-            description={kolomnaTour.hero.description}
-            price={kolomnaTour.price}
-            duration={kolomnaTour.duration}
-            languages={kolomnaTour.languages}
-            city={kolomnaTour.city}
-            meetingPoint={kolomnaTour.meetingPoint.address}
-          />
-          <TourCard
-            href={moscowSightseeingCard.href}
-            imageSrc={moscowSightseeingCard.imageSrc}
-            imageAlt={moscowSightseeingCard.imageAlt}
-            title={moscowSightseeingCard.title}
-            description={moscowSightseeingCard.description}
-            price={moscowSightseeingCard.price}
-            duration={moscowSightseeingCard.duration}
-            languages={moscowSightseeingCard.languages}
-            city={moscowSightseeingCard.city}
-            meetingPoint={moscowSightseeingCard.meetingPoint}
-            rating={moscowSightseeingCard.rating}
-          />
+            <TourCard
+              href={moscowSightseeingCard.href}
+              imageSrc={moscowSightseeingCard.imageSrc}
+              imageAlt={moscowSightseeingCard.imageAlt}
+              title={moscowSightseeingCard.title}
+              description={moscowSightseeingCard.description}
+              price={moscowSightseeingCard.price}
+              duration={moscowSightseeingCard.duration}
+              languages={moscowSightseeingCard.languages}
+              city={moscowSightseeingCard.city}
+              meetingPoint={moscowSightseeingCard.meetingPoint}
+              rating={moscowSightseeingCard.rating}
+            />
+            <TourCard
+              href="/excursions/patriot"
+              imageSrc="/images/tours/patriot/cathedral-hero.png"
+              imageAlt="Парк «Патриот»"
+              title={`Экскурсия в ${ruAccusativeAfterV(patriotTour.title)}`}
+              description="Посещение Главного храма Вооружённых Сил России и музея «Дорога памяти» в рамках группового тура."
+              price={patriotTour.price}
+              duration={patriotTour.duration}
+              languages={patriotTour.languages}
+              city={patriotTour.city}
+              meetingPoint={patriotTour.meetingPoint.address}
+            />
+            <TourCard
+              href="/excursions/sergiev-posad"
+              imageSrc="/images/tours/sergiev_posad/hero.png"
+              imageAlt="Сергиев Посад"
+              title={`Экскурсия в ${ruAccusativeAfterV(sergievPosadTour.title)}`}
+              description="Поездка в духовную столицу России с экскурсией по Троице-Сергиевой лавре."
+              price={sergievPosadTour.price}
+              duration={sergievPosadTour.duration}
+              languages={sergievPosadTour.languages}
+              city={sergievPosadTour.city}
+              meetingPoint={sergievPosadTour.meetingPoint.address}
+            />
+            <TourCard
+              href="/excursions/kolomna"
+              imageSrc="/images/tours/kolomna/hero.png"
+              imageAlt="Коломна"
+              title={`Экскурсия в ${ruAccusativeAfterV(kolomnaTour.title)}`}
+              description={kolomnaTour.hero.description}
+              price={kolomnaTour.price}
+              duration={kolomnaTour.duration}
+              languages={kolomnaTour.languages}
+              city={kolomnaTour.city}
+              meetingPoint={kolomnaTour.meetingPoint.address}
+            />
+
           </div>
         </section>
 
         <section className="container mx-auto px-4 mb-16 mt-16">
-          <h2 className="text-3xl font-bold text-center mb-10">
-            Почему выбирают 4-trip.ru
-          </h2>
+          <h2 className="text-3xl font-bold text-center mb-10">Почему выбирают 4-trip.ru</h2>
           <div className="max-w-3xl mx-auto text-gray-700 space-y-6 text-lg leading-relaxed">
             <p>
               Мы заботимся о каждой детали, чтобы ваше путешествие было
               действительно комфортным. Современные автобусы, удобные маршруты и
               поддержка на каждом этапе — стандарт для всех наших экскурсий по
-              Подмосковью.
+              Москве и Подмосковью.
             </p>
             <p>
               Парк «Патриот», Сергиев Посад и другие направления — тщательно
