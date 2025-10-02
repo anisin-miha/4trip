@@ -8,7 +8,6 @@ import contactInfo from "@/app/config/contactInfo";
 import BaseImage from "@/components/BaseImage";
 import BookingForm from "./BookingForm";
 import { availableDates } from "./BookingForm";
-import GallerySection from "./GallerySection";
 import LearnList from "./LearnList";
 import RelatedTours from "./RelatedTours";
 
@@ -263,7 +262,6 @@ export default function TourPageSEO({ data }: { data: TourData }) {
           { href: "#program", label: "Программа" },
           { href: "#meeting", label: "Место встречи" },
           { href: "#booking", label: "Бронирование" },
-          { href: "#gallery", label: "Галерея" },
           { href: "#faq", label: "FAQ" },
         ]}
       />
@@ -600,12 +598,7 @@ export default function TourPageSEO({ data }: { data: TourData }) {
           </div>
         </section>
 
-        {/* Gallery */}
-        {data.gallery?.length ? (
-          <section id="gallery" className="py-16 bg-gray-50 scroll-mt-24">
-            <GallerySection title="Фотогалерея" images={data.gallery} />
-          </section>
-        ) : null}
+        
 
         {/* FAQ */}
         {data.faq?.length ? (
