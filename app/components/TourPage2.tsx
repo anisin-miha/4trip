@@ -515,11 +515,11 @@ export default function TourPageSEO({ data }: { data: TourData }) {
               </aside>
             </div>
 
-            {data.learnMore?.length ? (
+            {/* {data.learnMore?.length ? (
               <div className="mt-12">
                 <LearnList items={data.learnMore} />
               </div>
-            ) : null}
+            ) : null} */}
           </div>
         </section>
 
