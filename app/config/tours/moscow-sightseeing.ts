@@ -163,7 +163,7 @@ export const moscowSightseeingTour: TourData = {
       ],
     },
     {
-      image: "/images/tours/moscow/moscow-city.jpg",
+      image: "/images/tours/moscow/moscow-city.jpeg",
       alt: "Небоскрёбы Москва-Сити",
       title: "Москва-Сити",
       description: [
@@ -185,6 +185,14 @@ export const moscowSightseeingTour: TourData = {
       title: "Поклонная гора",
       description: [
         "Монументы памяти и панорамные виды на город.",
+      ],
+    },
+    {
+      image: "/images/tours/moscow/visotka-na-kudrinskoy.jpg",
+      alt: "Сталинская высотка на Кудринской площади",
+      title: "Сталинская высотка на Кудринской площади",
+      description: [
+        "Одна из семи сталинских высоток — символ советской архитектуры.",
       ],
     },
     {
