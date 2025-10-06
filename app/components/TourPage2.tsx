@@ -714,7 +714,11 @@ export default function TourPageSEO({ data }: { data: TourData }) {
                             <span className="mt-1 inline-flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-blue-600 text-white text-xs font-bold">
                               {idx + 1}
                             </span>
-                            <span className="leading-relaxed">{p}</span>
+                            {/* Render as HTML to preserve entities like &nbsp; coming from the data file */}
+                            <span
+                              className="leading-relaxed"
+                              dangerouslySetInnerHTML={{ __html: p }}
+                            />
                           </li>
                         ))}
                       </ol>
