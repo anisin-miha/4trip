@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link as IntlLink } from "@/i18n/navigation";
 import SiteHeader from "@/app/components/SiteHeader";
 import { Footer } from "@4trip/shared-ui";
@@ -10,6 +10,181 @@ import BookingForm from "./BookingForm";
 import { availableDates } from "./BookingForm";
 import LearnList from "./LearnList";
 import RelatedTours from "./RelatedTours";
+function loadScript(src: string) {
+  return new Promise<void>((resolve, reject) => {
+    const s = document.createElement("script");
+    s.src = src;
+    s.async = true;
+    s.onload = () => resolve();
+    s.onerror = () => reject(new Error(`Failed to load ${src}`));
+    document.head.appendChild(s);
+  });
+}
+// Yandex Maps loader and interactive map with numbered markers
+function useYandexMaps() {
+  const [ready, setReady] = useState(false);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const w = window as any;
+    if (w.ymaps) {
+      setReady(true);
+      return;
+    }
+    if (w.__ymapsLoadingPromise) {
+      w.__ymapsLoadingPromise.then(() => setReady(true)).catch(() => setReady(false));
+      return;
+    }
+    const existing = document.querySelector('script[data-ymaps-loader="true"]');
+    if (existing) {
+      // Another instance already appended the script; wait for global to appear
+      const check = () => {
+        if ((window as any).ymaps) setReady(true);
+        else setTimeout(check, 50);
+      };
+      check();
+      return;
+    }
+    const src = "https://api-maps.yandex.ru/2.1/?lang=ru_RU";
+    const p: Promise<void> = new Promise<void>((resolve, reject) => {
+      const s = document.createElement("script");
+      s.src = src;
+      s.async = true;
+      s.defer = true;
+      s.setAttribute("data-ymaps-loader", "true");
+      s.onload = () => resolve();
+      s.onerror = () => reject(new Error("Yandex Maps load failed"));
+      document.head.appendChild(s);
+    }).then(() => {
+      setReady(true);
+    }).catch(() => setReady(false));
+    w.__ymapsLoadingPromise = p;
+  }, []);
+  return typeof window !== "undefined" ? (window as any).ymaps || null : null;
+}
+
+function InteractiveMap({ points }: { points: { title: string; lat: number; lng: number }[] }) {
+  const mapRef = useRef<HTMLDivElement | null>(null);
+  const ymaps = useYandexMaps();
+  useEffect(() => {
+    if (!ymaps || !mapRef.current || !points?.length) return;
+    
+    ymaps.ready(() => {
+      const map = new ymaps.Map(mapRef.current, {
+        center: [55.7558, 37.6176], // Москва
+        zoom: 10,
+        controls: ['zoomControl', 'fullscreenControl']
+      });
+      
+      const bounds: number[][] = [];
+      const routePoints: number[][] = [];
+      
+      points.forEach((p, i) => {
+        const coords = [p.lat, p.lng];
+        bounds.push(coords);
+        routePoints.push(coords);
+        
+        // Создаем маркер с номером
+        const marker = new ymaps.Placemark(coords, {
+          balloonContent: `${i + 1}. ${p.title}`,
+          hintContent: p.title
+        }, {
+          preset: 'islands#blueCircleDotIcon',
+          iconColor: '#2563eb'
+        });
+        
+        // Добавляем номер к маркеру
+        const label = new ymaps.Placemark(coords, {
+          balloonContent: `${i + 1}. ${p.title}`,
+          hintContent: p.title
+        }, {
+          preset: 'islands#blueStretchyIcon',
+          iconLayout: 'default#imageWithContent',
+          iconImageHref: 'data:image/svg+xml;base64,' + btoa(`
+            <svg width="30" height="30" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="15" cy="15" r="12" fill="#2563eb" stroke="white" stroke-width="2"/>
+              <text x="15" y="20" text-anchor="middle" fill="white" font-family="Arial" font-size="12" font-weight="bold">${i + 1}</text>
+            </svg>
+          `),
+          iconImageSize: [30, 30],
+          iconImageOffset: [-15, -15]
+        });
+        
+        map.geoObjects.add(label);
+      });
+      
+      // Добавляем маршрут
+      if (routePoints.length > 1) {
+        const polyline = new ymaps.Polyline(routePoints, {}, {
+          strokeColor: '#2563eb',
+          strokeWidth: 3,
+          strokeOpacity: 0.8
+        });
+        map.geoObjects.add(polyline);
+      }
+      
+      // Подгоняем карту под все точки
+      map.setBounds(map.geoObjects.getBounds(), {
+        checkZoomRange: true,
+        zoomMargin: 20
+      });
+    });
+    
+    return () => {
+      // Yandex Maps cleans up with GC when element is detached
+    };
+  }, [ymaps, points]);
+  
+  if (!ymaps) {
+    return (
+      <div className="w-full h-96 rounded-xl overflow-hidden border flex items-center justify-center bg-gray-100">
+        <p className="text-gray-600">Загрузка карты...</p>
+      </div>
+    );
+  }
+  
+  return <div className="w-full h-96 rounded-xl overflow-hidden border" ref={mapRef} />;
+}
+
+function MeetingPointMap({ lat, lng, title }: { lat: number; lng: number; title: string }) {
+  const mapRef = useRef<HTMLDivElement | null>(null);
+  const ymaps = useYandexMaps();
+  
+  useEffect(() => {
+    if (!ymaps || !mapRef.current) return;
+    
+    ymaps.ready(() => {
+      const map = new ymaps.Map(mapRef.current, {
+        center: [lat, lng],
+        zoom: 15,
+        controls: ['zoomControl', 'fullscreenControl']
+      });
+      
+      const marker = new ymaps.Placemark([lat, lng], {
+        balloonContent: title,
+        hintContent: title
+      }, {
+        preset: 'islands#blueCircleDotIcon',
+        iconColor: '#2563eb'
+      });
+      
+      map.geoObjects.add(marker);
+    });
+    
+    return () => {
+      // Yandex Maps cleans up with GC when element is detached
+    };
+  }, [ymaps, lat, lng, title]);
+  
+  if (!ymaps) {
+    return (
+      <div className="w-full h-96 rounded-xl overflow-hidden shadow bg-white flex items-center justify-center">
+        <p className="text-gray-600">Загрузка карты...</p>
+      </div>
+    );
+  }
+  
+  return <div className="w-full h-96 rounded-xl overflow-hidden shadow bg-white" ref={mapRef} />;
+}
 
 // === Types ===
 export type Attraction = {
@@ -83,6 +258,7 @@ export type TourData = {
   longread?: { title: string; tldr?: string[]; paragraphs: string[] };
   gallery?: { src: string; alt: string }[];
   faq?: FAQItem[];
+  mapPoints?: { title: string; lat: number; lng: number }[];
 };
 
 // === Helpers: JSON-LD builders ===
@@ -434,21 +610,25 @@ export default function TourPageSEO({ data }: { data: TourData }) {
                 {/* Expectations moved to the top info box */}
 
                 {/* Программа и маршрут — перенесено в основную колонку */}
-                {data.routeVariants?.[0] && (
-                  <div id="program" className="mt-10 scroll-mt-24">
-                    <h3 className="text-2xl font-semibold mb-3">Программа и маршрут</h3>
-                    <ol className="space-y-3">
-                      {data.routeVariants[0].points.map((p, idx) => (
-                        <li key={idx} className="flex gap-3">
-                          <span className="mt-1 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-blue-600 text-white text-xs font-bold">
-                            {idx + 1}
-                          </span>
-                          <span className="leading-relaxed">{p}</span>
-                        </li>
-                      ))}
-                    </ol>
-                  </div>
-                )}
+                <div id="program" className="mt-10 scroll-mt-24">
+                  <h3 className="text-2xl font-semibold mb-3">Программа и маршрут</h3>
+                  {data.mapPoints?.length ? (
+                    <InteractiveMap points={data.mapPoints} />
+                  ) : (
+                    data.routeVariants?.[0] && (
+                      <ol className="space-y-3">
+                        {data.routeVariants[0].points.map((p, idx) => (
+                          <li key={idx} className="flex gap-3">
+                            <span className="mt-1 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-blue-600 text-white text-xs font-bold">
+                              {idx + 1}
+                            </span>
+                            <span className="leading-relaxed">{p}</span>
+                          </li>
+                        ))}
+                      </ol>
+                    )
+                  )}
+                </div>
 
                 {inclusions?.length ? (
                   <div className="mt-8">
@@ -556,17 +736,11 @@ export default function TourPageSEO({ data }: { data: TourData }) {
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-center mb-8">Место встречи и окончание</h2>
             <div className="grid md:grid-cols-2 gap-8 items-stretch">
-              <div className="w-full h-96 rounded-xl overflow-hidden shadow bg-white">
-                <iframe
-                  src={data.meetingPoint.mapSrc}
-                  width="100%"
-                  height="100%"
-                  frameBorder={0}
-                  allowFullScreen
-                  loading="lazy"
-                  title="Место встречи"
-                />
-              </div>
+              <MeetingPointMap 
+                lat={data.meetingPoint.lat || 55.7706} 
+                lng={data.meetingPoint.lng || 37.5961} 
+                title={data.meetingPoint.address} 
+              />
               <div className="p-6 bg-white rounded-xl shadow">
                 <ul className="space-y-3 text-gray-800">
                   <li><span className="font-semibold">Адрес:</span> {data.meetingPoint.address}</li>

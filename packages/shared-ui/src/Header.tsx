@@ -29,9 +29,9 @@ export default function Header({
     onClick?: (e: any) => void;
   }>;
 }) {
-  const isExcursionPage = typeof window !== "undefined" && /\/ru\/excursions\//.test(window.location.pathname);
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isExcursionPage, setIsExcursionPage] = useState(false);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -39,6 +39,12 @@ export default function Header({
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setIsExcursionPage(/\/ru\/excursions\//.test(window.location.pathname));
+    }
   }, []);
 
   const navLinks: NavLink[] =
