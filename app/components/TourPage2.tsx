@@ -792,7 +792,7 @@ export default function TourPageSEO({ data }: { data: TourData }) {
                         href="#booking"
                         className="inline-flex items-center justify-center w-full rounded-xl bg-blue-600 px-5 py-3 text-white font-semibold shadow hover:bg-blue-700 transition"
                       >
-                        {`Забронировать место · ${data.meetingPoint?.price || `${data.price.toLocaleString("ru-RU")} ${data.currency || "₽"}`}`}
+                        {`Забронировать место · ${data.price ? `${data.price.toLocaleString("ru-RU")} ${data.currency || "₽"}` : data.meetingPoint?.price}`}
                       </a>
                     </div>
                   </div>

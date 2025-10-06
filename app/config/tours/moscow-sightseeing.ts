@@ -4,7 +4,7 @@ import { createMeetingPoint } from "./helpers";
 
 const slug = "avtobusnaya-obzornaya-ekskursiya-po-moskve";
 const heroImage = "/images/tours/moscow/hero.jpg";
-const moscowSightseeingPrice = 1800;
+const moscowSightseeingPrice = 1400;
 const moscowDuration = "3–4 часа";
 const moscowGroupSize = "до 45 человек";
 const moscowPriceText = "1 800 ₽";
