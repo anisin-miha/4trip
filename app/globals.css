@@ -172,3 +172,18 @@ html {
     @apply bg-background text-foreground;
   }
 }
+
+/* Hide interactive route/map blocks when needed (overview tour pages) */
+.interactive-map {
+  display: none !important;
+}
+
+/* Vertical multi-column list for program points: fill columns top-to-bottom */
+.program-vertical-list {
+  column-gap: 1.5rem; /* gap between columns */
+}
+.program-vertical-list li {
+  -webkit-column-break-inside: avoid;
+  -moz-column-break-inside: avoid;
+  column-break-inside: avoid;
+}

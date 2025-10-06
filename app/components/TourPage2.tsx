@@ -136,13 +136,13 @@ function InteractiveMap({ points }: { points: { title: string; lat: number; lng:
   
   if (!ymaps) {
     return (
-      <div className="w-full h-96 rounded-xl overflow-hidden border flex items-center justify-center bg-gray-100">
+      <div className="interactive-map w-full h-96 rounded-xl overflow-hidden border flex items-center justify-center bg-gray-100">
         <p className="text-gray-600">Загрузка карты...</p>
       </div>
     );
   }
   
-  return <div className="w-full h-96 rounded-xl overflow-hidden border" ref={mapRef} />;
+  return <div className="interactive-map w-full h-96 rounded-xl overflow-hidden border" ref={mapRef} />;
 }
 
 function MeetingPointMap({ lat, lng, title }: { lat: number; lng: number; title: string }) {
@@ -612,22 +612,24 @@ export default function TourPageSEO({ data }: { data: TourData }) {
                 {/* Программа и маршрут — перенесено в основную колонку */}
                 <div id="program" className="mt-10 scroll-mt-24">
                   <h3 className="text-2xl font-semibold mb-3">Программа и маршрут</h3>
-                  {data.mapPoints?.length ? (
-                    <InteractiveMap points={data.mapPoints} />
-                  ) : (
-                    data.routeVariants?.[0] && (
-                      <ol className="space-y-3">
-                        {data.routeVariants[0].points.map((p, idx) => (
-                          <li key={idx} className="flex gap-3">
-                            <span className="mt-1 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-blue-600 text-white text-xs font-bold">
+                  {(() => {
+                    const pointsList: string[] = data.mapPoints?.length
+                      ? data.mapPoints.map((m) => m.title)
+                      : data.routeVariants?.[0]?.points || [];
+                    if (!pointsList.length) return null;
+                    return (
+                      <ol className="columns-1 sm:columns-2 md:columns-3 gap-6 list-none program-vertical-list">
+                        {pointsList.map((p, idx) => (
+                          <li key={idx} className="break-inside-avoid mb-3 flex gap-3 items-start">
+                            <span className="mt-1 inline-flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-blue-600 text-white text-xs font-bold">
                               {idx + 1}
                             </span>
                             <span className="leading-relaxed">{p}</span>
                           </li>
                         ))}
                       </ol>
-                    )
-                  )}
+                    );
+                  })()}
                 </div>
 
                 {inclusions?.length ? (
