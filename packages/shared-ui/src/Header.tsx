@@ -29,6 +29,7 @@ export default function Header({
     onClick?: (e: any) => void;
   }>;
 }) {
+  const isExcursionPage = typeof window !== "undefined" && /\/ru\/excursions\//.test(window.location.pathname);
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -106,7 +107,9 @@ export default function Header({
                 style={{ transition: ".23s ease" }}
               />
             )}
-            <span className={`font-bold text-xl ${titleColor}`}>{title}</span>
+            {!isExcursionPage && (
+              <span className={`font-bold text-xl ${titleColor}`}>{title}</span>
+            )}
           </LinkTag>
 
           <>

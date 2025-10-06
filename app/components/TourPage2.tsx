@@ -302,12 +302,12 @@ export default function TourPageSEO({ data }: { data: TourData }) {
                 </p>
 
                 <div className="mt-8 flex flex-col md:flex-row md:items-center gap-4">
-                  <IntlLink
+                  <a
                     href="#booking"
                     className="inline-flex items-center justify-center rounded-xl bg-blue-600 px-6 py-3 text-white font-semibold shadow hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
                   >
                     Забронировать место · {data.price.toLocaleString("ru-RU")} {data.currency || "₽"}
-                  </IntlLink>
+                  </a>
                   {(() => {
                     const nearest = (() => {
                       const today = new Date();
@@ -504,12 +504,12 @@ export default function TourPageSEO({ data }: { data: TourData }) {
                     </div>
 
                     <div className="mt-4">
-                      <IntlLink
+                      <a
                         href="#booking"
                         className="inline-flex items-center justify-center w-full rounded-xl bg-blue-600 px-5 py-3 text-white font-semibold shadow hover:bg-blue-700 transition"
                       >
                         {`Забронировать место · ${data.meetingPoint?.price || `${data.price.toLocaleString("ru-RU")} ${data.currency || "₽"}`}`}
-                      </IntlLink>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -582,7 +582,7 @@ export default function TourPageSEO({ data }: { data: TourData }) {
                   )}
                 </ul>
                 <div className="mt-6">
-                  <IntlLink href="#booking" className="inline-flex items-center rounded-lg bg-blue-600 px-5 py-3 text-white font-semibold shadow hover:bg-blue-700">Забронировать</IntlLink>
+                  <a href="#booking" className="inline-flex items-center rounded-lg bg-blue-600 px-5 py-3 text-white font-semibold shadow hover:bg-blue-700">Забронировать</a>
                 </div>
               </div>
             </div>
