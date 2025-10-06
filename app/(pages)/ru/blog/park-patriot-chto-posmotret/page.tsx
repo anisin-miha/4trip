@@ -14,7 +14,8 @@ const ARTICLE_TITLE = "Что посмотреть в Парке «Патрио�
 const ARTICLE_DESC =
   "Полный гид по Парку «Патриот»: Главный храм ВС РФ, «Дорога Памяти», Танковый музей (Кубинка), авиация и ПВО, «Партизанская деревня», маршрут на 1 день, советы и билеты.";
 // Используем реальный файл из public/images/tours/patriot
-const ARTICLE_IMAGE = "https://4-trip.ru/images/tours/patriot/cathedral-hero.png";
+const ARTICLE_IMAGE =
+  "https://4-trip.ru/images/tours/patriot/cathedral-hero.png";
 
 export const metadata: Metadata = {
   title: ARTICLE_TITLE,
@@ -653,14 +654,19 @@ export default function BlogPage() {
         <BookingForm price={0} tourName={"Парк «Патриот»"} />
       </div> */}
 
-
       {/* Related tours (готовый блок)
         <div className="mt-12">
           <RelatedTours  />
         </div> */}
 
-
-      <SiteFooter project="trip" contacts={{ phone: contactInfo.phone, email: contactInfo.email, social: contactInfo.social }} />
+      <SiteFooter
+        project="trip"
+        contacts={{
+          phone: contactInfo.phone,
+          email: contactInfo.email,
+          social: contactInfo.social,
+        }}
+      />
     </div>
   );
 }

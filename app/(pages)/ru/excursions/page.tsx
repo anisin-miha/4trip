@@ -82,7 +82,10 @@ export default function ExcursionsPage() {
                 <div className="col-span-12 lg:col-span-8 xl:col-span-9">
                   <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
                     {Array.from({ length: 6 }).map((_, i) => (
-                      <div key={i} className="rounded-lg border border-gray-200 h-80 bg-gray-50" />
+                      <div
+                        key={i}
+                        className="rounded-lg border border-gray-200 h-80 bg-gray-50"
+                      />
                     ))}
                   </div>
                 </div>
@@ -94,8 +97,14 @@ export default function ExcursionsPage() {
         </section>
       </main>
 
-      <SiteFooter project="trip" contacts={{ phone: contactInfo.phone, email: contactInfo.email, social: contactInfo.social }} />
+      <SiteFooter
+        project="trip"
+        contacts={{
+          phone: contactInfo.phone,
+          email: contactInfo.email,
+          social: contactInfo.social,
+        }}
+      />
     </div>
   );
 }
-

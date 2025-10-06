@@ -39,9 +39,7 @@ export default function TourCard({
 }: TourCardProps) {
   const router = useRouter();
   const priceText =
-    typeof price === "number"
-      ? `${price.toLocaleString("ru-RU")} ₽`
-      : price;
+    typeof price === "number" ? `${price.toLocaleString("ru-RU")} ₽` : price;
 
   const go = () => router.push(href);
 
@@ -83,20 +81,27 @@ export default function TourCard({
         {rating && (
           <div className="absolute top-3 right-3 bg-black/70 text-white text-xs px-2 py-1 rounded">
             ★ {rating.value.toFixed(1)}
-            {typeof rating.count === "number" && <span className="opacity-80"> ({rating.count})</span>}
+            {typeof rating.count === "number" && (
+              <span className="opacity-80"> ({rating.count})</span>
+            )}
           </div>
         )}
       </div>
 
       <div className={`tour-card__content p-4 flex flex-col gap-3 flex-1`}>
-        <Link href={href} className="block" onClick={(e) => e.stopPropagation()}>
-          <h3 className="tour-card__title text-xl font-semibold">
-            {title}
-          </h3>
+        <Link
+          href={href}
+          className="block"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <h3 className="tour-card__title text-xl font-semibold">{title}</h3>
         </Link>
         <p className="tour-card__description text-gray-600">{description}</p>
 
-        {(duration || (languages && languages.length) || city || meetingPoint) && (
+        {(duration ||
+          (languages && languages.length) ||
+          city ||
+          meetingPoint) && (
           <div className="mt-1 flex flex-wrap items-center gap-2 text-sm">
             {duration && (
               <span className="inline-flex items-center gap-1 bg-gray-100 text-gray-800 px-2 py-1 rounded">

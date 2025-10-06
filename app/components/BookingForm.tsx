@@ -107,7 +107,15 @@ const standardSchema = z.object({
     errorMap: () => ({ message: "Необходимо согласие на обработку данных" }),
   }),
   trafficSource: z
-    .enum(["search", "ads", "social", "referral", "blog", "other", "unknown"] as const)
+    .enum([
+      "search",
+      "ads",
+      "social",
+      "referral",
+      "blog",
+      "other",
+      "unknown",
+    ] as const)
     .optional(),
   trafficDetails: z.string().optional(),
   utmSource: z.string().optional(),
@@ -137,7 +145,15 @@ const groupSchema = z.object({
     errorMap: () => ({ message: "Необходимо согласие на обработку данных" }),
   }),
   trafficSource: z
-    .enum(["search", "ads", "social", "referral", "blog", "other", "unknown"] as const)
+    .enum([
+      "search",
+      "ads",
+      "social",
+      "referral",
+      "blog",
+      "other",
+      "unknown",
+    ] as const)
     .optional(),
   trafficDetails: z.string().optional(),
   utmSource: z.string().optional(),
@@ -155,14 +171,16 @@ function parseSearchParams(search: string) {
   } as const;
 }
 
-function detectTrafficSource(
-  utm: { utmSource: string; utmMedium: string },
-): TrafficSource {
+function detectTrafficSource(utm: {
+  utmSource: string;
+  utmMedium: string;
+}): TrafficSource {
   const src = (utm.utmSource || "").toLowerCase();
   const med = (utm.utmMedium || "").toLowerCase();
   const is = (s: string, arr: string[]) => arr.some((x) => s.includes(x));
   if (is(src, ["yandex", "google"])) return "search";
-  if (is(src, ["t.me", "telegram", "vk", "instagram", "facebook"])) return "social";
+  if (is(src, ["t.me", "telegram", "vk", "instagram", "facebook"]))
+    return "social";
   if (is(med, ["cpc", "ppc", "ads", "adwords", "context"])) return "ads";
   if (is(src, ["blog"])) return "blog";
   return "unknown";
@@ -236,7 +254,11 @@ const BookingCalendar: React.FC<{
             disabled={(day) => {
               const today = new Date();
               today.setHours(0, 0, 0, 0);
-              const d = new Date(day.getFullYear(), day.getMonth(), day.getDate());
+              const d = new Date(
+                day.getFullYear(),
+                day.getMonth(),
+                day.getDate(),
+              );
               const isPastOrToday = d <= today;
               const isAvailable = availableDates.some(
                 (available) => available.toDateString() === day.toDateString(),
@@ -270,8 +292,23 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
     ),
     defaultValues:
       programType === "standard"
-        ? { people: "1", consent: false, trafficSource: undefined, trafficDetails: "", utmSource: "", utmMedium: "", utmCampaign: "" }
-        : { consent: false, trafficSource: undefined, trafficDetails: "", utmSource: "", utmMedium: "", utmCampaign: "" },
+        ? {
+            people: "1",
+            consent: false,
+            trafficSource: undefined,
+            trafficDetails: "",
+            utmSource: "",
+            utmMedium: "",
+            utmCampaign: "",
+          }
+        : {
+            consent: false,
+            trafficSource: undefined,
+            trafficDetails: "",
+            utmSource: "",
+            utmMedium: "",
+            utmCampaign: "",
+          },
   });
 
   const date = watch("date");
@@ -311,12 +348,19 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
           tourName,
           data.trafficSource || "",
           data.trafficDetails || "",
-          { source: data.utmSource || "", medium: data.utmMedium || "", campaign: data.utmCampaign || "" },
+          {
+            source: data.utmSource || "",
+            medium: data.utmMedium || "",
+            campaign: data.utmCampaign || "",
+          },
         );
 
         // Попытка создать платёжную ссылку (если настроен backend)
         try {
-          const origin = typeof window !== "undefined" ? window.location.origin : "https://4-trip.ru";
+          const origin =
+            typeof window !== "undefined"
+              ? window.location.origin
+              : "https://4-trip.ru";
           const res = await fetch("/api/pay", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -349,7 +393,11 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
           tourName,
           data.trafficSource || "",
           data.trafficDetails || "",
-          { source: data.utmSource || "", medium: data.utmMedium || "", campaign: data.utmCampaign || "" },
+          {
+            source: data.utmSource || "",
+            medium: data.utmMedium || "",
+            campaign: data.utmCampaign || "",
+          },
         );
       }
       setSent(true);

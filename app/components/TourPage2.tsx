@@ -31,7 +31,9 @@ function useYandexMaps() {
       return;
     }
     if (w.__ymapsLoadingPromise) {
-      w.__ymapsLoadingPromise.then(() => setReady(true)).catch(() => setReady(false));
+      w.__ymapsLoadingPromise
+        .then(() => setReady(true))
+        .catch(() => setReady(false));
       return;
     }
     const existing = document.querySelector('script[data-ymaps-loader="true"]');
@@ -54,86 +56,106 @@ function useYandexMaps() {
       s.onload = () => resolve();
       s.onerror = () => reject(new Error("Yandex Maps load failed"));
       document.head.appendChild(s);
-    }).then(() => {
-      setReady(true);
-    }).catch(() => setReady(false));
+    })
+      .then(() => {
+        setReady(true);
+      })
+      .catch(() => setReady(false));
     w.__ymapsLoadingPromise = p;
   }, []);
   return typeof window !== "undefined" ? (window as any).ymaps || null : null;
 }
 
-function InteractiveMap({ points }: { points: { title: string; lat: number; lng: number }[] }) {
+function InteractiveMap({
+  points,
+}: {
+  points: { title: string; lat: number; lng: number }[];
+}) {
   const mapRef = useRef<HTMLDivElement | null>(null);
   const ymaps = useYandexMaps();
   useEffect(() => {
     if (!ymaps || !mapRef.current || !points?.length) return;
-    
+
     ymaps.ready(() => {
       const map = new ymaps.Map(mapRef.current, {
         center: [55.7558, 37.6176], // Москва
         zoom: 10,
-        controls: ['zoomControl', 'fullscreenControl']
+        controls: ["zoomControl", "fullscreenControl"],
       });
-      
+
       const bounds: number[][] = [];
       const routePoints: number[][] = [];
-      
+
       points.forEach((p, i) => {
         const coords = [p.lat, p.lng];
         bounds.push(coords);
         routePoints.push(coords);
-        
+
         // Создаем маркер с номером
-        const marker = new ymaps.Placemark(coords, {
-          balloonContent: `${i + 1}. ${p.title}`,
-          hintContent: p.title
-        }, {
-          preset: 'islands#blueCircleDotIcon',
-          iconColor: '#2563eb'
-        });
-        
+        const marker = new ymaps.Placemark(
+          coords,
+          {
+            balloonContent: `${i + 1}. ${p.title}`,
+            hintContent: p.title,
+          },
+          {
+            preset: "islands#blueCircleDotIcon",
+            iconColor: "#2563eb",
+          },
+        );
+
         // Добавляем номер к маркеру
-        const label = new ymaps.Placemark(coords, {
-          balloonContent: `${i + 1}. ${p.title}`,
-          hintContent: p.title
-        }, {
-          preset: 'islands#blueStretchyIcon',
-          iconLayout: 'default#imageWithContent',
-          iconImageHref: 'data:image/svg+xml;base64,' + btoa(`
+        const label = new ymaps.Placemark(
+          coords,
+          {
+            balloonContent: `${i + 1}. ${p.title}`,
+            hintContent: p.title,
+          },
+          {
+            preset: "islands#blueStretchyIcon",
+            iconLayout: "default#imageWithContent",
+            iconImageHref:
+              "data:image/svg+xml;base64," +
+              btoa(`
             <svg width="30" height="30" xmlns="http://www.w3.org/2000/svg">
               <circle cx="15" cy="15" r="12" fill="#2563eb" stroke="white" stroke-width="2"/>
               <text x="15" y="20" text-anchor="middle" fill="white" font-family="Arial" font-size="12" font-weight="bold">${i + 1}</text>
             </svg>
           `),
-          iconImageSize: [30, 30],
-          iconImageOffset: [-15, -15]
-        });
-        
+            iconImageSize: [30, 30],
+            iconImageOffset: [-15, -15],
+          },
+        );
+
         map.geoObjects.add(label);
       });
-      
+
       // Добавляем маршрут
       if (routePoints.length > 1) {
-        const polyline = new ymaps.Polyline(routePoints, {}, {
-          strokeColor: '#2563eb',
-          strokeWidth: 3,
-          strokeOpacity: 0.8
-        });
+        const polyline = new ymaps.Polyline(
+          routePoints,
+          {},
+          {
+            strokeColor: "#2563eb",
+            strokeWidth: 3,
+            strokeOpacity: 0.8,
+          },
+        );
         map.geoObjects.add(polyline);
       }
-      
+
       // Подгоняем карту под все точки
       map.setBounds(map.geoObjects.getBounds(), {
         checkZoomRange: true,
-        zoomMargin: 20
+        zoomMargin: 20,
       });
     });
-    
+
     return () => {
       // Yandex Maps cleans up with GC when element is detached
     };
   }, [ymaps, points]);
-  
+
   if (!ymaps) {
     return (
       <div className="interactive-map w-full h-96 rounded-xl overflow-hidden border flex items-center justify-center bg-gray-100">
@@ -141,40 +163,57 @@ function InteractiveMap({ points }: { points: { title: string; lat: number; lng:
       </div>
     );
   }
-  
-  return <div className="interactive-map w-full h-96 rounded-xl overflow-hidden border" ref={mapRef} />;
+
+  return (
+    <div
+      className="interactive-map w-full h-96 rounded-xl overflow-hidden border"
+      ref={mapRef}
+    />
+  );
 }
 
-function MeetingPointMap({ lat, lng, title }: { lat: number; lng: number; title: string }) {
+function MeetingPointMap({
+  lat,
+  lng,
+  title,
+}: {
+  lat: number;
+  lng: number;
+  title: string;
+}) {
   const mapRef = useRef<HTMLDivElement | null>(null);
   const ymaps = useYandexMaps();
-  
+
   useEffect(() => {
     if (!ymaps || !mapRef.current) return;
-    
+
     ymaps.ready(() => {
       const map = new ymaps.Map(mapRef.current, {
         center: [lat, lng],
         zoom: 15,
-        controls: ['zoomControl', 'fullscreenControl']
+        controls: ["zoomControl", "fullscreenControl"],
       });
-      
-      const marker = new ymaps.Placemark([lat, lng], {
-        balloonContent: title,
-        hintContent: title
-      }, {
-        preset: 'islands#blueCircleDotIcon',
-        iconColor: '#2563eb'
-      });
-      
+
+      const marker = new ymaps.Placemark(
+        [lat, lng],
+        {
+          balloonContent: title,
+          hintContent: title,
+        },
+        {
+          preset: "islands#blueCircleDotIcon",
+          iconColor: "#2563eb",
+        },
+      );
+
       map.geoObjects.add(marker);
     });
-    
+
     return () => {
       // Yandex Maps cleans up with GC when element is detached
     };
   }, [ymaps, lat, lng, title]);
-  
+
   if (!ymaps) {
     return (
       <div className="w-full h-96 rounded-xl overflow-hidden shadow bg-white flex items-center justify-center">
@@ -182,8 +221,13 @@ function MeetingPointMap({ lat, lng, title }: { lat: number; lng: number; title:
       </div>
     );
   }
-  
-  return <div className="w-full h-96 rounded-xl overflow-hidden shadow bg-white" ref={mapRef} />;
+
+  return (
+    <div
+      className="w-full h-96 rounded-xl overflow-hidden shadow bg-white"
+      ref={mapRef}
+    />
+  );
 }
 
 // === Types ===
@@ -389,7 +433,9 @@ export default function TourPageSEO({ data }: { data: TourData }) {
   );
 
   const activeVariant = useMemo(
-    () => data.routeVariants?.find((v) => v.id === activeVariantId) || data.routeVariants?.[0],
+    () =>
+      data.routeVariants?.find((v) => v.id === activeVariantId) ||
+      data.routeVariants?.[0],
     [activeVariantId, data.routeVariants],
   );
 
@@ -444,7 +490,10 @@ export default function TourPageSEO({ data }: { data: TourData }) {
 
       <main>
         {/* Hero */}
-        <section id="hero" className="relative h-screen flex items-center overflow-hidden scroll-mt-24">
+        <section
+          id="hero"
+          className="relative h-screen flex items-center overflow-hidden scroll-mt-24"
+        >
           <div className="absolute inset-0">
             <BaseImage
               src={data.hero.image}
@@ -460,11 +509,13 @@ export default function TourPageSEO({ data }: { data: TourData }) {
           <div className="relative z-10 w-full">
             <div className="container mx-auto px-4 py-8 md:py-12">
               <div className="max-w-3xl text-white">
-                <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
+                <h1 className="hero-title text-4xl md:text-5xl font-extrabold leading-tight">
                   {data.title}
                 </h1>
                 {data.subtitle && (
-                  <p className="mt-3 text-lg md:text-xl text-gray-100">{data.subtitle}</p>
+                  <p className="mt-3 text-lg md:text-xl text-gray-100">
+                    {data.subtitle}
+                  </p>
                 )}
                 <div className="mt-6 flex flex-wrap gap-2">
                   <Badge>{data.duration || "3–4 часа"}</Badge>
@@ -482,14 +533,19 @@ export default function TourPageSEO({ data }: { data: TourData }) {
                     href="#booking"
                     className="inline-flex items-center justify-center rounded-xl bg-blue-600 px-6 py-3 text-white font-semibold shadow hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
                   >
-                    Забронировать место · {data.price.toLocaleString("ru-RU")} {data.currency || "₽"}
+                    Забронировать место · {data.price.toLocaleString("ru-RU")}{" "}
+                    {data.currency || "₽"}
                   </a>
                   {(() => {
                     const nearest = (() => {
                       const today = new Date();
                       today.setHours(0, 0, 0, 0);
                       const fromAvailable = availableDates.find((d) => {
-                        const dd = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+                        const dd = new Date(
+                          d.getFullYear(),
+                          d.getMonth(),
+                          d.getDate(),
+                        );
                         return dd >= today;
                       });
                       if (fromAvailable) return fromAvailable;
@@ -498,14 +554,22 @@ export default function TourPageSEO({ data }: { data: TourData }) {
                         .filter((d) => !isNaN(d.getTime()))
                         .sort((a, b) => a.getTime() - b.getTime());
                       const f = fromData.find((d) => {
-                        const dd = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+                        const dd = new Date(
+                          d.getFullYear(),
+                          d.getMonth(),
+                          d.getDate(),
+                        );
                         return dd >= today;
                       });
                       return f || fromData[0];
                     })();
                     return nearest ? (
                       <span className="text-white/90">
-                        Ближайшая дата: {nearest.toLocaleDateString("ru-RU", { day: "numeric", month: "long" })}
+                        Ближайшая дата:{" "}
+                        {nearest.toLocaleDateString("ru-RU", {
+                          day: "numeric",
+                          month: "long",
+                        })}
                       </span>
                     ) : null;
                   })()}
@@ -513,7 +577,8 @@ export default function TourPageSEO({ data }: { data: TourData }) {
 
                 {data.rating && (
                   <div className="mt-4 text-sm text-gray-200">
-                    Рейтинг {data.rating.value}★ · {data.rating.count.toLocaleString("ru-RU")} отзывов
+                    Рейтинг {data.rating.value}★ ·{" "}
+                    {data.rating.count.toLocaleString("ru-RU")} отзывов
                   </div>
                 )}
               </div>
@@ -532,7 +597,14 @@ export default function TourPageSEO({ data }: { data: TourData }) {
               <span className="tracking-wide">СБП</span>
             </div>
             <div className="text-gray-600">
-              Поддержка: <a className="underline" href={`tel:${contactInfo.phone}`}>{contactInfo.phone}</a> · <a className="underline" href={`mailto:${contactInfo.email}`}>{contactInfo.email}</a>
+              Поддержка:{" "}
+              <a className="underline" href={`tel:${contactInfo.phone}`}>
+                {contactInfo.phone}
+              </a>{" "}
+              ·{" "}
+              <a className="underline" href={`mailto:${contactInfo.email}`}>
+                {contactInfo.email}
+              </a>
             </div>
           </div>
         </section>
@@ -564,12 +636,16 @@ export default function TourPageSEO({ data }: { data: TourData }) {
           <div className="container mx-auto px-4">
             <div className="lg:grid lg:grid-cols-[minmax(0,2fr)_minmax(280px,1fr)] lg:gap-12">
               <article className="max-w-3xl mx-auto lg:mx-0 lg:max-w-none">
-                <h2 className="text-3xl font-bold mb-6">{data.longread?.title || "О туре подробно"}</h2>
-                {(expectations || data.longread?.tldr?.length) ? (
+                <h2 className="text-3xl font-bold mb-6">
+                  {data.longread?.title || "О туре подробно"}
+                </h2>
+                {expectations || data.longread?.tldr?.length ? (
                   <div className="mb-8 rounded-xl bg-blue-50 p-5 text-blue-900 border border-blue-100">
                     <div className="font-semibold mb-2">Что вас ждёт</div>
                     {expectations ? (
-                      <p className="text-[15px] leading-6 text-blue-900">{expectations}</p>
+                      <p className="text-[15px] leading-6 text-blue-900">
+                        {expectations}
+                      </p>
                     ) : (
                       <ul className="list-disc pl-5 space-y-1">
                         {data.longread!.tldr!.map((i, idx) => (
@@ -582,7 +658,9 @@ export default function TourPageSEO({ data }: { data: TourData }) {
                 <div className="text-[17px] leading-7 text-gray-800 space-y-4">
                   {(data.longread?.paragraphs || []).map((p, idx) => {
                     // Highlight stop headings like: "Остановка 1 • ...: ..."
-                    const mStop = p.match(/^(Остановка\s+\d+\s•\s[^:]+:)(\s*)(.*)$/);
+                    const mStop = p.match(
+                      /^(Остановка\s+\d+\s•\s[^:]+:)(\s*)(.*)$/,
+                    );
                     if (mStop) {
                       return (
                         <p key={idx}>
@@ -593,11 +671,16 @@ export default function TourPageSEO({ data }: { data: TourData }) {
                       );
                     }
                     // Highlight labeled segments like: "Старт — ...", "К центру: ...", etc.
-                    const mLabel = p.match(/^((Старт|К центру|Набережные|К смотровой|Обратно|Формат|Фото|Семьям|Паузы|Что взять|Перекрытия|Продолжение дня|Темп))([:—])\s*(.*)$/);
+                    const mLabel = p.match(
+                      /^((Старт|К центру|Набережные|К смотровой|Обратно|Формат|Фото|Семьям|Паузы|Что взять|Перекрытия|Продолжение дня|Темп))([:—])\s*(.*)$/,
+                    );
                     if (mLabel) {
                       return (
                         <p key={idx}>
-                          <strong>{mLabel[1]}{mLabel[3]} </strong>
+                          <strong>
+                            {mLabel[1]}
+                            {mLabel[3]}{" "}
+                          </strong>
                           {mLabel[4]}
                         </p>
                       );
@@ -611,17 +694,23 @@ export default function TourPageSEO({ data }: { data: TourData }) {
 
                 {/* Программа и маршрут — перенесено в основную колонку */}
                 <div id="program" className="mt-10 scroll-mt-24">
-                  <h3 className="text-2xl font-semibold mb-3">Программа и маршрут</h3>
+                  <h3 className="text-2xl font-semibold mb-3">
+                    Программа и маршрут
+                  </h3>
                   {/* Fixed list of points (vertical 3-column layout) */}
                   {(() => {
-                    const finalPoints: string[] = data.routeVariants?.[0]?.points?.length
+                    const finalPoints: string[] = data.routeVariants?.[0]
+                      ?.points?.length
                       ? data.routeVariants[0].points
                       : (data.mapPoints || []).map((m) => m.title || "");
                     if (!finalPoints.length) return null;
                     return (
                       <ol className="columns-1 sm:columns-2 md:columns-3 gap-6 list-none program-vertical-list">
                         {finalPoints.map((p, idx) => (
-                          <li key={idx} className="break-inside-avoid mb-3 flex gap-3 items-start">
+                          <li
+                            key={idx}
+                            className="break-inside-avoid mb-3 flex gap-3 items-start"
+                          >
                             <span className="mt-1 inline-flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-blue-600 text-white text-xs font-bold">
                               {idx + 1}
                             </span>
@@ -639,7 +728,10 @@ export default function TourPageSEO({ data }: { data: TourData }) {
                     <ul className="space-y-1.5 text-gray-800">
                       {inclusions.map((item, idx) => (
                         <li key={idx} className="flex items-start gap-2">
-                          <span className="mt-1 h-1.5 w-1.5 rounded-full bg-blue-500" aria-hidden />
+                          <span
+                            className="mt-1 h-1.5 w-1.5 rounded-full bg-blue-500"
+                            aria-hidden
+                          />
                           <span>{item}</span>
                         </li>
                       ))}
@@ -649,24 +741,27 @@ export default function TourPageSEO({ data }: { data: TourData }) {
 
                 {exclusions?.length ? (
                   <div className="mt-6">
-                    <h4 className="text-lg font-semibold mb-2">Что не включено</h4>
+                    <h4 className="text-lg font-semibold mb-2">
+                      Что не включено
+                    </h4>
                     <ul className="space-y-1.5 text-gray-800">
                       {exclusions.map((item, idx) => (
                         <li key={idx} className="flex items-start gap-2">
-                          <span className="mt-1 h-1.5 w-1.5 rounded-full bg-pink-400" aria-hidden />
+                          <span
+                            className="mt-1 h-1.5 w-1.5 rounded-full bg-pink-400"
+                            aria-hidden
+                          />
                           <span>{item}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
                 ) : null}
-
               </article>
 
               <aside className="mt-10 lg:mt-0">
                 <div className="lg:sticky lg:top-24 space-y-6">
                   <div className="rounded-2xl border border-blue-100 bg-white p-6 shadow-lg shadow-blue-100/40">
-
                     <div className="border-t border-gray-100 pt-4">
                       <dl className="space-y-3">
                         {[
@@ -677,9 +772,16 @@ export default function TourPageSEO({ data }: { data: TourData }) {
                         ]
                           .filter((item) => item.value)
                           .map((item) => (
-                            <div key={item.label} className="flex items-start justify-between gap-4 text-sm">
-                              <dt className="uppercase tracking-wide text-gray-500">{item.label}</dt>
-                              <dd className="text-gray-900 font-medium text-right">{item.value}</dd>
+                            <div
+                              key={item.label}
+                              className="flex items-start justify-between gap-4 text-sm"
+                            >
+                              <dt className="uppercase tracking-wide text-gray-500">
+                                {item.label}
+                              </dt>
+                              <dd className="text-gray-900 font-medium text-right">
+                                {item.value}
+                              </dd>
                             </div>
                           ))}
                       </dl>
@@ -712,17 +814,32 @@ export default function TourPageSEO({ data }: { data: TourData }) {
             {/* Attractions heading + grid */}
             {data.attractions?.length ? (
               <>
-                <h2 className="text-3xl font-bold text-center mb-8">Что увидим по пути</h2>
+                <h2 className="text-3xl font-bold text-center mb-8">
+                  Что увидим по пути
+                </h2>
                 <div className="mt-12 grid md:grid-cols-2 gap-8">
                   {data.attractions.map((attr, idx) => (
-                    <article key={idx} className="flex flex-col bg-gray-50 rounded-xl shadow overflow-hidden">
+                    <article
+                      key={idx}
+                      className="flex flex-col bg-gray-50 rounded-xl shadow overflow-hidden"
+                    >
                       <div className="relative w-full aspect-[4/3]">
-                        <BaseImage src={attr.image} alt={attr.alt} width={828} fill className="object-cover" />
+                        <BaseImage
+                          src={attr.image}
+                          alt={attr.alt}
+                          width={828}
+                          fill
+                          className="object-cover"
+                        />
                       </div>
                       <div className="p-6">
-                        <h3 className="text-xl font-semibold mb-2">{attr.title}</h3>
+                        <h3 className="text-xl font-semibold mb-2">
+                          {attr.title}
+                        </h3>
                         {attr.description.map((p, i) => (
-                          <p key={i} className="text-gray-700 mb-2">{p}</p>
+                          <p key={i} className="text-gray-700 mb-2">
+                            {p}
+                          </p>
                         ))}
                       </div>
                     </article>
@@ -730,35 +847,50 @@ export default function TourPageSEO({ data }: { data: TourData }) {
                 </div>
               </>
             ) : null}
-
           </div>
         </section>
 
         {/* Meeting & map */}
         <section id="meeting" className="py-16 bg-gray-50 scroll-mt-24">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-8">Место встречи и окончание</h2>
+            <h2 className="text-3xl font-bold text-center mb-8">
+              Место встречи и окончание
+            </h2>
             <div className="grid md:grid-cols-2 gap-8 items-stretch">
-              <MeetingPointMap 
-                lat={data.meetingPoint.lat || 55.7706} 
-                lng={data.meetingPoint.lng || 37.5961} 
-                title={data.meetingPoint.address} 
+              <MeetingPointMap
+                lat={data.meetingPoint.lat || 55.7706}
+                lng={data.meetingPoint.lng || 37.5961}
+                title={data.meetingPoint.address}
               />
               <div className="p-6 bg-white rounded-xl shadow">
                 <ul className="space-y-3 text-gray-800">
-                  <li><span className="font-semibold">Адрес:</span> {data.meetingPoint.address}</li>
+                  <li>
+                    <span className="font-semibold">Адрес:</span>{" "}
+                    {data.meetingPoint.address}
+                  </li>
                   {data.meetingPoint.startTime && (
-                    <li><span className="font-semibold">Время отправления:</span> {data.meetingPoint.startTime}</li>
+                    <li>
+                      <span className="font-semibold">Время отправления:</span>{" "}
+                      {data.meetingPoint.startTime}
+                    </li>
                   )}
                   {data.meetingPoint.endAddress && (
-                    <li><span className="font-semibold">Окончание:</span> {data.meetingPoint.endAddress}</li>
+                    <li>
+                      <span className="font-semibold">Окончание:</span>{" "}
+                      {data.meetingPoint.endAddress}
+                    </li>
                   )}
                   {data.meetingPoint.note && (
                     <li className="text-gray-600">{data.meetingPoint.note}</li>
                   )}
                 </ul>
                 <div className="mt-6">
-                  <a href="#booking" className="inline-flex items-center rounded-lg bg-blue-600 px-5 py-3 text-white font-semibold shadow hover:bg-blue-700">Забронировать</a>
+                  <a
+                    href="#booking"
+                    className="inline-flex items-center rounded-lg bg-blue-600 px-5 py-3 text-white font-semibold shadow hover:bg-blue-700"
+                  >
+                    Забронировать
+                  </a>
                 </div>
               </div>
             </div>
@@ -774,19 +906,24 @@ export default function TourPageSEO({ data }: { data: TourData }) {
           </div>
         </section>
 
-        
-
         {/* FAQ */}
         {data.faq?.length ? (
           <section id="faq" className="py-16 bg-white scroll-mt-24">
             <div className="container mx-auto px-4">
-              <h2 className="text-3xl font-bold text-center mb-12">Часто задаваемые вопросы</h2>
+              <h2 className="text-3xl font-bold text-center mb-12">
+                Часто задаваемые вопросы
+              </h2>
               <div className="space-y-6 max-w-3xl mx-auto">
                 {data.faq.map((faq, idx) => (
-                  <details key={idx} className="group rounded-xl border p-4 open:shadow">
+                  <details
+                    key={idx}
+                    className="group rounded-xl border p-4 open:shadow"
+                  >
                     <summary className="cursor-pointer select-none text-lg font-semibold flex items-center justify-between">
                       {faq.question}
-                      <span className="ml-3 text-gray-400 group-open:rotate-180 transition">▾</span>
+                      <span className="ml-3 text-gray-400 group-open:rotate-180 transition">
+                        ▾
+                      </span>
                     </summary>
                     <div className="mt-3 text-gray-700">{faq.answer}</div>
                   </details>
@@ -803,7 +940,11 @@ export default function TourPageSEO({ data }: { data: TourData }) {
 
         <Footer
           project="trip"
-          contacts={{ phone: contactInfo.phone, email: contactInfo.email, social: contactInfo.social }}
+          contacts={{
+            phone: contactInfo.phone,
+            email: contactInfo.email,
+            social: contactInfo.social,
+          }}
         />
       </main>
     </div>

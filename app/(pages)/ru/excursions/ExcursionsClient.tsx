@@ -44,7 +44,9 @@ function parseFirstTimeToMinutes(startTime?: string): number | undefined {
   return h * 60 + min;
 }
 
-function parseDurationHoursRange(duration?: string): [number, number] | undefined {
+function parseDurationHoursRange(
+  duration?: string,
+): [number, number] | undefined {
   if (!duration) return undefined;
   const dayMatch = duration.match(/(\d+)\s*дн/i);
   if (dayMatch) {
@@ -71,7 +73,9 @@ function languagesOf(t: Tour): string[] {
   return Array.from(set);
 }
 
-function typeOfTour(t: Tour): "Групповой" | "Индивидуальный" | "Сборная" | undefined {
+function typeOfTour(
+  t: Tour,
+): "Групповой" | "Индивидуальный" | "Сборная" | undefined {
   const type = t.meetingPoint?.type || "";
   if (/индивид/i.test(type)) return "Индивидуальный";
   if (/сборн/i.test(type)) return "Сборная";
@@ -89,7 +93,10 @@ const TAG_DICTIONARY: Record<string, string[]> = {
 };
 
 function extractText(t: Tour): string {
-  return [t.title, t.location, t.description, t.hero?.description].filter(Boolean).join(" ").toLowerCase();
+  return [t.title, t.location, t.description, t.hero?.description]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
 }
 
 function tagsOf(t: Tour): string[] {
@@ -101,14 +108,18 @@ function tagsOf(t: Tour): string[] {
   return tags;
 }
 
-function startBucket(minutes?: number): "morning" | "day" | "evening" | undefined {
+function startBucket(
+  minutes?: number,
+): "morning" | "day" | "evening" | undefined {
   if (minutes == null) return undefined;
   if (minutes <= 11 * 60) return "morning";
   if (minutes <= 17 * 60) return "day";
   return "evening";
 }
 
-function durationBucket(hoursRange?: [number, number]): "short" | "mid" | "day1" | "multi" | undefined {
+function durationBucket(
+  hoursRange?: [number, number],
+): "short" | "mid" | "day1" | "multi" | undefined {
   if (!hoursRange) return undefined;
   const [a, b] = hoursRange;
   const max = Math.max(a, b);
@@ -127,17 +138,40 @@ export default function ExcursionsClient({ allTours }: { allTours: Tour[] }) {
 
   const q = (search.get("q") || "").trim().toLowerCase();
   const city = search.get("city") || "";
-  const priceMin = search.get("price_gte") ? Number(search.get("price_gte")) : undefined;
-  const priceMax = search.get("price_lte") ? Number(search.get("price_lte")) : undefined;
-  const ratingGte = search.get("rating_gte") ? Number(search.get("rating_gte")) : undefined;
-  const start = search.get("start") as "morning" | "day" | "evening" | null | undefined;
-  const dur = search.get("duration") as "short" | "mid" | "day1" | "multi" | null | undefined;
+  const priceMin = search.get("price_gte")
+    ? Number(search.get("price_gte"))
+    : undefined;
+  const priceMax = search.get("price_lte")
+    ? Number(search.get("price_lte"))
+    : undefined;
+  const ratingGte = search.get("rating_gte")
+    ? Number(search.get("rating_gte"))
+    : undefined;
+  const start = search.get("start") as
+    | "morning"
+    | "day"
+    | "evening"
+    | null
+    | undefined;
+  const dur = search.get("duration") as
+    | "short"
+    | "mid"
+    | "day1"
+    | "multi"
+    | null
+    | undefined;
   const langsA = (search.getAll("lang") || []) as string[];
   const langsB = search.get("lang");
-  const lang: string[] = uniq([...(langsA || []), ...(langsB ? [langsB] : [])]).filter(Boolean) as string[];
+  const lang: string[] = uniq([
+    ...(langsA || []),
+    ...(langsB ? [langsB] : []),
+  ]).filter(Boolean) as string[];
   const typesA = (search.getAll("type") || []) as string[];
   const typesB = search.get("type");
-  const type: string[] = uniq([...(typesA || []), ...(typesB ? [typesB] : [])]).filter(Boolean) as string[];
+  const type: string[] = uniq([
+    ...(typesA || []),
+    ...(typesB ? [typesB] : []),
+  ]).filter(Boolean) as string[];
   const tagsFromParams = search.getAll("tags");
   const tagsSingle = search.get("tags");
   const tags: string[] = uniq([
@@ -147,9 +181,12 @@ export default function ExcursionsClient({ allTours }: { allTours: Tour[] }) {
 
   const allCities = useMemo(
     () => uniq(allTours.map((t) => t.city).filter(Boolean) as string[]).sort(),
-    [allTours]
+    [allTours],
   );
-  const allTags = useMemo(() => uniq(allTours.flatMap(tagsOf)).sort(), [allTours]);
+  const allTags = useMemo(
+    () => uniq(allTours.flatMap(tagsOf)).sort(),
+    [allTours],
+  );
 
   const results = useMemo(() => {
     return allTours.filter((t) => {
@@ -158,9 +195,12 @@ export default function ExcursionsClient({ allTours }: { allTours: Tour[] }) {
         if (!text.includes(q)) return false;
       }
       if (city && t.city !== city) return false;
-      if (typeof priceMin === "number" && (t.price ?? Infinity) < priceMin) return false;
-      if (typeof priceMax === "number" && (t.price ?? -Infinity) > priceMax) return false;
-      if (typeof ratingGte === "number" && (t.rating ?? 0) < ratingGte) return false;
+      if (typeof priceMin === "number" && (t.price ?? Infinity) < priceMin)
+        return false;
+      if (typeof priceMax === "number" && (t.price ?? -Infinity) > priceMax)
+        return false;
+      if (typeof ratingGte === "number" && (t.rating ?? 0) < ratingGte)
+        return false;
       if (lang.length) {
         const ls = languagesOf(t);
         if (!lang.some((l) => ls.includes(l))) return false;
@@ -170,11 +210,15 @@ export default function ExcursionsClient({ allTours }: { allTours: Tour[] }) {
         if (!tt || !type.includes(tt)) return false;
       }
       if (start) {
-        const bucket = startBucket(parseFirstTimeToMinutes(t.meetingPoint?.startTime));
+        const bucket = startBucket(
+          parseFirstTimeToMinutes(t.meetingPoint?.startTime),
+        );
         if (bucket !== start) return false;
       }
       if (dur) {
-        const b = durationBucket(parseDurationHoursRange(t.duration ?? t.meetingPoint?.duration));
+        const b = durationBucket(
+          parseDurationHoursRange(t.duration ?? t.meetingPoint?.duration),
+        );
         if (b !== dur) return false;
       }
       if (tags.length) {
@@ -183,7 +227,19 @@ export default function ExcursionsClient({ allTours }: { allTours: Tour[] }) {
       }
       return true;
     });
-  }, [allTours, q, city, priceMin, priceMax, ratingGte, lang, type, start, dur, tags]);
+  }, [
+    allTours,
+    q,
+    city,
+    priceMin,
+    priceMax,
+    ratingGte,
+    lang,
+    type,
+    start,
+    dur,
+    tags,
+  ]);
 
   const activeCount =
     (q ? 1 : 0) +
@@ -274,7 +330,9 @@ export default function ExcursionsClient({ allTours }: { allTours: Tour[] }) {
             {/* Рейтинг + Длительность */}
             <div className="grid grid-cols-2 gap-2">
               <div>
-                <label className="block text-sm font-medium mb-1">Рейтинг от</label>
+                <label className="block text-sm font-medium mb-1">
+                  Рейтинг от
+                </label>
                 <select
                   name="rating_gte"
                   defaultValue={ratingGte ?? ""}
@@ -287,7 +345,9 @@ export default function ExcursionsClient({ allTours }: { allTours: Tour[] }) {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium mb-1">Длительность</label>
+                <label className="block text-sm font-medium mb-1">
+                  Длительность
+                </label>
                 <select
                   name="duration"
                   defaultValue={dur ?? ""}
@@ -305,7 +365,9 @@ export default function ExcursionsClient({ allTours }: { allTours: Tour[] }) {
 
             {/* Время старта */}
             <div>
-              <span className="block text-sm font-medium mb-1">Время старта</span>
+              <span className="block text-sm font-medium mb-1">
+                Время старта
+              </span>
               <div className="flex flex-wrap gap-2">
                 {(
                   [
@@ -320,7 +382,9 @@ export default function ExcursionsClient({ allTours }: { allTours: Tour[] }) {
                       key={o.value}
                       className={
                         "px-3 py-1 rounded-full border text-sm cursor-pointer " +
-                        (checked ? "border-blue-600 text-blue-700 bg-blue-50" : "border-gray-300 text-gray-700")
+                        (checked
+                          ? "border-blue-600 text-blue-700 bg-blue-50"
+                          : "border-gray-300 text-gray-700")
                       }
                     >
                       <input
@@ -336,7 +400,14 @@ export default function ExcursionsClient({ allTours }: { allTours: Tour[] }) {
                   );
                 })}
                 <label className="px-3 py-1 rounded-full border text-sm cursor-pointer border-gray-300 text-gray-700">
-                  <input type="radio" name="start" value="" defaultChecked={!start} className="sr-only" data-autosubmit="change" />
+                  <input
+                    type="radio"
+                    name="start"
+                    value=""
+                    defaultChecked={!start}
+                    className="sr-only"
+                    data-autosubmit="change"
+                  />
                   Любое
                 </label>
               </div>
@@ -354,7 +425,9 @@ export default function ExcursionsClient({ allTours }: { allTours: Tour[] }) {
                         key={l}
                         className={
                           "px-3 py-1 rounded-full border text-sm cursor-pointer " +
-                          (checked ? "border-indigo-600 text-indigo-700 bg-indigo-50" : "border-gray-300 text-gray-700")
+                          (checked
+                            ? "border-indigo-600 text-indigo-700 bg-indigo-50"
+                            : "border-gray-300 text-gray-700")
                         }
                       >
                         <input
@@ -381,7 +454,9 @@ export default function ExcursionsClient({ allTours }: { allTours: Tour[] }) {
                         key={t}
                         className={
                           "px-3 py-1 rounded-full border text-sm cursor-pointer " +
-                          (checked ? "border-amber-600 text-amber-700 bg-amber-50" : "border-gray-300 text-gray-700")
+                          (checked
+                            ? "border-amber-600 text-amber-700 bg-amber-50"
+                            : "border-gray-300 text-gray-700")
                         }
                       >
                         <input
@@ -411,7 +486,9 @@ export default function ExcursionsClient({ allTours }: { allTours: Tour[] }) {
                       key={tag}
                       className={
                         "px-3 py-1 rounded-full border text-sm cursor-pointer " +
-                        (checked ? "border-emerald-600 text-emerald-700 bg-emerald-50" : "border-gray-300 text-gray-700")
+                        (checked
+                          ? "border-emerald-600 text-emerald-700 bg-emerald-50"
+                          : "border-gray-300 text-gray-700")
                       }
                     >
                       <input
@@ -430,7 +507,9 @@ export default function ExcursionsClient({ allTours }: { allTours: Tour[] }) {
             </div>
 
             {/* Helper: кол-во активных */}
-            <div className="text-xs text-gray-500 pt-1">Активных фильтров: {activeCount}</div>
+            <div className="text-xs text-gray-500 pt-1">
+              Активных фильтров: {activeCount}
+            </div>
 
             {/* Автосабмит — без client-компонентов */}
             <script
@@ -469,7 +548,9 @@ export default function ExcursionsClient({ allTours }: { allTours: Tour[] }) {
               }}
             />
             <noscript>
-              <p className="text-xs text-gray-500">Включите JavaScript для автоприменения фильтров.</p>
+              <p className="text-xs text-gray-500">
+                Включите JavaScript для автоприменения фильтров.
+              </p>
             </noscript>
           </form>
         </div>

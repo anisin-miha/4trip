@@ -12,11 +12,35 @@ type Attraction = {
 };
 
 const ALL_ATTRACTIONS: Attraction[] = [
-  { id: "main-temple", name: "Главный храм Вооружённых Сил РФ", baseMinutes: 90, defaultSelected: true },
-  { id: "memory-road", name: "Музейный комплекс «Дорога Памяти»", baseMinutes: 75, defaultSelected: true },
-  { id: "kubinka", name: "Танковый музей (Кубинка)", baseMinutes: 80, defaultSelected: true },
-  { id: "air-defense", name: "Авиация и ПВО", baseMinutes: 60, defaultSelected: true },
-  { id: "open-areas", name: "Открытые площадки / «Поле Победы»", baseMinutes: 45 },
+  {
+    id: "main-temple",
+    name: "Главный храм Вооружённых Сил РФ",
+    baseMinutes: 90,
+    defaultSelected: true,
+  },
+  {
+    id: "memory-road",
+    name: "Музейный комплекс «Дорога Памяти»",
+    baseMinutes: 75,
+    defaultSelected: true,
+  },
+  {
+    id: "kubinka",
+    name: "Танковый музей (Кубинка)",
+    baseMinutes: 80,
+    defaultSelected: true,
+  },
+  {
+    id: "air-defense",
+    name: "Авиация и ПВО",
+    baseMinutes: 60,
+    defaultSelected: true,
+  },
+  {
+    id: "open-areas",
+    name: "Открытые площадки / «Поле Победы»",
+    baseMinutes: 45,
+  },
   { id: "partisan", name: "Комплекс «Партизанская деревня»", baseMinutes: 50 },
 ];
 
@@ -89,7 +113,13 @@ export default function PatriotPlanner() {
     let minutesSinceBreak = 0;
 
     const addBreak = () => {
-      items.push({ id: `break-${items.length}`, name: "Перерыв (перекус/кофе)", start: cursor, end: cursor + 20, kind: "break" });
+      items.push({
+        id: `break-${items.length}`,
+        name: "Перерыв (перекус/кофе)",
+        start: cursor,
+        end: cursor + 20,
+        kind: "break",
+      });
       cursor += 20;
       minutesSinceBreak = 0;
     };
@@ -109,16 +139,19 @@ export default function PatriotPlanner() {
     return items;
   }, [chosen, pace, startTime]);
 
-  const totalMinutes = useMemo(() =>
-    schedule.reduce((acc, s) => acc + (s.end - s.start), 0),
-  [schedule]);
+  const totalMinutes = useMemo(
+    () => schedule.reduce((acc, s) => acc + (s.end - s.start), 0),
+    [schedule],
+  );
 
   const copyText = async () => {
     const lines = [
       `Маршрут на день — Парк «Патриот»`,
       `Старт: ${startTime}, темп: ${pace === "fast" ? "быстрый" : pace === "relaxed" ? "неспешный" : "нормальный"}`,
       "",
-      ...schedule.map((s) => `${minutesToTime(s.start)}–${minutesToTime(s.end)} — ${s.name}`),
+      ...schedule.map(
+        (s) => `${minutesToTime(s.start)}–${minutesToTime(s.end)} — ${s.name}`,
+      ),
       "",
       `Итого: ~${Math.round(totalMinutes / 60)} ч ${totalMinutes % 60} мин`,
     ];
@@ -141,7 +174,8 @@ export default function PatriotPlanner() {
     <div className="rounded-xl border border-gray-200 bg-white p-4 sm:p-5 lg:p-6 shadow">
       <h3 className="text-2xl font-semibold mb-3">Соберите маршрут на день</h3>
       <p className="text-gray-600 mb-4">
-        Отметьте объекты, выберите время старта и темп — мы посчитаем длительность и предложим удобный порядок с перерывами.
+        Отметьте объекты, выберите время старта и темп — мы посчитаем
+        длительность и предложим удобный порядок с перерывами.
       </p>
 
       <div className="grid md:grid-cols-3 gap-4 mb-4">
@@ -184,11 +218,15 @@ export default function PatriotPlanner() {
                   id={a.id}
                   type="checkbox"
                   checked={!!selected[a.id]}
-                  onChange={(e) => setSelected((s) => ({ ...s, [a.id]: e.target.checked }))}
+                  onChange={(e) =>
+                    setSelected((s) => ({ ...s, [a.id]: e.target.checked }))
+                  }
                 />
                 <label htmlFor={a.id} className="cursor-pointer select-none">
                   {a.name}
-                  <span className="text-gray-500 text-sm ml-1">(~{a.baseMinutes} мин)</span>
+                  <span className="text-gray-500 text-sm ml-1">
+                    (~{a.baseMinutes} мин)
+                  </span>
                 </label>
               </li>
             ))}
@@ -201,7 +239,10 @@ export default function PatriotPlanner() {
           ) : (
             <ol className="space-y-2">
               {schedule.map((s) => (
-                <li key={s.id} className={`p-3 rounded border ${s.kind === "break" ? "bg-yellow-50 border-yellow-200" : "bg-gray-50 border-gray-200"}`}>
+                <li
+                  key={s.id}
+                  className={`p-3 rounded border ${s.kind === "break" ? "bg-yellow-50 border-yellow-200" : "bg-gray-50 border-gray-200"}`}
+                >
                   <div className="text-sm text-gray-500">
                     {minutesToTime(s.start)}–{minutesToTime(s.end)}
                   </div>
@@ -218,11 +259,15 @@ export default function PatriotPlanner() {
               Скопировать план
             </button>
             <button
-              onClick={() => setSelected(() => {
-                const init: Record<string, boolean> = {};
-                ALL_ATTRACTIONS.forEach((a) => (init[a.id] = !!a.defaultSelected));
-                return init;
-              })}
+              onClick={() =>
+                setSelected(() => {
+                  const init: Record<string, boolean> = {};
+                  ALL_ATTRACTIONS.forEach(
+                    (a) => (init[a.id] = !!a.defaultSelected),
+                  );
+                  return init;
+                })
+              }
               className="inline-flex items-center justify-center px-3 py-2 rounded-md border text-sm font-semibold hover:bg-gray-50"
             >
               Сбросить

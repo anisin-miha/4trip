@@ -64,12 +64,21 @@ export default function BlogPage() {
               Рассказываем, почему это место стоит посетить хотя бы раз: от
               главного храма до интерактивной военной техники.
             </p>
-            <span className="text-blue-600 hover:underline">Читать далее →</span>
+            <span className="text-blue-600 hover:underline">
+              Читать далее →
+            </span>
           </Link>
         </div>
       </main>
 
-      <SiteFooter project="trip" contacts={{ phone: contactInfo.phone, email: contactInfo.email, social: contactInfo.social }} />
+      <SiteFooter
+        project="trip"
+        contacts={{
+          phone: contactInfo.phone,
+          email: contactInfo.email,
+          social: contactInfo.social,
+        }}
+      />
     </div>
   );
 }

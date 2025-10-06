@@ -47,11 +47,16 @@ export default function ContactsPage() {
       />
 
       <main className="flex-grow container mx-auto px-4 py-16 mt-16">
-        <h1 className="text-4xl font-bold text-center mb-12">Свяжитесь с нами</h1>
+        <h1 className="text-4xl font-bold text-center mb-12">
+          Свяжитесь с нами
+        </h1>
 
         <div className="max-w-2xl mx-auto space-y-8 text-lg text-gray-800">
           <section className="space-y-4">
-            <p>Мы всегда рады ответить на ваши вопросы и помочь с выбором экскурсии.</p>
+            <p>
+              Мы всегда рады ответить на ваши вопросы и помочь с выбором
+              экскурсии.
+            </p>
             <p>
               <strong>Телефон:</strong>{" "}
               <a href={phoneHref} className="text-blue-600 hover:underline">
@@ -61,7 +66,10 @@ export default function ContactsPage() {
             {email && (
               <p>
                 <strong>Email:</strong>{" "}
-                <a href={`mailto:${email}`} className="text-blue-600 hover:underline">
+                <a
+                  href={`mailto:${email}`}
+                  className="text-blue-600 hover:underline"
+                >
                   {email}
                 </a>
               </p>
@@ -99,14 +107,23 @@ export default function ContactsPage() {
           </section>
 
           <section className="space-y-2 text-base text-gray-700">
-            <h2 className="text-2xl font-semibold mb-2">Реквизиты исполнителя</h2>
+            <h2 className="text-2xl font-semibold mb-2">
+              Реквизиты исполнителя
+            </h2>
             <p>ФИО: {performer.fullName}</p>
             <p>ИНН: {performer.inn} (самозанятый, НПД)</p>
           </section>
         </div>
       </main>
 
-      <SiteFooter project="trip" contacts={{ phone: contactInfo.phone, email: contactInfo.email, social: contactInfo.social }} />
+      <SiteFooter
+        project="trip"
+        contacts={{
+          phone: contactInfo.phone,
+          email: contactInfo.email,
+          social: contactInfo.social,
+        }}
+      />
     </div>
   );
 }

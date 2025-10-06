@@ -32,7 +32,16 @@ export const metadata: Metadata = {
 export default function NotFound() {
   return (
     <div className="font-sans bg-white text-gray-900 scroll-smooth min-h-screen flex flex-col">
-      <SiteHeader title="" main project="trip" links={[{ href: "/ru", label: "Главная" }, { href: "/ru/blog", label: "Блог" }, { href: "/ru/contacts", label: "Контакты" }]} />
+      <SiteHeader
+        title=""
+        main
+        project="trip"
+        links={[
+          { href: "/ru", label: "Главная" },
+          { href: "/ru/blog", label: "Блог" },
+          { href: "/ru/contacts", label: "Контакты" },
+        ]}
+      />
 
       <main className="flex-grow flex items-center justify-center px-4">
         <div className="text-center max-w-xl">
@@ -52,7 +61,14 @@ export default function NotFound() {
         </div>
       </main>
 
-      <Footer project="trip" contacts={{ phone: contactInfo.phone, email: contactInfo.email, social: contactInfo.social }} />
+      <Footer
+        project="trip"
+        contacts={{
+          phone: contactInfo.phone,
+          email: contactInfo.email,
+          social: contactInfo.social,
+        }}
+      />
     </div>
   );
 }

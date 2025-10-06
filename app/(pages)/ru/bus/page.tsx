@@ -229,7 +229,14 @@ export default function Page() {
         </section>
       </main>
 
-      <SiteFooter project="trip" contacts={{ phone: contactInfo.phone, email: contactInfo.email, social: contactInfo.social }} />
+      <SiteFooter
+        project="trip"
+        contacts={{
+          phone: contactInfo.phone,
+          email: contactInfo.email,
+          social: contactInfo.social,
+        }}
+      />
 
       {/* JSON-LD */}
       <Script

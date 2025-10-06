@@ -53,7 +53,8 @@ export function TelegramComments({
       <div ref={ref} />
       {showFallback && (
         <div className="mt-4 text-sm text-gray-600">
-          Не получается загрузить виджет комментариев. Откройте обсуждение в Telegram: {" "}
+          Не получается загрузить виджет комментариев. Откройте обсуждение в
+          Telegram:{" "}
           <a
             href={`https://t.me/${discussion}`}
             target="_blank"

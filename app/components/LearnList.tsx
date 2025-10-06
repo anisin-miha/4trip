@@ -25,7 +25,10 @@ function normalizeItem(item: LearnListItem) {
   };
 }
 
-export default function LearnList({ title = "Вы узнаете:", items }: LearnListProps) {
+export default function LearnList({
+  title = "Вы узнаете:",
+  items,
+}: LearnListProps) {
   const { ref, inView } = useInView<HTMLDivElement>();
   const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
   useScrollDrive(cardRefs, true);
@@ -41,7 +44,9 @@ export default function LearnList({ title = "Вы узнаете:", items }: Lea
 
   return (
     <div ref={ref} className="rounded-2xl">
-      <h3 className="text-3xl md:text-4xl font-semibold mb-10 text-center">{title}</h3>
+      <h3 className="text-3xl md:text-4xl font-semibold mb-10 text-center">
+        {title}
+      </h3>
 
       <div className="grid sm:grid-cols-2 gap-6 md:gap-8">
         {enriched.map(({ heading, body, delay }, i) => (
@@ -55,7 +60,11 @@ export default function LearnList({ title = "Вы узнаете:", items }: Lea
             ].join(" ")}
           >
             <p className="text-gray-900 leading-snug text-lg md:text-xl">
-              {heading ? <span className="block font-semibold text-base md:text-lg text-blue-700 mb-1">{heading}</span> : null}
+              {heading ? (
+                <span className="block font-semibold text-base md:text-lg text-blue-700 mb-1">
+                  {heading}
+                </span>
+              ) : null}
               {(body || "").replace(/[.;]+\s*$/u, "")}
             </p>
           </div>
@@ -67,7 +76,10 @@ export default function LearnList({ title = "Вы узнаете:", items }: Lea
 
 // Scroll-coupled animation: cards translate from left/right and fade in based on viewport position
 // Uses rAF-throttled scroll/resize listeners for smoothness
-export function useScrollDrive(cardsRef: React.MutableRefObject<(HTMLDivElement | null)[]>, enabled = true) {
+export function useScrollDrive(
+  cardsRef: React.MutableRefObject<(HTMLDivElement | null)[]>,
+  enabled = true,
+) {
   useEffect(() => {
     if (!enabled) return;
     let raf = 0;

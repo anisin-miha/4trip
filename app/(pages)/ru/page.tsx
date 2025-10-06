@@ -118,12 +118,13 @@ export default function Home() {
               city={kolomnaTour.city}
               meetingPoint={kolomnaTour.meetingPoint.address}
             />
-
           </div>
         </section>
 
         <section className="container mx-auto px-4 mb-16 mt-16">
-          <h2 className="text-3xl font-bold text-center mb-10">Почему выбирают 4-trip.ru</h2>
+          <h2 className="text-3xl font-bold text-center mb-10">
+            Почему выбирают 4-trip.ru
+          </h2>
           <div className="max-w-3xl mx-auto text-gray-700 space-y-6 text-lg leading-relaxed">
             <p>
               Мы заботимся о каждой детали, чтобы ваше путешествие было
@@ -150,7 +151,14 @@ export default function Home() {
         </section>
       </main>
 
-      <SiteFooter project="trip" contacts={{ phone: contactInfo.phone, email: contactInfo.email, social: contactInfo.social }} />
+      <SiteFooter
+        project="trip"
+        contacts={{
+          phone: contactInfo.phone,
+          email: contactInfo.email,
+          social: contactInfo.social,
+        }}
+      />
     </div>
   );
 }

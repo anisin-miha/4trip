@@ -8,4 +8,3 @@ type FooterProps = React.ComponentProps<typeof Footer>;
 export default function SiteFooter(props: Omit<FooterProps, "LinkComponent">) {
   return <Footer {...props} LinkComponent={IntlLink} />;
 }
-

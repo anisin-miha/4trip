@@ -5,7 +5,9 @@ import type React from "react";
 
 type HeaderProps = React.ComponentProps<typeof Header>;
 
-export default function SiteHeader(props: Omit<HeaderProps, "Logo" | "LinkComponent">) {
+export default function SiteHeader(
+  props: Omit<HeaderProps, "Logo" | "LinkComponent">,
+) {
   const normalizedLinks = props.links?.map((l) => {
     // Удаляем префикс /ru для intl Link — он сам добавит локаль
     if (l.href?.startsWith("/ru")) {

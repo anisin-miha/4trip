@@ -64,11 +64,13 @@ export default function RefundsPage() {
 
           <div className="space-y-16 text-lg text-gray-800 leading-relaxed">
             <section>
-              <h2 className="text-2xl font-semibold mb-6">1. Общие положения</h2>
+              <h2 className="text-2xl font-semibold mb-6">
+                1. Общие положения
+              </h2>
               <div className="space-y-4">
                 <p>
-                  Настоящие правила регулируют порядок возврата денежных средств и отмены платежей за услуги,
-                  приобретаемые на сайте{" "}
+                  Настоящие правила регулируют порядок возврата денежных средств
+                  и отмены платежей за услуги, приобретаемые на сайте{" "}
                   <a
                     href={SETTINGS.siteUrl}
                     target="_blank"
@@ -77,63 +79,93 @@ export default function RefundsPage() {
                   >
                     {SETTINGS.siteUrl}
                   </a>
-                  . Исполнитель — {PERFORMER.fullName}, ИНН {PERFORMER.inn} (самозанятый, НПД).
+                  . Исполнитель — {PERFORMER.fullName}, ИНН {PERFORMER.inn}{" "}
+                  (самозанятый, НПД).
                 </p>
               </div>
             </section>
 
             <section id="cancel">
-              <h2 className="text-2xl font-semibold mb-6">2. Отмена заказа до начала оказания услуг</h2>
+              <h2 className="text-2xl font-semibold mb-6">
+                2. Отмена заказа до начала оказания услуг
+              </h2>
               <div className="space-y-4">
                 <p>
-                  2.1. Бесплатная отмена возможна не позднее чем за {SETTINGS.freeCancelHours} часов до начала оказания услуг —
-                  возврат 100% стоимости (за вычетом подтверждённых фактических расходов Исполнителя, если такие имели место).
+                  2.1. Бесплатная отмена возможна не позднее чем за{" "}
+                  {SETTINGS.freeCancelHours} часов до начала оказания услуг —
+                  возврат 100% стоимости (за вычетом подтверждённых фактических
+                  расходов Исполнителя, если такие имели место).
                 </p>
                 <p>
-                  2.2. Для отмены направьте письмо на {PERFORMER.supportEmail} или свяжитесь по телефону {PERFORMER.supportPhone}.
+                  2.2. Для отмены направьте письмо на {PERFORMER.supportEmail}{" "}
+                  или свяжитесь по телефону {PERFORMER.supportPhone}.
                 </p>
               </div>
             </section>
 
             <section id="late-cancel">
-              <h2 className="text-2xl font-semibold mb-6">3. Поздняя отмена и частичное оказание</h2>
+              <h2 className="text-2xl font-semibold mb-6">
+                3. Поздняя отмена и частичное оказание
+              </h2>
               <div className="space-y-4">
                 <p>
-                  3.1. При отмене позднее установленного срока и/или после начала оказания услуг возврат производится
-                  пропорционально неоказанной части. Исполнитель вправе удержать подтверждённые расходы.
+                  3.1. При отмене позднее установленного срока и/или после
+                  начала оказания услуг возврат производится пропорционально
+                  неоказанной части. Исполнитель вправе удержать подтверждённые
+                  расходы.
                 </p>
                 <p>
-                  3.2. Если условия конкретного продукта на Сайте предусматривают удержание до {SETTINGS.lateCancelRetentionPercent} стоимости при поздней отмене —
-                  применяется указанное удержание.
+                  3.2. Если условия конкретного продукта на Сайте
+                  предусматривают удержание до{" "}
+                  {SETTINGS.lateCancelRetentionPercent} стоимости при поздней
+                  отмене — применяется указанное удержание.
                 </p>
               </div>
             </section>
 
             <section id="mistake">
-              <h2 className="text-2xl font-semibold mb-6">4. Ошибочный платёж</h2>
+              <h2 className="text-2xl font-semibold mb-6">
+                4. Ошибочный платёж
+              </h2>
               <div className="space-y-4">
                 <p>
-                  При ошибочной оплате незамедлительно свяжитесь с нами по адресу {PERFORMER.supportEmail}. Если заказ не принят в работу,
-                  платёж аннулируется и средства возвращаются в полном объёме. Если заказ принят/оказан частично — применяется раздел 3.
+                  При ошибочной оплате незамедлительно свяжитесь с нами по
+                  адресу {PERFORMER.supportEmail}. Если заказ не принят в
+                  работу, платёж аннулируется и средства возвращаются в полном
+                  объёме. Если заказ принят/оказан частично — применяется раздел
+                  3.
                 </p>
               </div>
             </section>
 
             <section id="how-to">
-              <h2 className="text-2xl font-semibold mb-6">5. Порядок оформления возврата</h2>
+              <h2 className="text-2xl font-semibold mb-6">
+                5. Порядок оформления возврата
+              </h2>
               <div className="space-y-4">
-                <p>5.1. Направьте заявление на {PERFORMER.supportEmail} с данными:</p>
+                <p>
+                  5.1. Направьте заявление на {PERFORMER.supportEmail} с
+                  данными:
+                </p>
                 <ul className="list-disc list-inside space-y-2 pl-4">
                   <li>ФИО, контактный телефон и e-mail;</li>
                   <li>дата и сумма платежа, способ оплаты;</li>
-                  <li>основание для возврата (описание ситуации, материалы при наличии);</li>
+                  <li>
+                    основание для возврата (описание ситуации, материалы при
+                    наличии);
+                  </li>
                   <li>удобный способ связи.</li>
                 </ul>
                 <p>
-                  5.2. Возврат осуществляется тем же способом, которым производилась оплата, в срок до{" "}
-                  {SETTINGS.refundProcessingDays} рабочих дней после одобрения возврата. Фактический срок зачисления зависит от банка.
+                  5.2. Возврат осуществляется тем же способом, которым
+                  производилась оплата, в срок до{" "}
+                  {SETTINGS.refundProcessingDays} рабочих дней после одобрения
+                  возврата. Фактический срок зачисления зависит от банка.
                 </p>
-                <p>5.3. Комиссии платёжных систем и подтверждённые фактические расходы Исполнителя могут быть удержаны.</p>
+                <p>
+                  5.3. Комиссии платёжных систем и подтверждённые фактические
+                  расходы Исполнителя могут быть удержаны.
+                </p>
               </div>
             </section>
 
@@ -141,17 +173,22 @@ export default function RefundsPage() {
               <h2 className="text-2xl font-semibold mb-6">6. Чек НПД</h2>
               <div className="space-y-4">
                 <p>
-                  Исполнитель применяет режим НПД (самозанятый) и не использует ККТ. Чек формируется в «Мой налог»/через партнёра
-                  и направляется на телефон и/или e-mail, указанные при оплате.
+                  Исполнитель применяет режим НПД (самозанятый) и не использует
+                  ККТ. Чек формируется в «Мой налог»/через партнёра и
+                  направляется на телефон и/или e-mail, указанные при оплате.
                 </p>
               </div>
             </section>
 
             <section id="pdn">
-              <h2 className="text-2xl font-semibold mb-6">7. Персональные данные</h2>
+              <h2 className="text-2xl font-semibold mb-6">
+                7. Персональные данные
+              </h2>
               <div className="space-y-4">
                 <p>
-                  Обработка персональных данных осуществляется в целях исполнения договора и в соответствии с Политикой конфиденциальности:
+                  Обработка персональных данных осуществляется в целях
+                  исполнения договора и в соответствии с Политикой
+                  конфиденциальности:
                   <a
                     href={`${SETTINGS.siteUrl}${SETTINGS.privacyPath}`}
                     target="_blank"
@@ -167,7 +204,9 @@ export default function RefundsPage() {
             </section>
 
             <section id="contacts">
-              <h2 className="text-2xl font-semibold mb-6">8. Контакты для обращений по возвратам</h2>
+              <h2 className="text-2xl font-semibold mb-6">
+                8. Контакты для обращений по возвратам
+              </h2>
               <div className="space-y-2">
                 <p>Исполнитель: {PERFORMER.fullName}</p>
                 <p>ИНН: {PERFORMER.inn} (самозанятый, НПД)</p>
@@ -179,7 +218,14 @@ export default function RefundsPage() {
         </div>
       </main>
 
-      <SiteFooter project="trip" contacts={{ phone: contactInfo.phone, email: contactInfo.email, social: contactInfo.social }} />
+      <SiteFooter
+        project="trip"
+        contacts={{
+          phone: contactInfo.phone,
+          email: contactInfo.email,
+          social: contactInfo.social,
+        }}
+      />
     </div>
   );
 }

@@ -110,7 +110,10 @@ export const kolomnaTour = {
   ],
   meetingPoint: kolomnaMeetingPoint,
   gallery: [
-    { src: "/images/tours/kolomna/gallery1.jpg", alt: "Соборная площадь Коломны" },
+    {
+      src: "/images/tours/kolomna/gallery1.jpg",
+      alt: "Соборная площадь Коломны",
+    },
     { src: "/images/tours/kolомna/gallery2.jpg", alt: "Дегустация пастилы" },
     { src: "/images/tours/kolомna/gallery3.jpg", alt: "Калач «на руку»" },
     { src: "/images/tours/kolомna/gallery4.jpg", alt: "Вид на Оку" },

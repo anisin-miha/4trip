@@ -4,12 +4,16 @@ import { useEffect } from "react";
 
 export const dynamic = "error"; // оставляем статикой
 
-const SITE = (process.env.NEXT_PUBLIC_SITE || process.env.SITE || "trip").toLowerCase();
+const SITE = (
+  process.env.NEXT_PUBLIC_SITE ||
+  process.env.SITE ||
+  "trip"
+).toLowerCase();
 
 export default function Index() {
   // В режиме 4-bus корень "/" – это главная автобусов, без /ru
   if (SITE === "bus") {
-    // return <BusHome />; 
+    // return <BusHome />;
   }
 
   // 4-trip: редиректим на локализованный "/ru"

@@ -187,3 +187,11 @@ html {
   -moz-column-break-inside: avoid;
   column-break-inside: avoid;
 }
+
+/* Reduce hero title size on very small screens (iPhone 12 mini ~375px width) */
+@media (max-width: 380px) {
+  .hero-title {
+    font-size: 1.5rem; /* ~24px */
+    line-height: 1.05;
+  }
+}

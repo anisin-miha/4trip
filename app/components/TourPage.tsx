@@ -75,7 +75,10 @@ export default function TourPage({ data }: { data: TourData }) {
         </section>
 
         {/* Attractions Section */}
-        <section id="attractions" className="py-16 pb-0 bg-gray-100 scroll-mt-16">
+        <section
+          id="attractions"
+          className="py-16 pb-0 bg-gray-100 scroll-mt-16"
+        >
           <div className="container pb-16 mx-auto px-4">
             <h2 className="text-3xl font-bold text-center mb-12">
               Вы посетите:
@@ -106,7 +109,6 @@ export default function TourPage({ data }: { data: TourData }) {
                 </div>
               ))}
             </div>
-
           </div>
 
           {/* Learn More Section (animated cards, full-bleed background) */}
@@ -121,7 +123,9 @@ export default function TourPage({ data }: { data: TourData }) {
         <section id="details" className="pt-16 pb-24 bg-white scroll-mt-16">
           <div className="container mx-auto px-4">
             <div className="rounded-lg shadow-md p-8">
-              <h3 className="text-2xl font-semibold mb-6 text-center">Важные детали:</h3>
+              <h3 className="text-2xl font-semibold mb-6 text-center">
+                Важные детали:
+              </h3>
               <ul className="list-disc pl-6 space-y-3">
                 {data.details.map((detail, idx) => (
                   <li key={idx}>{detail}</li>
@@ -195,7 +199,14 @@ export default function TourPage({ data }: { data: TourData }) {
           <RelatedTours currentSlug={data.slug} />
         </section>
 
-        <Footer project="trip" contacts={{ phone: contactInfo.phone, email: contactInfo.email, social: contactInfo.social }} />
+        <Footer
+          project="trip"
+          contacts={{
+            phone: contactInfo.phone,
+            email: contactInfo.email,
+            social: contactInfo.social,
+          }}
+        />
       </main>
     </div>
   );

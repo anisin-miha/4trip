@@ -102,7 +102,10 @@ export default async function RootLayout({
         />
         <meta name="apple-mobile-web-app-title" content="4trip" />
 
-        <meta name="selfwork.ru" content="rcXWqSIFnuEyguSL8GZKfYnebM4JXu3iVsE4uQ8IBz7K2Gj4cD" />
+        <meta
+          name="selfwork.ru"
+          content="rcXWqSIFnuEyguSL8GZKfYnebM4JXu3iVsE4uQ8IBz7K2Gj4cD"
+        />
 
         <script
           type="application/ld+json"
@@ -151,7 +154,6 @@ export default async function RootLayout({
         <script src="//code.jivo.ru/widget/3wd3G0IExH" async></script>
 
         <MailRuCounter counterId="3691918" />
-
       </body>
     </html>
   );
