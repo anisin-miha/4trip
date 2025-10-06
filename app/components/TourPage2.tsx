@@ -612,14 +612,15 @@ export default function TourPageSEO({ data }: { data: TourData }) {
                 {/* Программа и маршрут — перенесено в основную колонку */}
                 <div id="program" className="mt-10 scroll-mt-24">
                   <h3 className="text-2xl font-semibold mb-3">Программа и маршрут</h3>
+                  {/* Fixed list of points (vertical 3-column layout) */}
                   {(() => {
-                    const pointsList: string[] = data.mapPoints?.length
-                      ? data.mapPoints.map((m) => m.title)
-                      : data.routeVariants?.[0]?.points || [];
-                    if (!pointsList.length) return null;
+                    const finalPoints: string[] = data.routeVariants?.[0]?.points?.length
+                      ? data.routeVariants[0].points
+                      : (data.mapPoints || []).map((m) => m.title || "");
+                    if (!finalPoints.length) return null;
                     return (
                       <ol className="columns-1 sm:columns-2 md:columns-3 gap-6 list-none program-vertical-list">
-                        {pointsList.map((p, idx) => (
+                        {finalPoints.map((p, idx) => (
                           <li key={idx} className="break-inside-avoid mb-3 flex gap-3 items-start">
                             <span className="mt-1 inline-flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-blue-600 text-white text-xs font-bold">
                               {idx + 1}
