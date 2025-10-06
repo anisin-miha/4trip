@@ -389,14 +389,18 @@ export default function TourPageSEO({ data }: { data: TourData }) {
             <div className="lg:grid lg:grid-cols-[minmax(0,2fr)_minmax(280px,1fr)] lg:gap-12">
               <article className="max-w-3xl mx-auto lg:mx-0 lg:max-w-none">
                 <h2 className="text-3xl font-bold mb-6">{data.longread?.title || "О туре подробно"}</h2>
-                {data.longread?.tldr?.length ? (
+                {(expectations || data.longread?.tldr?.length) ? (
                   <div className="mb-8 rounded-xl bg-blue-50 p-5 text-blue-900 border border-blue-100">
-                    <div className="font-semibold mb-2">В двух словах</div>
-                    <ul className="list-disc pl-5 space-y-1">
-                      {data.longread.tldr.map((i, idx) => (
-                        <li key={idx}>{i}</li>
-                      ))}
-                    </ul>
+                    <div className="font-semibold mb-2">Что вас ждёт</div>
+                    {expectations ? (
+                      <p className="text-[15px] leading-6 text-blue-900">{expectations}</p>
+                    ) : (
+                      <ul className="list-disc pl-5 space-y-1">
+                        {data.longread!.tldr!.map((i, idx) => (
+                          <li key={idx}>{i}</li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
                 ) : null}
                 <div className="text-[17px] leading-7 text-gray-800 space-y-4">
@@ -427,12 +431,7 @@ export default function TourPageSEO({ data }: { data: TourData }) {
                 </div>
 
                 {/* Перенесено из сайдбара: ожидания, включено/не включено */}
-                {expectations && (
-                  <div className="mt-10">
-                    <p className="text-lg font-semibold text-gray-900 mb-2">Что вас ждёт</p>
-                    <p className="text-gray-700 leading-relaxed">{expectations}</p>
-                  </div>
-                )}
+                {/* Expectations moved to the top info box */}
 
                 {/* Программа и маршрут — перенесено в основную колонку */}
                 {data.routeVariants?.[0] && (
