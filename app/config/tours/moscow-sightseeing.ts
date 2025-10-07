@@ -13,7 +13,7 @@ const moscowSightseeingMeetingPoint = createMeetingPoint({
   mapSrc:
     "https://www.google.com/maps?q=Триумфальная+площадь,+Москва&output=embed",
   type: "Групповая сборная",
-  startTime: "10:00 или 15:00",
+  startTime: "14:00 или 16:00",
   duration: moscowDuration,
   address:
     "м. «Маяковская», Триумфальная площадь — боковой карман Садового кольца (короткая посадка)",
@@ -23,8 +23,8 @@ const moscowSightseeingMeetingPoint = createMeetingPoint({
   language: "Русский",
   price: moscowPriceText,
   note: "Посадка/высадка — короткая, без стоянки. Точное место и борт автобуса приходят за 1–2 часа до начала.",
-  lat: 55.7706,
-  lng: 37.5961,
+  lat: 55.769661,
+  lng: 37.595752,
 });
 
 export const moscowSightseeingMetadata: Metadata = {
