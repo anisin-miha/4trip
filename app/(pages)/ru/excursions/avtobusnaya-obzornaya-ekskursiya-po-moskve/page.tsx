@@ -1,8 +1,8 @@
 import { moscowSightseeingTourWithMeta } from "@/app/config/tours/moscow-sightseeing";
-import TourPage2 from "@/app/components/TourPage2";
+import TourPage from "@/app/components/TourPage";
 
 export const { metadata, ...data } = moscowSightseeingTourWithMeta;
 
 export default function MoscowSightseeingTourPage() {
-  return <TourPage2 data={data} />;
+  return <TourPage data={data} />;
 }

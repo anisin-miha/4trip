@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import SiteHeader from "@/app/components/SiteHeader";
 import SiteFooter from "@/app/components/SiteFooter";
 import contactInfo from "@/app/config/contactInfo";
-import { tours as baseTours, moscowSightseeingCard } from "@/app/config/tours";
+import { tours as baseTours, moscowSightseeingCard, type Tour as BaseTour } from "@/app/config/tours";
 import ExcursionsClient from "./ExcursionsClient";
 
 type MeetingPoint = {
@@ -20,21 +20,7 @@ type MeetingPoint = {
   info?: Array<{ label: string; value: string }>;
 };
 
-type Tour = {
-  slug?: string;
-  href?: string;
-  title: string;
-  location?: string;
-  city?: string;
-  price?: number;
-  duration?: string;
-  languages?: string[];
-  hero: { image: string; description: string };
-  image: string;
-  description?: string;
-  rating?: number;
-  meetingPoint?: MeetingPoint;
-};
+type Tour = BaseTour;
 
 export const metadata: Metadata = {
   title: "Экскурсии по Подмосковью — групповые туры от 4-trip.ru",
@@ -49,7 +35,12 @@ export const metadata: Metadata = {
 };
 
 function getAllTours(): Tour[] {
-  const arr: Tour[] = [...baseTours];
+  const arr: Tour[] = baseTours.map((t) => ({
+    ...t,
+    image: t.hero?.image || "",
+    href: `/ru/excursions/${t.slug}`,
+    meetingPoint: t.meetingPoint as MeetingPoint | undefined,
+  } as Tour));
   if (moscowSightseeingCard) arr.push(moscowSightseeingCard as unknown as Tour);
   return arr;
 }

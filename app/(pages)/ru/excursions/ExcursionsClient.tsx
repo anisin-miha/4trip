@@ -2,7 +2,8 @@
 
 import { useMemo } from "react";
 import TourCard from "@/app/components/TourCard";
-import type { Rating } from "@/app/components/TourPage2";
+import type { Rating } from "@/app/components/TourPage";
+import type { Tour as BaseTour } from "@/app/config/tours";
 import { useSearchParams } from "next/navigation";
 
 type MeetingPoint = {
@@ -19,21 +20,8 @@ type MeetingPoint = {
   info?: Array<{ label: string; value: string }>;
 };
 
-type Tour = {
-  slug?: string;
-  href?: string;
-  title: string;
-  location?: string;
-  city?: string;
-  price?: number;
-  duration?: string;
-  languages?: string[];
-  hero: { image: string; description: string };
-  image: string;
-  description?: string;
-  rating?: number;
-  meetingPoint?: MeetingPoint;
-};
+// Use the shared base Tour type from config and allow optional UI fields
+type Tour = BaseTour & { image?: string; href?: string };
 
 function parseFirstTimeToMinutes(startTime?: string): number | undefined {
   if (!startTime) return undefined;
@@ -63,7 +51,7 @@ function parseDurationHoursRange(
 }
 
 function getImage(t: Tour): string {
-  return t.hero.image;
+  return t.hero?.image || t.image || "";
 }
 
 function languagesOf(t: Tour): string[] {
@@ -93,7 +81,7 @@ const TAG_DICTIONARY: Record<string, string[]> = {
 };
 
 function extractText(t: Tour): string {
-  return [t.title, t.location, t.description, t.hero?.description]
+  return [t.title, t.location, (t as any).description, t.hero?.description]
     .filter(Boolean)
     .join(" ")
     .toLowerCase();
@@ -199,7 +187,7 @@ export default function ExcursionsClient({ allTours }: { allTours: Tour[] }) {
         return false;
       if (typeof priceMax === "number" && (t.price ?? -Infinity) > priceMax)
         return false;
-      if (typeof ratingGte === "number" && (t.rating ?? 0) < ratingGte)
+      if (typeof ratingGte === "number" && ((t as any).rating ?? 0) < ratingGte)
         return false;
       if (lang.length) {
         const ls = languagesOf(t);
@@ -572,8 +560,8 @@ export default function ExcursionsClient({ allTours }: { allTours: Tour[] }) {
                 languages={languagesOf(t)}
                 city={t.city}
                 meetingPoint={t.meetingPoint?.address}
-                rating={t.rating as Rating | undefined}
-                description={t.description ?? ""}
+                rating={(t as any).rating as Rating | undefined}
+                description={(t as any).description ?? ""}
               />
             );
           })}
