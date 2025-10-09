@@ -33,7 +33,7 @@ const sergievPosadMeetingPoint = createMeetingPoint({
   mapSrc:
     "https://yandex.ru/map-widget/v1/?ll=38.126953,56.315941&z=14&pt=38.126953,56.315941,pm2rdm",
   type: "Групповая сборная",
-  startTime: "09:00",
+  timeSlots: ["09:00"],
   duration: "около 8 ч.",
   address: "метро Комсомольская, выход к Ленинградскому вокзалу",
   groupSize: "До 30 человек",

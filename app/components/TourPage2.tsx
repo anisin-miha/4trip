@@ -257,7 +257,8 @@ export type RouteVariant = {
 export type MeetingPoint = {
   mapSrc: string; // embeddable map src
   address: string;
-  startTime?: string; // e.g. "10:00"
+  // New: list of available time slots for this meeting point (e.g. ["14:00", "16:00"])
+  timeSlots?: string[];
   endAddress?: string; // where tour ends
   note?: string;
   type?: string;
@@ -872,10 +873,10 @@ export default function TourPageSEO({ data }: { data: TourData }) {
                     <span className="font-semibold">Адрес:</span>{" "}
                     {data.meetingPoint.address}
                   </li>
-                  {data.meetingPoint.startTime && (
+                  {data.meetingPoint.timeSlots && data.meetingPoint.timeSlots.length > 0 && (
                     <li>
                       <span className="font-semibold">Время отправления:</span>{" "}
-                      {data.meetingPoint.startTime}
+                      {data.meetingPoint.timeSlots.join(", ")}
                     </li>
                   )}
                   {data.meetingPoint.endAddress && (
@@ -905,7 +906,7 @@ export default function TourPageSEO({ data }: { data: TourData }) {
         <section id="booking" className="py-16 bg-white scroll-mt-24">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto">
-              <BookingForm price={data.price} tourName={data.title} />
+              <BookingForm price={data.price} tourName={data.title} timeSlots={data.meetingPoint?.timeSlots} />
             </div>
           </div>
         </section>

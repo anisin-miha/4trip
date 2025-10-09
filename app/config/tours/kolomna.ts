@@ -28,7 +28,7 @@ const kolomnaMeetingPoint = createMeetingPoint({
   mapSrc:
     "https://yandex.ru/map-widget/v1/?ll=37.8636,55.6740&z=16&pt=37.8636,55.6740,pm2rdm",
   type: "Групповая сборная",
-  startTime: "08:00",
+  timeSlots: ["08:00"],
   duration: "около 12–13 ч.",
   address: "метро Котельники, автобусная парковка (Новорязанское направление)",
   endAddress: "метро Котельники",

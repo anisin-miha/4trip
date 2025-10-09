@@ -41,6 +41,7 @@ export const availableDates = getWeekendsUntilEndOfYear(new Date(2025, 4, 1));
 interface BookingFormProps {
   price: number;
   tourName: string;
+  timeSlots?: string[];
 }
 
 type ProgramType = "standard" | "individual";
@@ -65,63 +66,67 @@ const TRAFFIC_OPTIONS: { value: TrafficSource; label: string }[] = [
 ];
 
 // ---- СХЕМЫ ВАЛИДАЦИИ ----
-const standardSchema = z.object({
-  name: z
-    .string()
-    .optional()
-    .refine((val) => !val || val.length >= 2, {
-      message: "Имя должно быть не короче 2 символов",
+function getStandardSchema(requireSlot: boolean) {
+  return z.object({
+    name: z
+      .string()
+      .optional()
+      .refine((val) => !val || val.length >= 2, {
+        message: "Имя должно быть не короче 2 символов",
+      }),
+    phone: z
+      .string()
+      .nonempty("Введите номер телефона")
+      .refine((val) => val.replace(/\D/g, "").length === 11, {
+        message: "Введите корректный номер телефона",
+      }),
+    email: z
+      .string()
+      .optional()
+      .refine((val) => !val || /\S+@\S+\.\S+/.test(val), {
+        message: "Введите корректный email",
+      }),
+    date: z
+      .string()
+      .nonempty("Выберите дату")
+      .refine((val) => {
+        if (!val) return false;
+        const d = new Date(val);
+        if (isNaN(d.getTime())) return false;
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const picked = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+        return picked > today; // запрещаем сегодня и прошлые даты
+      }, "Нельзя бронировать на сегодня и прошедшие даты"),
+    // Slot is required when timeSlots are provided by parent
+    slot: requireSlot ? z.string().nonempty("Выберите время") : z.string().optional(),
+    people: z.string().refine(
+      (val) => {
+        const num = parseInt(val, 10);
+        return !isNaN(num) && num >= 1;
+      },
+      { message: "Минимум 1 человек" },
+    ),
+    consent: z.literal(true, {
+      errorMap: () => ({ message: "Необходимо согласие на обработку данных" }),
     }),
-  phone: z
-    .string()
-    .nonempty("Введите номер телефона")
-    .refine((val) => val.replace(/\D/g, "").length === 11, {
-      message: "Введите корректный номер телефона",
-    }),
-  email: z
-    .string()
-    .optional()
-    .refine((val) => !val || /\S+@\S+\.\S+/.test(val), {
-      message: "Введите корректный email",
-    }),
-  date: z
-    .string()
-    .nonempty("Выберите дату")
-    .refine((val) => {
-      if (!val) return false;
-      const d = new Date(val);
-      if (isNaN(d.getTime())) return false;
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      const picked = new Date(d.getFullYear(), d.getMonth(), d.getDate());
-      return picked > today; // запрещаем сегодня и прошлые даты
-    }, "Нельзя бронировать на сегодня и прошедшие даты"),
-  people: z.string().refine(
-    (val) => {
-      const num = parseInt(val, 10);
-      return !isNaN(num) && num >= 1;
-    },
-    { message: "Минимум 1 человек" },
-  ),
-  consent: z.literal(true, {
-    errorMap: () => ({ message: "Необходимо согласие на обработку данных" }),
-  }),
-  trafficSource: z
-    .enum([
-      "search",
-      "ads",
-      "social",
-      "referral",
-      "blog",
-      "other",
-      "unknown",
-    ] as const)
-    .optional(),
-  trafficDetails: z.string().optional(),
-  utmSource: z.string().optional(),
-  utmMedium: z.string().optional(),
-  utmCampaign: z.string().optional(),
-});
+    trafficSource: z
+      .enum([
+        "search",
+        "ads",
+        "social",
+        "referral",
+        "blog",
+        "other",
+        "unknown",
+      ] as const)
+      .optional(),
+    trafficDetails: z.string().optional(),
+    utmSource: z.string().optional(),
+    utmMedium: z.string().optional(),
+    utmCampaign: z.string().optional(),
+  })
+}
 
 z.setErrorMap((issue, ctx) => {
   if (issue.code === "invalid_type" && issue.received === "undefined") {
@@ -274,44 +279,51 @@ const BookingCalendar: React.FC<{
 };
 
 // ---- BookingForm ----
-export default function BookingForm({ price, tourName }: BookingFormProps) {
+export default function BookingForm({ price, tourName, timeSlots }: BookingFormProps) {
+  // If the parent passes timeSlots, we'll allow selecting one in the form
+  // The input name will be `slot` and it's optional unless provided
+  // We register it with react-hook-form below when rendering slots
   const [programType, setProgramType] = useState<ProgramType>("standard");
   const [sent, setSent] = useState(false);
+  const [selectedSlotState, setSelectedSlotState] = useState<string | undefined>(undefined);
 
   const {
     register,
     handleSubmit,
     setValue,
+    setError,
     watch,
     reset,
     control,
     formState: { errors, isSubmitting },
-  } = useForm({
+  } = useForm<any>({
     resolver: zodResolver(
-      programType === "standard" ? standardSchema : groupSchema,
+      // require slot only when there are multiple choices to pick from
+      programType === "standard" ? getStandardSchema(Boolean(timeSlots && timeSlots.length > 1)) : groupSchema,
     ),
     defaultValues:
       programType === "standard"
         ? {
-            people: "1",
-            consent: false,
-            trafficSource: undefined,
-            trafficDetails: "",
-            utmSource: "",
-            utmMedium: "",
-            utmCampaign: "",
-          }
+          people: "1",
+          consent: false,
+          trafficSource: undefined,
+          trafficDetails: "",
+          utmSource: "",
+          utmMedium: "",
+          utmCampaign: "",
+        }
         : {
-            consent: false,
-            trafficSource: undefined,
-            trafficDetails: "",
-            utmSource: "",
-            utmMedium: "",
-            utmCampaign: "",
-          },
+          consent: false,
+          trafficSource: undefined,
+          trafficDetails: "",
+          utmSource: "",
+          utmMedium: "",
+          utmCampaign: "",
+        },
   });
 
   const date = watch("date");
+  const slot = watch("slot");
   const people = watch("people") || 1;
   const totalPrice = price * people;
   const selectedTrafficSource = watch("trafficSource");
@@ -330,6 +342,25 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // If parent provides timeSlots, ensure slot is registered so validation can work
+  useEffect(() => {
+    if (timeSlots && timeSlots.length > 0) {
+      // ensure react-hook-form knows about the slot field
+      register("slot");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [timeSlots]);
+
+  // If there is exactly one time slot, auto-select it so validation doesn't force user action
+  useEffect(() => {
+    if (timeSlots && timeSlots.length === 1) {
+      const only = timeSlots[0];
+      setValue("slot", only);
+      setSelectedSlotState(only);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [timeSlots]);
+
   const onSubmit = async (data: any) => {
     try {
       if (programType === "standard") {
@@ -339,11 +370,31 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
           year: "numeric",
         });
         const orderId = `tour-${tourName.replace(/\s+/g, "-").toLowerCase()}-${Date.now()}`;
+        const chosenSlot = data.slot ? String(data.slot) : slot ? String(slot) : undefined;
+        // If parent provided timeSlots, require a selection
+        if (timeSlots && timeSlots.length > 0 && !chosenSlot) {
+          setError("slot", { type: "required", message: "Выберите время" });
+          return;
+        }
+        const paymentDescription = `Оплата тура: ${tourName} (${formattedDate}${chosenSlot ? `, ${chosenSlot}` : ""
+          })`;
+        // debug: inspect slot values and payment description before sending
+        // this helps trace why the slot might be missing in the outgoing payload
+        // eslint-disable-next-line no-console
+        console.log("booking debug", {
+          dataSlot: data.slot,
+          watchedSlot: slot,
+          selectedSlotState,
+          chosenSlot,
+          paymentDescription,
+        });
+
         await sendMessageToTelegram(
           data.name,
           data.phone,
           data.email || "",
           formattedDate,
+          chosenSlot,
           data.people,
           tourName,
           data.trafficSource || "",
@@ -368,7 +419,7 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
               amount: Number(price) * Number(data.people || 1),
               currency: "RUB",
               orderId,
-              description: `Оплата тура: ${tourName} (${formattedDate})`,
+              description: paymentDescription,
               customer: { email: data.email || undefined, phone: data.phone },
               successUrl: `${origin}/ru?payment=success&order=${orderId}`,
               failUrl: `${origin}/ru?payment=failed&order=${orderId}`,
@@ -444,21 +495,19 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
       <div className="flex justify-center mb-8 gap-4">
         <button
           onClick={() => setProgramType("standard")}
-          className={`px-4 py-2 rounded-lg font-semibold ${
-            programType === "standard"
+          className={`px-4 py-2 rounded-lg font-semibold ${programType === "standard"
               ? "bg-blue-600 text-white"
               : "bg-gray-200 hover:bg-gray-300"
-          }`}
+            }`}
         >
           Стандартная программа
         </button>
         <button
           onClick={() => setProgramType("individual")}
-          className={`px-4 py-2 rounded-lg font-semibold ${
-            programType === "individual"
+          className={`px-4 py-2 rounded-lg font-semibold ${programType === "individual"
               ? "bg-blue-600 text-white"
               : "bg-gray-200 hover:bg-gray-300"
-          }`}
+            }`}
         >
           Индивидуальная программа
         </button>
@@ -508,7 +557,7 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
               />
               {errors.name && (
                 <p className="text-red-500 text-sm mt-1">
-                  {errors.name.message}
+                  {String(errors.name?.message)}
                 </p>
               )}
             </div>
@@ -560,7 +609,7 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
               />
               {errors.phone && (
                 <p className="text-red-500 text-sm mt-1">
-                  {errors.phone.message}
+                  {String(errors.phone?.message)}
                 </p>
               )}
             </div>
@@ -585,7 +634,7 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
               />
               {errors.email && (
                 <p className="text-red-500 text-sm mt-1">
-                  {errors.email.message}
+                  {String(errors.email?.message)}
                 </p>
               )}
             </div>
@@ -611,11 +660,47 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
                   />
                   {errors.date && (
                     <p className="text-red-500 text-sm mt-1">
-                      {errors.date.message as string}
+                      {String(errors.date?.message)}
                     </p>
                   )}
                 </div>
               </div>
+
+              {/* Time slots selector */}
+              {timeSlots && timeSlots.length > 0 && (
+                <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-6">
+                  <label className="md:w-56 font-semibold md:text-right">
+                    Время
+                  </label>
+                  <div className="flex-1">
+                    <div className="flex flex-wrap gap-2">
+                      {timeSlots.map((t) => (
+                        <button
+                          key={t}
+                          type="button"
+                          onClick={() => {
+                            setValue("slot", t);
+                            setSelectedSlotState(t);
+                          }}
+                          className={`px-3 py-2 rounded-md border transition focus:outline-none ${slot === t || selectedSlotState === t
+                              ? "bg-blue-600 text-white border-blue-600"
+                              : "bg-white text-gray-800 border-gray-200 hover:bg-gray-50"
+                            }`}
+                        >
+                          {t}
+                        </button>
+                      ))}
+                    </div>
+                    {/* Hidden input for form submission */}
+                    <input type="hidden" {...register("slot")} />
+                    {errors.slot && (
+                      <p className="text-red-500 text-sm mt-1">
+                        {String(errors.slot?.message)}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              )}
 
               {/* Кол-во человек */}
               <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-6">
@@ -646,12 +731,18 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
                   />
                   {errors.people && (
                     <p className="text-red-500 text-sm mt-1">
-                      {errors.people.message as string}
+                      {String(errors.people?.message)}
                     </p>
                   )}
                 </div>
               </div>
             </>
+          )}
+
+          {/* Time slots (if provided by the parent) */}
+          {programType === "standard" && typeof ({} as any) /* placeholder for TS */ !== "undefined" && (
+            // Note: the actual `timeSlots` prop is optional; we check below when rendering
+            <></>
           )}
 
           {/* Источник трафика */}
@@ -715,7 +806,7 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
                 />
                 {errors.comment && (
                   <p className="text-red-500 text-sm mt-1">
-                    {errors.comment.message as string}
+                    {String(errors.comment?.message)}
                   </p>
                 )}
               </div>
@@ -748,7 +839,7 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
               </div>
               {errors.consent && (
                 <p className="text-red-500 text-sm mt-1">
-                  {errors.consent.message as string}
+                  {String(errors.consent?.message)}
                 </p>
               )}
             </div>
@@ -761,11 +852,10 @@ export default function BookingForm({ price, tourName }: BookingFormProps) {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`w-full md:w-auto bg-blue-600 text-white px-6 py-3 rounded-lg transition duration-300 font-semibold ${
-                  isSubmitting
+                className={`w-full md:w-auto bg-blue-600 text-white px-6 py-3 rounded-lg transition duration-300 font-semibold ${isSubmitting
                     ? "opacity-50 cursor-not-allowed"
                     : "hover:bg-blue-700"
-                }`}
+                  }`}
               >
                 {isSubmitting ? "Отправка..." : "Отправить заявку"}
               </button>
@@ -795,6 +885,7 @@ async function sendMessageToTelegram(
   phone: string,
   email: string,
   date: string,
+  slot: string | undefined,
   people: number,
   tourName: string,
   trafficSource: string,
@@ -802,16 +893,13 @@ async function sendMessageToTelegram(
   utm: { source: string; medium: string; campaign: string },
 ) {
   const traffic = trafficLabel(trafficSource);
-  await fetch("https://telegram-proxy-tau.vercel.app/api/send", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      message: `
+  const message = `
 📩 <b>Новая заявка на стандартный тур</b>
 👤 Имя: ${name}
 📞 Телефон: ${phone}
 📧 Email: ${email}
 📅 Дата: ${date}
+${slot ? `⏱ Время: ${slot}\n` : ""}
 👥 Кол-во человек: ${people}
 🚩 Тур: ${tourName}
 🧭 Источник: ${traffic}${trafficDetails ? ` — ${trafficDetails}` : ""}
@@ -819,8 +907,16 @@ async function sendMessageToTelegram(
 • Источник (utm_source): ${utm.source || "—"}
 • Канал (utm_medium): ${utm.medium || "—"}
 • Кампания (utm_campaign): ${utm.campaign || "—"}
-      `.trim(),
-    }),
+      `.trim();
+
+  // debug: show the exact telegram payload that will be sent
+  // eslint-disable-next-line no-console
+  console.log("telegram payload:", { message, name, phone, slot, people, tourName });
+
+  await fetch("https://telegram-proxy-tau.vercel.app/api/send", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ message }),
   });
 }
 
@@ -860,5 +956,3 @@ function trafficLabel(value: string): string {
   const found = TRAFFIC_OPTIONS.find((o) => o.value === (value as any));
   return found?.label || "—";
 }
-
-//

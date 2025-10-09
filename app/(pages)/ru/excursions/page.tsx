@@ -9,7 +9,7 @@ import ExcursionsClient from "./ExcursionsClient";
 type MeetingPoint = {
   mapSrc: string;
   address: string;
-  startTime?: string;
+  timeSlots?: string[];
   duration?: string;
   endAddress?: string;
   type?: string;

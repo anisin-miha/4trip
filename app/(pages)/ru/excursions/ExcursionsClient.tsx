@@ -8,7 +8,7 @@ import { useSearchParams } from "next/navigation";
 type MeetingPoint = {
   mapSrc: string;
   address: string;
-  startTime?: string;
+  timeSlots?: string[];
   duration?: string;
   endAddress?: string;
   type?: string;
@@ -209,12 +209,11 @@ export default function ExcursionsClient({ allTours }: { allTours: Tour[] }) {
         const tt = typeOfTour(t);
         if (!tt || !type.includes(tt)) return false;
       }
-      if (start) {
-        const bucket = startBucket(
-          parseFirstTimeToMinutes(t.meetingPoint?.startTime),
-        );
-        if (bucket !== start) return false;
-      }
+          if (start) {
+            const firstSlot = t.meetingPoint?.timeSlots?.[0];
+            const bucket = startBucket(parseFirstTimeToMinutes(firstSlot));
+            if (bucket !== start) return false;
+          }
       if (dur) {
         const b = durationBucket(
           parseDurationHoursRange(t.duration ?? t.meetingPoint?.duration),

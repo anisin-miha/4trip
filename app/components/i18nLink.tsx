@@ -11,6 +11,11 @@ type LinkProps = Omit<NextLinkProps, "href"> & {
   href: NextLinkProps["href"];
   /** Отключить префикс локали для этой ссылки (внешняя/особая) */
   noLocale?: boolean;
+  target?: string;
+  rel?: string;
+  className?: string;
+  // allow other anchor props
+  [key: string]: any;
 };
 
 /** Внутренний помощник: не трогаем внешние, якорные и служебные href */

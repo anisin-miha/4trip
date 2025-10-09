@@ -6,7 +6,8 @@ export type MeetingPointInfoItem = {
 export type MeetingPointDetails = {
   mapSrc: string;
   address: string;
-  startTime?: string;
+  // New: array of available time slots (e.g. ["14:00", "16:00"]) for booking
+  timeSlots?: string[];
   duration?: string;
   endAddress?: string;
   type?: string;
@@ -21,7 +22,7 @@ export type MeetingPointDetails = {
 
 const infoSources: Array<{ key: keyof MeetingPointDetails; label: string }> = [
   { key: "type", label: "Тип экскурсии" },
-  { key: "startTime", label: "Время начала" },
+  // timeSlots intentionally omitted from infoSources — rendered in booking form
   { key: "duration", label: "Длительность" },
   { key: "address", label: "Место встречи" },
   { key: "endAddress", label: "Место окончания" },

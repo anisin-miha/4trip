@@ -32,7 +32,7 @@ const patriotMeetingPoint = createMeetingPoint({
   mapSrc:
     "https://yandex.ru/map-widget/v1/?ll=37.523504,55.740533&z=16&pt=37.523504,55.740533,pm2rdm",
   type: "Групповая сборная",
-  startTime: "11:00",
+  timeSlots: ["11:00"],
   duration: "около 6 ч.",
   address: "метро Парк Победы, парковка у музея Бородинской битвы",
   endAddress: "метро Парк Победы, парковка около музея",
