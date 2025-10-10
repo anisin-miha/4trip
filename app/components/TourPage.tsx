@@ -299,6 +299,8 @@ export type TourData = {
   meetingPoint: MeetingPoint;
   attractions?: Attraction[];
   routeVariants?: RouteVariant[];
+  // Optional detailed program: ordered timeline with time, title and description
+  program?: { time?: string; title: string; description?: string }[];
   learnMore?: { title: string; text: string }[];
   longread?: { title: string; tldr?: string[]; paragraphs: string[] };
   gallery?: { src: string; alt: string }[];
@@ -310,13 +312,19 @@ export type TourData = {
 function buildTourJsonLd(data: TourData) {
   const firstDate = data.nextDates?.[0];
   const currency = data.currency || "RUB";
+  // Prefer `program` as canonical flat itinerary; fall back to routeVariants or mapPoints
+  const itinerary = data.program?.length
+    ? data.program.map((p) => p.title)
+    : data.routeVariants?.[0]?.points
+      ? data.routeVariants[0].points
+      : (data.mapPoints || []).map((m) => m.title || undefined);
   return {
     "@context": "https://schema.org",
     "@type": "TouristTrip",
     name: data.title,
     description: data.hero?.description,
     image: data.hero?.image ? [absoluteUrl(data.hero.image)] : undefined,
-    itinerary: data.routeVariants?.[0]?.points,
+    itinerary: itinerary,
     offers: {
       "@type": "Offer",
       price: data.price,
@@ -339,10 +347,10 @@ function buildTourJsonLd(data: TourData) {
     },
     aggregateRating: data.rating
       ? {
-          "@type": "AggregateRating",
-          ratingValue: data.rating.value,
-          reviewCount: data.rating.count,
-        }
+        "@type": "AggregateRating",
+        ratingValue: data.rating.value,
+        reviewCount: data.rating.count,
+      }
       : undefined,
     startDate: firstDate,
   } as const;
@@ -429,24 +437,14 @@ function Badge({ children }: { children: React.ReactNode }) {
 
 // === Main Page ===
 export default function TourPageSEO({ data }: { data: TourData }) {
-  const [activeVariantId, setActiveVariantId] = useState(
-    data.routeVariants?.[0]?.id || "default",
-  );
-
-  const activeVariant = useMemo(
-    () =>
-      data.routeVariants?.find((v) => v.id === activeVariantId) ||
-      data.routeVariants?.[0],
-    [activeVariantId, data.routeVariants],
-  );
 
   const inclusions = data.inclusions?.length
     ? data.inclusions
     : [
-        "Работа лицензированного гида",
-        "Туристический автобус по маршруту",
-        "Аудиосистема и сопровождение на протяжении поездки",
-      ];
+      "Работа лицензированного гида",
+      "Туристический автобус по маршруту",
+      "Аудиосистема и сопровождение на протяжении поездки",
+    ];
   const exclusions = data.exclusions?.length ? data.exclusions : undefined;
   const expectations = data.expectations || data.hero.description;
 
@@ -575,13 +573,6 @@ export default function TourPageSEO({ data }: { data: TourData }) {
                     ) : null;
                   })()}
                 </div>
-
-                {data.rating && (
-                  <div className="mt-4 text-sm text-gray-200">
-                    Рейтинг {data.rating.value}★ ·{" "}
-                    {data.rating.count.toLocaleString("ru-RU")} отзывов
-                  </div>
-                )}
               </div>
             </div>
           </div>
@@ -698,31 +689,77 @@ export default function TourPageSEO({ data }: { data: TourData }) {
                   <h3 className="text-2xl font-semibold mb-3">
                     Программа и маршрут
                   </h3>
-                  {/* Fixed list of points (vertical 3-column layout) */}
+
+                  {/* Compute a canonical flat program: prefer data.program (detailed),
+                      then routeVariants[0].points (string array), then mapPoints titles */}
                   {(() => {
-                    const finalPoints: string[] = data.routeVariants?.[0]
-                      ?.points?.length
-                      ? data.routeVariants[0].points
-                      : (data.mapPoints || []).map((m) => m.title || "");
-                    if (!finalPoints.length) return null;
+                    // Build finalProgram as an array of items with optional time/title/description
+                    type FinalProgItem = { time?: string; title: string; description?: string };
+
+                    const finalProgram: FinalProgItem[] = [];
+
+                    if (data.program && data.program.length) {
+                      data.program.forEach((p) =>
+                        finalProgram.push({ time: p.time, title: p.title || "", description: p.description }),
+                      );
+                    } else if (data.routeVariants && data.routeVariants[0]?.points?.length) {
+                      data.routeVariants[0].points.forEach((pt) => finalProgram.push({ title: pt }));
+                    } else if (data.mapPoints && data.mapPoints.length) {
+                      data.mapPoints.forEach((m) => finalProgram.push({ title: m.title || "" }));
+                    }
+
+                    if (!finalProgram.length) return null;
+
+                    // Render two parts: compact numbered list (multi-column) and detailed timeline if descriptions/times exist
+                    const hasDetails = finalProgram.some((i) => i.description || i.time);
+
                     return (
-                      <ol className="columns-1 sm:columns-2 md:columns-3 gap-6 list-none program-vertical-list">
-                        {finalPoints.map((p, idx) => (
-                          <li
-                            key={idx}
-                            className="break-inside-avoid mb-3 flex gap-3 items-start"
-                          >
-                            <span className="mt-1 inline-flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-blue-600 text-white text-xs font-bold">
-                              {idx + 1}
-                            </span>
-                            {/* Render as HTML to preserve entities like &nbsp; coming from the data file */}
-                            <span
-                              className="leading-relaxed"
-                              dangerouslySetInnerHTML={{ __html: p }}
-                            />
-                          </li>
-                        ))}
-                      </ol>
+                      <>
+                        {!hasDetails && <ol className="columns-1 sm:columns-2 md:columns-3 gap-6 list-none program-vertical-list">
+                          {finalProgram.map((item, idx) => (
+                            <li
+                              key={idx}
+                              className="break-inside-avoid mb-3 flex gap-3 items-start"
+                            >
+                              <span className="mt-1 inline-flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-blue-600 text-white text-xs font-bold">
+                                {idx + 1}
+                              </span>
+                              <span
+                                className="leading-relaxed"
+                                // If item.title contains HTML entities, render as HTML; otherwise render as text
+                                dangerouslySetInnerHTML={{ __html: item.title }}
+                              />
+                            </li>
+                          ))}
+                        </ol>}
+
+                        {hasDetails ? (
+                          <div className="mt-6 space-y-4">
+                            {finalProgram.map((item, idx) => (
+                              <div key={idx} className="p-4 rounded-lg bg-gray-50 border">
+                                <div className="flex items-start gap-4">
+                                  <div className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-blue-600 text-white font-bold">
+                                    {idx + 1}
+                                  </div>
+                                  <div>
+                                    <div className="text-sm text-gray-500">
+                                      {item.time}
+                                    </div>
+                                    <div className="font-semibold text-gray-900">
+                                      <span dangerouslySetInnerHTML={{ __html: item.title }} />
+                                    </div>
+                                    {item.description ? (
+                                      <div className="mt-2 text-gray-700">
+                                        {item.description}
+                                      </div>
+                                    ) : null}
+                                  </div>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        ) : null}
+                      </>
                     );
                   })()}
                 </div>

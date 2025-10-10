@@ -5,8 +5,4 @@ module.exports = {
   sitemapSize: 7000,
   changefreq: "daily",
   priority: 0.7,
-  // Не индексируем страницу обзорной экскурсии (временная мера)
-  exclude: [
-    "/ru/excursions/avtobusnaya-obzornaya-ekskursiya-po-moskve",
-  ],
 };
