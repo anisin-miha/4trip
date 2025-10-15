@@ -10,6 +10,9 @@ import { routing } from "@/i18n/routing";
 import type { Metadata } from "next";
 import MailRuCounter from "./components/MailRuCounter";
 
+import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
+
 // Базовые метаданные/OG по умолчанию для всех страниц (можно переопределить на уровне страницы)
 export const metadata: Metadata = {
   metadataBase: new URL("https://4-trip.ru"),
@@ -154,6 +157,9 @@ export default async function RootLayout({
         <script src="//code.jivo.ru/widget/3wd3G0IExH" async></script>
 
         <MailRuCounter counterId="3691918" />
+
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
