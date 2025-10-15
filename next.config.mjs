@@ -2,11 +2,6 @@
 import withPWA from "next-pwa";
 import createNextIntlPlugin from "next-intl/plugin";
 
-// ===== basePath/assetPrefix =====
-// ВАЖНО: для кастомного домена (без подпути) basePath ДОЛЖЕН быть пустым.
-// При необходимости можно явно задать префикс через переменную окружения BASE_PATH (например, "/4trip").
-const ghBase = process.env.BASE_PATH ?? ""; // принудительный префикс или ""
-const pwaScope = ghBase ? `${ghBase}/` : "/";
 
 // ===== Необязательный пользовательский конфиг =====
 let userConfig = undefined;
@@ -21,21 +16,10 @@ try {
 let nextConfig = {
   eslint: { ignoreDuringBuilds: true },
   typescript: { ignoreBuildErrors: true },
-
-  // Важное для static export и GitHub Pages
-  output: "export",
-  basePath: ghBase,
-  assetPrefix: ghBase ? `${ghBase}/` : "",
   trailingSlash: true, // чтобы пути вида /ru/tours/... отдавались как /.../index.html
 
-  images: {
-    loader: "custom",
-    imageSizes: [128, 256, 384],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    // images.unoptimized не нужен при кастом-лоадере + export
-  },
 
-  transpilePackages: ["next-image-export-optimizer", "@4trip/shared-ui"],
+  transpilePackages: [ "@4trip/shared-ui"],
 
   experimental: {
     webpackBuildWorker: true,
@@ -90,8 +74,6 @@ const withPWAWrapped = withPWA({
   register: true,
   skipWaiting: true,
   disable: disablePWA,
-  // корректный scope с учётом basePath
-  scope: pwaScope,
   sw: "sw.js",
 });
 
