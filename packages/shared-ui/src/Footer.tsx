@@ -134,7 +134,7 @@ export default function Footer({
             <div>
               <h3 className="text-lg font-semibold mb-4">Экскурсии</h3>
               <ul className="space-y-2 text-gray-300">
-                <li>
+                {/* <li>
                   <LinkTag
                     href={`${prefix}/excursions`}
                     className="hover:text-white transition inline-flex items-center gap-2"
@@ -142,7 +142,7 @@ export default function Footer({
                     <IconWrap><LinkIcon size={16} /></IconWrap>
                     <span>Все экскурсии</span>
                   </LinkTag>
-                </li>
+                </li> */}
                 <li>
                   <LinkTag href={`${prefix}/excursions/patriot`} className="hover:text-white transition inline-flex items-center gap-2">
                     <IconWrap><Landmark size={16} /></IconWrap>
