@@ -8,6 +8,7 @@ interface BaseImageProps {
   fill?: boolean;
   priority?: boolean;
   className?: string;
+  title: string;
 }
 
 
