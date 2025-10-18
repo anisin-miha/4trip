@@ -501,6 +501,7 @@ export default function TourPageSEO({ data }: { data: TourData }) {
               fill
               priority
               className="object-cover w-full h-full brightness-50"
+              title={data.title}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
           </div>
