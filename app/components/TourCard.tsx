@@ -64,6 +64,7 @@ export default function TourCard({
           fill
           width={640}
           className="tour-card__image object-cover"
+          title={title}
         />
         {badges && badges.length > 0 && (
           <div className="absolute top-3 left-3 flex gap-2">

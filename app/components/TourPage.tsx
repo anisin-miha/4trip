@@ -872,6 +872,7 @@ export default function TourPageSEO({ data }: { data: TourData }) {
                           width={828}
                           fill
                           className="object-cover"
+                          title={attr.title}
                         />
                       </div>
                       <div className="p-6">
