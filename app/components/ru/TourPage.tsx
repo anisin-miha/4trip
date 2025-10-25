@@ -2,8 +2,8 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link as IntlLink } from "@/i18n/navigation";
-import SiteHeader from "@/app/components/SiteHeader";
-import { Footer } from "@4trip/shared-ui";
+import SiteHeader from "@/app/components/ru/SiteHeader";
+import { Footer } from "@/packages/shared-ui/src/ru";
 import contactInfo from "@/app/config/contactInfo";
 import BaseImage from "@/components/BaseImage";
 import BookingForm from "./BookingForm";

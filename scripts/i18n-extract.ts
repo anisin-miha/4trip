@@ -1,287 +1,284 @@
-/* eslint-disable */
+// i18n-extract.ts — flat, chunked RU locales with strong filtering
+// Output files (flat, no folders):
+//   i18n/locales/ru.part-1.json, ru.part-2.json, ...
+//   (optional scaffold) i18n/locales/<lang>.part-1.json, ... — same IDs, empty strings
+//
+// Configure chunk size (edit constant below).
+// Configure scaffolded target locales via env I18N_SCAFFOLD_TARGETS="en,es,fr,de"
+// or CLI: --scaffoldTargets=en,es,fr,de
+// By default, scaffold writes files only if missing. Force overwrite with --forceScaffold.
+//
+// At the end, prints total character count of RU strings.
+
 import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
-import fg from "fast-glob";
 import * as parser from "@babel/parser";
 import traverse, { NodePath } from "@babel/traverse";
 import * as t from "@babel/types";
 
-// --------- CONFIG ----------
-const PROJECT_ROOT = process.cwd();
+// -------- Constants you can tweak --------
+const CHUNK_SIZE = 300; // max pairs per part file
 
-// что сканируем
-const SCAN_DIRS = [
-  "app/(pages)/ru",
-  "app/components",
-  "app/config",
-];
+// ----------------------------------------
 
-const CODE_EXT = new Set([".tsx", ".jsx", ".ts", ".js"]);
+type Argv = Record<string, string | boolean>;
+const argv: Argv = Object.fromEntries(process.argv.slice(2).map(a => {
+  const m = a.match(/^--([^=]+)=(.*)$/);
+  return m ? [m[1], m[2]] : [a.replace(/^--/, ""), true];
+}));
 
-const OUT_DIR = path.join(PROJECT_ROOT, "i18n", "extract");
-const LOCALES_DIR = path.join(PROJECT_ROOT, "i18n", "locales");
-const RU_JSON = path.join(OUT_DIR, "messages.ru.json");
-const CTX_JSON = path.join(OUT_DIR, "contexts.json");
-
-const TARGET_LOCALES: string[] = (process.env.I18N_LOCALES || "ru,en")
+const PROJECT_ROOT = path.resolve(String(argv.root || process.cwd()));
+const SRC_LANG = String(argv.src || "ru");
+const PAGES_DIR = String(argv.pagesDir || "app/(pages)");
+const OUT_DIR   = path.resolve(PROJECT_ROOT, String(argv.outDir || "i18n"));
+const LOCALES_DIR = path.join(OUT_DIR, "locales");
+const SCAN_PARAM = String(
+  argv.scan ||
+  `${PAGES_DIR}/${SRC_LANG},app/components/${SRC_LANG},app/config/${SRC_LANG},packages/shared-ui/src/${SRC_LANG}`
+);
+const EXCURSIONS_DIR = String(argv.excursionsDir || path.join(PAGES_DIR, SRC_LANG, "excursions"));
+const EXCURSIONS_LIMIT = Number(argv.excursionsLimit || 0);
+const WRITE_INDEX = !Boolean(argv.noIndex);
+const CLEAR_RU = Boolean(argv.clear || false);
+const FORCE_SCAFFOLD = Boolean(argv.forceScaffold || false);
+const SCAFFOLD_TARGETS = String(process.env.I18N_SCAFFOLD_TARGETS || argv.scaffoldTargets || "")
   .split(",").map(s => s.trim()).filter(Boolean);
 
-// агрессивный режим для конфигов: собирать любые «человеческие» строки
-const CONFIG_ALL = /^1|true$/i.test(process.env.I18N_CONFIG_ALL || "");
+const relFromRoot = (abs: string) => path.relative(PROJECT_ROOT, abs).replace(/\\/g, "/");
 
-// какие JSX-атрибуты считаем текстовыми
-const TRANSLATABLE_ATTRS = new Set([
-  "alt","title","aria-label","ariaDescription","placeholder",
-  "label","aria-placeholder","aria-labelledby","aria-describedby","content"
-]);
-
-// ключи, по которым вытаскиваем строки из объектов в конфиге/турах/мета
-const CONFIG_KEYS = new Set([
-  "title","name","label","subtitle","heading","buttonText","cta",
-  "description","shortDescription","summary","note","info","warning",
-  "city","country","location","itinerary","highlights",
-  "seoTitle","seoDescription","metaTitle","metaDescription","keywords",
-]);
-
-// VariableDeclarator id hints: const title="..."
-const VAR_NAME_HINTS = new Set([
-  "title","name","label","heading","subtitle","button","buttonText","cta","text","caption","placeholder","summary","description"
-]);
-
-// функции, из которых извлекаем строки аргументов
-const CALL_TEXT_FUNS = new Set(["toast","alert","confirm","prompt"]);
-
-// в export const metadata = { ... } эти ключи считаем текстовыми
-const SEO_KEYS = new Set(["title","description","openGraph","alternates","twitter","keywords"]);
-// ---------------------------
-
-type Context = { file: string; where: string; sample?: string };
-
-const messages = new Map<string, string>();      // id -> ru
-const contexts = new Map<string, Context[]>();   // id -> occurrences
-
-const ensureDir = (p: string) => fs.mkdirSync(p, { recursive: true });
-
-function slugify(s: string) {
-  return s.toLowerCase().replace(/["'`’]/g,"").replace(/[^a-zа-я0-9]+/gi,"-").replace(/^-+|-+$/g,"").slice(0, 40);
+// Normalization: remove "/ru" segment after known roots when hashing ids
+type MapPair = { withLangAbs: string; withoutLangAbs: string };
+function buildLangDirMappings(): MapPair[] {
+  const pairs: [string, string][] = [
+    [path.join(PROJECT_ROOT, PAGES_DIR, SRC_LANG), path.join(PROJECT_ROOT, PAGES_DIR)],
+    [path.join(PROJECT_ROOT, "app", "components", SRC_LANG), path.join(PROJECT_ROOT, "app", "components")],
+    [path.join(PROJECT_ROOT, "app", "config", SRC_LANG), path.join(PROJECT_ROOT, "app", "config")],
+    [path.join(PROJECT_ROOT, "packages", "shared-ui", "src", SRC_LANG), path.join(PROJECT_ROOT, "packages", "shared-ui", "src")],
+  ];
+  return pairs.map(([w, wo]) => ({ withLangAbs: path.resolve(w), withoutLangAbs: path.resolve(wo) }));
 }
-function norm(s: string) { return s.replace(/\s+/g, " ").trim(); }
-function shortHash(s: string) { return crypto.createHash("sha256").update(s).digest("hex").slice(0, 8); }
-function makeId(ru: string) { const n = norm(ru); const slug = slugify(n) || "text"; return `${slug}__${shortHash(n)}`; }
-function isWhitespaceOnly(s: string) { return norm(s).length === 0; }
+const LANG_MAP = buildLangDirMappings();
+function normalizedRelFor(absFile: string): string {
+  const abs = path.resolve(absFile);
+  for (const m of LANG_MAP) {
+    if (abs.startsWith(m.withLangAbs + path.sep) || abs === m.withLangAbs) {
+      const relInside = path.relative(m.withLangAbs, abs);
+      const replacedAbs = path.join(m.withoutLangAbs, relInside);
+      return relFromRoot(replacedAbs);
+    }
+  }
+  return relFromRoot(abs);
+}
 
-function isUrlLike(s: string) { return /^https?:\/\//i.test(s) || /^mailto:|^tel:/i.test(s); }
-function looksLikePathOrFile(s: string) {
-  if (/[\\/]/.test(s) || /\.[a-z0-9]{2,5}$/i.test(s)) return true;
-  return /\.(svg|png|jpe?g|webp|avif|gif|ico|css|scss|less|ts|tsx|js|jsx|json|mdx?|mp3|mp4|pdf)$/i.test(s);
+function stableId(relNorm: string, text: string): string {
+  const h = crypto.createHash("sha1").update(relNorm + "|" + text).digest("hex");
+  return "p" + h.slice(0, 9);
 }
-function looksLikeClassnames(s: string) {
-  // грубо: много токенов a-z0-9-:/[...]
-  const tokens = s.trim().split(/\s+/);
-  if (tokens.length < 3) return false;
-  const techish = tokens.filter(t => /^[a-z0-9\-:\/\[\]\(\)\.]+$/i.test(t)).length;
-  return techish / tokens.length > 0.8 && !/[А-Яа-яЁё]/.test(s);
+
+function isFileEligible(p: string): boolean { return /\.(tsx?|jsx?)$/i.test(p); }
+function listDirs(): string[] { return SCAN_PARAM.split(",").map(s => s.trim()).filter(Boolean).map(p => path.resolve(PROJECT_ROOT, p)); }
+function walkWithExcursionsLimit(dir: string, out: string[] = []): string[] {
+  if (!fs.existsSync(dir)) return out;
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+  const isExcursionsRoot = EXCURSIONS_LIMIT > 0 && path.resolve(dir) === path.resolve(EXCURSIONS_DIR);
+  let allowed: Set<string> | null = null;
+  if (isExcursionsRoot) {
+    const only = entries.filter(e => e.isDirectory()).map(e => e.name).sort().slice(0, EXCURSIONS_LIMIT);
+    allowed = new Set(only);
+  }
+  for (const e of entries) {
+    const p = path.join(dir, e.name);
+    if (e.isDirectory()) {
+      if (allowed && path.resolve(dir) === path.resolve(EXCURSIONS_DIR) && !allowed.has(e.name)) continue;
+      walkWithExcursionsLimit(p, out);
+    } else if (e.isFile() && isFileEligible(p)) out.push(p);
+  }
+  return out;
 }
-function isProbablyHumanText(s: string) {
-  const n = norm(s);
-  if (n.length < 2) return false;
-  if (isUrlLike(n) || looksLikePathOrFile(n) || looksLikeClassnames(n)) return false;
-  // кириллица → точно текст
-  if (/[А-Яа-яЁё]/.test(n)) return true;
-  // латиница с пробелом и буквами → вероятный текст
-  if (/\s/.test(n) && /[A-Za-z]/.test(n)) return true;
+
+// ----------------- filtering helpers -----------------
+function hasCyrillic(s: string): boolean { return /[А-Яа-яЁё]/.test(s); }
+function isUrlish(s: string): boolean { return /^(https?:)?\/\//i.test(s) || /^tel:/i.test(s) || /^mailto:/i.test(s); }
+function isPathish(s: string): boolean {
+  return /^\s*\/[^\s]+?\s*$/.test(s);
+}
+function looksLikeJsonLdKey(s: string): boolean { return s === "@context" || s === "@type" || s.startsWith("schema:"); }
+function tokenIsUtility(tk: string): boolean { return /^(?:[a-z]{1,3}:)?[a-z0-9_-]+(?:\/\d+)?(?:\[[^\]]*\])?$/i.test(tk); }
+function looksLikeClassList(s: string): boolean {
+  const trimmed = s.trim(); if (!trimmed) return false;
+  if (/\s/.test(trimmed) === false) return false;
+  const parts = trimmed.split(/\s+/); if (parts.length < 2) return false;
+  let util = 0; for (const p of parts) { if (!hasCyrillic(p) && (tokenIsUtility(p) || /-/.test(p) || /:/.test(p))) util++; }
+  return util / parts.length >= 0.8;
+}
+function hasCodeKeywords(s: string): boolean {
+  return /\b(function|const|let|var|return|if|else|for|while|switch|case|break|continue|=>|document\.|window\.|addEventListener|querySelector|setTimeout|clearTimeout|requestSubmit)\b/.test(s);
+}
+function looksLikeCodeBlock(s: string): boolean {
+  const nl = (s.match(/\n/g) || []).length;
+  if (nl >= 2) return true;
+  const punct = (s.match(/[{}();=\[\]<>]/g) || []).length;
+  if (punct >= 4) return true;
+  if (hasCodeKeywords(s)) return true;
   return false;
 }
-
-function record(id: string, ru: string, where: Context) {
-  const ex = messages.get(id);
-  if (ex && ex !== ru) { id = `${id}_${shortHash(ru).slice(0,4)}`; }
-  messages.set(id, ru);
-  const arr = contexts.get(id) || [];
-  arr.push(where);
-  contexts.set(id, arr);
+function isBlockedAttrName(name: string): boolean {
+  const n = name.toLowerCase();
+  if (n === "class" || n === "classname" || n === "style") return true;
+  if (n === "href" || n === "src" || n === "rel" || n === "target") return true;
+  if (n === "id" || n === "role" || n === "type" || n === "name" || n === "value") return true;
+  if (n === "srcset" || n === "sizes" || n === "alt" || n === "loading") return true;
+  if (n.startsWith("data-") || n.startsWith("aria-")) return true;
+  return false;
 }
-
-function underAny(nodePath: NodePath, keys: Set<string>): boolean {
-  let p: NodePath | null = nodePath;
+function isInBlockedJsxAttr(path: NodePath<t.StringLiteral> | NodePath<t.TemplateLiteral>): boolean {
+  let p: NodePath | null = path.parentPath;
   while (p) {
-    const n = p.node;
-    if (t.isObjectProperty(n)) {
-      const k = t.isIdentifier(n.key) ? n.key.name : (t.isStringLiteral(n.key) ? n.key.value : "");
-      if (k && keys.has(k)) return true;
+    if (p.isJSXAttribute()) {
+      const attr = p.node.name;
+      if (t.isJSXIdentifier(attr) && isBlockedAttrName(attr.name)) return true;
     }
-    p = p.parentPath as NodePath | null;
+    if (p.isJSXOpeningElement()) break;
+    p = p.parentPath;
   }
   return false;
 }
+function isObjectPropertyKey(path: NodePath<t.StringLiteral>): boolean {
+  const parent = path.parentPath?.node;
+  return !!(parent && t.isObjectProperty(parent) && parent.key === path.node);
+}
+function isLikelyHumanRuText(s: string): boolean {
+  const trimmed = s.trim(); if (!trimmed) return false;
+  if (!hasCyrillic(trimmed)) return false;
+  if (isUrlish(trimmed) || isPathish(trimmed)) return false;
+  if (looksLikeJsonLdKey(trimmed)) return false;
+  if (looksLikeClassList(trimmed)) return false;
+  if (looksLikeCodeBlock(trimmed)) return false;
+  if (!/[A-Za-zА-Яа-яЁё]/.test(trimmed) && /[\d\s.,:/\\-]+/.test(trimmed)) return false;
+  return true;
+}
 
-function underVarName(path: NodePath, names: Set<string>): boolean {
-  let p: NodePath | null = path;
-  while (p) {
-    if (t.isVariableDeclarator(p.node) && t.isIdentifier(p.node.id)) {
-      if (names.has(p.node.id.name)) return true;
-    }
-    p = p.parentPath as NodePath | null;
+// ----------------- parse & collect -----------------
+function parseCode(file: string) {
+  const src = fs.readFileSync(file, "utf8");
+  const ast = parser.parse(src, {
+    sourceType: "module",
+    plugins: ["typescript", "jsx", "classProperties", "decorators-legacy", "importAssertions", "topLevelAwait"]
+  });
+  return { src, ast };
+}
+
+type IndexItem = { src: string; text: string };
+const GLOBAL_MAP: Record<string, string> = {};
+const INDEX_MAP: Record<string, IndexItem> = {};
+let TOTAL_CHARS = 0;
+
+function collectFromFile(fileAbs: string) {
+  const relNorm = normalizedRelFor(fileAbs);
+  const { ast } = parseCode(fileAbs);
+
+  function pushText(raw: string) {
+    if (!isLikelyHumanRuText(raw)) return;
+    const id = stableId(relNorm, raw);
+    if (GLOBAL_MAP[id]) return;
+    GLOBAL_MAP[id] = raw;
+    INDEX_MAP[id] = { src: relNorm, text: raw };
+    TOTAL_CHARS += raw.length;
   }
-  return false;
-}
-
-function isConfigFile(abs: string) {
-  const p = abs.replace(/\\/g,"/");
-  return p.includes("/app/config/");
-}
-
-function isInComponents(abs: string) {
-  const p = abs.replace(/\\/g,"/");
-  return p.includes("/app/components/");
-}
-
-async function processFile(absPath: string) {
-  const code = fs.readFileSync(absPath, "utf8");
-  const ast = parser.parse(code, { sourceType: "module", plugins: ["jsx","typescript","classProperties","decorators-legacy"] });
-  const rel = path.relative(PROJECT_ROOT, absPath).replace(/\\/g,"/");
-  const inConfig = isConfigFile(absPath);
-  const inComponents = isInComponents(absPath);
 
   traverse(ast, {
-    // 1) Чистый текст между JSX-тегами
-    JSXText(p) {
-      const raw = p.node.value;
-      if (isWhitespaceOnly(raw)) return;
-      const ru = norm(raw);
-      if (!ru) return;
-      record(makeId(ru), ru, { file: rel, where: "<JSXText>", sample: ru.slice(0,120) });
-    },
-    // 2) Строковые атрибуты JSX
-    JSXAttribute(p) {
-      if (!t.isJSXIdentifier(p.node.name)) return;
-      const name = p.node.name.name;
-      if (!TRANSLATABLE_ATTRS.has(name)) return;
-      const v = p.node.value; if (!v) return;
-      let ru: string | null = null;
-      if (t.isStringLiteral(v)) ru = norm(v.value);
-      else if (t.isJSXExpressionContainer(v) && t.isStringLiteral(v.expression)) ru = norm(v.expression.value);
-      if (!ru || !isProbablyHumanText(ru)) return;
-      record(makeId(ru), ru, { file: rel, where: `<@${name}>`, sample: ru.slice(0,120) });
-    },
-    // 3) Строки в metadata, конфиг-объектах, переменных, вызовах
     StringLiteral(p) {
-      const ru = norm(p.node.value || "");
-      if (!ru) return;
-
-      // метаданные (в любых файлах)
-      if (underAny(p, SEO_KEYS) && isProbablyHumanText(ru)) {
-        record(makeId(ru), ru, { file: rel, where: "<metadata>", sample: ru.slice(0,120) });
-        return;
-      }
-
-      // конфиг: либо whitelisted ключи, либо любой «человеческий» текст в агрессивном режиме
-      if (inConfig) {
-        if ((CONFIG_ALL && isProbablyHumanText(ru)) || (underAny(p, CONFIG_KEYS) && isProbablyHumanText(ru))) {
-          record(makeId(ru), ru, { file: rel, where: "<config>", sample: ru.slice(0,120) });
-          return;
-        }
-      }
-
-      // компоненты/страницы: строки в переменных типа const title="..."
-      if ((inComponents || !inConfig) && underVarName(p, VAR_NAME_HINTS) && isProbablyHumanText(ru)) {
-        record(makeId(ru), ru, { file: rel, where: "<var>", sample: ru.slice(0,120) });
-        return;
-      }
+      const parent = p.parentPath?.node;
+      if (t.isImportDeclaration(parent) || t.isExportAllDeclaration(parent) || t.isExportNamedDeclaration(parent)) return;
+      if (isObjectPropertyKey(p)) return;
+      if (isInBlockedJsxAttr(p)) return;
+      pushText(p.node.value);
     },
-    // 4) Чистые шаблоны без выражений
     TemplateLiteral(p) {
       if (p.node.expressions.length > 0) return;
-      const raw = p.node.quasis.map(q => q.value.cooked ?? q.value.raw ?? "").join("");
-      const ru = norm(raw);
-      if (!ru || !isProbablyHumanText(ru)) return;
-
-      if (underAny(p, SEO_KEYS)) {
-        record(makeId(ru), ru, { file: rel, where: "<template:metadata>", sample: ru.slice(0,120) });
-        return;
-      }
-      if (inConfig && (CONFIG_ALL || underAny(p, CONFIG_KEYS))) {
-        record(makeId(ru), ru, { file: rel, where: "<template:config>", sample: ru.slice(0,120) });
-        return;
-      }
-      if (underVarName(p, VAR_NAME_HINTS)) {
-        record(makeId(ru), ru, { file: rel, where: "<template:var>", sample: ru.slice(0,120) });
-        return;
-      }
+      if (isInBlockedJsxAttr(p)) return;
+      const txt = p.node.quasis.map(q => q.value.cooked ?? "").join("");
+      pushText(txt);
     },
-    // 5) Вызовы типа toast("..."), alert("...")
-    CallExpression(p) {
-      const callee = p.node.callee;
-      let name: string | null = null;
-      if (t.isIdentifier(callee)) name = callee.name;
-      if (!name || !CALL_TEXT_FUNS.has(name)) return;
-      const arg = p.node.arguments[0];
-      if (arg && t.isStringLiteral(arg)) {
-        const ru = norm(arg.value);
-        if (isProbablyHumanText(ru)) {
-          record(makeId(ru), ru, { file: rel, where: `<call:${name}>`, sample: ru.slice(0,120) });
-        }
-      }
+    JSXText(p) {
+      const raw = p.node.value;
+      const cleaned = raw.replace(/\s+/g, " ").trim();
+      if (!cleaned) return;
+      pushText(cleaned);
     }
   });
 }
 
-function saveJson(p: string, obj: any) {
-  ensureDir(path.dirname(p));
-  fs.writeFileSync(p, JSON.stringify(obj, null, 2), "utf8");
-}
-
-function loadLocale(lang: string): Record<string,string> {
-  const p = path.join(LOCALES_DIR, `${lang}.json`);
-  if (!fs.existsSync(p)) return {};
-  try { return JSON.parse(fs.readFileSync(p,"utf8")); } catch { return {}; }
-}
-
-function syncLocales() {
-  const source = Object.fromEntries([...messages.entries()].sort());
-  // ru.json — полный источник
-  saveJson(path.join(LOCALES_DIR, "ru.json"), source);
-
-  // остальные локали — добавляем недостающие ключи пустыми
-  for (const lang of TARGET_LOCALES) {
-    if (lang === "ru") continue;
-    const current = loadLocale(lang);
-    const next: Record<string,string> = {};
-    for (const [id, ru] of Object.entries(source)) {
-      next[id] = Object.prototype.hasOwnProperty.call(current, id) ? current[id] : "";
+function removeOldParts(lang: string) {
+  if (!fs.existsSync(LOCALES_DIR)) return;
+  for (const name of fs.readdirSync(LOCALES_DIR)) {
+    if (name.startsWith(`${lang}.part-`) && name.endsWith(".json")) {
+      fs.unlinkSync(path.join(LOCALES_DIR, name));
     }
-    saveJson(path.join(LOCALES_DIR, `${lang}.json`), next);
-    const missing = Object.entries(next).filter(([_, v]) => !v).length;
-    const obsolete = Object.keys(current).filter(id => !(id in source)).length;
-    console.log(`Locale ${lang}: missing=${missing}, obsolete_kept=${obsolete}`);
+  }
+}
+
+function writeParts(lang: string, map: Record<string, string>) {
+  const ids = Object.keys(map).sort(); // stable
+  if (ids.length === 0) return 0;
+  if (lang === "ru" && CLEAR_RU) removeOldParts(lang);
+  else if (lang !== "ru" && FORCE_SCAFFOLD) removeOldParts(lang);
+
+  let part = 1, written = 0;
+  for (let i = 0; i < ids.length; i += CHUNK_SIZE) {
+    const chunkIds = ids.slice(i, i + CHUNK_SIZE);
+    const obj: Record<string, string> = {};
+    for (const id of chunkIds) obj[id] = map[id];
+    const fname = `${lang}.part-${part}.json`;
+    const outPath = path.join(LOCALES_DIR, fname);
+    if (lang !== "ru" && !FORCE_SCAFFOLD && fs.existsSync(outPath)) {
+      // keep existing translations unless forcing
+      console.log(`[extract] skip existing ${fname}`);
+    } else {
+      fs.mkdirSync(LOCALES_DIR, { recursive: true });
+      fs.writeFileSync(outPath, JSON.stringify(obj, null, 2), "utf8");
+      console.log(`[extract] wrote ${fname} (${chunkIds.length})`);
+      written++;
+    }
+    part++;
+  }
+  return written;
+}
+
+function writeIndex(lang: string, index: Record<string, IndexItem>) {
+  if (!WRITE_INDEX) return;
+  const outPath = path.join(LOCALES_DIR, `${lang}.index.json`);
+  fs.writeFileSync(outPath, JSON.stringify(index, null, 2), "utf8");
+  console.log(`[extract] wrote ${lang}.index.json (for debugging)`);
+}
+
+function scaffoldTargets(idsToText: Record<string, string>) {
+  if (SCAFFOLD_TARGETS.length === 0) return;
+  const emptyMap: Record<string, string> = {};
+  for (const id of Object.keys(idsToText)) emptyMap[id] = "";
+  for (const lang of SCAFFOLD_TARGETS) {
+    writeParts(lang, emptyMap);
   }
 }
 
 (async function main() {
-  const patterns = SCAN_DIRS.map(d => `${d.replace(/\\/g,"/")}/**/*`);
-  const files = await fg(patterns, {
-    cwd: PROJECT_ROOT,
-    absolute: true,
-    dot: false,
-    ignore: ["**/node_modules/**","**/.next/**","**/.git/**","**/.i18n/**"],
-  });
+  const dirs = listDirs();
+  const files: string[] = [];
+  for (const d of dirs) walkWithExcursionsLimit(d, files);
 
-  for (const f of files) {
-    if (!CODE_EXT.has(path.extname(f))) continue;
-    await processFile(path.resolve(f));
-  }
+  for (const abs of files) collectFromFile(abs);
 
-  const ruObj = Object.fromEntries([...messages.entries()].sort());
-  ensureDir(OUT_DIR);
-  saveJson(RU_JSON, ruObj);
-  const ctxObj = Object.fromEntries([...contexts.entries()].map(([k,v]) => [k, v]));
-  saveJson(CTX_JSON, ctxObj);
+  // Always write RU parts from GLOBAL_MAP
+  const ruWritten = writeParts("ru", GLOBAL_MAP);
+  if (WRITE_INDEX) writeIndex("ru", INDEX_MAP);
 
-  console.log(`Extracted ${Object.keys(ruObj).length} strings`);
-  console.log(`  -> ${path.relative(PROJECT_ROOT, RU_JSON)}`);
-  console.log(`  -> ${path.relative(PROJECT_ROOT, CTX_JSON)}`);
+  // Optionally scaffold other locales with empty strings (without clobbering unless --forceScaffold)
+  scaffoldTargets(GLOBAL_MAP);
 
-  ensureDir(LOCALES_DIR);
-  syncLocales();
+  const total = Object.keys(GLOBAL_MAP).length;
+  const partsCount = Math.ceil(total / CHUNK_SIZE);
+
+  console.log(`\n[i18n-extract] ru strings=${total}, parts=${partsCount}, CHUNK_SIZE=${CHUNK_SIZE}`);
+  console.log(`[i18n-extract] total RU characters=${TOTAL_CHARS}`);
 })().catch(e => { console.error(e); process.exit(1); });

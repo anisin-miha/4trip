@@ -13,6 +13,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "baseUrl": ".",
     "plugins": [
       {
         "name": "next"
@@ -20,8 +21,8 @@
     ],
     "paths": {
       "@/*": ["./*"],
-      "@4trip/shared-ui": ["packages/shared-ui/src/index.ts"],
-      "@4trip/shared-ui/*": ["packages/shared-ui/src/*"]
+      "@4trip/shared-ui": ["packages/shared-ui/src/ru/index.ts"],
+      "@4trip/shared-ui/*": ["./packages/shared-ui/src/*"]
     }
   },
   "include": [

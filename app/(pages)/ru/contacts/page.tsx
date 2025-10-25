@@ -1,6 +1,6 @@
 import { Metadata } from "next";
-import SiteHeader from "@/app/components/SiteHeader";
-import SiteFooter from "@/app/components/SiteFooter";
+import SiteHeader from "@/app/components/ru/SiteHeader";
+import SiteFooter from "@/app/components/ru/SiteFooter";
 import { Link as IntlLink } from "@/i18n/navigation";
 import contactInfo from "@/app/config/contactInfo";
 

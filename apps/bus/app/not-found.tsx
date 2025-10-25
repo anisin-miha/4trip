@@ -1,4 +1,4 @@
-import { Header, Logo4Trip } from "@4trip/shared-ui";
+import { Header, Logo4Trip } from "@/packages/shared-ui/src/ru";
 import Link from "next/link";
 
 const headerLinks = [

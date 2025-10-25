@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import type { TourData } from "@/app/components/TourPage";
+import type { TourData } from "@/app/components/ru/TourPage";
 import { createMeetingPoint } from "./helpers";
 
 const slug = "avtobusnaya-obzornaya-ekskursiya-po-moskve";

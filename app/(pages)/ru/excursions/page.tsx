@@ -1,9 +1,9 @@
 import { Metadata } from "next";
 import { Suspense } from "react";
-import SiteHeader from "@/app/components/SiteHeader";
-import SiteFooter from "@/app/components/SiteFooter";
+import SiteHeader from "@/app/components/ru/SiteHeader";
+import SiteFooter from "@/app/components/ru/SiteFooter";
 import contactInfo from "@/app/config/contactInfo";
-import { tours as baseTours, moscowSightseeingCard, type Tour as BaseTour } from "@/app/config/tours";
+import { tours as baseTours, moscowSightseeingCard, type Tour as BaseTour } from "@/app/config/ru/tours";
 import ExcursionsClient from "./ExcursionsClient";
 
 type MeetingPoint = {

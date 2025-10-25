@@ -1,9 +1,9 @@
 "use client";
 
 import { useMemo } from "react";
-import TourCard from "@/app/components/TourCard";
-import type { Rating } from "@/app/components/TourPage";
-import type { Tour as BaseTour } from "@/app/config/tours";
+import TourCard from "@/app/components/ru/TourCard";
+import type { Rating } from "@/app/components/ru/TourPage";
+import type { Tour as BaseTour } from "@/app/config/ru/tours";
 import { useSearchParams } from "next/navigation";
 
 type MeetingPoint = {

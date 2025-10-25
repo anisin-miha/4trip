@@ -1,5 +1,5 @@
-import { moscowSightseeingTourWithMeta } from "@/app/config/tours/moscow-sightseeing";
-import TourPage from "@/app/components/TourPage";
+import { moscowSightseeingTourWithMeta } from "@/app/config/ru/tours/moscow-sightseeing";
+import TourPage from "@/app/components/ru/TourPage";
 
 export const { metadata, ...data } = moscowSightseeingTourWithMeta;
 
