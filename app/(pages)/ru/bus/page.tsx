@@ -5,7 +5,7 @@ import Script from "next/script";
 import SiteHeader from "@/app/components/ru/SiteHeader";
 import SiteFooter from "@/app/components/ru/SiteFooter";
 import contactInfo from "@/app/config/contactInfo";
-import BusCalculator from "@/app/components/BusCalculator";
+import BusCalculator from "@/app/components/ru/BusCalculator";
 
 export const metadata: Metadata = {
   title: "Заказ автобуса по Москве и Подмосковью — 4-trip",

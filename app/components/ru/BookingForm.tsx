@@ -9,7 +9,7 @@ import { ru } from "date-fns/locale";
 import { CalendarIcon } from "lucide-react";
 import { InputMask } from "@react-input/mask";
 import { toast } from "sonner";
-import I18nLink from "./i18nLink";
+import { Link as IntlLink } from "@/i18n/navigation";
 
 // ---- УТИЛИТЫ ----
 /** Возвращает все даты выходных (сб и вс) от start до конца года (включительно). */
@@ -826,14 +826,14 @@ export default function BookingForm({ price, tourName, timeSlots }: BookingFormP
                 />
                 <label htmlFor="consent" className="text-sm text-gray-700">
                   Я соглашаюсь с{" "}
-                  <I18nLink
+                  <IntlLink
                     href="/privacy-policy"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-blue-600 underline hover:text-blue-800"
                   >
                     политикой конфиденциальности
-                  </I18nLink>
+                  </IntlLink>
                   .
                 </label>
               </div>

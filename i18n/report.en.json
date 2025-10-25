@@ -3,21 +3,21 @@
   "pagesDir": "app/(pages)/en",
   "statsPages": {
     "files": 14,
-    "replaced": 30,
-    "importChanged": 38,
-    "hrefChanged": 30
+    "replaced": 0,
+    "importChanged": 0,
+    "hrefChanged": 0
   },
   "statsSide": [
     {
-      "files": 16,
-      "replaced": 5,
-      "importChanged": 2,
-      "hrefChanged": 5
+      "files": 15,
+      "replaced": 0,
+      "importChanged": 0,
+      "hrefChanged": 0
     },
     {
       "files": 6,
       "replaced": 0,
-      "importChanged": 1,
+      "importChanged": 0,
       "hrefChanged": 0
     }
   ]
