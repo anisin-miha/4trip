@@ -1,7 +1,6 @@
 import { Metadata } from "next";
-import SiteHeader from "@/app/components/SiteHeader";
-import { Footer } from "@4trip/shared-ui";
-import { Link as IntlLink } from "@/i18n/navigation";
+import SiteHeader from "@/app/components/ru/SiteHeader";
+import { Footer } from "@/packages/shared-ui/src/ru";
 import contactInfo from "@/app/config/contactInfo";
 import { Link } from "@/i18n/navigation";
 

@@ -1,13 +1,13 @@
 import { Metadata } from "next";
-import SiteHeader from "@/app/components/SiteHeader";
-import SiteFooter from "@/app/components/SiteFooter";
+import SiteHeader from "@/app/components/ru/SiteHeader";
+import SiteFooter from "@/app/components/ru/SiteFooter";
 import contactInfo from "@/app/config/contactInfo";
 import { Link } from "@/i18n/navigation";
 
 export const metadata: Metadata = {
   title: "Блог об экскурсиях — 4-trip.ru",
   description:
-    "Читайте статьи о лучших экскурсиях по Подмосковью и полезные советы для путешественников на блоге 4-trip.ru.",
+    "Читайте статьи о лучших экскурсиях по Подмосковью и полезные советы для путешественников в блоге 4-trip.ru.",
   openGraph: {
     title: "Блог об экскурсиях — 4-trip.ru",
     description:

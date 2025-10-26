@@ -1,6 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Footer } from "@4trip/shared-ui";
+import { Footer } from "@/packages/shared-ui/src/ru";
 import { BusSidebar } from "./components/BusSidebar";
 
 export const metadata: Metadata = {

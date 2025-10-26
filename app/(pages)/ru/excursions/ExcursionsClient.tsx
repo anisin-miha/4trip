@@ -1,24 +1,11 @@
 "use client";
 
 import { useMemo } from "react";
-import TourCard from "@/app/components/TourCard";
-import type { Rating } from "@/app/components/TourPage";
-import type { Tour as BaseTour } from "@/app/config/tours";
+import TourCard from "@/app/components/ru/TourCard";
+import type { Rating } from "@/app/components/ru/TourPage";
+import type { Tour as BaseTour } from "@/app/config/ru/tours";
 import { useSearchParams } from "next/navigation";
-
-type MeetingPoint = {
-  mapSrc: string;
-  address: string;
-  timeSlots?: string[];
-  duration?: string;
-  endAddress?: string;
-  type?: string;
-  groupSize?: string;
-  forWhom?: string;
-  language?: string;
-  price?: string;
-  info?: Array<{ label: string; value: string }>;
-};
+import { Link as IntlLink } from "@/i18n/navigation";
 
 // Use the shared base Tour type from config and allow optional UI fields
 type Tour = BaseTour & { image?: string; href?: string };
@@ -247,13 +234,13 @@ export default function ExcursionsClient({ allTours }: { allTours: Tour[] }) {
         <div className="lg:sticky lg:top-24">
           <div className="flex items-center justify-between mb-3">
             <h2 className="text-xl font-semibold">Фильтры</h2>
-            <a
-              href="/ru/excursions"
+            <IntlLink
+              href="/excursions"
               className="text-sm text-gray-500 hover:text-gray-700 underline"
               aria-label="Сбросить все фильтры"
             >
               Сбросить
-            </a>
+            </IntlLink>
           </div>
           <form id="filters" method="get" className="space-y-5">
             {/* Поиск */}
@@ -571,9 +558,9 @@ export default function ExcursionsClient({ allTours }: { allTours: Tour[] }) {
         {!results.length && (
           <div className="mt-10 rounded-xl border border-gray-200 p-6 text-gray-700">
             Ничего не найдено. Попробуйте ослабить фильтры или{" "}
-            <a href="/ru/excursions" className="underline">
+            <IntlLink href="/excursions" className="underline">
               сбросить все
-            </a>
+            </IntlLink>
             .
           </div>
         )}

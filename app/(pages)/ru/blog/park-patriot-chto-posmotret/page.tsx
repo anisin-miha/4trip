@@ -1,11 +1,11 @@
 import { Metadata } from "next";
-import SiteHeader from "@/app/components/SiteHeader";
-import { Header } from "@4trip/shared-ui";
-import SiteFooter from "@/app/components/SiteFooter";
+import SiteHeader from "@/app/components/ru/SiteHeader";
+import { Header } from "@/packages/shared-ui/src/ru";
+import SiteFooter from "@/app/components/ru/SiteFooter";
 import contactInfo from "@/app/config/contactInfo";
-import { TelegramComments } from "@/app/components/TelegramComments";
-import SocialShare from "@/app/components/SocialShare";
-import PatriotPlanner from "@/app/components/PatriotPlanner";
+import { TelegramComments } from "@/app/components/ru/TelegramComments";
+import SocialShare from "@/app/components/ru/SocialShare";
+import PatriotPlanner from "@/app/components/ru/PatriotPlanner";
 // import RelatedTours from "@/app/components/RelatedTours";
 
 // Фактический путь страницы в проекте локалей — с префиксом /ru

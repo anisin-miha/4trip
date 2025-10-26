@@ -32,3 +32,48 @@ out
 
 README.bus.md
 README.md
+
+
+# === Ignore generated non-Russian code trees (keep RU) ===
+
+# app/(pages)/<lang>/**
+app/(pages)/[a-z][a-z]/**
+app/(pages)/[a-z][a-z]-[a-z][a-z]/**   # e.g. pt-br, zh-cn
+app/(pages)/[a-z][a-z][a-z]/**         # rare 3-letter slugs
+!app/(pages)/ru/**
+!app/(pages)/ru/
+
+# app/components/<lang>/**
+app/components/[a-z][a-z]/**
+app/components/[a-z][a-z]-[a-z][a-z]/**
+app/components/[a-z][a-z][a-z]/**
+!app/components/ru/**
+!app/components/ru/
+
+# app/config/<lang>/**
+app/config/[a-z][a-z]/**
+app/config/[a-z][a-z]-[a-z][a-z]/**
+app/config/[a-z][a-z][a-z]/**
+!app/config/ru/**
+!app/config/ru/
+
+# packages/shared-ui/src/<lang>/**
+packages/shared-ui/src/[a-z][a-z]/**
+packages/shared-ui/src/[a-z][a-z]-[a-z][a-z]/**
+packages/shared-ui/src/[a-z][a-z][a-z]/**
+!packages/shared-ui/src/ru/**
+!packages/shared-ui/src/ru/
+
+# === Locales: ignore all non-RU parts (keep RU) ===
+i18n/locales/*.part-*.json
+!i18n/locales/ru.part-*.json
+
+# Optional: keep only ru.index.json, ignore other indexes if появятся
+i18n/locales/*.index.json
+!i18n/locales/ru.index.json
+
+# DeepL cache (всегда безопасно игнорить)
+i18n/.cache/
+
+# Optional: artifacts from DOCX round-trip
+i18n/*.docx

@@ -1,6 +1,6 @@
 import { Metadata } from "next";
-import SiteHeader from "@/app/components/SiteHeader";
-import SiteFooter from "@/app/components/SiteFooter";
+import SiteHeader from "@/app/components/ru/SiteHeader";
+import SiteFooter from "@/app/components/ru/SiteFooter";
 import { Link as IntlLink } from "@/i18n/navigation";
 import contactInfo from "@/app/config/contactInfo";
 
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     title: "Политика конфиденциальности — 4-trip.ru",
     description:
       "Узнайте, как мы защищаем и обрабатываем ваши персональные данные на сайте 4-trip.ru.",
-    url: "https://4-trip.ru/privacy-policy",
+    url: "https://4-trip.ru/ru/privacy-policy",
     type: "website",
     images: [
       {
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     ],
   },
   alternates: {
-    canonical: "https://4-trip.ru/privacy-policy",
+    canonical: "https://4-trip.ru/ru/privacy-policy",
   },
 };
 

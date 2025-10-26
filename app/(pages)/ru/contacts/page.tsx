@@ -1,6 +1,6 @@
 import { Metadata } from "next";
-import SiteHeader from "@/app/components/SiteHeader";
-import SiteFooter from "@/app/components/SiteFooter";
+import SiteHeader from "@/app/components/ru/SiteHeader";
+import SiteFooter from "@/app/components/ru/SiteFooter";
 import { Link as IntlLink } from "@/i18n/navigation";
 import contactInfo from "@/app/config/contactInfo";
 
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     title: "Контакты — 4-trip.ru",
     description:
       "Актуальные контакты команды 4-trip.ru: телефоны, мессенджеры и социальные сети для связи по вопросам экскурсий.",
-    url: "https://4-trip.ru/contacts",
+    url: "https://4-trip.ru/ru/contacts",
     type: "website",
     images: [
       {
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     ],
   },
   alternates: {
-    canonical: "https://4-trip.ru/contacts",
+    canonical: "https://4-trip.ru/ru/contacts",
   },
 };
 

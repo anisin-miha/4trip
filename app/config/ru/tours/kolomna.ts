@@ -70,7 +70,7 @@ export const kolomnaTour = {
       ],
     },
     {
-      image: "/images/tours/kolomna/pastila.jpg",
+      image: "/images/tours/kolomna/pastila.png",
       alt: "Музей коломенской пастилы",
       title: "Музей коломенской пастилы",
       description: [
@@ -79,7 +79,7 @@ export const kolomnaTour = {
       ],
     },
     {
-      image: "/images/tours/kolomna/kalachnaya.jpg",
+      image: "/images/tours/kolomna/kalachnaya.png",
       alt: "Музей «Калачная»",
       title: "«Калачная»",
       description: [
@@ -88,7 +88,7 @@ export const kolomnaTour = {
       ],
     },
     {
-      image: "/images/tours/kolomna/bobrenev.jpg",
+      image: "/images/tours/kolomna/bobrenev.png",
       alt: "Бобренев монастырь",
       title: "Бобренев монастырь",
       description: [

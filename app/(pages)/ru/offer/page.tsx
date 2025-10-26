@@ -1,6 +1,6 @@
 import { Metadata } from "next";
-import SiteHeader from "@/app/components/SiteHeader";
-import SiteFooter from "@/app/components/SiteFooter";
+import SiteHeader from "@/app/components/ru/SiteHeader";
+import SiteFooter from "@/app/components/ru/SiteFooter";
 import contactInfo from "@/app/config/contactInfo";
 
 export const metadata: Metadata = {
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Договор оферты — 4-trip.ru",
     description: "Публичная оферта на оказание услуг.",
-    url: "https://4-trip.ru/offer",
+    url: "https://4-trip.ru/ru/offer",
     type: "website",
     images: [
       {
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     ],
   },
   alternates: {
-    canonical: "https://4-trip.ru/offer",
+    canonical: "https://4-trip.ru/ru/offer",
   },
 };
 

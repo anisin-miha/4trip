@@ -2,13 +2,13 @@
 import Providers from "./providers";
 import "./globals.css";
 import contactInfo from "./config/contactInfo";
-import Cookie from "./components/Cookie";
+import Cookie from "./components/ru/Cookie";
 
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { routing } from "@/i18n/routing";
 
 import type { Metadata } from "next";
-import MailRuCounter from "./components/MailRuCounter";
+import MailRuCounter from "./components/ru/MailRuCounter";
 
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"

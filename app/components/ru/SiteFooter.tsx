@@ -1,5 +1,5 @@
 "use client";
-import { Footer } from "@4trip/shared-ui";
+import { Footer } from "@/packages/shared-ui/src/ru";
 import { Link as IntlLink } from "@/i18n/navigation";
 import type React from "react";
 

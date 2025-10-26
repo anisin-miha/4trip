@@ -1,4 +1,4 @@
-import { Header, BusCalculator, Logo4Trip } from "@4trip/shared-ui";
+import { Header, BusCalculator, Logo4Trip } from "@/packages/shared-ui/src/ru";
 import NextLink from "next/link";
 import Script from "next/script";
 

@@ -24,6 +24,6 @@ export default getRequestConfig(async () => {
     // Возврати что-то дефолтное, если вдруг где-то дернут server-API.
     // На статических RU-страницах лучше вообще не полагаться на это.
     locale: "ru",
-    messages: (await import("@/i18n/locales/ru.json")).default,
+    messages: {},
   };
 });

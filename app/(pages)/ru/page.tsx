@@ -1,12 +1,12 @@
 import { Metadata } from "next";
-import SiteHeader from "@/app/components/SiteHeader";
-import SiteFooter from "@/app/components/SiteFooter";
+import SiteHeader from "@/app/components/ru/SiteHeader";
+import SiteFooter from "@/app/components/ru/SiteFooter";
 import contactInfo from "@/app/config/contactInfo";
-import TourCard from "@/app/components/TourCard";
-import { patriotTour } from "@/app/config/tours/patriot";
-import { sergievPosadTour } from "@/app/config/tours/sergiev-posad";
-import { kolomnaTour } from "@/app/config/tours/kolomna";
-import { moscowSightseeingCard } from "@/app/config/tours/moscow-sightseeing";
+import TourCard from "@/app/components/ru/TourCard";
+import { patriotTour } from "@/app/config/ru/tours/patriot";
+import { sergievPosadTour } from "@/app/config/ru/tours/sergiev-posad";
+import { kolomnaTour } from "@/app/config/ru/tours/kolomna";
+import { moscowSightseeingCard } from "@/app/config/ru/tours/moscow-sightseeing";
 import { ruAccusativeAfterV } from "@/lib/utils";
 
 export const metadata: Metadata = {

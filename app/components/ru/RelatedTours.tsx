@@ -3,7 +3,7 @@ import {
   tours as legacyTours,
   moscowSightseeingTour,
   moscowSightseeingCard,
-} from "@/app/config/tours";
+} from "@/app/config/ru/tours";
 import { ruAccusativeAfterV } from "@/lib/utils";
 
 type Props = {
