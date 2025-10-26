@@ -4,11 +4,13 @@ import SiteFooter from "@/app/components/ru/SiteFooter";
 import contactInfo from "@/app/config/contactInfo";
 
 export const metadata: Metadata = {
-  title: "Договор оферты — 4-trip.ru",
-  description: "Публичная оферта на оказание услуг.",
+  title: "Договор оферты – 4-trip",
+  description:
+    "Публичная оферта 4-trip.ru на оказание экскурсионных услуг и организацию туров.",
   openGraph: {
-    title: "Договор оферты — 4-trip.ru",
-    description: "Публичная оферта на оказание услуг.",
+    title: "Договор оферты – 4-trip",
+    description:
+      "Публичная оферта 4-trip.ru на оказание экскурсионных услуг и организацию туров.",
     url: "https://4-trip.ru/ru/offer",
     type: "website",
     images: [

@@ -5,13 +5,13 @@ import { Link as IntlLink } from "@/i18n/navigation";
 import contactInfo from "@/app/config/contactInfo";
 
 export const metadata: Metadata = {
-  title: "Контакты — 4-trip.ru",
+  title: "Контакты 4-trip.ru – экскурсии из Москвы",
   description:
-    "Свяжитесь с командой 4-trip.ru: телефон, email, Telegram и ВКонтакте. Поможем выбрать экскурсию и ответим на все вопросы.",
+    "Свяжитесь с нами: телефон, email, Telegram. 4-trip.ru – групповые экскурсии и автобусные туры из Москвы. Ответим на вопросы и поможем с выбором тура.",
   openGraph: {
-    title: "Контакты — 4-trip.ru",
+    title: "Контакты 4-trip.ru – экскурсии из Москвы",
     description:
-      "Актуальные контакты команды 4-trip.ru: телефоны, мессенджеры и социальные сети для связи по вопросам экскурсий.",
+      "Свяжитесь с нами: телефон, email, Telegram. 4-trip.ru – групповые экскурсии и автобусные туры из Москвы. Ответим на вопросы и поможем с выбором тура.",
     url: "https://4-trip.ru/ru/contacts",
     type: "website",
     images: [
@@ -54,8 +54,7 @@ export default function ContactsPage() {
         <div className="max-w-2xl mx-auto space-y-8 text-lg text-gray-800">
           <section className="space-y-4">
             <p>
-              Мы всегда рады ответить на ваши вопросы и помочь с выбором
-              экскурсии.
+              Мы рады ответить на ваши вопросы и помочь с выбором экскурсии.
             </p>
             <p>
               <strong>Телефон:</strong>{" "}
