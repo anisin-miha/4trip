@@ -8,6 +8,4 @@ export const routing = defineRouting({
     { domain: "4-trip.ru", defaultLocale: "ru", locales: ["ru"] },
     // { domain: "4-trip.in", defaultLocale: "en", locales: ["en"] },
   ],
-
-  pathnames: {},
 });

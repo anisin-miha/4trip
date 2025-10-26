@@ -1,4 +1,3 @@
-// import type { Metadata } from "next";
 import Providers from "./providers";
 import "./globals.css";
 import contactInfo from "./config/contactInfo";
@@ -10,8 +9,8 @@ import { routing } from "@/i18n/routing";
 import type { Metadata } from "next";
 import MailRuCounter from "./components/ru/MailRuCounter";
 
-import { Analytics } from "@vercel/analytics/next"
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 // Базовые метаданные/OG по умолчанию для всех страниц (можно переопределить на уровне страницы)
 export const metadata: Metadata = {
@@ -51,23 +50,23 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({
-  children,
-  params,
-}: Readonly<{
+type RootLayoutProps = {
   children: React.ReactNode;
-  params?: { locale?: string };
-}>) {
+  params?: Promise<{ locale?: string }>;
+};
+
+export default async function RootLayout(props: RootLayoutProps) {
+  const { children, params } = props;
   // Обрабатываем телефон один раз
   const phoneFormatted = contactInfo.phone.replace(/\s|\(|\)|-/g, "");
 
   // Фильтруем рабочие соцсети
-  const socialLinks = Object.values(contactInfo.social).filter(
-    (link) => link && link !== "#",
-  );
+  const socialLinks = Object.values(contactInfo.social).filter((link) => link);
 
   // Ensure that the incoming `locale` is valid
-  const locale = params?.locale ?? "ru";
+  const resolvedParams = params ? await params : undefined;
+
+  const locale = resolvedParams?.locale ?? "ru";
 
   if (!hasLocale(routing.locales, locale)) {
     return (

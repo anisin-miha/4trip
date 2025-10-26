@@ -52,7 +52,9 @@ export default function LearnList({
         {enriched.map(({ heading, body, delay }, i) => (
           <div
             key={i}
-            ref={(el) => (cardRefs.current[i] = el)}
+            ref={(el) => {
+              cardRefs.current[i] = el;
+            }}
             className={[
               "relative overflow-hidden rounded-xl border border-gray-100 bg-gradient-to-b from-white to-gray-50 p-5 md:p-6 lg:p-7",
               "shadow-sm hover:shadow-md transition-shadow will-change-transform",

@@ -19,13 +19,18 @@ const I18N_EXCURSIONS_LIMIT = process.env.I18N_EXCURSIONS_LIMIT || ""; // "1" в
 function startDevWatcher() {
   const chokidar = require("chokidar");
   const { spawn } = require("node:child_process");
-  let timer = null, running = false;
+  let timer = null,
+    running = false;
 
   const run = () => {
     if (running) return;
     running = true;
-    const p = spawn(process.execPath, ["tools/i18n-gen-runner.js"], { stdio: "inherit" });
-    p.on("exit", () => { running = false; });
+    const p = spawn(process.execPath, ["tools/i18n-gen-runner.js"], {
+      stdio: "inherit",
+    });
+    p.on("exit", () => {
+      running = false;
+    });
   };
 
   const watchGlobs = [
@@ -35,11 +40,14 @@ function startDevWatcher() {
     "packages/shared-ui/src/ru/**/*.{ts,tsx}",
     "i18n/locales/ru.part-*.json",
     // если делаешь ручные правки перевода — тоже триггерим
-    "i18n/locales/*.part-*.json"
+    "i18n/locales/*.part-*.json",
   ];
 
   const watcher = chokidar.watch(watchGlobs, { ignoreInitial: true });
-  const debounce = () => { clearTimeout(timer); timer = setTimeout(run, 150); };
+  const debounce = () => {
+    clearTimeout(timer);
+    timer = setTimeout(run, 150);
+  };
   watcher.on("add", debounce).on("change", debounce).on("unlink", debounce);
 
   console.log("[i18n] dev watcher started");
@@ -56,10 +64,15 @@ let nextConfig = (phase) => {
   if (isDev) {
     // пробросим дефолты (можно выставить в .env.local)
     process.env.I18N_TARGETS = process.env.I18N_TARGETS || I18N_TARGETS;
-    process.env.I18N_EXCURSIONS_LIMIT = process.env.I18N_EXCURSIONS_LIMIT || I18N_EXCURSIONS_LIMIT;
+    process.env.I18N_EXCURSIONS_LIMIT =
+      process.env.I18N_EXCURSIONS_LIMIT || I18N_EXCURSIONS_LIMIT;
     // отложенный старт, чтобы логи не перемешались
     setTimeout(() => {
-      try { startDevWatcher(); } catch (e) { console.warn("[i18n] watcher disabled:", e.message); }
+      try {
+        startDevWatcher();
+      } catch (e) {
+        console.warn("[i18n] watcher disabled:", e.message);
+      }
     }, 300);
   }
 
@@ -68,7 +81,7 @@ let nextConfig = (phase) => {
     typescript: { ignoreBuildErrors: true },
     trailingSlash: true, // чтобы пути вида /ru/tours/... отдавались как /.../index.html
 
-    transpilePackages: [ "@4trip/shared-ui"],
+    transpilePackages: ["@4trip/shared-ui"],
 
     experimental: {
       webpackBuildWorker: true,
@@ -79,7 +92,7 @@ let nextConfig = (phase) => {
     webpack(config, { isServer, webpack }) {
       // Exclude .svg from existing asset loaders so SVGR can handle it
       const fileLoaderRule = config.module.rules.find(
-        (rule) => typeof rule.test === "object" && rule.test?.test?.(".svg")
+        (rule) => typeof rule.test === "object" && rule.test?.test?.(".svg"),
       );
       if (fileLoaderRule) {
         fileLoaderRule.exclude = Array.isArray(fileLoaderRule.exclude)
@@ -97,10 +110,12 @@ let nextConfig = (phase) => {
       // prod: плагин, который запускает генератор в шаге сборки
       if (!isDev) {
         config.plugins = config.plugins || [];
-        config.plugins.push(new I18nGenPagesPlugin({
-          targets: I18N_TARGETS,
-          excursionsLimit: I18N_EXCURSIONS_LIMIT,
-        }));
+        config.plugins.push(
+          new I18nGenPagesPlugin({
+            targets: I18N_TARGETS,
+            excursionsLimit: I18N_EXCURSIONS_LIMIT,
+          }),
+        );
       }
 
       return config;
@@ -125,8 +140,12 @@ mergeConfig(nextConfig, userConfig);
 // PWA: возвращаем поддержку. По умолчанию включено в production, выключено в dev и на CI (Pages).
 // Можно форсировать включение через ENABLE_PWA=true
 const isCI = !!process.env.GITHUB_ACTIONS;
-const enablePWAEnv = process.env.ENABLE_PWA === "true" || process.env.ENABLE_PWA === "1";
-const disablePWA = !(enablePWAEnv || (process.env.NODE_ENV === "production" && !isCI));
+const enablePWAEnv =
+  process.env.ENABLE_PWA === "true" || process.env.ENABLE_PWA === "1";
+const disablePWA = !(
+  enablePWAEnv ||
+  (process.env.NODE_ENV === "production" && !isCI)
+);
 
 const withPWAWrapped = withPWA({
   dest: "public",

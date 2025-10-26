@@ -1,14 +1,12 @@
 "use client";
 
 import { useMemo } from "react";
-import TourCard from "@/app/components/ru/TourCard";
-import type { Rating } from "@/app/components/ru/TourPage";
-import type { Tour as BaseTour } from "@/app/config/ru/tours";
 import { useSearchParams } from "next/navigation";
 import { Link as IntlLink } from "@/i18n/navigation";
+import TourCard from "@/app/components/ru/TourCard";
+import type { Tour } from "@/app/config/ru/tours";
 
-// Use the shared base Tour type from config and allow optional UI fields
-type Tour = BaseTour & { image?: string; href?: string };
+type TourListItem = Tour & { href: string };
 
 function parseFirstTimeToMinutes(startTime?: string): number | undefined {
   if (!startTime) return undefined;
@@ -37,11 +35,11 @@ function parseDurationHoursRange(
   return undefined;
 }
 
-function getImage(t: Tour): string {
-  return t.hero?.image || t.image || "";
+function getImage(t: TourListItem): string {
+  return t.hero?.image || "";
 }
 
-function languagesOf(t: Tour): string[] {
+function languagesOf(t: TourListItem): string[] {
   const set = new Set<string>();
   if (t.languages) t.languages.forEach((l) => set.add(l));
   if (t.meetingPoint?.language) set.add(t.meetingPoint.language);
@@ -49,7 +47,7 @@ function languagesOf(t: Tour): string[] {
 }
 
 function typeOfTour(
-  t: Tour,
+  t: TourListItem,
 ): "Групповой" | "Индивидуальный" | "Сборная" | undefined {
   const type = t.meetingPoint?.type || "";
   if (/индивид/i.test(type)) return "Индивидуальный";
@@ -67,14 +65,14 @@ const TAG_DICTIONARY: Record<string, string[]> = {
   Гастро: ["пастил", "калач", "дегустаци", "кухн", "полевая кухня"],
 };
 
-function extractText(t: Tour): string {
+function extractText(t: TourListItem): string {
   return [t.title, t.location, (t as any).description, t.hero?.description]
     .filter(Boolean)
     .join(" ")
     .toLowerCase();
 }
 
-function tagsOf(t: Tour): string[] {
+function tagsOf(t: TourListItem): string[] {
   const text = extractText(t);
   const tags: string[] = [];
   for (const [tag, keys] of Object.entries(TAG_DICTIONARY)) {
@@ -108,7 +106,11 @@ function uniq<T>(arr: T[]): T[] {
   return Array.from(new Set(arr));
 }
 
-export default function ExcursionsClient({ allTours }: { allTours: Tour[] }) {
+export default function ExcursionsClient({
+  allTours,
+}: {
+  allTours: TourListItem[];
+}) {
   const search = useSearchParams();
 
   const q = (search.get("q") || "").trim().toLowerCase();
@@ -184,11 +186,11 @@ export default function ExcursionsClient({ allTours }: { allTours: Tour[] }) {
         const tt = typeOfTour(t);
         if (!tt || !type.includes(tt)) return false;
       }
-          if (start) {
-            const firstSlot = t.meetingPoint?.timeSlots?.[0];
-            const bucket = startBucket(parseFirstTimeToMinutes(firstSlot));
-            if (bucket !== start) return false;
-          }
+      if (start) {
+        const firstSlot = t.meetingPoint?.timeSlots?.[0];
+        const bucket = startBucket(parseFirstTimeToMinutes(firstSlot));
+        if (bucket !== start) return false;
+      }
       if (dur) {
         const b = durationBucket(
           parseDurationHoursRange(t.duration ?? t.meetingPoint?.duration),
@@ -534,7 +536,7 @@ export default function ExcursionsClient({ allTours }: { allTours: Tour[] }) {
       <div className="col-span-12 lg:col-span-8 xl:col-span-9">
         <div className="mt-6 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {results.map((t) => {
-            const href = t.slug ? `/excursions/${t.slug}` : t.href || "#";
+            const href = t.href || `/excursions/${t.slug}`;
             return (
               <TourCard
                 key={t.title}
@@ -547,7 +549,8 @@ export default function ExcursionsClient({ allTours }: { allTours: Tour[] }) {
                 languages={languagesOf(t)}
                 city={t.city}
                 meetingPoint={t.meetingPoint?.address}
-                rating={(t as any).rating as Rating | undefined}
+                badges={t.badges}
+                rating={t.rating}
                 description={(t as any).description ?? ""}
               />
             );

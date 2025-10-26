@@ -11,7 +11,6 @@ interface BaseImageProps {
   title: string;
 }
 
-
 export default function BaseImage({
   src,
   alt,
@@ -22,7 +21,6 @@ export default function BaseImage({
   className,
   ...props
 }: BaseImageProps) {
-
   return (
     <div className={fill ? "relative w-full h-full" : undefined}>
       <Image

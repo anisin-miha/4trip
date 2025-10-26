@@ -47,11 +47,10 @@ export default function Header({
     }
   }, []);
 
-  const navLinks: NavLink[] =
-    links || [
-      { href: "/", label: "Главная" },
-      { href: "#", label: "Разделы" }
-    ];
+  const navLinks: NavLink[] = links || [
+    { href: "/", label: "Главная" },
+    { href: "#", label: "Разделы" },
+  ];
 
   const { tripUrl, busUrl, logoBase } = useMemo(() => {
     const isProd = process.env.NODE_ENV === "production";
@@ -97,7 +96,10 @@ export default function Header({
         }}
       >
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <LinkTag href={homeHref} className={"flex items-center gap-2 " + iconColor}>
+          <LinkTag
+            href={homeHref}
+            className={"flex items-center gap-2 " + iconColor}
+          >
             {Logo ? (
               <Logo
                 width={isScrolled ? 30 : 50}
@@ -106,7 +108,9 @@ export default function Header({
               />
             ) : (
               <img
-                src={logoSrc.startsWith("/") ? `${logoBase}${logoSrc}` : logoSrc}
+                src={
+                  logoSrc.startsWith("/") ? `${logoBase}${logoSrc}` : logoSrc
+                }
                 alt={logoAlt}
                 width={isScrolled ? 30 : 50}
                 height={isScrolled ? 30 : 50}
@@ -123,7 +127,8 @@ export default function Header({
               <ul className="flex space-x-6 items-center">
                 {navLinks.map(({ href, label }) => {
                   const isTripBusLink =
-                    project === "trip" && (/(^|\/)bus(\/|$)/.test(href) || /автобус/i.test(label));
+                    project === "trip" &&
+                    (/(^|\/)bus(\/|$)/.test(href) || /автобус/i.test(label));
                   if (isTripBusLink && !SHOW_BUS_LINKS) return null;
                   return (
                     <li key={`${href}-${label}`}>
@@ -162,12 +167,34 @@ export default function Header({
               onClick={() => setMenuOpen((prev) => !prev)}
             >
               {menuOpen ? (
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-7 w-7"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 </svg>
               ) : (
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-7 w-7"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
                 </svg>
               )}
             </button>
@@ -184,7 +211,8 @@ export default function Header({
         <ul className="flex flex-col mt-24 space-y-6 px-8">
           {navLinks.map(({ href, label }) => {
             const isTripBusLink =
-              project === "trip" && (/(^|\/)bus(\/|$)/.test(href) || /автобус/i.test(label));
+              project === "trip" &&
+              (/(^|\/)bus(\/|$)/.test(href) || /автобус/i.test(label));
             if (isTripBusLink && !SHOW_BUS_LINKS) return null;
             return (
               <li key={`${href}-${label}`}>
@@ -211,11 +239,17 @@ export default function Header({
           {project && (
             <li>
               {project === "bus" ? (
-                <a href={tripUrl} className="text-gray-800 text-lg font-medium hover:text-blue-600">
+                <a
+                  href={tripUrl}
+                  className="text-gray-800 text-lg font-medium hover:text-blue-600"
+                >
                   4‑trip
                 </a>
               ) : SHOW_BUS_LINKS ? (
-                <a href={busUrl} className="text-gray-800 text-lg font-medium hover:text-blue-600">
+                <a
+                  href={busUrl}
+                  className="text-gray-800 text-lg font-medium hover:text-blue-600"
+                >
                   4‑bus
                 </a>
               ) : null}

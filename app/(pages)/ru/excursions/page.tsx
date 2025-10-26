@@ -3,24 +3,8 @@ import { Suspense } from "react";
 import SiteHeader from "@/app/components/ru/SiteHeader";
 import SiteFooter from "@/app/components/ru/SiteFooter";
 import contactInfo from "@/app/config/contactInfo";
-import { tours as baseTours, moscowSightseeingCard, type Tour as BaseTour } from "@/app/config/ru/tours";
+import { excursions, type Tour } from "@/app/config/ru/tours";
 import ExcursionsClient from "./ExcursionsClient";
-
-type MeetingPoint = {
-  mapSrc: string;
-  address: string;
-  timeSlots?: string[];
-  duration?: string;
-  endAddress?: string;
-  type?: string;
-  groupSize?: string;
-  forWhom?: string;
-  language?: string;
-  price?: string;
-  info?: Array<{ label: string; value: string }>;
-};
-
-type Tour = BaseTour;
 
 export const metadata: Metadata = {
   title: "Экскурсии по Подмосковью — групповые туры от 4-trip.ru",
@@ -34,15 +18,13 @@ export const metadata: Metadata = {
   },
 };
 
-function getAllTours(): Tour[] {
-  const arr: Tour[] = baseTours.map((t) => ({
-    ...t,
-    image: t.hero?.image || "",
-    href: `/ru/excursions/${t.slug}`,
-    meetingPoint: t.meetingPoint as MeetingPoint | undefined,
-  } as Tour));
-  if (moscowSightseeingCard) arr.push(moscowSightseeingCard as unknown as Tour);
-  return arr;
+type ExcursionListItem = Tour & { href: string };
+
+function getAllTours(): ExcursionListItem[] {
+  return excursions.map((tour) => ({
+    ...tour,
+    href: `/excursions/${tour.slug}`,
+  }));
 }
 
 export default function ExcursionsPage() {

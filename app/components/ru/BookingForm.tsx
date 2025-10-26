@@ -99,7 +99,9 @@ function getStandardSchema(requireSlot: boolean) {
         return picked > today; // запрещаем сегодня и прошлые даты
       }, "Нельзя бронировать на сегодня и прошедшие даты"),
     // Slot is required when timeSlots are provided by parent
-    slot: requireSlot ? z.string().nonempty("Выберите время") : z.string().optional(),
+    slot: requireSlot
+      ? z.string().nonempty("Выберите время")
+      : z.string().optional(),
     people: z.string().refine(
       (val) => {
         const num = parseInt(val, 10);
@@ -107,8 +109,8 @@ function getStandardSchema(requireSlot: boolean) {
       },
       { message: "Минимум 1 человек" },
     ),
-    consent: z.literal(true, {
-      errorMap: () => ({ message: "Необходимо согласие на обработку данных" }),
+    consent: z.boolean().refine((val) => val === true, {
+      message: "Необходимо согласие на обработку данных",
     }),
     trafficSource: z
       .enum([
@@ -125,15 +127,8 @@ function getStandardSchema(requireSlot: boolean) {
     utmSource: z.string().optional(),
     utmMedium: z.string().optional(),
     utmCampaign: z.string().optional(),
-  })
+  });
 }
-
-z.setErrorMap((issue, ctx) => {
-  if (issue.code === "invalid_type" && issue.received === "undefined") {
-    return { message: "Обязательное поле" };
-  }
-  return { message: ctx.defaultError };
-});
 
 const groupSchema = z.object({
   name: z.string().min(2, "Имя должно быть не короче 2 символов"),
@@ -146,8 +141,8 @@ const groupSchema = z.object({
     ),
   email: z.string().email("Введите корректный email").optional(),
   comment: z.string().min(10, "Опишите ваши пожелания подробнее"),
-  consent: z.literal(true, {
-    errorMap: () => ({ message: "Необходимо согласие на обработку данных" }),
+  consent: z.boolean().refine((val) => val === true, {
+    message: "Необходимо согласие на обработку данных",
   }),
   trafficSource: z
     .enum([
@@ -279,13 +274,19 @@ const BookingCalendar: React.FC<{
 };
 
 // ---- BookingForm ----
-export default function BookingForm({ price, tourName, timeSlots }: BookingFormProps) {
+export default function BookingForm({
+  price,
+  tourName,
+  timeSlots,
+}: BookingFormProps) {
   // If the parent passes timeSlots, we'll allow selecting one in the form
   // The input name will be `slot` and it's optional unless provided
   // We register it with react-hook-form below when rendering slots
   const [programType, setProgramType] = useState<ProgramType>("standard");
   const [sent, setSent] = useState(false);
-  const [selectedSlotState, setSelectedSlotState] = useState<string | undefined>(undefined);
+  const [selectedSlotState, setSelectedSlotState] = useState<
+    string | undefined
+  >(undefined);
 
   const {
     register,
@@ -299,27 +300,29 @@ export default function BookingForm({ price, tourName, timeSlots }: BookingFormP
   } = useForm<any>({
     resolver: zodResolver(
       // require slot only when there are multiple choices to pick from
-      programType === "standard" ? getStandardSchema(Boolean(timeSlots && timeSlots.length > 1)) : groupSchema,
+      programType === "standard"
+        ? getStandardSchema(Boolean(timeSlots && timeSlots.length > 1))
+        : groupSchema,
     ),
     defaultValues:
       programType === "standard"
         ? {
-          people: "1",
-          consent: false,
-          trafficSource: undefined,
-          trafficDetails: "",
-          utmSource: "",
-          utmMedium: "",
-          utmCampaign: "",
-        }
+            people: "1",
+            consent: false,
+            trafficSource: undefined,
+            trafficDetails: "",
+            utmSource: "",
+            utmMedium: "",
+            utmCampaign: "",
+          }
         : {
-          consent: false,
-          trafficSource: undefined,
-          trafficDetails: "",
-          utmSource: "",
-          utmMedium: "",
-          utmCampaign: "",
-        },
+            consent: false,
+            trafficSource: undefined,
+            trafficDetails: "",
+            utmSource: "",
+            utmMedium: "",
+            utmCampaign: "",
+          },
   });
 
   const date = watch("date");
@@ -370,14 +373,19 @@ export default function BookingForm({ price, tourName, timeSlots }: BookingFormP
           year: "numeric",
         });
         const orderId = `tour-${tourName.replace(/\s+/g, "-").toLowerCase()}-${Date.now()}`;
-        const chosenSlot = data.slot ? String(data.slot) : slot ? String(slot) : undefined;
+        const chosenSlot = data.slot
+          ? String(data.slot)
+          : slot
+            ? String(slot)
+            : undefined;
         // If parent provided timeSlots, require a selection
         if (timeSlots && timeSlots.length > 0 && !chosenSlot) {
           setError("slot", { type: "required", message: "Выберите время" });
           return;
         }
-        const paymentDescription = `Оплата тура: ${tourName} (${formattedDate}${chosenSlot ? `, ${chosenSlot}` : ""
-          })`;
+        const paymentDescription = `Оплата тура: ${tourName} (${formattedDate}${
+          chosenSlot ? `, ${chosenSlot}` : ""
+        })`;
         // debug: inspect slot values and payment description before sending
         // this helps trace why the slot might be missing in the outgoing payload
         // eslint-disable-next-line no-console
@@ -495,19 +503,21 @@ export default function BookingForm({ price, tourName, timeSlots }: BookingFormP
       <div className="flex justify-center mb-8 gap-4">
         <button
           onClick={() => setProgramType("standard")}
-          className={`px-4 py-2 rounded-lg font-semibold ${programType === "standard"
+          className={`px-4 py-2 rounded-lg font-semibold ${
+            programType === "standard"
               ? "bg-blue-600 text-white"
               : "bg-gray-200 hover:bg-gray-300"
-            }`}
+          }`}
         >
           Стандартная программа
         </button>
         <button
           onClick={() => setProgramType("individual")}
-          className={`px-4 py-2 rounded-lg font-semibold ${programType === "individual"
+          className={`px-4 py-2 rounded-lg font-semibold ${
+            programType === "individual"
               ? "bg-blue-600 text-white"
               : "bg-gray-200 hover:bg-gray-300"
-            }`}
+          }`}
         >
           Индивидуальная программа
         </button>
@@ -682,10 +692,11 @@ export default function BookingForm({ price, tourName, timeSlots }: BookingFormP
                             setValue("slot", t);
                             setSelectedSlotState(t);
                           }}
-                          className={`px-3 py-2 rounded-md border transition focus:outline-none ${slot === t || selectedSlotState === t
+                          className={`px-3 py-2 rounded-md border transition focus:outline-none ${
+                            slot === t || selectedSlotState === t
                               ? "bg-blue-600 text-white border-blue-600"
                               : "bg-white text-gray-800 border-gray-200 hover:bg-gray-50"
-                            }`}
+                          }`}
                         >
                           {t}
                         </button>
@@ -740,10 +751,11 @@ export default function BookingForm({ price, tourName, timeSlots }: BookingFormP
           )}
 
           {/* Time slots (if provided by the parent) */}
-          {programType === "standard" && typeof ({} as any) /* placeholder for TS */ !== "undefined" && (
-            // Note: the actual `timeSlots` prop is optional; we check below when rendering
-            <></>
-          )}
+          {programType === "standard" &&
+            typeof ({} as any) /* placeholder for TS */ !== "undefined" && (
+              // Note: the actual `timeSlots` prop is optional; we check below when rendering
+              <></>
+            )}
 
           {/* Источник трафика */}
           <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-6">
@@ -852,10 +864,11 @@ export default function BookingForm({ price, tourName, timeSlots }: BookingFormP
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`w-full md:w-auto bg-blue-600 text-white px-6 py-3 rounded-lg transition duration-300 font-semibold ${isSubmitting
+                className={`w-full md:w-auto bg-blue-600 text-white px-6 py-3 rounded-lg transition duration-300 font-semibold ${
+                  isSubmitting
                     ? "opacity-50 cursor-not-allowed"
                     : "hover:bg-blue-700"
-                  }`}
+                }`}
               >
                 {isSubmitting ? "Отправка..." : "Отправить заявку"}
               </button>
@@ -911,7 +924,14 @@ ${slot ? `⏱ Время: ${slot}\n` : ""}
 
   // debug: show the exact telegram payload that will be sent
   // eslint-disable-next-line no-console
-  console.log("telegram payload:", { message, name, phone, slot, people, tourName });
+  console.log("telegram payload:", {
+    message,
+    name,
+    phone,
+    slot,
+    people,
+    tourName,
+  });
 
   await fetch("https://telegram-proxy-tau.vercel.app/api/send", {
     method: "POST",

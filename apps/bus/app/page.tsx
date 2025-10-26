@@ -36,7 +36,10 @@ export default function Page() {
                 <p className="text-lg text-gray-600 mb-6">
                   Экскурсии, корпоративы, свадьбы, трансферы. Легально и
                   прозрачно, от{" "}
-                  <span className="font-semibold text-gray-900">2 200 ₽/час</span>.
+                  <span className="font-semibold text-gray-900">
+                    2 200 ₽/час
+                  </span>
+                  .
                 </p>
                 <div className="flex flex-wrap gap-3">
                   <NextLink
@@ -59,11 +62,14 @@ export default function Page() {
               </div>
 
               <div className="rounded-xl bg-white shadow-sm border p-6">
-                <h3 className="text-xl font-semibold mb-3">Быстрый расчёт стоимости</h3>
+                <h3 className="text-xl font-semibold mb-3">
+                  Быстрый расчёт стоимости
+                </h3>
                 <BusCalculator />
                 <p className="text-xs text-gray-500 mt-3">
-                  Расчёт ориентировочный. Финальная цена зависит от согласованной схемы маршрута,
-                  простоев и километров за МКАД. Перед подтверждением пришлём прозрачную смету.
+                  Расчёт ориентировочный. Финальная цена зависит от
+                  согласованной схемы маршрута, простоев и километров за МКАД.
+                  Перед подтверждением пришлём прозрачную смету.
                 </p>
               </div>
             </div>
@@ -73,10 +79,21 @@ export default function Page() {
         {/* BENEFITS */}
         <section className="py-12 md:py-16">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-10">Почему это удобно</h2>
+            <h2 className="text-3xl font-bold text-center mb-10">
+              Почему это удобно
+            </h2>
             <div className="grid md:grid-cols-3 gap-6">
-              {["Работаем с лицензированными перевозчиками","Чек самозанятого за организацию","Подбор автобуса: 18–20 / 30–35 / 45–50 мест","Прозрачная почасовая тарификация","Договор и понятные условия"].map((b, i) => (
-                <div key={i} className="bg-gray-50 border rounded-xl p-6 text-gray-800">
+              {[
+                "Работаем с лицензированными перевозчиками",
+                "Чек самозанятого за организацию",
+                "Подбор автобуса: 18–20 / 30–35 / 45–50 мест",
+                "Прозрачная почасовая тарификация",
+                "Договор и понятные условия",
+              ].map((b, i) => (
+                <div
+                  key={i}
+                  className="bg-gray-50 border rounded-xl p-6 text-gray-800"
+                >
                   <div className="text-xl font-semibold mb-2">#{i + 1}</div>
                   <p>{b}</p>
                 </div>
@@ -88,12 +105,22 @@ export default function Page() {
         {/* HOW IT WORKS */}
         <section className="py-12 md:py-16 bg-gray-50 border-y">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-10">Как это работает</h2>
+            <h2 className="text-3xl font-bold text-center mb-10">
+              Как это работает
+            </h2>
             <ol className="grid md:grid-cols-4 gap-6 list-decimal list-inside">
-              <li className="bg-white border rounded-xl p-6">Оставляете маршрут и время</li>
-              <li className="bg-white border rounded-xl p-6">Подбираем автобус и считаем стоимость</li>
-              <li className="bg-white border rounded-xl p-6">Договор/подтверждение + предоплата</li>
-              <li className="bg-white border rounded-xl p-6">Поездка и закрывающие (чек самозанятого)</li>
+              <li className="bg-white border rounded-xl p-6">
+                Оставляете маршрут и время
+              </li>
+              <li className="bg-white border rounded-xl p-6">
+                Подбираем автобус и считаем стоимость
+              </li>
+              <li className="bg-white border rounded-xl p-6">
+                Договор/подтверждение + предоплата
+              </li>
+              <li className="bg-white border rounded-xl p-6">
+                Поездка и закрывающие (чек самозанятого)
+              </li>
             </ol>
             <p className="text-sm text-gray-600 mt-6">
               Перевозку выполняет партнёр с необходимыми лицензиями/допусками.
@@ -105,10 +132,19 @@ export default function Page() {
         {/* USE CASES */}
         <section className="py-12 md:py-16">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-10">На какие задачи</h2>
+            <h2 className="text-3xl font-bold text-center mb-10">
+              На какие задачи
+            </h2>
             <div className="grid md:grid-cols-4 gap-6">
-              {["Экскурсии и выездные мероприятия","Корпоративы и тимбилдинги","Свадьбы и семейные торжества","Трансферы: вокзалы/аэропорты/форумы"].map((t) => (
-                <div key={t} className="border rounded-xl p-6 bg-white">{t}</div>
+              {[
+                "Экскурсии и выездные мероприятия",
+                "Корпоративы и тимбилдинги",
+                "Свадьбы и семейные торжества",
+                "Трансферы: вокзалы/аэропорты/форумы",
+              ].map((t) => (
+                <div key={t} className="border rounded-xl p-6 bg-white">
+                  {t}
+                </div>
               ))}
             </div>
           </div>
@@ -120,25 +156,51 @@ export default function Page() {
             <h2 className="text-3xl font-bold text-center mb-8">FAQ</h2>
             <div className="space-y-4">
               <details className="border rounded-lg bg-white p-4">
-                <summary className="font-medium">Это легально? Кто фактически перевозит?</summary>
-                <p className="mt-2 text-gray-700">Да. Перевозку выполняет лицензированная транспортная компания. Мы занимаемся организацией (агентская услуга) и выдаём чек самозанятого за организацию.</p>
+                <summary className="font-medium">
+                  Это легально? Кто фактически перевозит?
+                </summary>
+                <p className="mt-2 text-gray-700">
+                  Да. Перевозку выполняет лицензированная транспортная компания.
+                  Мы занимаемся организацией (агентская услуга) и выдаём чек
+                  самозанятого за организацию.
+                </p>
               </details>
               <details className="border rounded-lg bg-white p-4">
-                <summary className="font-medium">Почему минимум 6 часов?</summary>
-                <p className="mt-2 text-gray-700">Это рыночный стандарт: минимум 4 часа работы на маршруте + 2 часа подачи транспорта. Даже если подача по факту займёт меньше времени, к оплате берётся 2 часа.</p>
+                <summary className="font-medium">
+                  Почему минимум 6 часов?
+                </summary>
+                <p className="mt-2 text-gray-700">
+                  Это рыночный стандарт: минимум 4 часа работы на маршруте + 2
+                  часа подачи транспорта. Даже если подача по факту займёт
+                  меньше времени, к оплате берётся 2 часа.
+                </p>
               </details>
               <details className="border rounded-lg bg-white p-4">
-                <summary className="font-medium">Как считается выезд за МКАД?</summary>
-                <p className="mt-2 text-gray-700">За каждые 20 км вне МКАД добавляется +1 час к оплате. В калькуляторе можно указать километраж за МКАД, а при оформлении заявки мы посчитаем автоматически по маршруту.</p>
+                <summary className="font-medium">
+                  Как считается выезд за МКАД?
+                </summary>
+                <p className="mt-2 text-gray-700">
+                  За каждые 20 км вне МКАД добавляется +1 час к оплате. В
+                  калькуляторе можно указать километраж за МКАД, а при
+                  оформлении заявки мы посчитаем автоматически по маршруту.
+                </p>
               </details>
               <details className="border rounded-lg bg-white p-4">
-                <summary className="font-medium">Можно безнал и закрывающие?</summary>
-                <p className="mt-2 text-gray-700">Да. Предоставляем чек самозанятого за организацию. По запросу оформим договор.</p>
+                <summary className="font-medium">
+                  Можно безнал и закрывающие?
+                </summary>
+                <p className="mt-2 text-gray-700">
+                  Да. Предоставляем чек самозанятого за организацию. По запросу
+                  оформим договор.
+                </p>
               </details>
             </div>
 
             <div className="text-center mt-10">
-              <NextLink href="https://t.me/excursion_patriot_bot?start=bus_order&utm_source=site&utm_medium=cta&utm_campaign=bus" className="inline-block bg-black text-white px-6 py-3 rounded-md hover:bg-gray-800 transition">
+              <NextLink
+                href="https://t.me/excursion_patriot_bot?start=bus_order&utm_source=site&utm_medium=cta&utm_campaign=bus"
+                className="inline-block bg-black text-white px-6 py-3 rounded-md hover:bg-gray-800 transition"
+              >
                 Обсудить маршрут в Telegram
               </NextLink>
             </div>

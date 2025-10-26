@@ -1,25 +1,17 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Link as IntlLink } from "@/i18n/navigation";
+
 import SiteHeader from "@/app/components/ru/SiteHeader";
 import { Footer } from "@/packages/shared-ui/src/ru";
 import contactInfo from "@/app/config/contactInfo";
 import BaseImage from "@/components/BaseImage";
 import BookingForm from "./BookingForm";
 import { availableDates } from "./BookingForm";
-import LearnList from "./LearnList";
+
 import RelatedTours from "./RelatedTours";
-function loadScript(src: string) {
-  return new Promise<void>((resolve, reject) => {
-    const s = document.createElement("script");
-    s.src = src;
-    s.async = true;
-    s.onload = () => resolve();
-    s.onerror = () => reject(new Error(`Failed to load ${src}`));
-    document.head.appendChild(s);
-  });
-}
+import { MovementType } from "@/app/config/ru/tours/types";
+
 // Yandex Maps loader and interactive map with numbered markers
 function useYandexMaps() {
   const [ready, setReady] = useState(false);
@@ -64,112 +56,6 @@ function useYandexMaps() {
     w.__ymapsLoadingPromise = p;
   }, []);
   return typeof window !== "undefined" ? (window as any).ymaps || null : null;
-}
-
-function InteractiveMap({
-  points,
-}: {
-  points: { title: string; lat: number; lng: number }[];
-}) {
-  const mapRef = useRef<HTMLDivElement | null>(null);
-  const ymaps = useYandexMaps();
-  useEffect(() => {
-    if (!ymaps || !mapRef.current || !points?.length) return;
-
-    ymaps.ready(() => {
-      const map = new ymaps.Map(mapRef.current, {
-        center: [55.7558, 37.6176], // Москва
-        zoom: 10,
-        controls: ["zoomControl", "fullscreenControl"],
-      });
-
-      const bounds: number[][] = [];
-      const routePoints: number[][] = [];
-
-      points.forEach((p, i) => {
-        const coords = [p.lat, p.lng];
-        bounds.push(coords);
-        routePoints.push(coords);
-
-        // Создаем маркер с номером
-        const marker = new ymaps.Placemark(
-          coords,
-          {
-            balloonContent: `${i + 1}. ${p.title}`,
-            hintContent: p.title,
-          },
-          {
-            preset: "islands#blueCircleDotIcon",
-            iconColor: "#2563eb",
-          },
-        );
-
-        // Добавляем номер к маркеру
-        const label = new ymaps.Placemark(
-          coords,
-          {
-            balloonContent: `${i + 1}. ${p.title}`,
-            hintContent: p.title,
-          },
-          {
-            preset: "islands#blueStretchyIcon",
-            iconLayout: "default#imageWithContent",
-            iconImageHref:
-              "data:image/svg+xml;base64," +
-              btoa(`
-            <svg width="30" height="30" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="15" cy="15" r="12" fill="#2563eb" stroke="white" stroke-width="2"/>
-              <text x="15" y="20" text-anchor="middle" fill="white" font-family="Arial" font-size="12" font-weight="bold">${i + 1}</text>
-            </svg>
-          `),
-            iconImageSize: [30, 30],
-            iconImageOffset: [-15, -15],
-          },
-        );
-
-        map.geoObjects.add(label);
-      });
-
-      // Добавляем маршрут
-      if (routePoints.length > 1) {
-        const polyline = new ymaps.Polyline(
-          routePoints,
-          {},
-          {
-            strokeColor: "#2563eb",
-            strokeWidth: 3,
-            strokeOpacity: 0.8,
-          },
-        );
-        map.geoObjects.add(polyline);
-      }
-
-      // Подгоняем карту под все точки
-      map.setBounds(map.geoObjects.getBounds(), {
-        checkZoomRange: true,
-        zoomMargin: 20,
-      });
-    });
-
-    return () => {
-      // Yandex Maps cleans up with GC when element is detached
-    };
-  }, [ymaps, points]);
-
-  if (!ymaps) {
-    return (
-      <div className="interactive-map w-full h-96 rounded-xl overflow-hidden border flex items-center justify-center bg-gray-100">
-        <p className="text-gray-600">Загрузка карты...</p>
-      </div>
-    );
-  }
-
-  return (
-    <div
-      className="interactive-map w-full h-96 rounded-xl overflow-hidden border"
-      ref={mapRef}
-    />
-  );
 }
 
 function MeetingPointMap({
@@ -282,7 +168,8 @@ export type TourData = {
   slug: string;
   title: string;
   subtitle?: string;
-  hero: { image: string; description: string; badges?: string[] };
+  hero: { image: string; description: string };
+  badges?: string[];
   price: number;
   currency?: string; // default RUB
   duration?: string; // e.g. "4 часа"
@@ -293,6 +180,8 @@ export type TourData = {
   ageLimit?: string; // e.g. "6+"
   expectations?: string;
   rating?: Rating;
+  visibility: boolean;
+  movementType: MovementType;
   inclusions?: string[];
   exclusions?: string[];
   details?: string[];
@@ -347,10 +236,10 @@ function buildTourJsonLd(data: TourData) {
     },
     aggregateRating: data.rating
       ? {
-        "@type": "AggregateRating",
-        ratingValue: data.rating.value,
-        reviewCount: data.rating.count,
-      }
+          "@type": "AggregateRating",
+          ratingValue: data.rating.value,
+          reviewCount: data.rating.count,
+        }
       : undefined,
     startDate: firstDate,
   } as const;
@@ -437,14 +326,13 @@ function Badge({ children }: { children: React.ReactNode }) {
 
 // === Main Page ===
 export default function TourPageSEO({ data }: { data: TourData }) {
-
   const inclusions = data.inclusions?.length
     ? data.inclusions
     : [
-      "Работа лицензированного гида",
-      "Туристический автобус по маршруту",
-      "Аудиосистема и сопровождение на протяжении поездки",
-    ];
+        "Работа лицензированного гида",
+        "Туристический автобус по маршруту",
+        "Аудиосистема и сопровождение на протяжении поездки",
+      ];
   const exclusions = data.exclusions?.length ? data.exclusions : undefined;
   const expectations = data.expectations || data.hero.description;
 
@@ -518,10 +406,9 @@ export default function TourPageSEO({ data }: { data: TourData }) {
                   </p>
                 )}
                 <div className="mt-6 flex flex-wrap gap-2">
-                  <Badge>{data.duration || "3–4 часа"}</Badge>
-                  {data.schedule && <Badge>{data.schedule}</Badge>}
-                  {data.ageLimit && <Badge>{data.ageLimit}</Badge>}
-                  {data.groupSize && <Badge>{data.groupSize}</Badge>}
+                  {data.badges?.map((badge, index) => (
+                    <Badge key={index}>{badge}</Badge>
+                  ))}
                 </div>
 
                 <p className="mt-6 text-base md:text-lg max-w-2xl text-gray-100">
@@ -695,49 +582,73 @@ export default function TourPageSEO({ data }: { data: TourData }) {
                       then routeVariants[0].points (string array), then mapPoints titles */}
                   {(() => {
                     // Build finalProgram as an array of items with optional time/title/description
-                    type FinalProgItem = { time?: string; title: string; description?: string };
+                    type FinalProgItem = {
+                      time?: string;
+                      title: string;
+                      description?: string;
+                    };
 
                     const finalProgram: FinalProgItem[] = [];
 
                     if (data.program && data.program.length) {
                       data.program.forEach((p) =>
-                        finalProgram.push({ time: p.time, title: p.title || "", description: p.description }),
+                        finalProgram.push({
+                          time: p.time,
+                          title: p.title || "",
+                          description: p.description,
+                        }),
                       );
-                    } else if (data.routeVariants && data.routeVariants[0]?.points?.length) {
-                      data.routeVariants[0].points.forEach((pt) => finalProgram.push({ title: pt }));
+                    } else if (
+                      data.routeVariants &&
+                      data.routeVariants[0]?.points?.length
+                    ) {
+                      data.routeVariants[0].points.forEach((pt) =>
+                        finalProgram.push({ title: pt }),
+                      );
                     } else if (data.mapPoints && data.mapPoints.length) {
-                      data.mapPoints.forEach((m) => finalProgram.push({ title: m.title || "" }));
+                      data.mapPoints.forEach((m) =>
+                        finalProgram.push({ title: m.title || "" }),
+                      );
                     }
 
                     if (!finalProgram.length) return null;
 
                     // Render two parts: compact numbered list (multi-column) and detailed timeline if descriptions/times exist
-                    const hasDetails = finalProgram.some((i) => i.description || i.time);
+                    const hasDetails = finalProgram.some(
+                      (i) => i.description || i.time,
+                    );
 
                     return (
                       <>
-                        {!hasDetails && <ol className="columns-1 sm:columns-2 md:columns-3 gap-6 list-none program-vertical-list">
-                          {finalProgram.map((item, idx) => (
-                            <li
-                              key={idx}
-                              className="break-inside-avoid mb-3 flex gap-3 items-start"
-                            >
-                              <span className="mt-1 inline-flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-blue-600 text-white text-xs font-bold">
-                                {idx + 1}
-                              </span>
-                              <span
-                                className="leading-relaxed"
-                                // If item.title contains HTML entities, render as HTML; otherwise render as text
-                                dangerouslySetInnerHTML={{ __html: item.title }}
-                              />
-                            </li>
-                          ))}
-                        </ol>}
+                        {!hasDetails && (
+                          <ol className="columns-1 sm:columns-2 md:columns-3 gap-6 list-none program-vertical-list">
+                            {finalProgram.map((item, idx) => (
+                              <li
+                                key={idx}
+                                className="break-inside-avoid mb-3 flex gap-3 items-start"
+                              >
+                                <span className="mt-1 inline-flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-blue-600 text-white text-xs font-bold">
+                                  {idx + 1}
+                                </span>
+                                <span
+                                  className="leading-relaxed"
+                                  // If item.title contains HTML entities, render as HTML; otherwise render as text
+                                  dangerouslySetInnerHTML={{
+                                    __html: item.title,
+                                  }}
+                                />
+                              </li>
+                            ))}
+                          </ol>
+                        )}
 
                         {hasDetails ? (
                           <div className="mt-6 space-y-4">
                             {finalProgram.map((item, idx) => (
-                              <div key={idx} className="p-4 rounded-lg bg-gray-50 border">
+                              <div
+                                key={idx}
+                                className="p-4 rounded-lg bg-gray-50 border"
+                              >
                                 <div className="flex items-start gap-4">
                                   <div className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-blue-600 text-white font-bold">
                                     {idx + 1}
@@ -747,7 +658,11 @@ export default function TourPageSEO({ data }: { data: TourData }) {
                                       {item.time}
                                     </div>
                                     <div className="font-semibold text-gray-900">
-                                      <span dangerouslySetInnerHTML={{ __html: item.title }} />
+                                      <span
+                                        dangerouslySetInnerHTML={{
+                                          __html: item.title,
+                                        }}
+                                      />
                                     </div>
                                     {item.description ? (
                                       <div className="mt-2 text-gray-700">
@@ -912,12 +827,15 @@ export default function TourPageSEO({ data }: { data: TourData }) {
                     <span className="font-semibold">Адрес:</span>{" "}
                     {data.meetingPoint.address}
                   </li>
-                  {data.meetingPoint.timeSlots && data.meetingPoint.timeSlots.length > 0 && (
-                    <li>
-                      <span className="font-semibold">Время отправления:</span>{" "}
-                      {data.meetingPoint.timeSlots.join(", ")}
-                    </li>
-                  )}
+                  {data.meetingPoint.timeSlots &&
+                    data.meetingPoint.timeSlots.length > 0 && (
+                      <li>
+                        <span className="font-semibold">
+                          Время отправления:
+                        </span>{" "}
+                        {data.meetingPoint.timeSlots.join(", ")}
+                      </li>
+                    )}
                   {data.meetingPoint.endAddress && (
                     <li>
                       <span className="font-semibold">Окончание:</span>{" "}
@@ -945,7 +863,11 @@ export default function TourPageSEO({ data }: { data: TourData }) {
         <section id="booking" className="py-16 bg-white scroll-mt-24">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto">
-              <BookingForm price={data.price} tourName={data.title} timeSlots={data.meetingPoint?.timeSlots} />
+              <BookingForm
+                price={data.price}
+                tourName={data.title}
+                timeSlots={data.meetingPoint?.timeSlots}
+              />
             </div>
           </div>
         </section>

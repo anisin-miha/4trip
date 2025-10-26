@@ -30,4 +30,3 @@ export function useInView<T extends HTMLElement>(
 
   return { ref, inView } as const;
 }
-

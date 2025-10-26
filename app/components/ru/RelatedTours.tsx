@@ -1,9 +1,5 @@
 import TourCard from "./TourCard";
-import {
-  tours as legacyTours,
-  moscowSightseeingTour,
-  moscowSightseeingCard,
-} from "@/app/config/ru/tours";
+import { excursions } from "@/app/config/ru/tours";
 import { ruAccusativeAfterV } from "@/lib/utils";
 
 type Props = {
@@ -11,55 +7,31 @@ type Props = {
   limit?: number;
 };
 
-type RelatedTourCard = {
-  slug: string;
-  href: string;
-  imageSrc: string;
-  imageAlt: string;
-  title: string;
-  description: string;
-  price: number | string;
-  duration?: string;
-  languages?: string[];
-  city?: string;
-  meetingPoint?: string;
-  badges?: string[];
-  rating?: { value: number; count?: number };
-};
-
 export default function RelatedTours({ currentSlug, limit = 3 }: Props) {
-  const legacyCards: RelatedTourCard[] = legacyTours.map((t) => ({
-    slug: t.slug,
-    href: `/excursions/${t.slug}`,
-    imageSrc: t.hero.image,
-    imageAlt: t.title,
-    title: `Экскурсия в ${ruAccusativeAfterV(t.title)}`,
-    description: t.hero.description,
-    price: t.price,
-    duration: t.duration,
-    languages: t.languages,
-    city: t.city,
-    meetingPoint: t.meetingPoint.address,
-  }));
-
-  const modernCard: RelatedTourCard = {
-    slug: moscowSightseeingTour.slug,
-    href: moscowSightseeingCard.href,
-    imageSrc: moscowSightseeingCard.imageSrc,
-    imageAlt: moscowSightseeingCard.imageAlt,
-    title: moscowSightseeingCard.title,
-    description: moscowSightseeingCard.description,
-    price: moscowSightseeingCard.price,
-    duration: moscowSightseeingCard.duration,
-    languages: moscowSightseeingCard.languages,
-    city: moscowSightseeingCard.city,
-    meetingPoint: moscowSightseeingCard.meetingPoint,
-    badges: moscowSightseeingCard.badges,
-    rating: moscowSightseeingCard.rating,
-  };
-
-  const related: RelatedTourCard[] = [...legacyCards, modernCard]
+  const related = excursions
     .filter((tour) => tour.slug !== currentSlug)
+    .map((tour) => {
+      const languages =
+        tour.languages ??
+        (tour.meetingPoint?.language
+          ? [tour.meetingPoint.language]
+          : undefined);
+      return {
+        slug: tour.slug,
+        href: `/excursions/${tour.slug}`,
+        imageSrc: tour.hero.image,
+        imageAlt: tour.title,
+        title: `Экскурсия в ${ruAccusativeAfterV(tour.title)}`,
+        description: tour.hero.description,
+        price: tour.price,
+        duration: tour.duration ?? tour.meetingPoint?.duration,
+        languages,
+        city: tour.city,
+        meetingPoint: tour.meetingPoint?.address,
+        badges: tour.badges,
+        rating: tour.rating,
+      };
+    })
     .slice(0, limit);
 
   if (!related.length) return null;

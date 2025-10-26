@@ -644,7 +644,7 @@ export default function BlogPage() {
             utm_medium: "social",
             utm_campaign: "park-patriot",
           }}
-          networks={["telegram", "vk", "whatsapp", "x", "facebook"]} // порядок важен
+          networks={["telegram", "vk", "whatsapp", "ok", "viber"]} // порядок важен
           className="mt-6 mb-10"
         />
         <TelegramComments discussion={"fourtrip/13"} />
