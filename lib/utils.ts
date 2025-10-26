@@ -13,7 +13,16 @@ export function ruAccusativeAfterV(name: string): string {
   let end = name.length;
   while (end > 0) {
     const ch = name[end - 1];
-    if (ch === " " || ch === "\t" || ch === "\n" || ch === ")" || ch === "]" || ch === '"' || ch === "'" || ch === "»") {
+    if (
+      ch === " " ||
+      ch === "\t" ||
+      ch === "\n" ||
+      ch === ")" ||
+      ch === "]" ||
+      ch === '"' ||
+      ch === "'" ||
+      ch === "»"
+    ) {
       end--;
     } else {
       break;

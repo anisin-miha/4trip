@@ -1,1 +1,878 @@
-if(!self.define){let e,a={};const i=(i,o)=>(i=new URL(i+".js",o).href,a[i]||new Promise(a=>{if("document"in self){const e=document.createElement("script");e.src=i,e.onload=a,document.head.appendChild(e)}else e=i,importScripts(i),a()}).then(()=>{let e=a[i];if(!e)throw new Error(`Module ${i} didn’t register its module`);return e}));self.define=(o,r)=>{const s=e||("document"in self?document.currentScript.src:"")||location.href;if(a[s])return;let n={};const t=e=>i(e,s),c={module:{uri:s},exports:n,require:t};a[s]=Promise.all(o.map(e=>c[e]||t(e))).then(e=>(r(...e),n))}}define(["./workbox-1bb06f5e"],function(e){"use strict";importScripts(),self.skipWaiting(),e.clientsClaim(),e.precacheAndRoute([{url:"/Guarda_che_luna.mp3",revision:"0a21d894d805842d2d75a3506f00b5fd"},{url:"/_next/app-build-manifest.json",revision:"c512b24c282d3513ce7084683c1cc855"},{url:"/_next/static/chunks/114-a91f7814fe5ae057.js",revision:"sLKJoYAgwNoJOrk47zuB5"},{url:"/_next/static/chunks/30a37ab2-6d6188878cd580e2.js",revision:"sLKJoYAgwNoJOrk47zuB5"},{url:"/_next/static/chunks/436-594b331c2660b900.js",revision:"sLKJoYAgwNoJOrk47zuB5"},{url:"/_next/static/chunks/437-7bfd68d2284f97a8.js",revision:"sLKJoYAgwNoJOrk47zuB5"},{url:"/_next/static/chunks/4bd1b696-b2739108a1ec08f4.js",revision:"sLKJoYAgwNoJOrk47zuB5"},{url:"/_next/static/chunks/572-8f267563f8cd032d.js",revision:"sLKJoYAgwNoJOrk47zuB5"},{url:"/_next/static/chunks/671-72907f66ec903a78.js",revision:"sLKJoYAgwNoJOrk47zuB5"},{url:"/_next/static/chunks/684-ffa6a438a8ca93e0.js",revision:"sLKJoYAgwNoJOrk47zuB5"},{url:"/_next/static/chunks/766-3f25b36d43d272fa.js",revision:"sLKJoYAgwNoJOrk47zuB5"},{url:"/_next/static/chunks/895-9e26fc07e6585e28.js",revision:"sLKJoYAgwNoJOrk47zuB5"},{url:"/_next/static/chunks/981-8d72b029495e8c0a.js",revision:"sLKJoYAgwNoJOrk47zuB5"},{url:"/_next/static/chunks/app/(pages)/ru/blog/page-d02fdba3942eb8b8.js",revision:"sLKJoYAgwNoJOrk47zuB5"},{url:"/_next/static/chunks/app/(pages)/ru/blog/park-patriot-chto-posmotret/page-2f88426dd288bd7c.js",revision:"sLKJoYAgwNoJOrk47zuB5"},{url:"/_next/static/chunks/app/(pages)/ru/bus/page-e4a8f04766c2d656.js",revision:"sLKJoYAgwNoJOrk47zuB5"},{url:"/_next/static/chunks/app/(pages)/ru/contacts/page-718e7d3cccb485a1.js",revision:"sLKJoYAgwNoJOrk47zuB5"},{url:"/_next/static/chunks/app/(pages)/ru/excursions/avtobusnaya-obzornaya-ekskursiya-po-moskve/page-9196f00ae426dc8b.js",revision:"sLKJoYAgwNoJOrk47zuB5"},{url:"/_next/static/chunks/app/(pages)/ru/excursions/kolomna/page-3a61ea4ab48257e3.js",revision:"sLKJoYAgwNoJOrk47zuB5"},{url:"/_next/static/chunks/app/(pages)/ru/excursions/page-952d82b25590ed14.js",revision:"sLKJoYAgwNoJOrk47zuB5"},{url:"/_next/static/chunks/app/(pages)/ru/excursions/patriot/page-80cedf2d73bb3a83.js",revision:"sLKJoYAgwNoJOrk47zuB5"},{url:"/_next/static/chunks/app/(pages)/ru/excursions/sergiev-posad/page-e449517f683d86f0.js",revision:"sLKJoYAgwNoJOrk47zuB5"},{url:"/_next/static/chunks/app/(pages)/ru/offer/page-303bc5f0874bcb61.js",revision:"sLKJoYAgwNoJOrk47zuB5"},{url:"/_next/static/chunks/app/(pages)/ru/page-c018bc1bc0a0f8a7.js",revision:"sLKJoYAgwNoJOrk47zuB5"},{url:"/_next/static/chunks/app/(pages)/ru/privacy-policy/page-cf4c5bb5d220fb60.js",revision:"sLKJoYAgwNoJOrk47zuB5"},{url:"/_next/static/chunks/app/(pages)/ru/refunds/page-6da3e17aaaa44e25.js",revision:"sLKJoYAgwNoJOrk47zuB5"},{url:"/_next/static/chunks/app/_not-found/page-99d13896882db283.js",revision:"sLKJoYAgwNoJOrk47zuB5"},{url:"/_next/static/chunks/app/api/pay/route-2b2abffebcaa0d8c.js",revision:"sLKJoYAgwNoJOrk47zuB5"},{url:"/_next/static/chunks/app/layout-568f1f8f22b56ef5.js",revision:"sLKJoYAgwNoJOrk47zuB5"},{url:"/_next/static/chunks/app/not-found-15563b3a0d76ecc8.js",revision:"sLKJoYAgwNoJOrk47zuB5"},{url:"/_next/static/chunks/app/page-c113c5290cf57fb9.js",revision:"sLKJoYAgwNoJOrk47zuB5"},{url:"/_next/static/chunks/framework-29ac49a6a3fd316f.js",revision:"sLKJoYAgwNoJOrk47zuB5"},{url:"/_next/static/chunks/main-2ec96768d08df8e8.js",revision:"sLKJoYAgwNoJOrk47zuB5"},{url:"/_next/static/chunks/main-app-1ea9e950511f63b8.js",revision:"sLKJoYAgwNoJOrk47zuB5"},{url:"/_next/static/chunks/pages/_app-da15c11dea942c36.js",revision:"sLKJoYAgwNoJOrk47zuB5"},{url:"/_next/static/chunks/pages/_error-cc3f077a18ea1793.js",revision:"sLKJoYAgwNoJOrk47zuB5"},{url:"/_next/static/chunks/polyfills-42372ed130431b0a.js",revision:"846118c33b2c0e922d7b3a7676f81f6f"},{url:"/_next/static/chunks/webpack-ed8d45b954ca4a21.js",revision:"sLKJoYAgwNoJOrk47zuB5"},{url:"/_next/static/css/b27993c62c1d420b.css",revision:"b27993c62c1d420b"},{url:"/_next/static/sLKJoYAgwNoJOrk47zuB5/_buildManifest.js",revision:"c991d6775a39da344a565347d52edb9b"},{url:"/_next/static/sLKJoYAgwNoJOrk47zuB5/_ssgManifest.js",revision:"b6652df95db52feb4daf4eca35380933"},{url:"/favicon/apple-touch-icon.png",revision:"8fcc6c8485c111568233e3c5a385dae0"},{url:"/favicon/favicon-96x96.png",revision:"3fd37fcd3d40e68258fb668c67d9f1e0"},{url:"/favicon/favicon.ico",revision:"4d3d08a1a439938a4dac45111b1117d6"},{url:"/favicon/favicon.svg",revision:"6c7a763f12363431e6fa8a168e018189"},{url:"/favicon/nextImageExportOptimizer/apple-touch-icon-opt-10.WEBP",revision:"456458886151b48a3d40460dfae93c55"},{url:"/favicon/nextImageExportOptimizer/apple-touch-icon-opt-1080.WEBP",revision:"107f8b89623ff56faf1591811fb749a5"},{url:"/favicon/nextImageExportOptimizer/apple-touch-icon-opt-1200.WEBP",revision:"107f8b89623ff56faf1591811fb749a5"},{url:"/favicon/nextImageExportOptimizer/apple-touch-icon-opt-128.WEBP",revision:"edbfd840cad9f44992976d597b96b76c"},{url:"/favicon/nextImageExportOptimizer/apple-touch-icon-opt-16.WEBP",revision:"7c22df5fb0a7fa20a5501c595f3b4d25"},{url:"/favicon/nextImageExportOptimizer/apple-touch-icon-opt-1920.WEBP",revision:"107f8b89623ff56faf1591811fb749a5"},{url:"/favicon/nextImageExportOptimizer/apple-touch-icon-opt-2048.WEBP",revision:"107f8b89623ff56faf1591811fb749a5"},{url:"/favicon/nextImageExportOptimizer/apple-touch-icon-opt-256.WEBP",revision:"107f8b89623ff56faf1591811fb749a5"},{url:"/favicon/nextImageExportOptimizer/apple-touch-icon-opt-32.WEBP",revision:"866bfc52fcf8efd2aa187af863d8aba7"},{url:"/favicon/nextImageExportOptimizer/apple-touch-icon-opt-384.WEBP",revision:"107f8b89623ff56faf1591811fb749a5"},{url:"/favicon/nextImageExportOptimizer/apple-touch-icon-opt-3840.WEBP",revision:"107f8b89623ff56faf1591811fb749a5"},{url:"/favicon/nextImageExportOptimizer/apple-touch-icon-opt-48.WEBP",revision:"2d855a6f65994841b842ee1cad0014bf"},{url:"/favicon/nextImageExportOptimizer/apple-touch-icon-opt-64.WEBP",revision:"83d147d27ec6a1c7334b80aa6cb9c1a6"},{url:"/favicon/nextImageExportOptimizer/apple-touch-icon-opt-640.WEBP",revision:"107f8b89623ff56faf1591811fb749a5"},{url:"/favicon/nextImageExportOptimizer/apple-touch-icon-opt-750.WEBP",revision:"107f8b89623ff56faf1591811fb749a5"},{url:"/favicon/nextImageExportOptimizer/apple-touch-icon-opt-828.WEBP",revision:"107f8b89623ff56faf1591811fb749a5"},{url:"/favicon/nextImageExportOptimizer/apple-touch-icon-opt-96.WEBP",revision:"38eed96dff66b0b259731b94a4dc6050"},{url:"/favicon/nextImageExportOptimizer/favicon-96x96-opt-10.WEBP",revision:"8b34338684784e484af92d9f756e15d6"},{url:"/favicon/nextImageExportOptimizer/favicon-96x96-opt-1080.WEBP",revision:"779bcc90577725c7f44d5489fb6922d2"},{url:"/favicon/nextImageExportOptimizer/favicon-96x96-opt-1200.WEBP",revision:"779bcc90577725c7f44d5489fb6922d2"},{url:"/favicon/nextImageExportOptimizer/favicon-96x96-opt-128.WEBP",revision:"779bcc90577725c7f44d5489fb6922d2"},{url:"/favicon/nextImageExportOptimizer/favicon-96x96-opt-16.WEBP",revision:"9d26a0ca714352b60fd814068e01f680"},{url:"/favicon/nextImageExportOptimizer/favicon-96x96-opt-1920.WEBP",revision:"779bcc90577725c7f44d5489fb6922d2"},{url:"/favicon/nextImageExportOptimizer/favicon-96x96-opt-2048.WEBP",revision:"779bcc90577725c7f44d5489fb6922d2"},{url:"/favicon/nextImageExportOptimizer/favicon-96x96-opt-256.WEBP",revision:"779bcc90577725c7f44d5489fb6922d2"},{url:"/favicon/nextImageExportOptimizer/favicon-96x96-opt-32.WEBP",revision:"cddceed6db20074a9d819bcc6bf55eae"},{url:"/favicon/nextImageExportOptimizer/favicon-96x96-opt-384.WEBP",revision:"779bcc90577725c7f44d5489fb6922d2"},{url:"/favicon/nextImageExportOptimizer/favicon-96x96-opt-3840.WEBP",revision:"779bcc90577725c7f44d5489fb6922d2"},{url:"/favicon/nextImageExportOptimizer/favicon-96x96-opt-48.WEBP",revision:"19d0ca0685ba1b9c442b0e678fb57454"},{url:"/favicon/nextImageExportOptimizer/favicon-96x96-opt-64.WEBP",revision:"9eeb1cfc4178c83e2f22df70c4099d92"},{url:"/favicon/nextImageExportOptimizer/favicon-96x96-opt-640.WEBP",revision:"779bcc90577725c7f44d5489fb6922d2"},{url:"/favicon/nextImageExportOptimizer/favicon-96x96-opt-750.WEBP",revision:"779bcc90577725c7f44d5489fb6922d2"},{url:"/favicon/nextImageExportOptimizer/favicon-96x96-opt-828.WEBP",revision:"779bcc90577725c7f44d5489fb6922d2"},{url:"/favicon/nextImageExportOptimizer/favicon-96x96-opt-96.WEBP",revision:"779bcc90577725c7f44d5489fb6922d2"},{url:"/favicon/nextImageExportOptimizer/web-app-manifest-192x192-opt-10.WEBP",revision:"7234fbbf931b445d62b82a0b16cb6a52"},{url:"/favicon/nextImageExportOptimizer/web-app-manifest-192x192-opt-1080.WEBP",revision:"341db0648f9a69b70c2f7eb6d381a6ae"},{url:"/favicon/nextImageExportOptimizer/web-app-manifest-192x192-opt-1200.WEBP",revision:"341db0648f9a69b70c2f7eb6d381a6ae"},{url:"/favicon/nextImageExportOptimizer/web-app-manifest-192x192-opt-128.WEBP",revision:"826b061d20cf761c469d218eb46ea723"},{url:"/favicon/nextImageExportOptimizer/web-app-manifest-192x192-opt-16.WEBP",revision:"61873320c0842c4ba538c9cb1a6a4d29"},{url:"/favicon/nextImageExportOptimizer/web-app-manifest-192x192-opt-1920.WEBP",revision:"341db0648f9a69b70c2f7eb6d381a6ae"},{url:"/favicon/nextImageExportOptimizer/web-app-manifest-192x192-opt-2048.WEBP",revision:"341db0648f9a69b70c2f7eb6d381a6ae"},{url:"/favicon/nextImageExportOptimizer/web-app-manifest-192x192-opt-256.WEBP",revision:"341db0648f9a69b70c2f7eb6d381a6ae"},{url:"/favicon/nextImageExportOptimizer/web-app-manifest-192x192-opt-32.WEBP",revision:"cbb677b52f131efa645c83c082a4e0e8"},{url:"/favicon/nextImageExportOptimizer/web-app-manifest-192x192-opt-384.WEBP",revision:"341db0648f9a69b70c2f7eb6d381a6ae"},{url:"/favicon/nextImageExportOptimizer/web-app-manifest-192x192-opt-3840.WEBP",revision:"341db0648f9a69b70c2f7eb6d381a6ae"},{url:"/favicon/nextImageExportOptimizer/web-app-manifest-192x192-opt-48.WEBP",revision:"322ea745fe9aeeb0d0113c8c25fc4e7c"},{url:"/favicon/nextImageExportOptimizer/web-app-manifest-192x192-opt-64.WEBP",revision:"1544a59247bfb091d0011bb3a2d9549f"},{url:"/favicon/nextImageExportOptimizer/web-app-manifest-192x192-opt-640.WEBP",revision:"341db0648f9a69b70c2f7eb6d381a6ae"},{url:"/favicon/nextImageExportOptimizer/web-app-manifest-192x192-opt-750.WEBP",revision:"341db0648f9a69b70c2f7eb6d381a6ae"},{url:"/favicon/nextImageExportOptimizer/web-app-manifest-192x192-opt-828.WEBP",revision:"341db0648f9a69b70c2f7eb6d381a6ae"},{url:"/favicon/nextImageExportOptimizer/web-app-manifest-192x192-opt-96.WEBP",revision:"ea2bdceb434bad0317e430e51f68df73"},{url:"/favicon/nextImageExportOptimizer/web-app-manifest-512x512-opt-10.WEBP",revision:"36a4768da2a65317550d2379f2170110"},{url:"/favicon/nextImageExportOptimizer/web-app-manifest-512x512-opt-1080.WEBP",revision:"4a55e0cd049593c2d8574c11ee5a59e3"},{url:"/favicon/nextImageExportOptimizer/web-app-manifest-512x512-opt-1200.WEBP",revision:"4a55e0cd049593c2d8574c11ee5a59e3"},{url:"/favicon/nextImageExportOptimizer/web-app-manifest-512x512-opt-128.WEBP",revision:"be93c116a7b025ae22b7ca89975f485b"},{url:"/favicon/nextImageExportOptimizer/web-app-manifest-512x512-opt-16.WEBP",revision:"50ec30afe904304ee2988087939c0bd3"},{url:"/favicon/nextImageExportOptimizer/web-app-manifest-512x512-opt-1920.WEBP",revision:"4a55e0cd049593c2d8574c11ee5a59e3"},{url:"/favicon/nextImageExportOptimizer/web-app-manifest-512x512-opt-2048.WEBP",revision:"4a55e0cd049593c2d8574c11ee5a59e3"},{url:"/favicon/nextImageExportOptimizer/web-app-manifest-512x512-opt-256.WEBP",revision:"0f66700faf7dcb901aa74b45a77cdf63"},{url:"/favicon/nextImageExportOptimizer/web-app-manifest-512x512-opt-32.WEBP",revision:"01279a985ced4a14d944a30738beef6d"},{url:"/favicon/nextImageExportOptimizer/web-app-manifest-512x512-opt-384.WEBP",revision:"49d7bf4811fc1e53e7c5a868c138fa40"},{url:"/favicon/nextImageExportOptimizer/web-app-manifest-512x512-opt-3840.WEBP",revision:"4a55e0cd049593c2d8574c11ee5a59e3"},{url:"/favicon/nextImageExportOptimizer/web-app-manifest-512x512-opt-48.WEBP",revision:"184f2649aadb9c08d3e477e5284172c6"},{url:"/favicon/nextImageExportOptimizer/web-app-manifest-512x512-opt-64.WEBP",revision:"8fa4dc266ed12aa408dd909c6bcdf47e"},{url:"/favicon/nextImageExportOptimizer/web-app-manifest-512x512-opt-640.WEBP",revision:"4a55e0cd049593c2d8574c11ee5a59e3"},{url:"/favicon/nextImageExportOptimizer/web-app-manifest-512x512-opt-750.WEBP",revision:"4a55e0cd049593c2d8574c11ee5a59e3"},{url:"/favicon/nextImageExportOptimizer/web-app-manifest-512x512-opt-828.WEBP",revision:"4a55e0cd049593c2d8574c11ee5a59e3"},{url:"/favicon/nextImageExportOptimizer/web-app-manifest-512x512-opt-96.WEBP",revision:"b33175459821856767a33733e7d1ae0a"},{url:"/favicon/site.webmanifest",revision:"9a31df5025642013617d729853824106"},{url:"/favicon/web-app-manifest-192x192.png",revision:"7f1c66f43845c449dafb8a2ce8be2796"},{url:"/favicon/web-app-manifest-512x512.png",revision:"a1718a9f95652c89a683284949ce1970"},{url:"/googleaf3f5e60f0639ae5.html",revision:"2385fbff0ff349c2e9053e435da6f230"},{url:"/images/4trip-logo.svg",revision:"b8aeaaa8aa2d2cc806457e82dbf3e7dc"},{url:"/images/next-image-export-optimizer-hashes.json",revision:"70b99dcbf809ffe2cd8f4b0a94566a8c"},{url:"/images/telegram.svg",revision:"62004dd9b1538adbf49394b0b07bf57a"},{url:"/images/tours/kolomna/bobrenev.png",revision:"262c021a9c8117f0c4f2654d6822d6d5"},{url:"/images/tours/kolomna/gallery1.png",revision:"63384582c39be59b55c24e849d25f67e"},{url:"/images/tours/kolomna/gallery2.png",revision:"6661283f66dab50eb521d014804e246e"},{url:"/images/tours/kolomna/gallery3.png",revision:"2ed38d977fa26dee9783d6a0aeb26348"},{url:"/images/tours/kolomna/gallery4.png",revision:"056b64b5f6f877298e26bbd74de67c85"},{url:"/images/tours/kolomna/hero.png",revision:"0ed460367b19ec8b4ea47d0eb674332f"},{url:"/images/tours/kolomna/kalachnaya.png",revision:"6492e4fac7020fb59e8791439acac630"},{url:"/images/tours/kolomna/kremlin.png",revision:"e7529d3f7230ef8c09dea3a9eff47266"},{url:"/images/tours/kolomna/pastila.png",revision:"8d1b57998997232e79c61be8d2d9b2d1"},{url:"/images/tours/moscow/arbat.jpg",revision:"0923ca1fa3c966de06e38b67fd2e76b3"},{url:"/images/tours/moscow/christ-saviour.webp",revision:"27e6a4a34482167bc6d94d87cdc0480c"},{url:"/images/tours/moscow/gallery/1.jpg",revision:"ff796c11db5c1a25d6237b8f2b7c2425"},{url:"/images/tours/moscow/gallery/2.jpg",revision:"80af61f96dcacfbc44ede6218f3a65aa"},{url:"/images/tours/moscow/gallery/3.jpg",revision:"d61ad882c5f55b4db2ecaf211f27fb2f"},{url:"/images/tours/moscow/gallery/4.jpg",revision:"2694ee052d42e423bfc788872116a968"},{url:"/images/tours/moscow/hero.jpg",revision:"a318397625ba67fbea1ad740c2c12d38"},{url:"/images/tours/moscow/kremlin-towers.png",revision:"214bab93c62df626c34ea337e07d0797"},{url:"/images/tours/moscow/moscow-city.jpeg",revision:"065001afc62a11cac67e19706945a440"},{url:"/images/tours/moscow/novodevichiy-monastir.jpg",revision:"e94f2f2566b9e2d57955ba3b9d1b72a8"},{url:"/images/tours/moscow/poklonnaya-gora.jpeg",revision:"3259e81496398a5b1908b1862e642814"},{url:"/images/tours/moscow/red-square.jpeg",revision:"c01459822486b1912c1e3c2ddfd003a6"},{url:"/images/tours/moscow/sparrow-hills.jpeg",revision:"b92f731404a537bded6cb3524a8cef7a"},{url:"/images/tours/moscow/visotka-na-kudrinskoy.jpg",revision:"1549290c7370299e519e9d05f4bb6e72"},{url:"/images/tours/patriot/armed-forces-cathedral.png",revision:"c6a460b1f92091ab7ab79b1ab70ac5db"},{url:"/images/tours/patriot/cathedral-hero.png",revision:"ed47377bbda1f14f0cf7443195bb22f3"},{url:"/images/tours/patriot/gallery1.png",revision:"4ffeea510a19d586c51c850176afbc51"},{url:"/images/tours/patriot/gallery2.png",revision:"d622e59971f974ed74f99b68a9767d02"},{url:"/images/tours/patriot/gallery3.png",revision:"8b1eab8d7c2683bf7e20245420c653a9"},{url:"/images/tours/patriot/gallery4.png",revision:"c5cb61282ddccaf03ed26c5dbb38d8ba"},{url:"/images/tours/patriot/next-image-export-optimizer-hashes.json",revision:"618cda7443e479ab61ae85d891519a99"},{url:"/images/tours/patriot/road-of-memory.png",revision:"addcdb94f87155e5826528a100f0f1a2"},{url:"/images/tours/sergiev_posad/Porcelain-Factory-and-Museum.png",revision:"3920ae9816ec0ef88ba40232fe0fb0c2"},{url:"/images/tours/sergiev_posad/Trinity-Lavra-of-St.-Sergius.png",revision:"fa67b1abcdfc97617d0e97d3f4962e81"},{url:"/images/tours/sergiev_posad/gallery1.png",revision:"e3bb80f3448e478a23071585a7908012"},{url:"/images/tours/sergiev_posad/gallery2.png",revision:"9ef86187fc70e4da9e329a3cb9dc09c4"},{url:"/images/tours/sergiev_posad/gallery3.png",revision:"3033b53ebcc51960affd934101219d0e"},{url:"/images/tours/sergiev_posad/gallery4.png",revision:"c60052b0be7fec8f43009aebf5ed3f2b"},{url:"/images/tours/sergiev_posad/hero.png",revision:"460af888bddfeb18b0bf66fcd0a1ec20"},{url:"/images/vk.svg",revision:"06224fdf0ddb3ca34612c2d4f26de8d5"},{url:"/manifest.json",revision:"6f7ea69e42bf04e6765b8fc3a447cac6"},{url:"/robots.txt",revision:"f5da5baaa1d2dd6e3da1ee01f2a43f84"},{url:"/screenshots/landscape.png",revision:"aae9b5aa5e871ec467835228f677d4ab"},{url:"/screenshots/portrait.png",revision:"622c75bb3e120d1fae1a1ae9a74bac61"},{url:"/sitemap-0.xml",revision:"d0970b31e263a31fce96954763a96592"},{url:"/sitemap.xml",revision:"624bb81d2166969ff32e2443c28da952"},{url:"/yandex_b014db0deed2b0e5.html",revision:"8814f974507e13fd409ee4c6089bc1b9"}],{ignoreURLParametersMatching:[]}),e.cleanupOutdatedCaches(),e.registerRoute("/",new e.NetworkFirst({cacheName:"start-url",plugins:[{cacheWillUpdate:async({request:e,response:a,event:i,state:o})=>a&&"opaqueredirect"===a.type?new Response(a.body,{status:200,statusText:"OK",headers:a.headers}):a}]}),"GET"),e.registerRoute(/^https:\/\/fonts\.(?:gstatic)\.com\/.*/i,new e.CacheFirst({cacheName:"google-fonts-webfonts",plugins:[new e.ExpirationPlugin({maxEntries:4,maxAgeSeconds:31536e3})]}),"GET"),e.registerRoute(/^https:\/\/fonts\.(?:googleapis)\.com\/.*/i,new e.StaleWhileRevalidate({cacheName:"google-fonts-stylesheets",plugins:[new e.ExpirationPlugin({maxEntries:4,maxAgeSeconds:604800})]}),"GET"),e.registerRoute(/\.(?:eot|otf|ttc|ttf|woff|woff2|font.css)$/i,new e.StaleWhileRevalidate({cacheName:"static-font-assets",plugins:[new e.ExpirationPlugin({maxEntries:4,maxAgeSeconds:604800})]}),"GET"),e.registerRoute(/\.(?:jpg|jpeg|gif|png|svg|ico|webp)$/i,new e.StaleWhileRevalidate({cacheName:"static-image-assets",plugins:[new e.ExpirationPlugin({maxEntries:64,maxAgeSeconds:86400})]}),"GET"),e.registerRoute(/\/_next\/image\?url=.+$/i,new e.StaleWhileRevalidate({cacheName:"next-image",plugins:[new e.ExpirationPlugin({maxEntries:64,maxAgeSeconds:86400})]}),"GET"),e.registerRoute(/\.(?:mp3|wav|ogg)$/i,new e.CacheFirst({cacheName:"static-audio-assets",plugins:[new e.RangeRequestsPlugin,new e.ExpirationPlugin({maxEntries:32,maxAgeSeconds:86400})]}),"GET"),e.registerRoute(/\.(?:mp4)$/i,new e.CacheFirst({cacheName:"static-video-assets",plugins:[new e.RangeRequestsPlugin,new e.ExpirationPlugin({maxEntries:32,maxAgeSeconds:86400})]}),"GET"),e.registerRoute(/\.(?:js)$/i,new e.StaleWhileRevalidate({cacheName:"static-js-assets",plugins:[new e.ExpirationPlugin({maxEntries:32,maxAgeSeconds:86400})]}),"GET"),e.registerRoute(/\.(?:css|less)$/i,new e.StaleWhileRevalidate({cacheName:"static-style-assets",plugins:[new e.ExpirationPlugin({maxEntries:32,maxAgeSeconds:86400})]}),"GET"),e.registerRoute(/\/_next\/data\/.+\/.+\.json$/i,new e.StaleWhileRevalidate({cacheName:"next-data",plugins:[new e.ExpirationPlugin({maxEntries:32,maxAgeSeconds:86400})]}),"GET"),e.registerRoute(/\.(?:json|xml|csv)$/i,new e.NetworkFirst({cacheName:"static-data-assets",plugins:[new e.ExpirationPlugin({maxEntries:32,maxAgeSeconds:86400})]}),"GET"),e.registerRoute(({url:e})=>{if(!(self.origin===e.origin))return!1;const a=e.pathname;return!a.startsWith("/api/auth/")&&!!a.startsWith("/api/")},new e.NetworkFirst({cacheName:"apis",networkTimeoutSeconds:10,plugins:[new e.ExpirationPlugin({maxEntries:16,maxAgeSeconds:86400})]}),"GET"),e.registerRoute(({url:e})=>{if(!(self.origin===e.origin))return!1;return!e.pathname.startsWith("/api/")},new e.NetworkFirst({cacheName:"others",networkTimeoutSeconds:10,plugins:[new e.ExpirationPlugin({maxEntries:32,maxAgeSeconds:86400})]}),"GET"),e.registerRoute(({url:e})=>!(self.origin===e.origin),new e.NetworkFirst({cacheName:"cross-origin",networkTimeoutSeconds:10,plugins:[new e.ExpirationPlugin({maxEntries:32,maxAgeSeconds:3600})]}),"GET")});
+if (!self.define) {
+  let e,
+    a = {};
+  const i = (i, r) => (
+    (i = new URL(i + ".js", r).href),
+    a[i] ||
+      new Promise((a) => {
+        if ("document" in self) {
+          const e = document.createElement("script");
+          ((e.src = i), (e.onload = a), document.head.appendChild(e));
+        } else ((e = i), importScripts(i), a());
+      }).then(() => {
+        let e = a[i];
+        if (!e) throw new Error(`Module ${i} didn’t register its module`);
+        return e;
+      })
+  );
+  self.define = (r, s) => {
+    const o =
+      e ||
+      ("document" in self ? document.currentScript.src : "") ||
+      location.href;
+    if (a[o]) return;
+    let n = {};
+    const t = (e) => i(e, o),
+      c = { module: { uri: o }, exports: n, require: t };
+    a[o] = Promise.all(r.map((e) => c[e] || t(e))).then((e) => (s(...e), n));
+  };
+}
+define(["./workbox-1bb06f5e"], function (e) {
+  "use strict";
+  (importScripts(),
+    self.skipWaiting(),
+    e.clientsClaim(),
+    e.precacheAndRoute(
+      [
+        {
+          url: "/Guarda_che_luna.mp3",
+          revision: "0a21d894d805842d2d75a3506f00b5fd",
+        },
+        {
+          url: "/_next/app-build-manifest.json",
+          revision: "2348208d89081084e954f680911796db",
+        },
+        {
+          url: "/_next/static/LFWNpSUlQ8serUcjJUZqE/_buildManifest.js",
+          revision: "6f11fd78e77f2d1d9dc86557e23a148d",
+        },
+        {
+          url: "/_next/static/LFWNpSUlQ8serUcjJUZqE/_ssgManifest.js",
+          revision: "b6652df95db52feb4daf4eca35380933",
+        },
+        {
+          url: "/_next/static/chunks/114-a91f7814fe5ae057.js",
+          revision: "LFWNpSUlQ8serUcjJUZqE",
+        },
+        {
+          url: "/_next/static/chunks/30a37ab2-6d6188878cd580e2.js",
+          revision: "LFWNpSUlQ8serUcjJUZqE",
+        },
+        {
+          url: "/_next/static/chunks/436-594b331c2660b900.js",
+          revision: "LFWNpSUlQ8serUcjJUZqE",
+        },
+        {
+          url: "/_next/static/chunks/437-fdbb3ef9a31c181d.js",
+          revision: "LFWNpSUlQ8serUcjJUZqE",
+        },
+        {
+          url: "/_next/static/chunks/4bd1b696-b2739108a1ec08f4.js",
+          revision: "LFWNpSUlQ8serUcjJUZqE",
+        },
+        {
+          url: "/_next/static/chunks/572-8f267563f8cd032d.js",
+          revision: "LFWNpSUlQ8serUcjJUZqE",
+        },
+        {
+          url: "/_next/static/chunks/671-72907f66ec903a78.js",
+          revision: "LFWNpSUlQ8serUcjJUZqE",
+        },
+        {
+          url: "/_next/static/chunks/684-ffa6a438a8ca93e0.js",
+          revision: "LFWNpSUlQ8serUcjJUZqE",
+        },
+        {
+          url: "/_next/static/chunks/766-3f25b36d43d272fa.js",
+          revision: "LFWNpSUlQ8serUcjJUZqE",
+        },
+        {
+          url: "/_next/static/chunks/895-e756bf35fc88fb0b.js",
+          revision: "LFWNpSUlQ8serUcjJUZqE",
+        },
+        {
+          url: "/_next/static/chunks/981-8d72b029495e8c0a.js",
+          revision: "LFWNpSUlQ8serUcjJUZqE",
+        },
+        {
+          url: "/_next/static/chunks/app/(pages)/ru/blog/page-d02fdba3942eb8b8.js",
+          revision: "LFWNpSUlQ8serUcjJUZqE",
+        },
+        {
+          url: "/_next/static/chunks/app/(pages)/ru/blog/park-patriot-chto-posmotret/page-2f88426dd288bd7c.js",
+          revision: "LFWNpSUlQ8serUcjJUZqE",
+        },
+        {
+          url: "/_next/static/chunks/app/(pages)/ru/bus/page-e4a8f04766c2d656.js",
+          revision: "LFWNpSUlQ8serUcjJUZqE",
+        },
+        {
+          url: "/_next/static/chunks/app/(pages)/ru/contacts/page-718e7d3cccb485a1.js",
+          revision: "LFWNpSUlQ8serUcjJUZqE",
+        },
+        {
+          url: "/_next/static/chunks/app/(pages)/ru/excursions/avtobusnaya-obzornaya-ekskursiya-po-moskve/page-9196f00ae426dc8b.js",
+          revision: "LFWNpSUlQ8serUcjJUZqE",
+        },
+        {
+          url: "/_next/static/chunks/app/(pages)/ru/excursions/bulgakovskaya-moskva-po-sledam-mastera-i-margarita/page-d9831b3d08ccca14.js",
+          revision: "LFWNpSUlQ8serUcjJUZqE",
+        },
+        {
+          url: "/_next/static/chunks/app/(pages)/ru/excursions/kolomna/page-3a61ea4ab48257e3.js",
+          revision: "LFWNpSUlQ8serUcjJUZqE",
+        },
+        {
+          url: "/_next/static/chunks/app/(pages)/ru/excursions/legendy-staroy-moskvy-kitay-gorod-i-hitrovka/page-f2e358ab6bf0439b.js",
+          revision: "LFWNpSUlQ8serUcjJUZqE",
+        },
+        {
+          url: "/_next/static/chunks/app/(pages)/ru/excursions/moskva-kupecheskaya-progulka-po-zamoskvorechyu/page-4755bc39b5fc0871.js",
+          revision: "LFWNpSUlQ8serUcjJUZqE",
+        },
+        {
+          url: "/_next/static/chunks/app/(pages)/ru/excursions/page-52a11375f2a2771e.js",
+          revision: "LFWNpSUlQ8serUcjJUZqE",
+        },
+        {
+          url: "/_next/static/chunks/app/(pages)/ru/excursions/patriot/page-80cedf2d73bb3a83.js",
+          revision: "LFWNpSUlQ8serUcjJUZqE",
+        },
+        {
+          url: "/_next/static/chunks/app/(pages)/ru/excursions/sergiev-posad/page-e449517f683d86f0.js",
+          revision: "LFWNpSUlQ8serUcjJUZqE",
+        },
+        {
+          url: "/_next/static/chunks/app/(pages)/ru/offer/page-303bc5f0874bcb61.js",
+          revision: "LFWNpSUlQ8serUcjJUZqE",
+        },
+        {
+          url: "/_next/static/chunks/app/(pages)/ru/page-c018bc1bc0a0f8a7.js",
+          revision: "LFWNpSUlQ8serUcjJUZqE",
+        },
+        {
+          url: "/_next/static/chunks/app/(pages)/ru/privacy-policy/page-cf4c5bb5d220fb60.js",
+          revision: "LFWNpSUlQ8serUcjJUZqE",
+        },
+        {
+          url: "/_next/static/chunks/app/(pages)/ru/refunds/page-6da3e17aaaa44e25.js",
+          revision: "LFWNpSUlQ8serUcjJUZqE",
+        },
+        {
+          url: "/_next/static/chunks/app/_not-found/page-99d13896882db283.js",
+          revision: "LFWNpSUlQ8serUcjJUZqE",
+        },
+        {
+          url: "/_next/static/chunks/app/api/pay/route-2b2abffebcaa0d8c.js",
+          revision: "LFWNpSUlQ8serUcjJUZqE",
+        },
+        {
+          url: "/_next/static/chunks/app/layout-f85ecd3adaf2209a.js",
+          revision: "LFWNpSUlQ8serUcjJUZqE",
+        },
+        {
+          url: "/_next/static/chunks/app/not-found-15563b3a0d76ecc8.js",
+          revision: "LFWNpSUlQ8serUcjJUZqE",
+        },
+        {
+          url: "/_next/static/chunks/app/page-c113c5290cf57fb9.js",
+          revision: "LFWNpSUlQ8serUcjJUZqE",
+        },
+        {
+          url: "/_next/static/chunks/framework-29ac49a6a3fd316f.js",
+          revision: "LFWNpSUlQ8serUcjJUZqE",
+        },
+        {
+          url: "/_next/static/chunks/main-2ec96768d08df8e8.js",
+          revision: "LFWNpSUlQ8serUcjJUZqE",
+        },
+        {
+          url: "/_next/static/chunks/main-app-1ea9e950511f63b8.js",
+          revision: "LFWNpSUlQ8serUcjJUZqE",
+        },
+        {
+          url: "/_next/static/chunks/pages/_app-da15c11dea942c36.js",
+          revision: "LFWNpSUlQ8serUcjJUZqE",
+        },
+        {
+          url: "/_next/static/chunks/pages/_error-cc3f077a18ea1793.js",
+          revision: "LFWNpSUlQ8serUcjJUZqE",
+        },
+        {
+          url: "/_next/static/chunks/polyfills-42372ed130431b0a.js",
+          revision: "846118c33b2c0e922d7b3a7676f81f6f",
+        },
+        {
+          url: "/_next/static/chunks/webpack-ed8d45b954ca4a21.js",
+          revision: "LFWNpSUlQ8serUcjJUZqE",
+        },
+        {
+          url: "/_next/static/css/b27993c62c1d420b.css",
+          revision: "b27993c62c1d420b",
+        },
+        {
+          url: "/favicon/apple-touch-icon.png",
+          revision: "8fcc6c8485c111568233e3c5a385dae0",
+        },
+        {
+          url: "/favicon/favicon-96x96.png",
+          revision: "3fd37fcd3d40e68258fb668c67d9f1e0",
+        },
+        {
+          url: "/favicon/favicon.ico",
+          revision: "4d3d08a1a439938a4dac45111b1117d6",
+        },
+        {
+          url: "/favicon/favicon.svg",
+          revision: "6c7a763f12363431e6fa8a168e018189",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/apple-touch-icon-opt-10.WEBP",
+          revision: "456458886151b48a3d40460dfae93c55",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/apple-touch-icon-opt-1080.WEBP",
+          revision: "107f8b89623ff56faf1591811fb749a5",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/apple-touch-icon-opt-1200.WEBP",
+          revision: "107f8b89623ff56faf1591811fb749a5",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/apple-touch-icon-opt-128.WEBP",
+          revision: "edbfd840cad9f44992976d597b96b76c",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/apple-touch-icon-opt-16.WEBP",
+          revision: "7c22df5fb0a7fa20a5501c595f3b4d25",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/apple-touch-icon-opt-1920.WEBP",
+          revision: "107f8b89623ff56faf1591811fb749a5",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/apple-touch-icon-opt-2048.WEBP",
+          revision: "107f8b89623ff56faf1591811fb749a5",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/apple-touch-icon-opt-256.WEBP",
+          revision: "107f8b89623ff56faf1591811fb749a5",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/apple-touch-icon-opt-32.WEBP",
+          revision: "866bfc52fcf8efd2aa187af863d8aba7",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/apple-touch-icon-opt-384.WEBP",
+          revision: "107f8b89623ff56faf1591811fb749a5",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/apple-touch-icon-opt-3840.WEBP",
+          revision: "107f8b89623ff56faf1591811fb749a5",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/apple-touch-icon-opt-48.WEBP",
+          revision: "2d855a6f65994841b842ee1cad0014bf",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/apple-touch-icon-opt-64.WEBP",
+          revision: "83d147d27ec6a1c7334b80aa6cb9c1a6",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/apple-touch-icon-opt-640.WEBP",
+          revision: "107f8b89623ff56faf1591811fb749a5",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/apple-touch-icon-opt-750.WEBP",
+          revision: "107f8b89623ff56faf1591811fb749a5",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/apple-touch-icon-opt-828.WEBP",
+          revision: "107f8b89623ff56faf1591811fb749a5",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/apple-touch-icon-opt-96.WEBP",
+          revision: "38eed96dff66b0b259731b94a4dc6050",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/favicon-96x96-opt-10.WEBP",
+          revision: "8b34338684784e484af92d9f756e15d6",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/favicon-96x96-opt-1080.WEBP",
+          revision: "779bcc90577725c7f44d5489fb6922d2",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/favicon-96x96-opt-1200.WEBP",
+          revision: "779bcc90577725c7f44d5489fb6922d2",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/favicon-96x96-opt-128.WEBP",
+          revision: "779bcc90577725c7f44d5489fb6922d2",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/favicon-96x96-opt-16.WEBP",
+          revision: "9d26a0ca714352b60fd814068e01f680",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/favicon-96x96-opt-1920.WEBP",
+          revision: "779bcc90577725c7f44d5489fb6922d2",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/favicon-96x96-opt-2048.WEBP",
+          revision: "779bcc90577725c7f44d5489fb6922d2",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/favicon-96x96-opt-256.WEBP",
+          revision: "779bcc90577725c7f44d5489fb6922d2",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/favicon-96x96-opt-32.WEBP",
+          revision: "cddceed6db20074a9d819bcc6bf55eae",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/favicon-96x96-opt-384.WEBP",
+          revision: "779bcc90577725c7f44d5489fb6922d2",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/favicon-96x96-opt-3840.WEBP",
+          revision: "779bcc90577725c7f44d5489fb6922d2",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/favicon-96x96-opt-48.WEBP",
+          revision: "19d0ca0685ba1b9c442b0e678fb57454",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/favicon-96x96-opt-64.WEBP",
+          revision: "9eeb1cfc4178c83e2f22df70c4099d92",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/favicon-96x96-opt-640.WEBP",
+          revision: "779bcc90577725c7f44d5489fb6922d2",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/favicon-96x96-opt-750.WEBP",
+          revision: "779bcc90577725c7f44d5489fb6922d2",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/favicon-96x96-opt-828.WEBP",
+          revision: "779bcc90577725c7f44d5489fb6922d2",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/favicon-96x96-opt-96.WEBP",
+          revision: "779bcc90577725c7f44d5489fb6922d2",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/web-app-manifest-192x192-opt-10.WEBP",
+          revision: "7234fbbf931b445d62b82a0b16cb6a52",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/web-app-manifest-192x192-opt-1080.WEBP",
+          revision: "341db0648f9a69b70c2f7eb6d381a6ae",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/web-app-manifest-192x192-opt-1200.WEBP",
+          revision: "341db0648f9a69b70c2f7eb6d381a6ae",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/web-app-manifest-192x192-opt-128.WEBP",
+          revision: "826b061d20cf761c469d218eb46ea723",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/web-app-manifest-192x192-opt-16.WEBP",
+          revision: "61873320c0842c4ba538c9cb1a6a4d29",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/web-app-manifest-192x192-opt-1920.WEBP",
+          revision: "341db0648f9a69b70c2f7eb6d381a6ae",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/web-app-manifest-192x192-opt-2048.WEBP",
+          revision: "341db0648f9a69b70c2f7eb6d381a6ae",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/web-app-manifest-192x192-opt-256.WEBP",
+          revision: "341db0648f9a69b70c2f7eb6d381a6ae",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/web-app-manifest-192x192-opt-32.WEBP",
+          revision: "cbb677b52f131efa645c83c082a4e0e8",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/web-app-manifest-192x192-opt-384.WEBP",
+          revision: "341db0648f9a69b70c2f7eb6d381a6ae",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/web-app-manifest-192x192-opt-3840.WEBP",
+          revision: "341db0648f9a69b70c2f7eb6d381a6ae",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/web-app-manifest-192x192-opt-48.WEBP",
+          revision: "322ea745fe9aeeb0d0113c8c25fc4e7c",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/web-app-manifest-192x192-opt-64.WEBP",
+          revision: "1544a59247bfb091d0011bb3a2d9549f",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/web-app-manifest-192x192-opt-640.WEBP",
+          revision: "341db0648f9a69b70c2f7eb6d381a6ae",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/web-app-manifest-192x192-opt-750.WEBP",
+          revision: "341db0648f9a69b70c2f7eb6d381a6ae",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/web-app-manifest-192x192-opt-828.WEBP",
+          revision: "341db0648f9a69b70c2f7eb6d381a6ae",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/web-app-manifest-192x192-opt-96.WEBP",
+          revision: "ea2bdceb434bad0317e430e51f68df73",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/web-app-manifest-512x512-opt-10.WEBP",
+          revision: "36a4768da2a65317550d2379f2170110",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/web-app-manifest-512x512-opt-1080.WEBP",
+          revision: "4a55e0cd049593c2d8574c11ee5a59e3",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/web-app-manifest-512x512-opt-1200.WEBP",
+          revision: "4a55e0cd049593c2d8574c11ee5a59e3",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/web-app-manifest-512x512-opt-128.WEBP",
+          revision: "be93c116a7b025ae22b7ca89975f485b",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/web-app-manifest-512x512-opt-16.WEBP",
+          revision: "50ec30afe904304ee2988087939c0bd3",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/web-app-manifest-512x512-opt-1920.WEBP",
+          revision: "4a55e0cd049593c2d8574c11ee5a59e3",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/web-app-manifest-512x512-opt-2048.WEBP",
+          revision: "4a55e0cd049593c2d8574c11ee5a59e3",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/web-app-manifest-512x512-opt-256.WEBP",
+          revision: "0f66700faf7dcb901aa74b45a77cdf63",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/web-app-manifest-512x512-opt-32.WEBP",
+          revision: "01279a985ced4a14d944a30738beef6d",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/web-app-manifest-512x512-opt-384.WEBP",
+          revision: "49d7bf4811fc1e53e7c5a868c138fa40",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/web-app-manifest-512x512-opt-3840.WEBP",
+          revision: "4a55e0cd049593c2d8574c11ee5a59e3",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/web-app-manifest-512x512-opt-48.WEBP",
+          revision: "184f2649aadb9c08d3e477e5284172c6",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/web-app-manifest-512x512-opt-64.WEBP",
+          revision: "8fa4dc266ed12aa408dd909c6bcdf47e",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/web-app-manifest-512x512-opt-640.WEBP",
+          revision: "4a55e0cd049593c2d8574c11ee5a59e3",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/web-app-manifest-512x512-opt-750.WEBP",
+          revision: "4a55e0cd049593c2d8574c11ee5a59e3",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/web-app-manifest-512x512-opt-828.WEBP",
+          revision: "4a55e0cd049593c2d8574c11ee5a59e3",
+        },
+        {
+          url: "/favicon/nextImageExportOptimizer/web-app-manifest-512x512-opt-96.WEBP",
+          revision: "b33175459821856767a33733e7d1ae0a",
+        },
+        {
+          url: "/favicon/site.webmanifest",
+          revision: "9a31df5025642013617d729853824106",
+        },
+        {
+          url: "/favicon/web-app-manifest-192x192.png",
+          revision: "7f1c66f43845c449dafb8a2ce8be2796",
+        },
+        {
+          url: "/favicon/web-app-manifest-512x512.png",
+          revision: "a1718a9f95652c89a683284949ce1970",
+        },
+        {
+          url: "/googleaf3f5e60f0639ae5.html",
+          revision: "2385fbff0ff349c2e9053e435da6f230",
+        },
+        {
+          url: "/images/4trip-logo.svg",
+          revision: "b8aeaaa8aa2d2cc806457e82dbf3e7dc",
+        },
+        {
+          url: "/images/next-image-export-optimizer-hashes.json",
+          revision: "70b99dcbf809ffe2cd8f4b0a94566a8c",
+        },
+        {
+          url: "/images/telegram.svg",
+          revision: "62004dd9b1538adbf49394b0b07bf57a",
+        },
+        {
+          url: "/images/tours/kolomna/bobrenev.png",
+          revision: "262c021a9c8117f0c4f2654d6822d6d5",
+        },
+        {
+          url: "/images/tours/kolomna/gallery1.png",
+          revision: "63384582c39be59b55c24e849d25f67e",
+        },
+        {
+          url: "/images/tours/kolomna/gallery2.png",
+          revision: "6661283f66dab50eb521d014804e246e",
+        },
+        {
+          url: "/images/tours/kolomna/gallery3.png",
+          revision: "2ed38d977fa26dee9783d6a0aeb26348",
+        },
+        {
+          url: "/images/tours/kolomna/gallery4.png",
+          revision: "056b64b5f6f877298e26bbd74de67c85",
+        },
+        {
+          url: "/images/tours/kolomna/hero.png",
+          revision: "0ed460367b19ec8b4ea47d0eb674332f",
+        },
+        {
+          url: "/images/tours/kolomna/kalachnaya.png",
+          revision: "6492e4fac7020fb59e8791439acac630",
+        },
+        {
+          url: "/images/tours/kolomna/kremlin.png",
+          revision: "e7529d3f7230ef8c09dea3a9eff47266",
+        },
+        {
+          url: "/images/tours/kolomna/pastila.png",
+          revision: "8d1b57998997232e79c61be8d2d9b2d1",
+        },
+        {
+          url: "/images/tours/moscow/arbat.jpg",
+          revision: "0923ca1fa3c966de06e38b67fd2e76b3",
+        },
+        {
+          url: "/images/tours/moscow/christ-saviour.webp",
+          revision: "27e6a4a34482167bc6d94d87cdc0480c",
+        },
+        {
+          url: "/images/tours/moscow/gallery/1.jpg",
+          revision: "ff796c11db5c1a25d6237b8f2b7c2425",
+        },
+        {
+          url: "/images/tours/moscow/gallery/2.jpg",
+          revision: "80af61f96dcacfbc44ede6218f3a65aa",
+        },
+        {
+          url: "/images/tours/moscow/gallery/3.jpg",
+          revision: "d61ad882c5f55b4db2ecaf211f27fb2f",
+        },
+        {
+          url: "/images/tours/moscow/gallery/4.jpg",
+          revision: "2694ee052d42e423bfc788872116a968",
+        },
+        {
+          url: "/images/tours/moscow/hero.jpg",
+          revision: "a318397625ba67fbea1ad740c2c12d38",
+        },
+        {
+          url: "/images/tours/moscow/kremlin-towers.png",
+          revision: "214bab93c62df626c34ea337e07d0797",
+        },
+        {
+          url: "/images/tours/moscow/moscow-city.jpeg",
+          revision: "065001afc62a11cac67e19706945a440",
+        },
+        {
+          url: "/images/tours/moscow/novodevichiy-monastir.jpg",
+          revision: "e94f2f2566b9e2d57955ba3b9d1b72a8",
+        },
+        {
+          url: "/images/tours/moscow/poklonnaya-gora.jpeg",
+          revision: "3259e81496398a5b1908b1862e642814",
+        },
+        {
+          url: "/images/tours/moscow/red-square.jpeg",
+          revision: "c01459822486b1912c1e3c2ddfd003a6",
+        },
+        {
+          url: "/images/tours/moscow/sparrow-hills.jpeg",
+          revision: "b92f731404a537bded6cb3524a8cef7a",
+        },
+        {
+          url: "/images/tours/moscow/visotka-na-kudrinskoy.jpg",
+          revision: "1549290c7370299e519e9d05f4bb6e72",
+        },
+        {
+          url: "/images/tours/patriot/armed-forces-cathedral.png",
+          revision: "c6a460b1f92091ab7ab79b1ab70ac5db",
+        },
+        {
+          url: "/images/tours/patriot/cathedral-hero.png",
+          revision: "ed47377bbda1f14f0cf7443195bb22f3",
+        },
+        {
+          url: "/images/tours/patriot/gallery1.png",
+          revision: "4ffeea510a19d586c51c850176afbc51",
+        },
+        {
+          url: "/images/tours/patriot/gallery2.png",
+          revision: "d622e59971f974ed74f99b68a9767d02",
+        },
+        {
+          url: "/images/tours/patriot/gallery3.png",
+          revision: "8b1eab8d7c2683bf7e20245420c653a9",
+        },
+        {
+          url: "/images/tours/patriot/gallery4.png",
+          revision: "c5cb61282ddccaf03ed26c5dbb38d8ba",
+        },
+        {
+          url: "/images/tours/patriot/next-image-export-optimizer-hashes.json",
+          revision: "618cda7443e479ab61ae85d891519a99",
+        },
+        {
+          url: "/images/tours/patriot/road-of-memory.png",
+          revision: "addcdb94f87155e5826528a100f0f1a2",
+        },
+        {
+          url: "/images/tours/sergiev_posad/Porcelain-Factory-and-Museum.png",
+          revision: "3920ae9816ec0ef88ba40232fe0fb0c2",
+        },
+        {
+          url: "/images/tours/sergiev_posad/Trinity-Lavra-of-St.-Sergius.png",
+          revision: "fa67b1abcdfc97617d0e97d3f4962e81",
+        },
+        {
+          url: "/images/tours/sergiev_posad/gallery1.png",
+          revision: "e3bb80f3448e478a23071585a7908012",
+        },
+        {
+          url: "/images/tours/sergiev_posad/gallery2.png",
+          revision: "9ef86187fc70e4da9e329a3cb9dc09c4",
+        },
+        {
+          url: "/images/tours/sergiev_posad/gallery3.png",
+          revision: "3033b53ebcc51960affd934101219d0e",
+        },
+        {
+          url: "/images/tours/sergiev_posad/gallery4.png",
+          revision: "c60052b0be7fec8f43009aebf5ed3f2b",
+        },
+        {
+          url: "/images/tours/sergiev_posad/hero.png",
+          revision: "460af888bddfeb18b0bf66fcd0a1ec20",
+        },
+        { url: "/images/vk.svg", revision: "06224fdf0ddb3ca34612c2d4f26de8d5" },
+        { url: "/manifest.json", revision: "6f7ea69e42bf04e6765b8fc3a447cac6" },
+        { url: "/robots.txt", revision: "f5da5baaa1d2dd6e3da1ee01f2a43f84" },
+        {
+          url: "/screenshots/landscape.png",
+          revision: "aae9b5aa5e871ec467835228f677d4ab",
+        },
+        {
+          url: "/screenshots/portrait.png",
+          revision: "622c75bb3e120d1fae1a1ae9a74bac61",
+        },
+        { url: "/sitemap-0.xml", revision: "d0970b31e263a31fce96954763a96592" },
+        { url: "/sitemap.xml", revision: "624bb81d2166969ff32e2443c28da952" },
+        {
+          url: "/yandex_b014db0deed2b0e5.html",
+          revision: "8814f974507e13fd409ee4c6089bc1b9",
+        },
+      ],
+      { ignoreURLParametersMatching: [] },
+    ),
+    e.cleanupOutdatedCaches(),
+    e.registerRoute(
+      "/",
+      new e.NetworkFirst({
+        cacheName: "start-url",
+        plugins: [
+          {
+            cacheWillUpdate: async ({
+              request: e,
+              response: a,
+              event: i,
+              state: r,
+            }) =>
+              a && "opaqueredirect" === a.type
+                ? new Response(a.body, {
+                    status: 200,
+                    statusText: "OK",
+                    headers: a.headers,
+                  })
+                : a,
+          },
+        ],
+      }),
+      "GET",
+    ),
+    e.registerRoute(
+      /^https:\/\/fonts\.(?:gstatic)\.com\/.*/i,
+      new e.CacheFirst({
+        cacheName: "google-fonts-webfonts",
+        plugins: [
+          new e.ExpirationPlugin({ maxEntries: 4, maxAgeSeconds: 31536e3 }),
+        ],
+      }),
+      "GET",
+    ),
+    e.registerRoute(
+      /^https:\/\/fonts\.(?:googleapis)\.com\/.*/i,
+      new e.StaleWhileRevalidate({
+        cacheName: "google-fonts-stylesheets",
+        plugins: [
+          new e.ExpirationPlugin({ maxEntries: 4, maxAgeSeconds: 604800 }),
+        ],
+      }),
+      "GET",
+    ),
+    e.registerRoute(
+      /\.(?:eot|otf|ttc|ttf|woff|woff2|font.css)$/i,
+      new e.StaleWhileRevalidate({
+        cacheName: "static-font-assets",
+        plugins: [
+          new e.ExpirationPlugin({ maxEntries: 4, maxAgeSeconds: 604800 }),
+        ],
+      }),
+      "GET",
+    ),
+    e.registerRoute(
+      /\.(?:jpg|jpeg|gif|png|svg|ico|webp)$/i,
+      new e.StaleWhileRevalidate({
+        cacheName: "static-image-assets",
+        plugins: [
+          new e.ExpirationPlugin({ maxEntries: 64, maxAgeSeconds: 86400 }),
+        ],
+      }),
+      "GET",
+    ),
+    e.registerRoute(
+      /\/_next\/image\?url=.+$/i,
+      new e.StaleWhileRevalidate({
+        cacheName: "next-image",
+        plugins: [
+          new e.ExpirationPlugin({ maxEntries: 64, maxAgeSeconds: 86400 }),
+        ],
+      }),
+      "GET",
+    ),
+    e.registerRoute(
+      /\.(?:mp3|wav|ogg)$/i,
+      new e.CacheFirst({
+        cacheName: "static-audio-assets",
+        plugins: [
+          new e.RangeRequestsPlugin(),
+          new e.ExpirationPlugin({ maxEntries: 32, maxAgeSeconds: 86400 }),
+        ],
+      }),
+      "GET",
+    ),
+    e.registerRoute(
+      /\.(?:mp4)$/i,
+      new e.CacheFirst({
+        cacheName: "static-video-assets",
+        plugins: [
+          new e.RangeRequestsPlugin(),
+          new e.ExpirationPlugin({ maxEntries: 32, maxAgeSeconds: 86400 }),
+        ],
+      }),
+      "GET",
+    ),
+    e.registerRoute(
+      /\.(?:js)$/i,
+      new e.StaleWhileRevalidate({
+        cacheName: "static-js-assets",
+        plugins: [
+          new e.ExpirationPlugin({ maxEntries: 32, maxAgeSeconds: 86400 }),
+        ],
+      }),
+      "GET",
+    ),
+    e.registerRoute(
+      /\.(?:css|less)$/i,
+      new e.StaleWhileRevalidate({
+        cacheName: "static-style-assets",
+        plugins: [
+          new e.ExpirationPlugin({ maxEntries: 32, maxAgeSeconds: 86400 }),
+        ],
+      }),
+      "GET",
+    ),
+    e.registerRoute(
+      /\/_next\/data\/.+\/.+\.json$/i,
+      new e.StaleWhileRevalidate({
+        cacheName: "next-data",
+        plugins: [
+          new e.ExpirationPlugin({ maxEntries: 32, maxAgeSeconds: 86400 }),
+        ],
+      }),
+      "GET",
+    ),
+    e.registerRoute(
+      /\.(?:json|xml|csv)$/i,
+      new e.NetworkFirst({
+        cacheName: "static-data-assets",
+        plugins: [
+          new e.ExpirationPlugin({ maxEntries: 32, maxAgeSeconds: 86400 }),
+        ],
+      }),
+      "GET",
+    ),
+    e.registerRoute(
+      ({ url: e }) => {
+        if (!(self.origin === e.origin)) return !1;
+        const a = e.pathname;
+        return !a.startsWith("/api/auth/") && !!a.startsWith("/api/");
+      },
+      new e.NetworkFirst({
+        cacheName: "apis",
+        networkTimeoutSeconds: 10,
+        plugins: [
+          new e.ExpirationPlugin({ maxEntries: 16, maxAgeSeconds: 86400 }),
+        ],
+      }),
+      "GET",
+    ),
+    e.registerRoute(
+      ({ url: e }) => {
+        if (!(self.origin === e.origin)) return !1;
+        return !e.pathname.startsWith("/api/");
+      },
+      new e.NetworkFirst({
+        cacheName: "others",
+        networkTimeoutSeconds: 10,
+        plugins: [
+          new e.ExpirationPlugin({ maxEntries: 32, maxAgeSeconds: 86400 }),
+        ],
+      }),
+      "GET",
+    ),
+    e.registerRoute(
+      ({ url: e }) => !(self.origin === e.origin),
+      new e.NetworkFirst({
+        cacheName: "cross-origin",
+        networkTimeoutSeconds: 10,
+        plugins: [
+          new e.ExpirationPlugin({ maxEntries: 32, maxAgeSeconds: 3600 }),
+        ],
+      }),
+      "GET",
+    ));
+});

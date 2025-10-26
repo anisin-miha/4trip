@@ -3,11 +3,7 @@ import SiteHeader from "@/app/components/ru/SiteHeader";
 import SiteFooter from "@/app/components/ru/SiteFooter";
 import contactInfo from "@/app/config/contactInfo";
 import TourCard from "@/app/components/ru/TourCard";
-import { patriotTour } from "@/app/config/ru/tours/patriot";
-import { sergievPosadTour } from "@/app/config/ru/tours/sergiev-posad";
-import { kolomnaTour } from "@/app/config/ru/tours/kolomna";
-import { moscowSightseeingCard } from "@/app/config/ru/tours/moscow-sightseeing";
-import { ruAccusativeAfterV } from "@/lib/utils";
+import { excursions } from "@/app/config/ru/tours";
 
 export const metadata: Metadata = {
   title: "Экскурсии по Москве и Подмосковью — групповые туры от 4-trip.ru",
@@ -41,10 +37,10 @@ export default function Home() {
         main
         project="trip"
         links={[
-          { href: "/ru", label: "Главная" },
-          // { href: "/ru/excursions", label: "Экскурсии" },
-          { href: "/ru/blog", label: "Блог" },
-          { href: "/ru/contacts", label: "Контакты" },
+          { href: "/", label: "Главная" },
+          // { href: "/excursions", label: "Экскурсии" },
+          { href: "/blog", label: "Блог" },
+          { href: "/contacts", label: "Контакты" },
         ]}
       />
 
@@ -69,55 +65,45 @@ export default function Home() {
             Популярные экскурсии
           </h2>
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            <TourCard
-              href={moscowSightseeingCard.href}
-              imageSrc={moscowSightseeingCard.imageSrc}
-              imageAlt={moscowSightseeingCard.imageAlt}
-              title={moscowSightseeingCard.title}
-              description={moscowSightseeingCard.description}
-              price={moscowSightseeingCard.price}
-              duration={moscowSightseeingCard.duration}
-              languages={moscowSightseeingCard.languages}
-              city={moscowSightseeingCard.city}
-              meetingPoint={moscowSightseeingCard.meetingPoint}
-              rating={moscowSightseeingCard.rating}
-            />
-            <TourCard
-              href="/excursions/patriot"
-              imageSrc="/images/tours/patriot/cathedral-hero.png"
-              imageAlt="Парк «Патриот»"
-              title={`Экскурсия в ${ruAccusativeAfterV(patriotTour.title)}`}
-              description="Посещение Главного храма Вооружённых Сил России и музея «Дорога памяти» в рамках группового тура."
-              price={patriotTour.price}
-              duration={patriotTour.duration}
-              languages={patriotTour.languages}
-              city={patriotTour.city}
-              meetingPoint={patriotTour.meetingPoint.address}
-            />
-            <TourCard
-              href="/excursions/sergiev-posad"
-              imageSrc="/images/tours/sergiev_posad/hero.png"
-              imageAlt="Сергиев Посад"
-              title={`Экскурсия в ${ruAccusativeAfterV(sergievPosadTour.title)}`}
-              description="Поездка в духовную столицу России с экскурсией по Троице-Сергиевой лавре."
-              price={sergievPosadTour.price}
-              duration={sergievPosadTour.duration}
-              languages={sergievPosadTour.languages}
-              city={sergievPosadTour.city}
-              meetingPoint={sergievPosadTour.meetingPoint.address}
-            />
-            <TourCard
-              href="/excursions/kolomna"
-              imageSrc="/images/tours/kolomna/hero.png"
-              imageAlt="Коломна"
-              title={`Экскурсия в ${ruAccusativeAfterV(kolomnaTour.title)}`}
-              description={kolomnaTour.hero.description}
-              price={kolomnaTour.price}
-              duration={kolomnaTour.duration}
-              languages={kolomnaTour.languages}
-              city={kolomnaTour.city}
-              meetingPoint={kolomnaTour.meetingPoint.address}
-            />
+            {excursions
+              .map((tour) => {
+                const languages =
+                  tour.languages ??
+                  (tour.meetingPoint?.language
+                    ? [tour.meetingPoint.language]
+                    : undefined);
+                return {
+                  href: `/excursions/${tour.slug}`,
+                  imageSrc: tour.hero.image,
+                  imageAlt: tour.title,
+                  title: tour.title,
+                  description: tour.hero.description,
+                  price: tour.price,
+                  duration: tour.duration ?? tour.meetingPoint?.duration,
+                  languages,
+                  city: tour.city,
+                  meetingPoint: tour.meetingPoint?.address,
+                  rating: tour.rating,
+                  badges: tour.hero.badges,
+                };
+              })
+              .map((card) => (
+                <TourCard
+                  key={card.href}
+                  href={card.href}
+                  imageSrc={card.imageSrc}
+                  imageAlt={card.imageAlt}
+                  title={card.title}
+                  description={card.description}
+                  price={card.price}
+                  duration={card.duration}
+                  languages={card.languages}
+                  city={card.city}
+                  meetingPoint={card.meetingPoint}
+                  rating={card.rating}
+                  badges={card.badges}
+                />
+              ))}
           </div>
         </section>
 

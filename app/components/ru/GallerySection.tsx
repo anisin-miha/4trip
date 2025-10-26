@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
-import BaseImage, { getOptimizedSrc } from "@/components/BaseImage"; // твой компонент для изображений
+import BaseImage from "@/components/BaseImage"; // твой компонент для изображений
 
 interface GallerySectionProps {
   title: string;
@@ -32,6 +32,7 @@ export default function GallerySection({ title, images }: GallerySectionProps) {
             <BaseImage
               src={img.src}
               alt={img.alt}
+              title={img.alt}
               width={384}
               fill
               className="w-full h-64 object-cover rounded-lg"
@@ -44,7 +45,7 @@ export default function GallerySection({ title, images }: GallerySectionProps) {
         open={index !== undefined}
         close={() => setIndex(undefined)}
         slides={images.map((img) => ({
-          src: getOptimizedSrc(img.src),
+          src: img.src,
           alt: img.alt,
         }))}
         index={index}

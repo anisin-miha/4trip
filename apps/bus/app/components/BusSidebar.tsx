@@ -11,24 +11,24 @@ export function BusSidebar() {
           {busMenu
             .filter((cat) => cat.title !== "Главное")
             .map((cat) => (
-            <div key={cat.title}>
-              <div className="px-1 text-xs uppercase tracking-wide text-gray-900 font-semibold mb-2 border-b border-gray-200 pb-1">
-                {cat.title}
+              <div key={cat.title}>
+                <div className="px-1 text-xs uppercase tracking-wide text-gray-900 font-semibold mb-2 border-b border-gray-200 pb-1">
+                  {cat.title}
+                </div>
+                <ul className="space-y-1.5">
+                  {cat.items.map((item) => (
+                    <li key={item.path}>
+                      <Link
+                        href={item.path}
+                        className="block rounded-md px-2 py-1.5 text-sm text-gray-900 hover:bg-gray-100 hover:text-gray-900 transition-colors"
+                      >
+                        {item.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <ul className="space-y-1.5">
-                {cat.items.map((item) => (
-                  <li key={item.path}>
-                    <Link
-                      href={item.path}
-                      className="block rounded-md px-2 py-1.5 text-sm text-gray-900 hover:bg-gray-100 hover:text-gray-900 transition-colors"
-                    >
-                      {item.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+            ))}
         </nav>
       </div>
     </aside>

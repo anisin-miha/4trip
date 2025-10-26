@@ -28,7 +28,10 @@ export const busMenu: MenuCategory[] = [
     items: [
       { path: "/dlya-shkolnikov", title: "Для школьников" },
       { path: "/na-vypusknoi", title: "На выпускной" },
-      { path: "/ehkskursii-dlya-shkolnikov", title: "Экскурсии для школьников" },
+      {
+        path: "/ehkskursii-dlya-shkolnikov",
+        title: "Экскурсии для школьников",
+      },
       { path: "/svadby", title: "Свадьбы" },
       { path: "/transfery", title: "Трансферы" },
       { path: "/v-aeroport", title: "Трансфер в аэропорт" },
