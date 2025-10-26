@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Правила возврата — 4-trip.ru",
     description: "Правила возврата и отмены бронирований.",
-    url: "https://4-trip.ru/refunds",
+    url: "https://4-trip.ru/ru/refunds",
     type: "website",
     images: [
       {
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     ],
   },
   alternates: {
-    canonical: "https://4-trip.ru/refunds",
+    canonical: "https://4-trip.ru/ru/refunds",
   },
 };
 
