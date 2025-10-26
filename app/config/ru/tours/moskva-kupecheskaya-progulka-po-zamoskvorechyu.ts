@@ -70,8 +70,8 @@ export const tour: TourData = {
   hero: {
     image: heroImage,
     description: "",
-    badges: [duration, ageLimit, "По выходным"],
   },
+  badges: [duration, ageLimit, "По выходным"],
   price,
   duration,
   languages: meetingPoint.language ? [meetingPoint.language] : undefined,

@@ -71,8 +71,8 @@ export const moscowSightseeingTour: TourData = {
   hero: {
     image: heroImage,
     description: "",
-    badges: ["3–4 часа", "Для всех возрастов", "Каждые выходные"],
   },
+  badges: ["3–4 часа", "Для всех возрастов", "Каждые выходные"],
   price: moscowSightseeingPrice,
   duration: moscowDuration,
   languages: moscowSightseeingMeetingPoint.language

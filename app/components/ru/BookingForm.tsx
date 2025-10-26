@@ -109,11 +109,9 @@ function getStandardSchema(requireSlot: boolean) {
       },
       { message: "Минимум 1 человек" },
     ),
-    consent: z
-      .boolean()
-      .refine((val) => val === true, {
-        message: "Необходимо согласие на обработку данных",
-      }),
+    consent: z.boolean().refine((val) => val === true, {
+      message: "Необходимо согласие на обработку данных",
+    }),
     trafficSource: z
       .enum([
         "search",
@@ -143,11 +141,9 @@ const groupSchema = z.object({
     ),
   email: z.string().email("Введите корректный email").optional(),
   comment: z.string().min(10, "Опишите ваши пожелания подробнее"),
-  consent: z
-    .boolean()
-    .refine((val) => val === true, {
-      message: "Необходимо согласие на обработку данных",
-    }),
+  consent: z.boolean().refine((val) => val === true, {
+    message: "Необходимо согласие на обработку данных",
+  }),
   trafficSource: z
     .enum([
       "search",

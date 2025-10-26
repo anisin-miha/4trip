@@ -549,7 +549,7 @@ export default function ExcursionsClient({
                 languages={languagesOf(t)}
                 city={t.city}
                 meetingPoint={t.meetingPoint?.address}
-                badges={t.hero?.badges}
+                badges={t.badges}
                 rating={t.rating}
                 description={(t as any).description ?? ""}
               />

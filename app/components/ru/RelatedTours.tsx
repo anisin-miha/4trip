@@ -28,7 +28,7 @@ export default function RelatedTours({ currentSlug, limit = 3 }: Props) {
         languages,
         city: tour.city,
         meetingPoint: tour.meetingPoint?.address,
-        badges: tour.hero.badges,
+        badges: tour.badges,
         rating: tour.rating,
       };
     })

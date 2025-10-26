@@ -99,37 +99,6 @@ export default function TourCard({
         </Link>
         <p className="tour-card__description text-gray-600">{description}</p>
 
-        {(duration ||
-          (languages && languages.length) ||
-          city ||
-          meetingPoint) && (
-          <div className="mt-1 flex flex-wrap items-center gap-2 text-sm">
-            {duration && (
-              <span className="inline-flex items-center gap-1 bg-gray-100 text-gray-800 px-2 py-1 rounded">
-                <span className="opacity-70">⏱</span> {duration}
-              </span>
-            )}
-            {languages && languages.length > 0 && (
-              <span className="inline-flex items-center gap-1 bg-gray-100 text-gray-800 px-2 py-1 rounded">
-                <span className="opacity-70">🌐</span> {languages.join(", ")}
-              </span>
-            )}
-            {city && (
-              <span className="inline-flex items-center gap-1 bg-gray-100 text-gray-800 px-2 py-1 rounded">
-                <span className="opacity-70">🏙️</span> {city}
-              </span>
-            )}
-            {meetingPoint && (
-              <span className="inline-flex items-center gap-1 bg-gray-100 text-gray-800 px-2 py-1 rounded max-w-full truncate">
-                <span className="opacity-70">📍</span>
-                <span className="truncate" title={meetingPoint}>
-                  {meetingPoint}
-                </span>
-              </span>
-            )}
-          </div>
-        )}
-
         <div className="mt-auto pt-2">
           {priceText && (
             <div className="text-gray-900 leading-none mb-2">

@@ -30,7 +30,7 @@ export type Tour = RawTour & {
   rating?: Rating;
   visibility: boolean;
   movementType: MovementType;
-  hero: RawTour["hero"] & { badges?: string[] };
+  badges?: string[];
 };
 export type { ExcursionCard } from "./types";
 
@@ -53,7 +53,7 @@ export const excursionCards: ExcursionCard[] = excursions
       (tour.meetingPoint?.language ? [tour.meetingPoint.language] : undefined),
     city: tour.city,
     meetingPoint: tour.meetingPoint?.address,
-    badges: tour.hero?.badges,
+    badges: tour.badges,
     rating: tour.rating,
   }));
 

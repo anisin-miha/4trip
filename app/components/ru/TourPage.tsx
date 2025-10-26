@@ -168,7 +168,8 @@ export type TourData = {
   slug: string;
   title: string;
   subtitle?: string;
-  hero: { image: string; description: string; badges?: string[] };
+  hero: { image: string; description: string };
+  badges?: string[];
   price: number;
   currency?: string; // default RUB
   duration?: string; // e.g. "4 часа"
@@ -405,10 +406,9 @@ export default function TourPageSEO({ data }: { data: TourData }) {
                   </p>
                 )}
                 <div className="mt-6 flex flex-wrap gap-2">
-                  <Badge>{data.duration || "3–4 часа"}</Badge>
-                  {data.schedule && <Badge>{data.schedule}</Badge>}
-                  {data.ageLimit && <Badge>{data.ageLimit}</Badge>}
-                  {data.groupSize && <Badge>{data.groupSize}</Badge>}
+                  {data.badges?.map((badge, index) => (
+                    <Badge key={index}>{badge}</Badge>
+                  ))}
                 </div>
 
                 <p className="mt-6 text-base md:text-lg max-w-2xl text-gray-100">

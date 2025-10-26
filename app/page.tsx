@@ -88,7 +88,7 @@ export default function Home() {
                   city: tour.city,
                   meetingPoint: tour.meetingPoint?.address,
                   rating: tour.rating,
-                  badges: tour.hero.badges,
+                  badges: tour.badges,
                 };
               })
               .map((card) => (
