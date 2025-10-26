@@ -1,5 +1,10 @@
 import type { Rating } from "@/app/components/ru/TourPage";
 
+export enum MovementType {
+  Bus = "bus",
+  Pedestrian = "pedestrian",
+}
+
 export type ExcursionCard = {
   slug: string;
   href: string;

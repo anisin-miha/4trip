@@ -10,6 +10,7 @@ import BookingForm from "./BookingForm";
 import { availableDates } from "./BookingForm";
 
 import RelatedTours from "./RelatedTours";
+import { MovementType } from "@/app/config/ru/tours/types";
 
 // Yandex Maps loader and interactive map with numbered markers
 function useYandexMaps() {
@@ -178,6 +179,8 @@ export type TourData = {
   ageLimit?: string; // e.g. "6+"
   expectations?: string;
   rating?: Rating;
+  visibility: boolean;
+  movementType: MovementType;
   inclusions?: string[];
   exclusions?: string[];
   details?: string[];

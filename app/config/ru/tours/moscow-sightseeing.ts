@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { TourData } from "@/app/components/ru/TourPage";
 import { createMeetingPoint } from "./helpers";
+import { MovementType } from "./types";
 
 const slug = "avtobusnaya-obzornaya-ekskursiya-po-moskve";
 const heroImage = "/images/tours/moscow/hero.jpg";
@@ -88,6 +89,8 @@ export const moscowSightseeingTour: TourData = {
   ],
   groupSize: moscowGroupSize,
   ageLimit: "6+",
+  visibility: true,
+  movementType: MovementType.Bus,
   expectations:
     "Живой рассказ гида, комфортный автобус, пешеходная часть экскурсии на ключевых точках: Манежная площадь, Красная площадь, Храм Василия Блаженного, Храм Христа Спасителя, Воробьевы Горы. Будет время на фото.",
   longread: {

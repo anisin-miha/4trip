@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { TourData } from "@/app/components/ru/TourPage";
 import { createMeetingPoint } from "./helpers";
+import { MovementType } from "./types";
 
 const slug = "bulgakovskaya-moskva-po-sledam-mastera-i-margarita";
 const heroImage = "/images/tours/moscow/bulgakov.jpg";
@@ -84,6 +85,8 @@ export const tour: TourData = {
   ],
   groupSize,
   ageLimit,
+  visibility: false,
+  movementType: MovementType.Pedestrian,
   expectations:
     "На нашей экскурсии мы перенесёмся в таинственные 1930-е годы и пройдём по булгаковским местам, где реальность переплетается с вымыслом.",
   longread: {

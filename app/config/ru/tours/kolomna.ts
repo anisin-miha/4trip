@@ -1,6 +1,7 @@
 // config/tours/kolomna-metadata.ts
 import type { Metadata } from "next";
 import { createMeetingPoint } from "./helpers";
+import { MovementType } from "./types";
 
 export const kolomnaTourMetadata: Metadata = {
   title: "Экскурсия в Коломну из Москвы — Кремль, пастила и калачи | 4-trip",
@@ -51,6 +52,8 @@ export const kolomnaTour = {
   languages: kolomnaMeetingPoint.language
     ? [kolomnaMeetingPoint.language]
     : undefined,
+  visibility: true,
+  movementType: MovementType.Bus,
   hero: {
     image: "/images/tours/kolomna/hero.png",
     description:

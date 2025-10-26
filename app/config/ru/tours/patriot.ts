@@ -4,6 +4,7 @@
 
 import { Metadata } from "next";
 import { createMeetingPoint } from "./helpers";
+import { MovementType } from "./types";
 
 export const patriotTourMetadata: Metadata = {
   title: "Экскурсия в Парк «Патриот» | Автобусные туры из Москвы",
@@ -55,6 +56,8 @@ export const patriotTour = {
   languages: patriotMeetingPoint.language
     ? [patriotMeetingPoint.language]
     : undefined,
+  visibility: true,
+  movementType: MovementType.Bus,
   hero: {
     image: "/images/tours/patriot/cathedral-hero.png",
     description:

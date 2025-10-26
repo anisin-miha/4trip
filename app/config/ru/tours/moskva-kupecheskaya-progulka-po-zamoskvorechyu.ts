@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { TourData } from "@/app/components/ru/TourPage";
 import { createMeetingPoint } from "./helpers";
+import { MovementType } from "./types";
 
 const slug = "moskva-kupecheskaya-progulka-po-zamoskvorechyu";
 const heroImage = "/images/tours/moscow/zamoskvorechye.jpg";
@@ -85,6 +86,8 @@ export const tour: TourData = {
   ],
   groupSize,
   ageLimit,
+  visibility: false,
+  movementType: MovementType.Pedestrian,
   expectations:
     "Неспешная прогулка по уютным переулкам Замоскворечья и живой рассказ гида об истории этого района. Мы начнём у метро «Новокузнецкая» и сразу погрузимся в атмосферу старой Москвы.",
   longread: {

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { TourData } from "@/app/components/ru/TourPage";
 import { createMeetingPoint } from "./helpers";
+import { MovementType } from "./types";
 
 const slug = "legendy-staroy-moskvy-kitay-gorod-i-hitrovka";
 const heroImage = "/images/tours/moscow/kitay-gorod.jpg";
@@ -85,6 +86,8 @@ export const tour: TourData = {
   ],
   groupSize,
   ageLimit,
+  visibility: false,
+  movementType: MovementType.Pedestrian,
   expectations:
     "Приглашаем вас исследовать самый колоритный уголок старой Москвы – окрестности Ивановской горки и легендарную Хитровку. Этот район на одном из семи холмов Москвы полон контрастов и историй.",
   longread: {

@@ -4,6 +4,7 @@
 
 import { Metadata } from "next";
 import { createMeetingPoint } from "./helpers";
+import { MovementType } from "./types";
 
 export const sergievPosadTourMetadata: Metadata = {
   title: "Экскурсия в Сергиев Посад | Автобусные туры из Москвы",
@@ -56,6 +57,8 @@ export const sergievPosadTour = {
   languages: sergievPosadMeetingPoint.language
     ? [sergievPosadMeetingPoint.language]
     : undefined,
+  visibility: true,
+  movementType: MovementType.Bus,
   hero: {
     image: "/images/tours/sergiev_posad/hero.png",
     description:

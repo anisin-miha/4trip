@@ -66,6 +66,7 @@ export default function Home() {
           </h2>
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             {excursions
+              .filter((tour) => tour.visibility)
               .map((tour) => {
                 const languages =
                   tour.languages ??
