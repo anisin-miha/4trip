@@ -12,6 +12,8 @@ import MailRuCounter from "./components/ru/MailRuCounter";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
+import { GoogleAnalytics } from '@next/third-parties/google'
+
 // Базовые метаданные/OG по умолчанию для всех страниц (можно переопределить на уровне страницы)
 export const metadata: Metadata = {
   metadataBase: new URL("https://4-trip.ru"),
@@ -159,6 +161,8 @@ export default async function RootLayout(props: RootLayoutProps) {
 
         <Analytics />
         <SpeedInsights />
+
+        <GoogleAnalytics gaId="G-8ZVLE09Y04" />
       </body>
     </html>
   );
