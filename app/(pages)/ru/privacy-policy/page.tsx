@@ -5,13 +5,13 @@ import { Link as IntlLink } from "@/i18n/navigation";
 import contactInfo from "@/app/config/contactInfo";
 
 export const metadata: Metadata = {
-  title: "Политика конфиденциальности — 4-trip.ru",
+  title: "Политика конфиденциальности – 4-trip",
   description:
-    "Политика обработки персональных данных пользователей сайта 4-trip.ru. Защита личной информации, условия обработки данных, права пользователей.",
+    "Политика обработки и защиты персональных данных пользователей сайта 4-trip.ru.",
   openGraph: {
-    title: "Политика конфиденциальности — 4-trip.ru",
+    title: "Политика конфиденциальности – 4-trip",
     description:
-      "Узнайте, как мы защищаем и обрабатываем ваши персональные данные на сайте 4-trip.ru.",
+      "Политика обработки и защиты персональных данных пользователей сайта 4-trip.ru.",
     url: "https://4-trip.ru/ru/privacy-policy",
     type: "website",
     images: [

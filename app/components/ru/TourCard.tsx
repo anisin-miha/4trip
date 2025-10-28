@@ -57,7 +57,7 @@ export default function TourCard({
       }}
       className="tour-card rounded-lg overflow-hidden shadow-md hover:shadow-xl transition bg-white flex flex-col cursor-pointer"
     >
-      <div className="tour-card__image-wrapper relative h-64">
+      <div className="tour-card__image-wrapper relative h-64 rounded-2xl bg-white ring-1 ring-gray-200 shadow-sm hover:shadow-md transition overflow-hidden">
         <BaseImage
           src={imageSrc}
           alt={imageAlt}
@@ -95,7 +95,7 @@ export default function TourCard({
           className="block"
           onClick={(e) => e.stopPropagation()}
         >
-          <h3 className="tour-card__title text-xl font-semibold">{title}</h3>
+          <h3 className="tour-card__title text-xl font-semibold tracking-tight text-gray-900">{title}</h3>
         </Link>
         <p className="tour-card__description text-gray-600">{description}</p>
 
