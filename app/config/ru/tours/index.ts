@@ -9,10 +9,9 @@ import {
 import { tour as zamoskvorechyeTour } from "./moskva-kupecheskaya-progulka-po-zamoskvorechyu";
 import { tour as bulgakovTour } from "./bulgakovskaya-moskva-po-sledam-mastera-i-margarita";
 import { tour as legendsMoscowTour } from "./legendy-staroy-moskvy-kitay-gorod-i-hitrovka";
-import type { Rating } from "@/app/components/ru/TourPage";
-import type { ExcursionCard, MovementType } from "./types";
+import type { ExcursionCard, TourData } from "./types";
 
-const excursionsList = [
+const excursionsList: readonly TourData[] = [
   patriotTour,
   sergievPosadTour,
   kolomnaTour,
@@ -22,19 +21,10 @@ const excursionsList = [
   legendsMoscowTour,
 ] as const;
 
-type RawTour = (typeof excursionsList)[number];
-
-export type Tour = RawTour & {
-  city?: string;
-  location?: string;
-  rating?: Rating;
-  visibility: boolean;
-  movementType: MovementType;
-  badges?: string[];
-};
+export type Tour = TourData;
 export type { ExcursionCard } from "./types";
 
-export const excursions: Tour[] = excursionsList as unknown as Tour[];
+export const excursions: Tour[] = [...excursionsList];
 export const tours = excursions;
 
 export const excursionCards: ExcursionCard[] = excursions
@@ -43,16 +33,14 @@ export const excursionCards: ExcursionCard[] = excursions
     slug: tour.slug,
     href: `/excursions/${tour.slug}`,
     title: tour.title,
-    description: tour.hero?.description ?? "",
-    imageSrc: tour.hero?.image ?? "",
+    description: tour.hero.description,
+    imageSrc: tour.hero.image,
     imageAlt: tour.title,
     price: tour.price,
-    duration: tour.duration ?? tour.meetingPoint?.duration,
-    languages:
-      tour.languages ??
-      (tour.meetingPoint?.language ? [tour.meetingPoint.language] : undefined),
+    duration: tour.duration,
+    languages: tour.languages,
     city: tour.city,
-    meetingPoint: tour.meetingPoint?.address,
+    meetingPoint: tour.meetingPoint.address,
     badges: tour.badges,
     rating: tour.rating,
   }));

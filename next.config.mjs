@@ -77,6 +77,7 @@ let nextConfig = (phase) => {
   }
 
   return {
+    reactCompiler: true,
     eslint: { ignoreDuringBuilds: true },
     typescript: { ignoreBuildErrors: true },
     trailingSlash: true, // чтобы пути вида /ru/tours/... отдавались как /.../index.html
@@ -92,7 +93,7 @@ let nextConfig = (phase) => {
     webpack(config, { isServer, webpack }) {
       // Exclude .svg from existing asset loaders so SVGR can handle it
       const fileLoaderRule = config.module.rules.find(
-        (rule) => typeof rule.test === "object" && rule.test?.test?.(".svg"),
+        (rule) => typeof rule.test === "object" && rule.test?.test?.(".svg")
       );
       if (fileLoaderRule) {
         fileLoaderRule.exclude = Array.isArray(fileLoaderRule.exclude)
@@ -114,7 +115,7 @@ let nextConfig = (phase) => {
           new I18nGenPagesPlugin({
             targets: I18N_TARGETS,
             excursionsLimit: I18N_EXCURSIONS_LIMIT,
-          }),
+          })
         );
       }
 

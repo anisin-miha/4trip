@@ -1,7 +1,15 @@
 // config/tours/kolomna-metadata.ts
 import type { Metadata } from "next";
 import { createMeetingPoint } from "./helpers";
-import { MovementType } from "./types";
+import {
+  Currency,
+  MovementType,
+  TourAgeLimit,
+  TourCity,
+  TourLanguage,
+  TourSeason,
+  defineTour,
+} from "./types";
 
 export const kolomnaTourMetadata: Metadata = {
   title:
@@ -30,32 +38,36 @@ export const kolomnaTourMetadata: Metadata = {
 const kolomnaMeetingPoint = createMeetingPoint({
   mapSrc:
     "https://yandex.ru/map-widget/v1/?ll=37.8636,55.6740&z=16&pt=37.8636,55.6740,pm2rdm",
-  type: "Групповая сборная",
   timeSlots: ["08:00"],
-  duration: "около 12–13 ч.",
   address: "метро Котельники, автобусная парковка (Новорязанское направление)",
   endAddress: "метро Котельники",
-  groupSize: "До 50 человек",
-  forWhom: "Можно с детьми",
-  language: "Русский",
-  price: "3 200 ₽ с человека",
+  note: "Сбор у туристической парковки станции «Котельники», автобус с табличкой «4-trip».",
+  lat: 55.674,
+  lng: 37.8636,
 });
 
-export const kolomnaTour = {
+export const kolomnaTour = defineTour({
   slug: "kolomna",
   title: "Коломна",
   subtitle: "Дегустации, кремль и ремёсла – насыщенная однодневная программа",
   schedule: "По выходным",
   nextDates: ["2025-10-05", "2025-10-19"],
   location: "Коломна, Московская область",
-  city: "Москва",
+  city: TourCity.Kolomna,
   price: 3200,
-  duration: kolomnaMeetingPoint.duration,
-  languages: kolomnaMeetingPoint.language
-    ? [kolomnaMeetingPoint.language]
-    : undefined,
+  currency: Currency.RUB,
+  duration: "около 12–13 ч.",
+  languages: [TourLanguage.Russian],
   visibility: true,
   movementType: MovementType.Bus,
+  groupSize: "До 50 человек",
+  ageLimit: TourAgeLimit.FamilyFriendly,
+  rating: null,
+  season: [
+    TourSeason.Spring,
+    TourSeason.Summer,
+    TourSeason.Autumn,
+  ],
   hero: {
     image: "/images/tours/kolomna/hero.png",
     description:
@@ -132,16 +144,6 @@ export const kolomnaTour = {
   exclusions: [
     "Питание (обед в городе) и личные расходы",
     "Дополнительные мастер-классы или музеи по желанию (не обязательны)",
-  ],
-  routeVariants: [
-    {
-      id: "classic",
-      title: "Классическая Коломна",
-      points: ["Коломенский кремль", "Музей пастилы", "Калачная"],
-      description: [
-        "Прогулка по старому городу с дегустацией традиционных сладостей.",
-      ],
-    },
   ],
   longread: {
     title: "Почему стоит поехать в Коломну",
@@ -233,7 +235,8 @@ export const kolomnaTour = {
         "Да. Доступна «лайт»-версия: прогулка по Кремлю + свободное время, без доплат.",
     },
   ],
-};
+  mapPoints: [],
+});
 
 export const kolomnaTourWithMeta = {
   ...kolomnaTour,

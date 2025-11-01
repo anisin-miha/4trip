@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { Link as IntlLink } from "@/i18n/navigation";
 import TourCard from "@/app/components/ru/TourCard";
 import type { Tour } from "@/app/config/ru/tours";
+import { MovementType } from "@/app/config/ru/tours/types";
 
 type TourListItem = Tour & { href: string };
 
@@ -41,18 +42,15 @@ function getImage(t: TourListItem): string {
 
 function languagesOf(t: TourListItem): string[] {
   const set = new Set<string>();
-  if (t.languages) t.languages.forEach((l) => set.add(l));
-  if (t.meetingPoint?.language) set.add(t.meetingPoint.language);
+  t.languages?.forEach((l) => set.add(l));
   return Array.from(set);
 }
 
 function typeOfTour(
   t: TourListItem,
-): "Групповой" | "Индивидуальный" | "Сборная" | undefined {
-  const type = t.meetingPoint?.type || "";
-  if (/индивид/i.test(type)) return "Индивидуальный";
-  if (/сборн/i.test(type)) return "Сборная";
-  if (/групп/i.test(type)) return "Групповой";
+): "Групповой" | "Сборная" | undefined {
+  if (t.movementType === MovementType.Bus) return "Групповой";
+  if (t.movementType === MovementType.Pedestrian) return "Сборная";
   return undefined;
 }
 
@@ -192,9 +190,7 @@ export default function ExcursionsClient({
         if (bucket !== start) return false;
       }
       if (dur) {
-        const b = durationBucket(
-          parseDurationHoursRange(t.duration ?? t.meetingPoint?.duration),
-        );
+        const b = durationBucket(parseDurationHoursRange(t.duration));
         if (b !== dur) return false;
       }
       if (tags.length) {
@@ -423,7 +419,7 @@ export default function ExcursionsClient({
               <div>
                 <span className="block text-sm font-medium mb-1">Тип</span>
                 <div className="flex flex-wrap gap-2">
-                  {["Групповой", "Сборная", "Индивидуальный"].map((t) => {
+                  {["Групповой", "Сборная"].map((t) => {
                     const checked = type.includes(t);
                     return (
                       <label
@@ -545,12 +541,12 @@ export default function ExcursionsClient({
                 imageSrc={getImage(t)}
                 imageAlt={`Фото для ${t.title}`}
                 price={t.price}
-                duration={t.duration ?? t.meetingPoint?.duration}
+                duration={t.duration}
                 languages={languagesOf(t)}
                 city={t.city}
                 meetingPoint={t.meetingPoint?.address}
                 badges={t.badges}
-                rating={t.rating}
+                rating={t.rating ?? undefined}
                 description={(t as any).description ?? ""}
               />
             );

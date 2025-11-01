@@ -1,29 +1,31 @@
 import type { Metadata } from "next";
-import type { TourData } from "@/app/components/ru/TourPage";
 import { createMeetingPoint } from "./helpers";
-import { MovementType } from "./types";
+import {
+  Currency,
+  MovementType,
+  TourAgeLimit,
+  TourCity,
+  TourLanguage,
+  TourSeason,
+  defineTour,
+  type TourData,
+} from "./types";
 
 const slug = "legendy-staroy-moskvy-kitay-gorod-i-hitrovka";
 const heroImage = "/images/tours/moscow/kitay-gorod.jpg";
 const price = 800;
 const duration = "2 часа";
 const groupSize = "до 15 человек";
-const ageLimit = "6+";
+const ageLimit = TourAgeLimit.SixPlus;
 const schedule = "по выходным (дневные туры)";
 
 const meetingPoint = createMeetingPoint({
   mapSrc:
     "https://www.google.com/maps?q=Китай-город+метро,+Москва&output=embed",
-  type: "Пешеходная",
   timeSlots: ["12:00", "15:00"],
-  duration,
   address: "м. «Китай-город», улица Маросейка, у памятника героям Плевны",
   endAddress:
     "район Чистопрудного бульвара (ближайшее метро «Чистые пруды» или возвращение к м. «Китай-город» с гидом)",
-  groupSize,
-  forWhom: ageLimit,
-  language: "Русский",
-  price: "от 800 ₽ с человека",
   note: "Гид будет с табличкой “4-trip”.",
   lat: 55.7569,
   lng: 37.6339,
@@ -62,19 +64,22 @@ export const metadata: Metadata = {
   },
 };
 
-export const tour: TourData = {
+export const tour = defineTour({
   slug,
   title: "Легенды старой Москвы: Китай-город и Хитровка",
   subtitle:
     "2 часа по древней части Москвы: тайны Китай-города, Хитровская площадь, старейший дом столицы и царский монастырь. Начало у м. «Китай-город».",
+  location: "Москва, Китай-город и Хитровка",
+  city: TourCity.Moscow,
   hero: {
     image: heroImage,
     description: "",
   },
   badges: [duration, ageLimit, "По выходным"],
   price,
+  currency: Currency.RUB,
   duration,
-  languages: meetingPoint.language ? [meetingPoint.language] : undefined,
+  languages: [TourLanguage.Russian],
   schedule,
   nextDates: [
     "2025-09-20",
@@ -88,6 +93,8 @@ export const tour: TourData = {
   ageLimit,
   visibility: false,
   movementType: MovementType.Pedestrian,
+  rating: null,
+  season: [TourSeason.Spring, TourSeason.Summer, TourSeason.Autumn],
   expectations:
     "Приглашаем вас исследовать самый колоритный уголок старой Москвы – окрестности Ивановской горки и легендарную Хитровку. Этот район на одном из семи холмов Москвы полон контрастов и историй.",
   longread: {
@@ -169,24 +176,7 @@ export const tour: TourData = {
       ],
     },
   ],
-  routeVariants: [
-    {
-      id: "classic",
-      title: "Классический маршрут",
-      points: [
-        "М. «Китай-город» – встреча у исторической стены Китай-города, вступление.",
-        "Хитровская площадь – история «страшной» Хитровки XIX века, реконструированная площадь сегодня.",
-        "Подколокольный переулок – бывшие трущобы Хитровки, места Гиляровского.",
-        "Дом Ярошенко – самый старый жилой дом Москвы (внешний осмотр в тихом дворе).",
-        "Колпачный переулок (дворик Бунина) – уютный старый двор, легенды о писателях и «раках в пруду».",
-        "Ивановская горка – обзор окрестностей, старинная застройка на холме.",
-        "Иоанно-Предтеченский монастырь – осмотр территории древнего монастыря.",
-        "Палаты Мазепы – загадочный особняк XVII века, история гетмана.",
-        "Дом под ангелами – осмотр двора знаменитого дома с ангелами, рассказы о дореволюционной Москве.",
-        "Финиш: район Чистопрудного бульвара (ближайшее метро «Чистые пруды» или возвращение к м. «Китай-город» с гидом).",
-      ],
-    },
-  ],
+  program: [],
   mapPoints: [
     { title: "м. «Китай-город»", lat: 55.7569, lng: 37.6339 },
     { title: "Хитровская площадь", lat: 55.7575, lng: 37.6358 },
@@ -262,7 +252,7 @@ export const tour: TourData = {
         "На территории Ивановского монастыря фотографировать снаружи можно свободно. Внутрь храмов мы не заходим (экскурсия внешняя), поэтому никаких ограничений нет. Уважайте тишину монастыря: во время нашего визита там могут проходить службы, мы сохраняем тишину и не мешаем прихожанам.",
     },
   ],
-};
+});
 
 export const tourWithMeta: TourData & {
   metadata: Metadata;
@@ -284,8 +274,8 @@ export const card = {
     "2 часа по древней части Москвы: тайны Китай-города, Хитровская площадь, монастырь, палаты Мазепы.",
   price: tour.price,
   duration: tour.duration,
-  languages: meetingPoint.language ? [meetingPoint.language] : undefined,
-  city: "Москва",
+  languages: [TourLanguage.Russian],
+  city: TourCity.Moscow,
   meetingPoint: tour.meetingPoint.address,
   rating: tour.rating,
 };

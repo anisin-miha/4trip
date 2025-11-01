@@ -10,7 +10,7 @@ import BookingForm from "./BookingForm";
 import { availableDates } from "./BookingForm";
 
 import RelatedTours from "./RelatedTours";
-import { MovementType } from "@/app/config/ru/tours/types";
+import { type FAQItem, type TourData } from "@/app/config/ru/tours/types";
 
 // Yandex Maps loader and interactive map with numbered markers
 function useYandexMaps() {
@@ -116,103 +116,20 @@ function MeetingPointMap({
   );
 }
 
-// === Types ===
-export type Attraction = {
-  image: string;
-  alt: string;
-  title: string;
-  description: string[];
-};
-
-export type Guide = {
-  name: string;
-  role?: string;
-  image: string;
-  bio?: string;
-  url?: string;
-};
-
-export type RouteVariant = {
-  id: string; // slug-like id, e.g. "classic"
-  title: string; // e.g. "Классический маршрут"
-  summary?: string;
-  points: string[]; // list of POIs in order
-  description?: string[]; // free-form paragraphs
-};
-
-export type MeetingPoint = {
-  mapSrc: string; // embeddable map src
-  address: string;
-  // New: list of available time slots for this meeting point (e.g. ["14:00", "16:00"])
-  timeSlots?: string[];
-  endAddress?: string; // where tour ends
-  note?: string;
-  type?: string;
-  duration?: string;
-  groupSize?: string;
-  forWhom?: string;
-  language?: string;
-  price?: string;
-  lat?: number;
-  lng?: number;
-};
-
-export type Rating = {
-  value: number; // 4.9
-  count: number; // 1526
-};
-
-export type FAQItem = { question: string; answer: string };
-
-export type TourData = {
-  slug: string;
-  title: string;
-  subtitle?: string;
-  hero: { image: string; description: string };
-  badges?: string[];
-  price: number;
-  currency?: string; // default RUB
-  duration?: string; // e.g. "4 часа"
-  languages?: string[];
-  schedule?: string; // e.g. "каждую субботу"
-  nextDates?: string[]; // ISO strings for JSON-LD/Event (take soonest)
-  groupSize?: string; // e.g. "до 40 человек"
-  ageLimit?: string; // e.g. "6+"
-  expectations?: string;
-  rating?: Rating;
-  visibility: boolean;
-  movementType: MovementType;
-  inclusions?: string[];
-  exclusions?: string[];
-  details?: string[];
-  meetingPoint: MeetingPoint;
-  attractions?: Attraction[];
-  routeVariants?: RouteVariant[];
-  // Optional detailed program: ordered timeline with time, title and description
-  program?: { time?: string; title: string; description?: string }[];
-  learnMore?: { title: string; text: string }[];
-  longread?: { title: string; tldr?: string[]; paragraphs: string[] };
-  gallery?: { src: string; alt: string }[];
-  faq?: FAQItem[];
-  mapPoints?: { title: string; lat: number; lng: number }[];
-};
-
 // === Helpers: JSON-LD builders ===
 function buildTourJsonLd(data: TourData) {
-  const firstDate = data.nextDates?.[0];
-  const currency = data.currency || "RUB";
-  // Prefer `program` as canonical flat itinerary; fall back to routeVariants or mapPoints
-  const itinerary = data.program?.length
+  const firstDate = data.nextDates[0];
+  const currency = data.currency;
+  // Prefer `program` as canonical flat itinerary; fall back to mapPoints titles
+  const itinerary = data.program.length
     ? data.program.map((p) => p.title)
-    : data.routeVariants?.[0]?.points
-      ? data.routeVariants[0].points
-      : (data.mapPoints || []).map((m) => m.title || undefined);
+    : data.mapPoints.map((m) => m.title);
   return {
     "@context": "https://schema.org",
     "@type": "TouristTrip",
     name: data.title,
-    description: data.hero?.description,
-    image: data.hero?.image ? [absoluteUrl(data.hero.image)] : undefined,
+    description: data.expectations || data.hero.description,
+    image: data.hero.image ? [absoluteUrl(data.hero.image)] : undefined,
     itinerary: itinerary,
     offers: {
       "@type": "Offer",
@@ -578,8 +495,7 @@ export default function TourPageSEO({ data }: { data: TourData }) {
                     Программа и маршрут
                   </h3>
 
-                  {/* Compute a canonical flat program: prefer data.program (detailed),
-                      then routeVariants[0].points (string array), then mapPoints titles */}
+                  {/* Compute a canonical flat program: prefer detailed program, otherwise fallback to map points */}
                   {(() => {
                     // Build finalProgram as an array of items with optional time/title/description
                     type FinalProgItem = {
@@ -597,13 +513,6 @@ export default function TourPageSEO({ data }: { data: TourData }) {
                           title: p.title || "",
                           description: p.description,
                         }),
-                      );
-                    } else if (
-                      data.routeVariants &&
-                      data.routeVariants[0]?.points?.length
-                    ) {
-                      data.routeVariants[0].points.forEach((pt) =>
-                        finalProgram.push({ title: pt }),
                       );
                     } else if (data.mapPoints && data.mapPoints.length) {
                       data.mapPoints.forEach((m) =>
@@ -750,7 +659,9 @@ export default function TourPageSEO({ data }: { data: TourData }) {
                         href="#booking"
                         className="inline-flex items-center justify-center w-full rounded-xl bg-blue-600 px-5 py-3 text-white font-semibold shadow hover:bg-blue-700 transition"
                       >
-                        {`Забронировать место · ${data.price ? `${data.price.toLocaleString("ru-RU")} ${data.currency || "₽"}` : data.meetingPoint?.price}`}
+                        {data.price
+                          ? `Забронировать место · ${data.price.toLocaleString("ru-RU")} ₽`
+                          : "Забронировать место"}
                       </a>
                     </div>
                   </div>

@@ -1,28 +1,30 @@
 import type { Metadata } from "next";
-import type { TourData } from "@/app/components/ru/TourPage";
 import { createMeetingPoint } from "./helpers";
-import { MovementType } from "./types";
+import {
+  Currency,
+  MovementType,
+  TourAgeLimit,
+  TourCity,
+  TourLanguage,
+  TourSeason,
+  defineTour,
+  type TourData,
+} from "./types";
 
 const slug = "bulgakovskaya-moskva-po-sledam-mastera-i-margarita";
 const heroImage = "/images/tours/moscow/bulgakov.jpg";
 const price = 900;
 const duration = "1,5–2 часа";
 const groupSize = "до 25 человек";
-const ageLimit = "12+";
+const ageLimit = TourAgeLimit.TwelvePlus;
 const schedule = "по пятницам и субботам (вечерние экскурсии)";
 
 const meetingPoint = createMeetingPoint({
   mapSrc: "https://www.google.com/maps?q=Маяковская+метро,+Москва&output=embed",
-  type: "Пешеходная",
   timeSlots: ["19:00"],
-  duration,
   address: "м. «Маяковская», памятник Маяковскому",
   endAddress:
     "Триумфальная площадь (ст. м. «Маяковская» или «Пушкинская» в пешей доступности)",
-  groupSize,
-  forWhom: ageLimit,
-  language: "Русский",
-  price: "от 900 ₽ с человека",
   note: "Гид будет в тематическом костюме или с табличкой “Булгаковская экскурсия”.",
   lat: 55.7697,
   lng: 37.5958,
@@ -61,19 +63,22 @@ export const metadata: Metadata = {
   },
 };
 
-export const tour: TourData = {
+export const tour = defineTour({
   slug,
   title: "Булгаковская Москва: по следам «Мастера и Маргариты»",
   subtitle:
     "1,5–2 часа по местам романа М.А. Булгакова: Патриаршие пруды, «нехорошая квартира», особняк Маргариты. Начало у м. «Маяковская», памятник Маяковскому.",
+  location: "Москва, Триумфальная площадь и Патриаршие пруды",
+  city: TourCity.Moscow,
   hero: {
     image: heroImage,
     description: "",
   },
   badges: [duration, ageLimit, "По пятницам и субботам"],
   price,
+  currency: Currency.RUB,
   duration,
-  languages: meetingPoint.language ? [meetingPoint.language] : undefined,
+  languages: [TourLanguage.Russian],
   schedule,
   nextDates: [
     "2025-09-19",
@@ -87,6 +92,8 @@ export const tour: TourData = {
   ageLimit,
   visibility: false,
   movementType: MovementType.Pedestrian,
+  rating: null,
+  season: [TourSeason.Spring, TourSeason.Summer, TourSeason.Autumn],
   expectations:
     "На нашей экскурсии мы перенесёмся в таинственные 1930-е годы и пройдём по булгаковским местам, где реальность переплетается с вымыслом.",
   longread: {
@@ -159,21 +166,7 @@ export const tour: TourData = {
       ],
     },
   ],
-  routeVariants: [
-    {
-      id: "classic",
-      title: "Классический маршрут",
-      points: [
-        "М. «Маяковская» (памятник Маяковскому) – встреча группы, вводная о Булгакове и Москве 1930-х.",
-        "Патриаршие пруды – место встречи Берлиоза и Воланда; скамейка, пруд (единственный оставшийся из «прудов»).",
-        "Большая Садовая, 10 – знаменитая «нехорошая квартира» №50, дом-музей М.А. Булгакова.",
-        "Спиридоновка, 17 (особняк Морозовой) – роскошный особняк в неоготическом стиле, прототип дома Маргариты.",
-        "Тверской бульвар (Дом Герцена) – здание, известное как литературный Дом Герцена, прообраз «Дома Грибоедова» (МАССОЛИТ).",
-        "Триумфальная пл. (Театр Сатиры) – современный Театр сатиры, в романе – театр Варьете Воланда.",
-        "Финиш: Триумфальная площадь (ст. м. «Маяковская» или «Пушкинская» в пешей доступности).",
-      ],
-    },
-  ],
+  program: [],
   mapPoints: [
     { title: "м. «Маяковская»", lat: 55.7697, lng: 37.5958 },
     { title: "Патриаршие пруды", lat: 55.7642, lng: 37.5928 },
@@ -243,7 +236,7 @@ export const tour: TourData = {
         "Конечно! На Патриарших прудах и во дворах можно свободно фотографировать. У музея Булгакова и у особняка Морозовой разрешена съемка снаружи. Если будете заходить в музей позже, внутри без вспышки тоже можно. Делитесь своими снимками с хэштегом #булгаковскаяМосква и вдохновляйте других прочитать роман.",
     },
   ],
-};
+});
 
 export const tourWithMeta: TourData & {
   metadata: Metadata;
@@ -265,8 +258,8 @@ export const card = {
     "1,5–2 часа по местам романа: Патриаршие пруды, нехорошая квартира, особняк Маргариты.",
   price: tour.price,
   duration: tour.duration,
-  languages: meetingPoint.language ? [meetingPoint.language] : undefined,
-  city: "Москва",
+  languages: [TourLanguage.Russian],
+  city: TourCity.Moscow,
   meetingPoint: tour.meetingPoint.address,
   rating: tour.rating,
 };

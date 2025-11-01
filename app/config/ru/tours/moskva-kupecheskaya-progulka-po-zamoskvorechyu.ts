@@ -1,29 +1,31 @@
 import type { Metadata } from "next";
-import type { TourData } from "@/app/components/ru/TourPage";
 import { createMeetingPoint } from "./helpers";
-import { MovementType } from "./types";
+import {
+  Currency,
+  MovementType,
+  TourAgeLimit,
+  TourCity,
+  TourLanguage,
+  TourSeason,
+  defineTour,
+  type TourData,
+} from "./types";
 
 const slug = "moskva-kupecheskaya-progulka-po-zamoskvorechyu";
 const heroImage = "/images/tours/moscow/zamoskvorechye.jpg";
 const price = 800;
 const duration = "2 часа";
 const groupSize = "до 20 человек";
-const ageLimit = "6+";
+const ageLimit = TourAgeLimit.SixPlus;
 const schedule = "по выходным (дневные или вечерние туры)";
 
 const meetingPoint = createMeetingPoint({
   mapSrc:
     "https://www.google.com/maps?q=Новокузнецкая+метро,+Москва&output=embed",
-  type: "Пешеходная",
   timeSlots: ["12:00", "15:00"],
-  duration,
   address: "м. «Новокузнецкая», у выхода из метро",
   endAddress:
     "на Ордынке, у храма Иверской иконы (ближайшее метро «Третьяковская»)",
-  groupSize,
-  forWhom: ageLimit,
-  language: "Русский",
-  price: "от 800 ₽ с человека",
   note: "Гид будет с табличкой “4-trip”.",
   lat: 55.7417,
   lng: 37.6294,
@@ -62,19 +64,22 @@ export const metadata: Metadata = {
   },
 };
 
-export const tour: TourData = {
+export const tour = defineTour({
   slug,
   title: "Москва купеческая: прогулка по Замоскворечью",
   subtitle:
     "2 часа по тихим улочкам Замоскворечья: старинные церкви, купеческие особняки, Третьяковская галерея. Начало у м. «Новокузнецкая», окончание на Ордынке.",
+  location: "Москва, Замоскворечье",
+  city: TourCity.Moscow,
   hero: {
     image: heroImage,
     description: "",
   },
   badges: [duration, ageLimit, "По выходным"],
   price,
+  currency: Currency.RUB,
   duration,
-  languages: meetingPoint.language ? [meetingPoint.language] : undefined,
+  languages: [TourLanguage.Russian],
   schedule,
   nextDates: [
     "2025-09-20",
@@ -88,6 +93,8 @@ export const tour: TourData = {
   ageLimit,
   visibility: false,
   movementType: MovementType.Pedestrian,
+  rating: null,
+  season: [TourSeason.Spring, TourSeason.Summer, TourSeason.Autumn],
   expectations:
     "Неспешная прогулка по уютным переулкам Замоскворечья и живой рассказ гида об истории этого района. Мы начнём у метро «Новокузнецкая» и сразу погрузимся в атмосферу старой Москвы.",
   longread: {
@@ -169,21 +176,7 @@ export const tour: TourData = {
       ],
     },
   ],
-  routeVariants: [
-    {
-      id: "classic",
-      title: "Классический маршрут",
-      points: [
-        "М. «Новокузнецкая» – сбор группы у выхода из метро.",
-        "Улица Пятницкая – старинная купеческая улица, история и главные дома.",
-        "Церковь Николая Чудотворца в Пыжах – храм XVII века в стиле узорочья с шатровой колокольней.",
-        "Храм Климента, папы Римского – крупнейший барочный храм Замоскворечья, архитектурная доминанта района.",
-        "Лаврушинский переулок – усадьбы XIX века и Третьяковская галерея (осмотр внешних фасадов).",
-        "Большая Ордынка – улица старой Москвы, особняки и церкви.",
-        "Финиш: у храма Иверской иконы Божьей Матери на Большой Ордынке (ближайшее метро «Третьяковская»).",
-      ],
-    },
-  ],
+  program: [],
   mapPoints: [
     { title: "м. «Новокузнецкая»", lat: 55.7417, lng: 37.6294 },
     { title: "Улица Пятницкая", lat: 55.7425, lng: 37.6289 },
@@ -250,7 +243,7 @@ export const tour: TourData = {
         "Наденьте удобную обувь – нам предстоит пройтись около 4–5 км. В тёплое время года возьмите головной убор и воду, зимой – одевайтесь теплее, шарф и перчатки не помешают. Фотоаппарат или телефон пригодятся для памятных снимков, ведь по пути будет множество красивых видов.",
     },
   ],
-};
+});
 
 export const tourWithMeta: TourData & {
   metadata: Metadata;
@@ -272,8 +265,8 @@ export const card = {
     "2 часа по тихим улочкам Замоскворечья: церкви, особняки, Третьяковская галерея.",
   price: tour.price,
   duration: tour.duration,
-  languages: meetingPoint.language ? [meetingPoint.language] : undefined,
-  city: "Москва",
+  languages: [TourLanguage.Russian],
+  city: TourCity.Moscow,
   meetingPoint: tour.meetingPoint.address,
   rating: tour.rating,
 };

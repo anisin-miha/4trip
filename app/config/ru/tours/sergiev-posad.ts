@@ -4,7 +4,15 @@
 
 import { Metadata } from "next";
 import { createMeetingPoint } from "./helpers";
-import { MovementType } from "./types";
+import {
+  Currency,
+  MovementType,
+  TourAgeLimit,
+  TourCity,
+  TourLanguage,
+  TourSeason,
+  defineTour,
+} from "./types";
 
 export const sergievPosadTourMetadata: Metadata = {
   title:
@@ -35,17 +43,15 @@ export const sergievPosadTourMetadata: Metadata = {
 const sergievPosadMeetingPoint = createMeetingPoint({
   mapSrc:
     "https://yandex.ru/map-widget/v1/?ll=38.126953,56.315941&z=14&pt=38.126953,56.315941,pm2rdm",
-  type: "Групповая сборная",
   timeSlots: ["09:00"],
-  duration: "около 8 ч.",
   address: "метро Комсомольская, выход к Ленинградскому вокзалу",
-  groupSize: "До 30 человек",
-  forWhom: "Можно с детьми",
-  language: "Русский",
-  price: "3 500 ₽ с человека",
+  endAddress: "Москва, метро Комсомольская (возвращение в район вокзалов)",
+  note: "Сбор у автобуса с табличкой «4-trip» возле Ленинградского вокзала.",
+  lat: 56.315941,
+  lng: 38.126953,
 });
 
-export const sergievPosadTour = {
+export const sergievPosadTour = defineTour({
   slug: "sergiev-posad",
   title: "Сергиев Посад",
   subtitle:
@@ -53,14 +59,22 @@ export const sergievPosadTour = {
   schedule: "По выходным",
   nextDates: ["2025-10-12", "2025-10-19"],
   location: "Сергиев Посад, Московская область",
-  city: "Москва",
+  city: TourCity.SergievPosad,
   price: 3500,
-  duration: sergievPosadMeetingPoint.duration,
-  languages: sergievPosadMeetingPoint.language
-    ? [sergievPosadMeetingPoint.language]
-    : undefined,
+  currency: Currency.RUB,
+  duration: "около 8 ч.",
+  languages: [TourLanguage.Russian],
   visibility: true,
   movementType: MovementType.Bus,
+  groupSize: "До 30 человек",
+  ageLimit: TourAgeLimit.FamilyFriendly,
+  rating: null,
+  season: [
+    TourSeason.Spring,
+    TourSeason.Summer,
+    TourSeason.Autumn,
+    TourSeason.Winter,
+  ],
   hero: {
     image: "/images/tours/sergiev_posad/hero.png",
     description:
@@ -226,7 +240,8 @@ export const sergievPosadTour = {
       alt: "Галерея 4 Сергиев Посад",
     },
   ],
-};
+  mapPoints: [],
+});
 
 export const sergievPosadTourWithMeta = {
   ...sergievPosadTour,
