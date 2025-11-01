@@ -4,7 +4,15 @@
 
 import { Metadata } from "next";
 import { createMeetingPoint } from "./helpers";
-import { MovementType } from "./types";
+import {
+  Currency,
+  MovementType,
+  TourAgeLimit,
+  TourCity,
+  TourLanguage,
+  TourSeason,
+  defineTour,
+} from "./types";
 
 export const patriotTourMetadata: Metadata = {
   title: "Экскурсия в Парк «Патриот» | Автобусный тур из Москвы – музей, храм, история",
@@ -16,50 +24,55 @@ export const patriotTourMetadata: Metadata = {
     title: "Экскурсия в Парк «Патриот» | Автобусный тур из Москвы – музей, храм, история",
     description:
       "Посетите Главный храм Вооружённых Сил и комплекс «Дорога памяти» – автобусная экскурсия в парк «Патриот» из Москвы (≈6 часов с гидом, билет включён).",
-    images: ["/images/tours/patriot/cathedral-hero.png"],
+    images: ["/images/tours/patriot/cathedral-hero.webp"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Экскурсия в Парк «Патриот»",
     description: "Посетите Главный храм Вооружённых Сил и комплекс «Дорога памяти» – автобусная экскурсия в парк «Патриот» из Москвы (≈6 часов с гидом, билет включён).",
-    images: ["/images/tours/patriot/cathedral-hero.png"],
+    images: ["/images/tours/patriot/cathedral-hero.webp"],
   },
   icons: {},
 };
 
-const cost = 2600;
+const cost = 2500;
 
 const patriotMeetingPoint = createMeetingPoint({
   mapSrc:
     "https://yandex.ru/map-widget/v1/?ll=37.523504,55.740533&z=16&pt=37.523504,55.740533,pm2rdm",
-  type: "Групповая сборная",
   timeSlots: ["11:00"],
-  duration: "около 6 ч.",
   address: "метро Парк Победы, парковка у музея Бородинской битвы",
   endAddress: "метро Парк Победы, парковка около музея",
-  groupSize: "До 50 человек",
-  forWhom: "Можно с детьми",
-  language: "Русский",
-  price: `${cost} ₽ с человека`,
+  note: "Сбор у автобуса с табличкой «4-trip» на парковке у музея Бородинской битвы.",
+  lat: 55.740533,
+  lng: 37.523504,
 });
 
-export const patriotTour = {
+export const patriotTour = defineTour({
   slug: "patriot",
   title: "Парк «Патриот»",
   subtitle: "Экскурсия в музейный комплекс и Главный храм Вооружённых Сил",
   location: "Московская область, Одинцовский округ (Парк «Патриот»)",
-  city: "Москва",
+  city: TourCity.Moscow,
   price: cost,
+  currency: Currency.RUB,
   schedule: "По выходным и отдельным датам",
   nextDates: ["2025-10-11", "2025-10-18", "2025-10-25"],
-  duration: patriotMeetingPoint.duration,
-  languages: patriotMeetingPoint.language
-    ? [patriotMeetingPoint.language]
-    : undefined,
+  duration: "около 6 ч.",
+  languages: [TourLanguage.Russian],
   visibility: true,
   movementType: MovementType.Bus,
+  groupSize: "До 50 человек",
+  ageLimit: TourAgeLimit.FamilyFriendly,
+  rating: null,
+  season: [
+    TourSeason.Spring,
+    TourSeason.Summer,
+    TourSeason.Autumn,
+    TourSeason.Winter,
+  ],
   hero: {
-    image: "/images/tours/patriot/cathedral-hero.png",
+    image: "/images/tours/patriot/cathedral-hero.webp",
     description:
       "Посетите Главный храм Вооружённых Сил и галерею «Дорога памяти» в одном автобусном туре без спешки",
   },
@@ -69,7 +82,7 @@ export const patriotTour = {
     "Посетите величественный Главный храм Вооружённых Сил России и пройдите галерею «Дорога памяти» без суеты: автобусный тур стартует из Москвы, а гид помогает разобраться в маршруте, найти время для фото и отдохнуть во время обеда.",
   attractions: [
     {
-      image: "/images/tours/patriot/road-of-memory.png",
+      image: "/images/tours/patriot/road-of-memory.webp",
       alt: "Музей 'Дорога памяти'",
       title: "Музей «Дорога памяти»",
       description: [
@@ -79,7 +92,7 @@ export const patriotTour = {
       ],
     },
     {
-      image: "/images/tours/patriot/armed-forces-cathedral.png",
+      image: "/images/tours/patriot/armed-forces-cathedral.webp",
       alt: "Храм Вооруженных сил",
       title: "Главный храм Вооруженных Сил России",
       description: [
@@ -112,20 +125,6 @@ export const patriotTour = {
   ],
   exclusions: [
     "Питание (обед), личные расходы на сувениры или дополнительные программы",
-  ],
-  routeVariants: [
-    {
-      id: "classic",
-      title: "Классический маршрут",
-      points: [
-        "Храм Вооружённых сил",
-        "Музей Дорога Памяти",
-        "Панорамы и смотровые",
-      ],
-      description: [
-        "Классическая программа с осмотром храма и экспозиций музея 'Дорога Памяти'.",
-      ],
-    },
   ],
   longread: {
     title: "Что вас ждёт в парке «Патриот»",
@@ -193,11 +192,12 @@ export const patriotTour = {
   ],
   meetingPoint: patriotMeetingPoint,
   gallery: [
-    { src: "/images/tours/patriot/gallery1.png", alt: "Галерея 1" },
-    { src: "/images/tours/patriot/gallery2.png", alt: "Галерея 2" },
-    { src: "/images/tours/patriot/gallery3.png", alt: "Галерея 3" },
-    { src: "/images/tours/patriot/gallery4.png", alt: "Галерея 4" },
+    { src: "/images/tours/patriot/gallery1.webp", alt: "Галерея 1" },
+    { src: "/images/tours/patriot/gallery2.webp", alt: "Галерея 2" },
+    { src: "/images/tours/patriot/gallery3.webp", alt: "Галерея 3" },
+    { src: "/images/tours/patriot/gallery4.webp", alt: "Галерея 4" },
   ],
+  mapPoints: [],
   faq: [
     {
       question: "Какова продолжительность экскурсии?",
@@ -215,7 +215,7 @@ export const patriotTour = {
         "Да, экскурсия подходит для всей семьи. Дети до 7 лет могут посетить парк по согласованию, а дети от 7 до 18 лет — только в сопровождении законных представителей.",
     },
   ],
-};
+});
 
 export const patriotTourWithMeta = {
   ...patriotTour,

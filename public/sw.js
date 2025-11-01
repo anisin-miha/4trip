@@ -211,11 +211,11 @@ define(["./workbox-1bb06f5e"], function (e) {
           revision: "b27993c62c1d420b",
         },
         {
-          url: "/favicon/apple-touch-icon.png",
+          url: "/favicon/apple-touch-icon.webp",
           revision: "8fcc6c8485c111568233e3c5a385dae0",
         },
         {
-          url: "/favicon/favicon-96x96.png",
+          url: "/favicon/favicon-96x96.webp",
           revision: "3fd37fcd3d40e68258fb668c67d9f1e0",
         },
         {
@@ -503,11 +503,11 @@ define(["./workbox-1bb06f5e"], function (e) {
           revision: "9a31df5025642013617d729853824106",
         },
         {
-          url: "/favicon/web-app-manifest-192x192.png",
+          url: "/favicon/web-app-manifest-192x192.webp",
           revision: "7f1c66f43845c449dafb8a2ce8be2796",
         },
         {
-          url: "/favicon/web-app-manifest-512x512.png",
+          url: "/favicon/web-app-manifest-512x512.webp",
           revision: "a1718a9f95652c89a683284949ce1970",
         },
         {
@@ -527,43 +527,43 @@ define(["./workbox-1bb06f5e"], function (e) {
           revision: "62004dd9b1538adbf49394b0b07bf57a",
         },
         {
-          url: "/images/tours/kolomna/bobrenev.png",
+          url: "/images/tours/kolomna/bobrenev.webp",
           revision: "262c021a9c8117f0c4f2654d6822d6d5",
         },
         {
-          url: "/images/tours/kolomna/gallery1.png",
+          url: "/images/tours/kolomna/gallery1.webp",
           revision: "63384582c39be59b55c24e849d25f67e",
         },
         {
-          url: "/images/tours/kolomna/gallery2.png",
+          url: "/images/tours/kolomna/gallery2.webp",
           revision: "6661283f66dab50eb521d014804e246e",
         },
         {
-          url: "/images/tours/kolomna/gallery3.png",
+          url: "/images/tours/kolomna/gallery3.webp",
           revision: "2ed38d977fa26dee9783d6a0aeb26348",
         },
         {
-          url: "/images/tours/kolomna/gallery4.png",
+          url: "/images/tours/kolomna/gallery4.webp",
           revision: "056b64b5f6f877298e26bbd74de67c85",
         },
         {
-          url: "/images/tours/kolomna/hero.png",
+          url: "/images/tours/kolomna/hero.webp",
           revision: "0ed460367b19ec8b4ea47d0eb674332f",
         },
         {
-          url: "/images/tours/kolomna/kalachnaya.png",
+          url: "/images/tours/kolomna/kalachnaya.webp",
           revision: "6492e4fac7020fb59e8791439acac630",
         },
         {
-          url: "/images/tours/kolomna/kremlin.png",
+          url: "/images/tours/kolomna/kremlin.webp",
           revision: "e7529d3f7230ef8c09dea3a9eff47266",
         },
         {
-          url: "/images/tours/kolomna/pastila.png",
+          url: "/images/tours/kolomna/pastila.webp",
           revision: "8d1b57998997232e79c61be8d2d9b2d1",
         },
         {
-          url: "/images/tours/moscow/arbat.jpg",
+          url: "/images/tours/moscow/arbat.webp",
           revision: "0923ca1fa3c966de06e38b67fd2e76b3",
         },
         {
@@ -571,75 +571,75 @@ define(["./workbox-1bb06f5e"], function (e) {
           revision: "27e6a4a34482167bc6d94d87cdc0480c",
         },
         {
-          url: "/images/tours/moscow/gallery/1.jpg",
+          url: "/images/tours/moscow/gallery/1.webp",
           revision: "ff796c11db5c1a25d6237b8f2b7c2425",
         },
         {
-          url: "/images/tours/moscow/gallery/2.jpg",
+          url: "/images/tours/moscow/gallery/2.webp",
           revision: "80af61f96dcacfbc44ede6218f3a65aa",
         },
         {
-          url: "/images/tours/moscow/gallery/3.jpg",
+          url: "/images/tours/moscow/gallery/3.webp",
           revision: "d61ad882c5f55b4db2ecaf211f27fb2f",
         },
         {
-          url: "/images/tours/moscow/gallery/4.jpg",
+          url: "/images/tours/moscow/gallery/4.webp",
           revision: "2694ee052d42e423bfc788872116a968",
         },
         {
-          url: "/images/tours/moscow/hero.jpg",
+          url: "/images/tours/moscow/hero.webp",
           revision: "a318397625ba67fbea1ad740c2c12d38",
         },
         {
-          url: "/images/tours/moscow/kremlin-towers.png",
+          url: "/images/tours/moscow/kremlin-towers.webp",
           revision: "214bab93c62df626c34ea337e07d0797",
         },
         {
-          url: "/images/tours/moscow/moscow-city.jpeg",
+          url: "/images/tours/moscow/moscow-city.webp",
           revision: "065001afc62a11cac67e19706945a440",
         },
         {
-          url: "/images/tours/moscow/novodevichiy-monastir.jpg",
+          url: "/images/tours/moscow/novodevichiy-monastir.webp",
           revision: "e94f2f2566b9e2d57955ba3b9d1b72a8",
         },
         {
-          url: "/images/tours/moscow/poklonnaya-gora.jpeg",
+          url: "/images/tours/moscow/poklonnaya-gora.webp",
           revision: "3259e81496398a5b1908b1862e642814",
         },
         {
-          url: "/images/tours/moscow/red-square.jpeg",
+          url: "/images/tours/moscow/red-square.webp",
           revision: "c01459822486b1912c1e3c2ddfd003a6",
         },
         {
-          url: "/images/tours/moscow/sparrow-hills.jpeg",
+          url: "/images/tours/moscow/sparrow-hills.webp",
           revision: "b92f731404a537bded6cb3524a8cef7a",
         },
         {
-          url: "/images/tours/moscow/visotka-na-kudrinskoy.jpg",
+          url: "/images/tours/moscow/visotka-na-kudrinskoy.webp",
           revision: "1549290c7370299e519e9d05f4bb6e72",
         },
         {
-          url: "/images/tours/patriot/armed-forces-cathedral.png",
+          url: "/images/tours/patriot/armed-forces-cathedral.webp",
           revision: "c6a460b1f92091ab7ab79b1ab70ac5db",
         },
         {
-          url: "/images/tours/patriot/cathedral-hero.png",
+          url: "/images/tours/patriot/cathedral-hero.webp",
           revision: "ed47377bbda1f14f0cf7443195bb22f3",
         },
         {
-          url: "/images/tours/patriot/gallery1.png",
+          url: "/images/tours/patriot/gallery1.webp",
           revision: "4ffeea510a19d586c51c850176afbc51",
         },
         {
-          url: "/images/tours/patriot/gallery2.png",
+          url: "/images/tours/patriot/gallery2.webp",
           revision: "d622e59971f974ed74f99b68a9767d02",
         },
         {
-          url: "/images/tours/patriot/gallery3.png",
+          url: "/images/tours/patriot/gallery3.webp",
           revision: "8b1eab8d7c2683bf7e20245420c653a9",
         },
         {
-          url: "/images/tours/patriot/gallery4.png",
+          url: "/images/tours/patriot/gallery4.webp",
           revision: "c5cb61282ddccaf03ed26c5dbb38d8ba",
         },
         {
@@ -647,46 +647,46 @@ define(["./workbox-1bb06f5e"], function (e) {
           revision: "618cda7443e479ab61ae85d891519a99",
         },
         {
-          url: "/images/tours/patriot/road-of-memory.png",
+          url: "/images/tours/patriot/road-of-memory.webp",
           revision: "addcdb94f87155e5826528a100f0f1a2",
         },
         {
-          url: "/images/tours/sergiev_posad/Porcelain-Factory-and-Museum.png",
+          url: "/images/tours/sergiev_posad/Porcelain-Factory-and-Museum.webp",
           revision: "3920ae9816ec0ef88ba40232fe0fb0c2",
         },
         {
-          url: "/images/tours/sergiev_posad/Trinity-Lavra-of-St.-Sergius.png",
+          url: "/images/tours/sergiev_posad/Trinity-Lavra-of-St.-Sergius.webp",
           revision: "fa67b1abcdfc97617d0e97d3f4962e81",
         },
         {
-          url: "/images/tours/sergiev_posad/gallery1.png",
+          url: "/images/tours/sergiev_posad/gallery1.webp",
           revision: "e3bb80f3448e478a23071585a7908012",
         },
         {
-          url: "/images/tours/sergiev_posad/gallery2.png",
+          url: "/images/tours/sergiev_posad/gallery2.webp",
           revision: "9ef86187fc70e4da9e329a3cb9dc09c4",
         },
         {
-          url: "/images/tours/sergiev_posad/gallery3.png",
+          url: "/images/tours/sergiev_posad/gallery3.webp",
           revision: "3033b53ebcc51960affd934101219d0e",
         },
         {
-          url: "/images/tours/sergiev_posad/gallery4.png",
+          url: "/images/tours/sergiev_posad/gallery4.webp",
           revision: "c60052b0be7fec8f43009aebf5ed3f2b",
         },
         {
-          url: "/images/tours/sergiev_posad/hero.png",
+          url: "/images/tours/sergiev_posad/hero.webp",
           revision: "460af888bddfeb18b0bf66fcd0a1ec20",
         },
         { url: "/images/vk.svg", revision: "06224fdf0ddb3ca34612c2d4f26de8d5" },
         { url: "/manifest.json", revision: "6f7ea69e42bf04e6765b8fc3a447cac6" },
         { url: "/robots.txt", revision: "f5da5baaa1d2dd6e3da1ee01f2a43f84" },
         {
-          url: "/screenshots/landscape.png",
+          url: "/screenshots/landscape.webp",
           revision: "aae9b5aa5e871ec467835228f677d4ab",
         },
         {
-          url: "/screenshots/portrait.png",
+          url: "/screenshots/portrait.webp",
           revision: "622c75bb3e120d1fae1a1ae9a74bac61",
         },
         { url: "/sitemap-0.xml", revision: "d0970b31e263a31fce96954763a96592" },

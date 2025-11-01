@@ -77,3 +77,6 @@ i18n/.cache/
 
 # Optional: artifacts from DOCX round-trip
 i18n/*.docx
+
+blog-topics-msk.txt
+seo-core.txt

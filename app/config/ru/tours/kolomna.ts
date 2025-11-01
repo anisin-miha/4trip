@@ -1,7 +1,15 @@
 // config/tours/kolomna-metadata.ts
 import type { Metadata } from "next";
 import { createMeetingPoint } from "./helpers";
-import { MovementType } from "./types";
+import {
+  Currency,
+  MovementType,
+  TourAgeLimit,
+  TourCity,
+  TourLanguage,
+  TourSeason,
+  defineTour,
+} from "./types";
 
 export const kolomnaTourMetadata: Metadata = {
   title:
@@ -15,14 +23,14 @@ export const kolomnaTourMetadata: Metadata = {
       "Экскурсия в Коломну из Москвы — кремль, пастила и свежий калач",
     description:
       "Старинная Коломна на Оке: прогулка по кремлю, дегустация коломенской пастилы и тёплый калач «на руку». Однодневный автобусный тур из Москвы (≈12 часов).",
-    images: ["/images/tours/kolomna/hero.png"],
+    images: ["/images/tours/kolomna/hero.webp"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Экскурсия в Коломну — кремль, пастила и свежий калач",
     description:
       "Старинная Коломна на Оке: прогулка по кремлю, дегустация коломенской пастилы и тёплый калач «на руку». Однодневный автобусный тур из Москвы (≈12 часов).",
-    images: ["/images/tours/kolomna/hero.png"],
+    images: ["/images/tours/kolomna/hero.webp"],
   },
   icons: {},
 };
@@ -30,34 +38,38 @@ export const kolomnaTourMetadata: Metadata = {
 const kolomnaMeetingPoint = createMeetingPoint({
   mapSrc:
     "https://yandex.ru/map-widget/v1/?ll=37.8636,55.6740&z=16&pt=37.8636,55.6740,pm2rdm",
-  type: "Групповая сборная",
   timeSlots: ["08:00"],
-  duration: "около 12–13 ч.",
   address: "метро Котельники, автобусная парковка (Новорязанское направление)",
   endAddress: "метро Котельники",
-  groupSize: "До 50 человек",
-  forWhom: "Можно с детьми",
-  language: "Русский",
-  price: "3 200 ₽ с человека",
+  note: "Сбор у туристической парковки станции «Котельники», автобус с табличкой «4-trip».",
+  lat: 55.674,
+  lng: 37.8636,
 });
 
-export const kolomnaTour = {
+export const kolomnaTour = defineTour({
   slug: "kolomna",
   title: "Коломна",
   subtitle: "Дегустации, кремль и ремёсла – насыщенная однодневная программа",
   schedule: "По выходным",
   nextDates: ["2025-10-05", "2025-10-19"],
   location: "Коломна, Московская область",
-  city: "Москва",
+  city: TourCity.Kolomna,
   price: 3200,
-  duration: kolomnaMeetingPoint.duration,
-  languages: kolomnaMeetingPoint.language
-    ? [kolomnaMeetingPoint.language]
-    : undefined,
+  currency: Currency.RUB,
+  duration: "около 12–13 ч.",
+  languages: [TourLanguage.Russian],
   visibility: true,
   movementType: MovementType.Bus,
+  groupSize: "До 50 человек",
+  ageLimit: TourAgeLimit.FamilyFriendly,
+  rating: null,
+  season: [
+    TourSeason.Spring,
+    TourSeason.Summer,
+    TourSeason.Autumn,
+  ],
   hero: {
-    image: "/images/tours/kolomna/hero.png",
+    image: "/images/tours/kolomna/hero.webp",
     description:
       "Старинный город на Оке: прогулка по кремлю, дегустация пастилы и тёплый калач «на руку» в одном туре.",
   },
@@ -67,7 +79,7 @@ export const kolomnaTour = {
     "Однодневный тур в Коломну сочетает прогулку по Кремлю, знакомство с ремёслами и дегустацию местных угощений — всё в спокойном темпе, с комфортным переездом из Москвы.",
   attractions: [
     {
-      image: "/images/tours/kolomna/kremlin.png",
+      image: "/images/tours/kolomna/kremlin.webp",
       alt: "Коломенский кремль",
       title: "Коломенский кремль",
       description: [
@@ -76,7 +88,7 @@ export const kolomnaTour = {
       ],
     },
     {
-      image: "/images/tours/kolomna/pastila.png",
+      image: "/images/tours/kolomna/pastila.webp",
       alt: "Музей коломенской пастилы",
       title: "Музей коломенской пастилы",
       description: [
@@ -85,7 +97,7 @@ export const kolomnaTour = {
       ],
     },
     {
-      image: "/images/tours/kolomna/kalachnaya.png",
+      image: "/images/tours/kolomna/kalachnaya.webp",
       alt: "Музей «Калачная»",
       title: "«Калачная»",
       description: [
@@ -94,7 +106,7 @@ export const kolomnaTour = {
       ],
     },
     {
-      image: "/images/tours/kolomna/bobrenev.png",
+      image: "/images/tours/kolomna/bobrenev.webp",
       alt: "Бобренев монастырь",
       title: "Бобренев монастырь",
       description: [
@@ -132,16 +144,6 @@ export const kolomnaTour = {
   exclusions: [
     "Питание (обед в городе) и личные расходы",
     "Дополнительные мастер-классы или музеи по желанию (не обязательны)",
-  ],
-  routeVariants: [
-    {
-      id: "classic",
-      title: "Классическая Коломна",
-      points: ["Коломенский кремль", "Музей пастилы", "Калачная"],
-      description: [
-        "Прогулка по старому городу с дегустацией традиционных сладостей.",
-      ],
-    },
   ],
   longread: {
     title: "Почему стоит поехать в Коломну",
@@ -209,12 +211,12 @@ export const kolomnaTour = {
   meetingPoint: kolomnaMeetingPoint,
   gallery: [
     {
-      src: "/images/tours/kolomna/gallery1.jpg",
+      src: "/images/tours/kolomna/gallery1.webp",
       alt: "Соборная площадь Коломны",
     },
-    { src: "/images/tours/kolомna/gallery2.jpg", alt: "Дегустация пастилы" },
-    { src: "/images/tours/kolомna/gallery3.jpg", alt: "Калач «на руку»" },
-    { src: "/images/tours/kolомna/gallery4.jpg", alt: "Вид на Оку" },
+    { src: "/images/tours/kolomna/gallery2.webp", alt: "Дегустация пастилы" },
+    { src: "/images/tours/kolomna/gallery3.webp", alt: "Калач «на руку»" },
+    { src: "/images/tours/kolomna/gallery4.webp", alt: "Вид на Оку" },
   ],
   faq: [
     {
@@ -233,7 +235,8 @@ export const kolomnaTour = {
         "Да. Доступна «лайт»-версия: прогулка по Кремлю + свободное время, без доплат.",
     },
   ],
-};
+  mapPoints: [],
+});
 
 export const kolomnaTourWithMeta = {
   ...kolomnaTour,

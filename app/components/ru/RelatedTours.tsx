@@ -1,6 +1,5 @@
 import TourCard from "./TourCard";
 import { excursions } from "@/app/config/ru/tours";
-import { ruAccusativeAfterV } from "@/lib/utils";
 
 type Props = {
   currentSlug: string;
@@ -10,28 +9,21 @@ type Props = {
 export default function RelatedTours({ currentSlug, limit = 3 }: Props) {
   const related = excursions
     .filter((tour) => tour.slug !== currentSlug)
-    .map((tour) => {
-      const languages =
-        tour.languages ??
-        (tour.meetingPoint?.language
-          ? [tour.meetingPoint.language]
-          : undefined);
-      return {
-        slug: tour.slug,
-        href: `/excursions/${tour.slug}`,
-        imageSrc: tour.hero.image,
-        imageAlt: tour.title,
-        title: `Экскурсия в ${ruAccusativeAfterV(tour.title)}`,
-        description: tour.hero.description,
-        price: tour.price,
-        duration: tour.duration ?? tour.meetingPoint?.duration,
-        languages,
-        city: tour.city,
-        meetingPoint: tour.meetingPoint?.address,
-        badges: tour.badges,
-        rating: tour.rating,
-      };
-    })
+    .map((tour) => ({
+      slug: tour.slug,
+      href: `/excursions/${tour.slug}`,
+      imageSrc: tour.hero.image,
+      imageAlt: tour.title,
+      title: tour.title,
+      description: tour.hero.description,
+      price: tour.price,
+      duration: tour.duration,
+      languages: tour.languages,
+      city: tour.city,
+      meetingPoint: tour.meetingPoint.address,
+      badges: tour.badges,
+      rating: tour.rating,
+    }))
     .slice(0, limit);
 
   if (!related.length) return null;
@@ -54,7 +46,7 @@ export default function RelatedTours({ currentSlug, limit = 3 }: Props) {
             city={tour.city}
             meetingPoint={tour.meetingPoint}
             badges={tour.badges}
-            rating={tour.rating}
+            rating={tour.rating ?? undefined}
           />
         ))}
       </div>

@@ -1,29 +1,29 @@
 import type { Metadata } from "next";
-import type { TourData } from "@/app/components/ru/TourPage";
 import { createMeetingPoint } from "./helpers";
-import { MovementType } from "./types";
+import {
+  Currency,
+  MovementType,
+  TourAgeLimit,
+  TourCity,
+  TourLanguage,
+  TourSeason,
+  defineTour,
+  type TourData,
+} from "./types";
 
 const slug = "avtobusnaya-obzornaya-ekskursiya-po-moskve";
-const heroImage = "/images/tours/moscow/hero.jpg";
+const heroImage = "/images/tours/moscow/hero.webp";
 const moscowSightseeingPrice = 1400;
 const moscowDuration = "3–4 часа";
 const moscowGroupSize = "до 45 человек";
-const moscowPriceText = "1 400 ₽";
-
 const moscowSightseeingMeetingPoint = createMeetingPoint({
   mapSrc:
     "https://www.google.com/maps?q=Триумфальная+площадь,+Москва&output=embed",
-  type: "Групповая сборная",
   // Available time slots for booking — used by the booking form
   timeSlots: ["14:00", "16:00"],
-  duration: moscowDuration,
   address:
     "м. «Маяковская», Триумфальная площадь — боковой карман Садового кольца (короткая посадка)",
   endAddress: "м. «Маяковская», Триумфальная площадь (финиш)",
-  groupSize: moscowGroupSize,
-  forWhom: "Для всех возрастов",
-  language: "Русский",
-  price: moscowPriceText,
   note: "Посадка/высадка — короткая, без стоянки. Точное место и борт автобуса приходят за 1–2 часа до начала.",
   lat: 55.769661,
   lng: 37.595752,
@@ -64,10 +64,12 @@ export const moscowSightseeingMetadata: Metadata = {
   },
 };
 
-export const moscowSightseeingTour: TourData = {
+export const moscowSightseeingTour = defineTour({
   slug,
   title: "Автобусно-пешеходная обзорная экскурсия по Москве",
   subtitle: "История и культура столицы за 3–4 часа",
+  location: "Москва",
+  city: TourCity.Moscow,
   hero: {
     image: heroImage,
     description:
@@ -75,10 +77,9 @@ export const moscowSightseeingTour: TourData = {
   },
   badges: ["3–4 часа", "Для всех возрастов", "По выходным"],
   price: moscowSightseeingPrice,
+  currency: Currency.RUB,
   duration: moscowDuration,
-  languages: moscowSightseeingMeetingPoint.language
-    ? [moscowSightseeingMeetingPoint.language]
-    : undefined,
+  languages: [TourLanguage.Russian],
   schedule: "По выходным, дневные и вечерние заезды",
   nextDates: [
     "2025-09-20",
@@ -89,9 +90,16 @@ export const moscowSightseeingTour: TourData = {
     "2025-10-05",
   ],
   groupSize: moscowGroupSize,
-  ageLimit: "6+",
+  ageLimit: TourAgeLimit.AllAges,
   visibility: true,
   movementType: MovementType.Bus,
+  rating: null,
+  season: [
+    TourSeason.Spring,
+    TourSeason.Summer,
+    TourSeason.Autumn,
+    TourSeason.Winter,
+  ],
   expectations:
     "Приглашаем в путешествие по Москве, где история встречается с современностью. Комфортабельный автобус быстро перемещает между районами, а на ключевых точках мы выходим на прогулку, чтобы рассмотреть Кремль, Красную площадь, Воробьёвы горы и другие символы города.",
   longread: {
@@ -204,7 +212,7 @@ export const moscowSightseeingTour: TourData = {
   meetingPoint: moscowSightseeingMeetingPoint,
   attractions: [
     {
-      image: "/images/tours/moscow/red-square.jpeg",
+      image: "/images/tours/moscow/red-square.webp",
       alt: "Красная площадь и собор Василия Блаженного",
       title: "Красная площадь",
       description: [
@@ -213,7 +221,7 @@ export const moscowSightseeingTour: TourData = {
       ],
     },
     {
-      image: "/images/tours/moscow/kremlin-towers.png",
+      image: "/images/tours/moscow/kremlin-towers.webp",
       alt: "Кремлёвская стена и башни",
       title: "Кремль и башни",
       description: [
@@ -230,7 +238,7 @@ export const moscowSightseeingTour: TourData = {
       ],
     },
     {
-      image: "/images/tours/moscow/sparrow-hills.jpeg",
+      image: "/images/tours/moscow/sparrow-hills.webp",
       alt: "Смотровая площадка на Воробьёвых горах",
       title: "Воробьёвы горы",
       description: [
@@ -239,7 +247,7 @@ export const moscowSightseeingTour: TourData = {
       ],
     },
     {
-      image: "/images/tours/moscow/moscow-city.jpeg",
+      image: "/images/tours/moscow/moscow-city.webp",
       alt: "Небоскрёбы Москва-Сити",
       title: "Москва-Сити",
       description: [
@@ -248,7 +256,7 @@ export const moscowSightseeingTour: TourData = {
       ],
     },
     {
-      image: "/images/tours/moscow/novodevichiy-monastir.jpg",
+      image: "/images/tours/moscow/novodevichiy-monastir.webp",
       alt: "Новодевичий монастырь",
       title: "Новодевичий монастырь",
       description: [
@@ -256,13 +264,13 @@ export const moscowSightseeingTour: TourData = {
       ],
     },
     {
-      image: "/images/tours/moscow/poklonnaya-gora.jpeg",
+      image: "/images/tours/moscow/poklonnaya-gora.webp",
       alt: "Поклонная гора",
       title: "Поклонная гора",
       description: ["Монументы памяти и панорамные виды на город."],
     },
     {
-      image: "/images/tours/moscow/visotka-na-kudrinskoy.jpg",
+      image: "/images/tours/moscow/visotka-na-kudrinskoy.webp",
       alt: "Сталинская высотка на Кудринской площади",
       title: "Сталинская высотка на Кудринской площади",
       description: [
@@ -270,43 +278,10 @@ export const moscowSightseeingTour: TourData = {
       ],
     },
     {
-      image: "/images/tours/moscow/arbat.jpg",
+      image: "/images/tours/moscow/arbat.webp",
       alt: "Новый Арбат и огни центра",
       title: "Новый Арбат",
       description: ["Авто-прогулка по вечернему центру и неоновые дороги."],
-    },
-  ],
-  routeVariants: [
-    {
-      id: "classic",
-      title: "Классический центр",
-      points: [
-        "Триумфальная площадь",
-        "Тверская улица",
-        "Кремль",
-        "Храм Василия Блаженного",
-        "Парк Зарядье",
-        "Пушкинский музей",
-        "Храм Христа Спасителя",
-        "Дом Перцовой",
-        "Музей Булгакова",
-        "Музей-усадьба Л.Н.&nbsp;Толстого",
-        "Новодевичий монастырь",
-        "Лужники",
-        "Президиум РАН",
-        "Воробьёвы горы",
-        "Здание МГУ",
-        "Мосфильм",
-        "Поклонная гора",
-        "Новый Арбат",
-        "Никитский бульвар",
-        "Церковь Большое Вознесение",
-        "Исторические особняки на Большой Никитской улице",
-        "Сталинская высотка (Кудринская площадь)",
-        "Дом-музей Чехова",
-        "Grace Bistro (мишленовский ресторан, место съёмок легендарной кухни)",
-        "Нехорошая квартира (Маяковка)",
-      ],
     },
   ],
   mapPoints: [
@@ -361,10 +336,10 @@ export const moscowSightseeingTour: TourData = {
     },
   ],
   gallery: [
-    { src: "/images/tours/moscow/gallery/1.jpg", alt: "Красная площадь" },
-    { src: "/images/tours/moscow/gallery/2.jpg", alt: "Москва-Сити" },
-    { src: "/images/tours/moscow/gallery/3.jpg", alt: "Воробьёвы горы" },
-    { src: "/images/tours/moscow/gallery/4.jpg", alt: "Храм Христа Спасителя" },
+    { src: "/images/tours/moscow/gallery/1.webp", alt: "Красная площадь" },
+    { src: "/images/tours/moscow/gallery/2.webp", alt: "Москва-Сити" },
+    { src: "/images/tours/moscow/gallery/3.webp", alt: "Воробьёвы горы" },
+    { src: "/images/tours/moscow/gallery/4.webp", alt: "Храм Христа Спасителя" },
   ],
   faq: [
     {
@@ -388,7 +363,7 @@ export const moscowSightseeingTour: TourData = {
         "Да. За 24 часа и раньше — полный возврат; позже — по согласованию.",
     },
   ],
-};
+});
 
 export const moscowSightseeingTourWithMeta: TourData & {
   metadata: Metadata;
@@ -410,10 +385,8 @@ export const moscowSightseeingCard = {
     "Автобусно‑пешеходная экскурсия: Триумфальная, Тверская, Кремль, Зарядье, Новодевичий, Воробьёвы горы и Поклонная — за 3–4 часа.",
   price: moscowSightseeingTour.price,
   duration: moscowSightseeingTour.duration,
-  languages: moscowSightseeingMeetingPoint.language
-    ? [moscowSightseeingMeetingPoint.language]
-    : undefined,
-  city: "Москва",
+  languages: [TourLanguage.Russian],
+  city: TourCity.Moscow,
   meetingPoint: moscowSightseeingTour.meetingPoint.address,
   rating: moscowSightseeingTour.rating,
 };

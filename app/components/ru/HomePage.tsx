@@ -24,11 +24,6 @@ export default function HomePage() {
           {excursions
             .filter((tour) => tour.visibility)
             .map((tour) => {
-              const languages =
-                tour.languages ??
-                (tour.meetingPoint?.language
-                  ? [tour.meetingPoint.language]
-                  : undefined);
               return {
                 href: `/excursions/${tour.slug}`,
                 imageSrc: tour.hero.image,
@@ -36,8 +31,8 @@ export default function HomePage() {
                 title: tour.title,
                 description: tour.hero.description,
                 price: tour.price,
-                duration: tour.duration ?? tour.meetingPoint?.duration,
-                languages,
+                duration: tour.duration,
+                languages: tour.languages,
                 city: tour.city,
                 meetingPoint: tour.meetingPoint?.address,
                 rating: tour.rating,
@@ -57,7 +52,7 @@ export default function HomePage() {
                 languages={card.languages}
                 city={card.city}
                 meetingPoint={card.meetingPoint}
-                rating={card.rating}
+                rating={card.rating ?? undefined}
                 badges={card.badges}
               />
             ))}
