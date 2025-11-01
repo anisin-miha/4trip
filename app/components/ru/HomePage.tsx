@@ -52,7 +52,7 @@ export default function HomePage() {
                 languages={card.languages}
                 city={card.city}
                 meetingPoint={card.meetingPoint}
-                rating={card.rating}
+                rating={card.rating ?? undefined}
                 badges={card.badges}
               />
             ))}
