@@ -12,7 +12,7 @@ import {
 } from "./types";
 
 const slug = "legendy-staroy-moskvy-kitay-gorod-i-hitrovka";
-const heroImage = "/images/tours/moscow/kitay-gorod.jpg";
+const heroImage = "/images/tours/moscow/kitay-gorod.webp";
 const price = 800;
 const duration = "2 часа";
 const groupSize = "до 15 человек";
@@ -131,7 +131,7 @@ export const tour = defineTour({
   meetingPoint,
   attractions: [
     {
-      image: "/images/tours/moscow/hitrovskaya-ploshchad.jpg",
+      image: "/images/tours/moscow/hitrovskaya-ploshchad.webp",
       alt: "Хитровская площадь",
       title: "Хитровская площадь",
       description: [
@@ -140,7 +140,7 @@ export const tour = defineTour({
       ],
     },
     {
-      image: "/images/tours/moscow/starayshiy-dom-moskvy.jpg",
+      image: "/images/tours/moscow/starayshiy-dom-moskvy.webp",
       alt: "Старейший жилой дом Москвы",
       title: "Старейший жилой дом Москвы",
       description: [
@@ -149,7 +149,7 @@ export const tour = defineTour({
       ],
     },
     {
-      image: "/images/tours/moscow/ivanovskiy-monastyr.jpg",
+      image: "/images/tours/moscow/ivanovskiy-monastyr.webp",
       alt: "Ивановский монастырь",
       title: "Ивановский монастырь",
       description: [
@@ -158,7 +158,7 @@ export const tour = defineTour({
       ],
     },
     {
-      image: "/images/tours/moscow/palaty-mazepy.jpg",
+      image: "/images/tours/moscow/palaty-mazepy.webp",
       alt: "Палаты гетмана Мазепы",
       title: "Палаты гетмана Мазепы",
       description: [
@@ -167,7 +167,7 @@ export const tour = defineTour({
       ],
     },
     {
-      image: "/images/tours/moscow/dom-pod-angelami.jpg",
+      image: "/images/tours/moscow/dom-pod-angelami.webp",
       alt: "Дом под ангелами",
       title: "Дом под ангелами",
       description: [
@@ -209,19 +209,19 @@ export const tour = defineTour({
   ],
   gallery: [
     {
-      src: "/images/tours/moscow/kitay-gorod-gallery/1.jpg",
+      src: "/images/tours/moscow/kitay-gorod-gallery/1.webp",
       alt: "Хитровская площадь",
     },
     {
-      src: "/images/tours/moscow/kitay-gorod-gallery/2.jpg",
+      src: "/images/tours/moscow/kitay-gorod-gallery/2.webp",
       alt: "Ивановский монастырь",
     },
     {
-      src: "/images/tours/moscow/kitay-gorod-gallery/3.jpg",
+      src: "/images/tours/moscow/kitay-gorod-gallery/3.webp",
       alt: "Палаты Мазепы",
     },
     {
-      src: "/images/tours/moscow/kitay-gorod-gallery/4.jpg",
+      src: "/images/tours/moscow/kitay-gorod-gallery/4.webp",
       alt: "Дом под ангелами",
     },
   ],

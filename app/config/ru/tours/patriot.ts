@@ -24,13 +24,13 @@ export const patriotTourMetadata: Metadata = {
     title: "Экскурсия в Парк «Патриот» | Автобусный тур из Москвы – музей, храм, история",
     description:
       "Посетите Главный храм Вооружённых Сил и комплекс «Дорога памяти» – автобусная экскурсия в парк «Патриот» из Москвы (≈6 часов с гидом, билет включён).",
-    images: ["/images/tours/patriot/cathedral-hero.png"],
+    images: ["/images/tours/patriot/cathedral-hero.webp"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Экскурсия в Парк «Патриот»",
     description: "Посетите Главный храм Вооружённых Сил и комплекс «Дорога памяти» – автобусная экскурсия в парк «Патриот» из Москвы (≈6 часов с гидом, билет включён).",
-    images: ["/images/tours/patriot/cathedral-hero.png"],
+    images: ["/images/tours/patriot/cathedral-hero.webp"],
   },
   icons: {},
 };
@@ -72,7 +72,7 @@ export const patriotTour = defineTour({
     TourSeason.Winter,
   ],
   hero: {
-    image: "/images/tours/patriot/cathedral-hero.png",
+    image: "/images/tours/patriot/cathedral-hero.webp",
     description:
       "Посетите Главный храм Вооружённых Сил и галерею «Дорога памяти» в одном автобусном туре без спешки",
   },
@@ -82,7 +82,7 @@ export const patriotTour = defineTour({
     "Посетите величественный Главный храм Вооружённых Сил России и пройдите галерею «Дорога памяти» без суеты: автобусный тур стартует из Москвы, а гид помогает разобраться в маршруте, найти время для фото и отдохнуть во время обеда.",
   attractions: [
     {
-      image: "/images/tours/patriot/road-of-memory.png",
+      image: "/images/tours/patriot/road-of-memory.webp",
       alt: "Музей 'Дорога памяти'",
       title: "Музей «Дорога памяти»",
       description: [
@@ -92,7 +92,7 @@ export const patriotTour = defineTour({
       ],
     },
     {
-      image: "/images/tours/patriot/armed-forces-cathedral.png",
+      image: "/images/tours/patriot/armed-forces-cathedral.webp",
       alt: "Храм Вооруженных сил",
       title: "Главный храм Вооруженных Сил России",
       description: [
@@ -192,10 +192,10 @@ export const patriotTour = defineTour({
   ],
   meetingPoint: patriotMeetingPoint,
   gallery: [
-    { src: "/images/tours/patriot/gallery1.png", alt: "Галерея 1" },
-    { src: "/images/tours/patriot/gallery2.png", alt: "Галерея 2" },
-    { src: "/images/tours/patriot/gallery3.png", alt: "Галерея 3" },
-    { src: "/images/tours/patriot/gallery4.png", alt: "Галерея 4" },
+    { src: "/images/tours/patriot/gallery1.webp", alt: "Галерея 1" },
+    { src: "/images/tours/patriot/gallery2.webp", alt: "Галерея 2" },
+    { src: "/images/tours/patriot/gallery3.webp", alt: "Галерея 3" },
+    { src: "/images/tours/patriot/gallery4.webp", alt: "Галерея 4" },
   ],
   mapPoints: [],
   faq: [

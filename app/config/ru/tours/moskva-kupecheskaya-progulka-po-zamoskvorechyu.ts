@@ -12,7 +12,7 @@ import {
 } from "./types";
 
 const slug = "moskva-kupecheskaya-progulka-po-zamoskvorechyu";
-const heroImage = "/images/tours/moscow/zamoskvorechye.jpg";
+const heroImage = "/images/tours/moscow/zamoskvorechye.webp";
 const price = 800;
 const duration = "2 часа";
 const groupSize = "до 20 человек";
@@ -131,7 +131,7 @@ export const tour = defineTour({
   meetingPoint,
   attractions: [
     {
-      image: "/images/tours/moscow/khram-klimanta.jpg",
+      image: "/images/tours/moscow/khram-klimanta.webp",
       alt: "Храм Климента Папы Римского",
       title: "Храм Климента Папы Римского",
       description: [
@@ -140,7 +140,7 @@ export const tour = defineTour({
       ],
     },
     {
-      image: "/images/tours/moscow/tretyakov-gallery.jpg",
+      image: "/images/tours/moscow/tretyakov-gallery.webp",
       alt: "Третьяковская галерея",
       title: "Третьяковская галерея",
       description: [
@@ -149,7 +149,7 @@ export const tour = defineTour({
       ],
     },
     {
-      image: "/images/tours/moscow/tsarkov-nikoly-v-pyzhakh.jpg",
+      image: "/images/tours/moscow/tsarkov-nikoly-v-pyzhakh.webp",
       alt: "Церковь Николы в Пыжах",
       title: "Церковь Николы в Пыжах",
       description: [
@@ -158,7 +158,7 @@ export const tour = defineTour({
       ],
     },
     {
-      image: "/images/tours/moscow/kupecheskie-osobnyaki.jpg",
+      image: "/images/tours/moscow/kupecheskie-osobnyaki.webp",
       alt: "Купеческие особняки Замоскворечья",
       title: "Купеческие особняки Замоскворечья",
       description: [
@@ -167,7 +167,7 @@ export const tour = defineTour({
       ],
     },
     {
-      image: "/images/tours/moscow/marfo-mariinsky-monastyr.jpg",
+      image: "/images/tours/moscow/marfo-mariinsky-monastyr.webp",
       alt: "Марфо-Мариинская обитель",
       title: "Марфо-Мариинская обитель",
       description: [
@@ -205,19 +205,19 @@ export const tour = defineTour({
   ],
   gallery: [
     {
-      src: "/images/tours/moscow/zamoskvorechye-gallery/1.jpg",
+      src: "/images/tours/moscow/zamoskvorechye-gallery/1.webp",
       alt: "Замоскворечье",
     },
     {
-      src: "/images/tours/moscow/zamoskvorechye-gallery/2.jpg",
+      src: "/images/tours/moscow/zamoskvorechye-gallery/2.webp",
       alt: "Храм Климента",
     },
     {
-      src: "/images/tours/moscow/zamoskvorechye-gallery/3.jpg",
+      src: "/images/tours/moscow/zamoskvorechye-gallery/3.webp",
       alt: "Третьяковская галерея",
     },
     {
-      src: "/images/tours/moscow/zamoskvorechye-gallery/4.jpg",
+      src: "/images/tours/moscow/zamoskvorechye-gallery/4.webp",
       alt: "Пятницкая улица",
     },
   ],

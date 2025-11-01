@@ -89,12 +89,12 @@ export default async function RootLayout(props: RootLayoutProps) {
         />
         <link
           rel="apple-touch-icon"
-          href="/favicon/web-app-manifest-192x192.png"
+          href="/favicon/web-app-manifest-192x192.webp"
         />
         <link
           rel="icon"
-          type="image/png"
-          href="/favicon/favicon-96x96.png"
+          type="image/webp"
+          href="/favicon/favicon-96x96.webp"
           sizes="96x96"
         />
         <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
@@ -102,7 +102,7 @@ export default async function RootLayout(props: RootLayoutProps) {
         <link
           rel="apple-touch-icon"
           sizes="180x180"
-          href="/favicon/apple-touch-icon.png"
+          href="/favicon/apple-touch-icon.webp"
         />
         <meta name="apple-mobile-web-app-title" content="4trip" />
 

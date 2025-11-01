@@ -12,7 +12,7 @@ import {
 } from "./types";
 
 const slug = "bulgakovskaya-moskva-po-sledam-mastera-i-margarita";
-const heroImage = "/images/tours/moscow/bulgakov.jpg";
+const heroImage = "/images/tours/moscow/bulgakov.webp";
 const price = 900;
 const duration = "1,5–2 часа";
 const groupSize = "до 25 человек";
@@ -130,7 +130,7 @@ export const tour = defineTour({
   meetingPoint,
   attractions: [
     {
-      image: "/images/tours/moscow/patriarshie-prudy.jpg",
+      image: "/images/tours/moscow/patriarshie-prudy.webp",
       alt: "Патриаршие пруды",
       title: "Патриаршие пруды",
       description: [
@@ -139,7 +139,7 @@ export const tour = defineTour({
       ],
     },
     {
-      image: "/images/tours/moscow/nehoroshaya-kvartira.jpg",
+      image: "/images/tours/moscow/nehoroshaya-kvartira.webp",
       alt: "«Нехорошая квартира» (Большая Садовая, 10)",
       title: "«Нехорошая квартира» (Большая Садовая, 10)",
       description: [
@@ -148,7 +148,7 @@ export const tour = defineTour({
       ],
     },
     {
-      image: "/images/tours/moscow/osobnyak-margarita.jpg",
+      image: "/images/tours/moscow/osobnyak-margarita.webp",
       alt: "Особняк Маргариты (Дом Зинаиды Морозовой)",
       title: "Особняк Маргариты (Дом Зинаиды Морозовой)",
       description: [
@@ -157,7 +157,7 @@ export const tour = defineTour({
       ],
     },
     {
-      image: "/images/tours/moscow/teatr-varyete.jpg",
+      image: "/images/tours/moscow/teatr-varyete.webp",
       alt: "Театр Варьете (Московский театр Сатиры)",
       title: "Театр Варьете (Московский театр Сатиры)",
       description: [
@@ -195,18 +195,18 @@ export const tour = defineTour({
   ],
   gallery: [
     {
-      src: "/images/tours/moscow/bulgakov-gallery/1.jpg",
+      src: "/images/tours/moscow/bulgakov-gallery/1.webp",
       alt: "Патриаршие пруды",
     },
     {
-      src: "/images/tours/moscow/bulgakov-gallery/2.jpg",
+      src: "/images/tours/moscow/bulgakov-gallery/2.webp",
       alt: "Нехорошая квартира",
     },
     {
-      src: "/images/tours/moscow/bulgakov-gallery/3.jpg",
+      src: "/images/tours/moscow/bulgakov-gallery/3.webp",
       alt: "Особняк Маргариты",
     },
-    { src: "/images/tours/moscow/bulgakov-gallery/4.jpg", alt: "Театр Сатиры" },
+    { src: "/images/tours/moscow/bulgakov-gallery/4.webp", alt: "Театр Сатиры" },
   ],
   faq: [
     {

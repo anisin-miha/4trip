@@ -12,7 +12,7 @@ import {
 } from "./types";
 
 const slug = "avtobusnaya-obzornaya-ekskursiya-po-moskve";
-const heroImage = "/images/tours/moscow/hero.jpg";
+const heroImage = "/images/tours/moscow/hero.webp";
 const moscowSightseeingPrice = 1400;
 const moscowDuration = "3–4 часа";
 const moscowGroupSize = "до 45 человек";
@@ -212,7 +212,7 @@ export const moscowSightseeingTour = defineTour({
   meetingPoint: moscowSightseeingMeetingPoint,
   attractions: [
     {
-      image: "/images/tours/moscow/red-square.jpeg",
+      image: "/images/tours/moscow/red-square.webp",
       alt: "Красная площадь и собор Василия Блаженного",
       title: "Красная площадь",
       description: [
@@ -221,7 +221,7 @@ export const moscowSightseeingTour = defineTour({
       ],
     },
     {
-      image: "/images/tours/moscow/kremlin-towers.png",
+      image: "/images/tours/moscow/kremlin-towers.webp",
       alt: "Кремлёвская стена и башни",
       title: "Кремль и башни",
       description: [
@@ -238,7 +238,7 @@ export const moscowSightseeingTour = defineTour({
       ],
     },
     {
-      image: "/images/tours/moscow/sparrow-hills.jpeg",
+      image: "/images/tours/moscow/sparrow-hills.webp",
       alt: "Смотровая площадка на Воробьёвых горах",
       title: "Воробьёвы горы",
       description: [
@@ -247,7 +247,7 @@ export const moscowSightseeingTour = defineTour({
       ],
     },
     {
-      image: "/images/tours/moscow/moscow-city.jpeg",
+      image: "/images/tours/moscow/moscow-city.webp",
       alt: "Небоскрёбы Москва-Сити",
       title: "Москва-Сити",
       description: [
@@ -256,7 +256,7 @@ export const moscowSightseeingTour = defineTour({
       ],
     },
     {
-      image: "/images/tours/moscow/novodevichiy-monastir.jpg",
+      image: "/images/tours/moscow/novodevichiy-monastir.webp",
       alt: "Новодевичий монастырь",
       title: "Новодевичий монастырь",
       description: [
@@ -264,13 +264,13 @@ export const moscowSightseeingTour = defineTour({
       ],
     },
     {
-      image: "/images/tours/moscow/poklonnaya-gora.jpeg",
+      image: "/images/tours/moscow/poklonnaya-gora.webp",
       alt: "Поклонная гора",
       title: "Поклонная гора",
       description: ["Монументы памяти и панорамные виды на город."],
     },
     {
-      image: "/images/tours/moscow/visotka-na-kudrinskoy.jpg",
+      image: "/images/tours/moscow/visotka-na-kudrinskoy.webp",
       alt: "Сталинская высотка на Кудринской площади",
       title: "Сталинская высотка на Кудринской площади",
       description: [
@@ -278,7 +278,7 @@ export const moscowSightseeingTour = defineTour({
       ],
     },
     {
-      image: "/images/tours/moscow/arbat.jpg",
+      image: "/images/tours/moscow/arbat.webp",
       alt: "Новый Арбат и огни центра",
       title: "Новый Арбат",
       description: ["Авто-прогулка по вечернему центру и неоновые дороги."],
@@ -336,10 +336,10 @@ export const moscowSightseeingTour = defineTour({
     },
   ],
   gallery: [
-    { src: "/images/tours/moscow/gallery/1.jpg", alt: "Красная площадь" },
-    { src: "/images/tours/moscow/gallery/2.jpg", alt: "Москва-Сити" },
-    { src: "/images/tours/moscow/gallery/3.jpg", alt: "Воробьёвы горы" },
-    { src: "/images/tours/moscow/gallery/4.jpg", alt: "Храм Христа Спасителя" },
+    { src: "/images/tours/moscow/gallery/1.webp", alt: "Красная площадь" },
+    { src: "/images/tours/moscow/gallery/2.webp", alt: "Москва-Сити" },
+    { src: "/images/tours/moscow/gallery/3.webp", alt: "Воробьёвы горы" },
+    { src: "/images/tours/moscow/gallery/4.webp", alt: "Храм Христа Спасителя" },
   ],
   faq: [
     {

@@ -23,14 +23,14 @@ export const kolomnaTourMetadata: Metadata = {
       "Экскурсия в Коломну из Москвы — кремль, пастила и свежий калач",
     description:
       "Старинная Коломна на Оке: прогулка по кремлю, дегустация коломенской пастилы и тёплый калач «на руку». Однодневный автобусный тур из Москвы (≈12 часов).",
-    images: ["/images/tours/kolomna/hero.png"],
+    images: ["/images/tours/kolomna/hero.webp"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Экскурсия в Коломну — кремль, пастила и свежий калач",
     description:
       "Старинная Коломна на Оке: прогулка по кремлю, дегустация коломенской пастилы и тёплый калач «на руку». Однодневный автобусный тур из Москвы (≈12 часов).",
-    images: ["/images/tours/kolomna/hero.png"],
+    images: ["/images/tours/kolomna/hero.webp"],
   },
   icons: {},
 };
@@ -69,7 +69,7 @@ export const kolomnaTour = defineTour({
     TourSeason.Autumn,
   ],
   hero: {
-    image: "/images/tours/kolomna/hero.png",
+    image: "/images/tours/kolomna/hero.webp",
     description:
       "Старинный город на Оке: прогулка по кремлю, дегустация пастилы и тёплый калач «на руку» в одном туре.",
   },
@@ -79,7 +79,7 @@ export const kolomnaTour = defineTour({
     "Однодневный тур в Коломну сочетает прогулку по Кремлю, знакомство с ремёслами и дегустацию местных угощений — всё в спокойном темпе, с комфортным переездом из Москвы.",
   attractions: [
     {
-      image: "/images/tours/kolomna/kremlin.png",
+      image: "/images/tours/kolomna/kremlin.webp",
       alt: "Коломенский кремль",
       title: "Коломенский кремль",
       description: [
@@ -88,7 +88,7 @@ export const kolomnaTour = defineTour({
       ],
     },
     {
-      image: "/images/tours/kolomna/pastila.png",
+      image: "/images/tours/kolomna/pastila.webp",
       alt: "Музей коломенской пастилы",
       title: "Музей коломенской пастилы",
       description: [
@@ -97,7 +97,7 @@ export const kolomnaTour = defineTour({
       ],
     },
     {
-      image: "/images/tours/kolomna/kalachnaya.png",
+      image: "/images/tours/kolomna/kalachnaya.webp",
       alt: "Музей «Калачная»",
       title: "«Калачная»",
       description: [
@@ -106,7 +106,7 @@ export const kolomnaTour = defineTour({
       ],
     },
     {
-      image: "/images/tours/kolomna/bobrenev.png",
+      image: "/images/tours/kolomna/bobrenev.webp",
       alt: "Бобренев монастырь",
       title: "Бобренев монастырь",
       description: [
@@ -211,12 +211,12 @@ export const kolomnaTour = defineTour({
   meetingPoint: kolomnaMeetingPoint,
   gallery: [
     {
-      src: "/images/tours/kolomna/gallery1.jpg",
+      src: "/images/tours/kolomna/gallery1.webp",
       alt: "Соборная площадь Коломны",
     },
-    { src: "/images/tours/kolомna/gallery2.jpg", alt: "Дегустация пастилы" },
-    { src: "/images/tours/kolомna/gallery3.jpg", alt: "Калач «на руку»" },
-    { src: "/images/tours/kolомna/gallery4.jpg", alt: "Вид на Оку" },
+    { src: "/images/tours/kolomna/gallery2.webp", alt: "Дегустация пастилы" },
+    { src: "/images/tours/kolomna/gallery3.webp", alt: "Калач «на руку»" },
+    { src: "/images/tours/kolomna/gallery4.webp", alt: "Вид на Оку" },
   ],
   faq: [
     {

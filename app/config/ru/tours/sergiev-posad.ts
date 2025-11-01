@@ -26,14 +26,14 @@ export const sergievPosadTourMetadata: Metadata = {
       "Экскурсия в Сергиев Посад | Однодневный тур из Москвы – Лавра, улочки и фарфор",
     description:
       "Троице-Сергиева Лавра, старинные улочки и мастерская фарфора в Сергиевом Посаде – автобусная экскурсия из Москвы (≈8 часов с гидом, по выходным).",
-    images: ["/images/tours/sergiev_posad/hero.png"],
+    images: ["/images/tours/sergiev_posad/hero.webp"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Экскурсия в Сергиев Посад",
     description:
       "Троице-Сергиева Лавра, старинные улочки и мастерская фарфора в Сергиевом Посаде – автобусная экскурсия из Москвы (≈8 часов с гидом, по выходным).",
-    images: ["/images/tours/sergiev_posad/hero.png"],
+    images: ["/images/tours/sergiev_posad/hero.webp"],
   },
   icons: {
     // icon: "/images/4trip-logo-black.svg",
@@ -76,7 +76,7 @@ export const sergievPosadTour = defineTour({
     TourSeason.Winter,
   ],
   hero: {
-    image: "/images/tours/sergiev_posad/hero.png",
+    image: "/images/tours/sergiev_posad/hero.webp",
     description:
       "Однодневный тур: Лавра, уютные улочки и знакомство с сергиевским фарфором без спешки",
   },
@@ -86,7 +86,7 @@ export const sergievPosadTour = defineTour({
     "Откройте для себя духовный центр России – Сергиев Посад. Вас ждёт Троице-Сергиева Лавра, неспешные прогулки по старинным улочкам и знакомство с ремёслами, включая знаменитый сергиевский фарфор.",
   attractions: [
     {
-      image: "/images/tours/sergiev_posad/Trinity-Lavra-of-St.-Sergius.png",
+      image: "/images/tours/sergiev_posad/Trinity-Lavra-of-St.-Sergius.webp",
       alt: "Интерьер Троице-Сергиевой лавры",
       title: "Троице-Сергиева лавра",
       description: [
@@ -95,7 +95,7 @@ export const sergievPosadTour = defineTour({
       ],
     },
     {
-      image: "/images/tours/sergiev_posad/Porcelain-Factory-and-Museum.png",
+      image: "/images/tours/sergiev_posad/Porcelain-Factory-and-Museum.webp",
       alt: "Музей фарфора",
       title: "Фарфоровый завод и музей",
       description: [
@@ -224,19 +224,19 @@ export const sergievPosadTour = defineTour({
   meetingPoint: sergievPosadMeetingPoint,
   gallery: [
     {
-      src: "/images/tours/sergiev_posad/gallery1.png",
+      src: "/images/tours/sergiev_posad/gallery1.webp",
       alt: "Галерея 1 Сергиев Посад",
     },
     {
-      src: "/images/tours/sergiev_posad/gallery2.png",
+      src: "/images/tours/sergiev_posad/gallery2.webp",
       alt: "Галерея 2 Сергиев Посад",
     },
     {
-      src: "/images/tours/sergiev_posad/gallery3.png",
+      src: "/images/tours/sergiev_posad/gallery3.webp",
       alt: "Галерея 3 Сергиев Посад",
     },
     {
-      src: "/images/tours/sergiev_posad/gallery4.png",
+      src: "/images/tours/sergiev_posad/gallery4.webp",
       alt: "Галерея 4 Сергиев Посад",
     },
   ],
