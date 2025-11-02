@@ -17,7 +17,6 @@ const price = 800;
 const duration = "2 часа";
 const groupSize = "до 20 человек";
 const ageLimit = TourAgeLimit.SixPlus;
-const schedule = "по выходным (дневные или вечерние туры)";
 
 const meetingPoint = createMeetingPoint({
   mapSrc:
@@ -75,20 +74,11 @@ export const tour = defineTour({
     image: heroImage,
     description: "",
   },
-  badges: [duration, ageLimit, "По выходным"],
+  badges: [duration, ageLimit],
   price,
   currency: Currency.RUB,
   duration,
   languages: [TourLanguage.Russian],
-  schedule,
-  nextDates: [
-    "2025-09-20",
-    "2025-09-21",
-    "2025-09-27",
-    "2025-09-28",
-    "2025-10-04",
-    "2025-10-05",
-  ],
   groupSize,
   ageLimit,
   visibility: false,

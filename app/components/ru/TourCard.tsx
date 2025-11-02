@@ -2,6 +2,11 @@
 
 import { Link, useRouter } from "@/i18n/navigation";
 import BaseImage from "@/components/BaseImage";
+import { availableDates } from "./BookingForm";
+import {
+  formatExcursionDateFriendly,
+  pickNearestExcursionDate,
+} from "./date-utils";
 
 type Rating = {
   value: number;
@@ -21,6 +26,7 @@ type TourCardProps = {
   meetingPoint?: string;
   badges?: string[];
   rating?: Rating;
+  timeSlots?: string[];
 };
 
 export default function TourCard({
@@ -36,10 +42,19 @@ export default function TourCard({
   meetingPoint,
   badges,
   rating,
+  timeSlots,
 }: TourCardProps) {
   const router = useRouter();
   const priceText =
     typeof price === "number" ? `${price.toLocaleString("ru-RU")} ₽` : price;
+  const nearestExcursion = pickNearestExcursionDate({
+    availableDates,
+    timeSlots,
+  });
+  const friendlyDate = formatExcursionDateFriendly(
+    nearestExcursion?.date,
+    nearestExcursion?.slot ?? timeSlots?.[0],
+  );
 
   const go = () => router.push(href);
 
@@ -55,9 +70,9 @@ export default function TourCard({
           go();
         }
       }}
-      className="tour-card rounded-lg overflow-hidden shadow-md hover:shadow-xl transition bg-white flex flex-col cursor-pointer"
+      className="tour-card w-full h-full rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition bg-white flex flex-col cursor-pointer"
     >
-      <div className="tour-card__image-wrapper relative h-64 rounded-2xl bg-white ring-1 ring-gray-200 shadow-sm hover:shadow-md transition overflow-hidden">
+      <div className="tour-card__image-wrapper relative h-64 w-full rounded-2xl bg-white ring-1 ring-gray-200 shadow-sm hover:shadow-md transition overflow-hidden">
         <BaseImage
           src={imageSrc}
           alt={imageAlt}
@@ -89,10 +104,15 @@ export default function TourCard({
         )}
       </div>
 
-      <div className={`tour-card__content p-4 flex flex-col gap-3 flex-1`}>
+      <div className={`tour-card__content p-4 flex flex-col gap-3 flex-1 w-full`}>
+        {friendlyDate && (
+          <span className="inline-flex items-center self-start rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-blue-700">
+            {friendlyDate}
+          </span>
+        )}
         <Link
           href={href}
-          className="block"
+          className="block w-full"
           onClick={(e) => e.stopPropagation()}
         >
           <h3 className="tour-card__title text-xl font-semibold tracking-tight text-gray-900">{title}</h3>

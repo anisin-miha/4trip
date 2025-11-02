@@ -43,6 +43,7 @@ export const excursionCards: ExcursionCard[] = excursions
     meetingPoint: tour.meetingPoint.address,
     badges: tour.badges,
     rating: tour.rating,
+    timeSlots: tour.meetingPoint.timeSlots,
   }));
 
 export {

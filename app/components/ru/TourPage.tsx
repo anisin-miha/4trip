@@ -8,6 +8,10 @@ import contactInfo from "@/app/config/contactInfo";
 import BaseImage from "@/components/BaseImage";
 import BookingForm from "./BookingForm";
 import { availableDates } from "./BookingForm";
+import {
+  formatExcursionDateFriendly,
+  pickNearestExcursionDate,
+} from "./date-utils";
 
 import RelatedTours from "./RelatedTours";
 import { type FAQItem, type TourData } from "@/app/config/ru/tours/types";
@@ -117,8 +121,7 @@ function MeetingPointMap({
 }
 
 // === Helpers: JSON-LD builders ===
-function buildTourJsonLd(data: TourData) {
-  const firstDate = data.nextDates[0];
+function buildTourJsonLd(data: TourData, startDate?: string) {
   const currency = data.currency;
   // Prefer `program` as canonical flat itinerary; fall back to mapPoints titles
   const itinerary = data.program.length
@@ -158,7 +161,7 @@ function buildTourJsonLd(data: TourData) {
           reviewCount: data.rating.count,
         }
       : undefined,
-    startDate: firstDate,
+    startDate: startDate || undefined,
   } as const;
 }
 
@@ -203,7 +206,7 @@ function buildFaqJsonLd(faq: FAQItem[] | undefined) {
   } as const;
 }
 
-function buildArticleJsonLd(data: TourData) {
+function buildArticleJsonLd(data: TourData, publishedDate?: string) {
   if (!data.longread || !data.longread.paragraphs?.length) return null;
   const body = data.longread.paragraphs.join("\n\n");
   return {
@@ -214,7 +217,7 @@ function buildArticleJsonLd(data: TourData) {
     author: { "@type": "Organization", name: "4-trip" },
     publisher: { "@type": "Organization", name: "4-trip" },
     mainEntityOfPage: `${originUrl()}/ru/excursions/${data.slug}`,
-    datePublished: data.nextDates?.[0],
+    datePublished: publishedDate || undefined,
   } as const;
 }
 
@@ -253,10 +256,37 @@ export default function TourPageSEO({ data }: { data: TourData }) {
   const exclusions = data.exclusions?.length ? data.exclusions : undefined;
   const expectations = data.expectations || data.hero.description;
 
-  const tourJsonLd = useMemo(() => buildTourJsonLd(data), [data]);
+  const primarySlot = data.meetingPoint?.timeSlots?.[0];
+  const nearestExcursion = useMemo(
+    () =>
+      pickNearestExcursionDate({
+        availableDates,
+        timeSlots: data.meetingPoint?.timeSlots,
+      }),
+    [data.meetingPoint?.timeSlots],
+  );
+  const nearestExcursionIso = useMemo(
+    () => nearestExcursion?.date?.toISOString(),
+    [nearestExcursion],
+  );
+  const tourJsonLd = useMemo(
+    () => buildTourJsonLd(data, nearestExcursionIso),
+    [data, nearestExcursionIso],
+  );
   const breadcrumbsJsonLd = useMemo(() => buildBreadcrumbsJsonLd(data), [data]);
   const faqJsonLd = useMemo(() => buildFaqJsonLd(data.faq || []), [data.faq]);
-  const articleJsonLd = useMemo(() => buildArticleJsonLd(data), [data]);
+  const articleJsonLd = useMemo(
+    () => buildArticleJsonLd(data, nearestExcursionIso),
+    [data, nearestExcursionIso],
+  );
+  const friendlyNearestDate = useMemo(
+    () =>
+      formatExcursionDateFriendly(
+        nearestExcursion?.date,
+        nearestExcursion?.slot ?? primarySlot,
+      ),
+    [nearestExcursion, primarySlot],
+  );
 
   return (
     <div className="font-sans bg-gray-50 text-gray-900 scroll-smooth">
@@ -340,43 +370,11 @@ export default function TourPageSEO({ data }: { data: TourData }) {
                     Забронировать место · {data.price.toLocaleString("ru-RU")}{" "}
                     {data.currency || "₽"}
                   </a>
-                  {(() => {
-                    const nearest = (() => {
-                      const today = new Date();
-                      today.setHours(0, 0, 0, 0);
-                      const fromAvailable = availableDates.find((d) => {
-                        const dd = new Date(
-                          d.getFullYear(),
-                          d.getMonth(),
-                          d.getDate(),
-                        );
-                        return dd >= today;
-                      });
-                      if (fromAvailable) return fromAvailable;
-                      const fromData = (data.nextDates || [])
-                        .map((s) => new Date(s))
-                        .filter((d) => !isNaN(d.getTime()))
-                        .sort((a, b) => a.getTime() - b.getTime());
-                      const f = fromData.find((d) => {
-                        const dd = new Date(
-                          d.getFullYear(),
-                          d.getMonth(),
-                          d.getDate(),
-                        );
-                        return dd >= today;
-                      });
-                      return f || fromData[0];
-                    })();
-                    return nearest ? (
-                      <span className="text-white/90">
-                        Ближайшая дата:{" "}
-                        {nearest.toLocaleDateString("ru-RU", {
-                          day: "numeric",
-                          month: "long",
-                        })}
-                      </span>
-                    ) : null;
-                  })()}
+                  {friendlyNearestDate && (
+                    <span className="text-white/90">
+                      Ближайшая дата: {friendlyNearestDate}
+                    </span>
+                  )}
                 </div>
               </div>
             </div>
@@ -633,7 +631,6 @@ export default function TourPageSEO({ data }: { data: TourData }) {
                       <dl className="space-y-3">
                         {[
                           { label: "Длительность", value: data.duration },
-                          { label: "Расписание", value: data.schedule },
                           { label: "Группа", value: data.groupSize },
                           { label: "Возраст", value: data.ageLimit },
                         ]

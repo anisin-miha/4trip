@@ -45,6 +45,7 @@ function normalizeCards(): Card[] {
         meetingPoint: tour.meetingPoint.address,
         rating: tour.rating,
         badges: tour.badges,
+        timeSlots: tour.meetingPoint.timeSlots,
         locations: Array.from(locs),
         tags,
         season: tour.season,
@@ -160,6 +161,7 @@ export default function HomePage() {
                 meetingPoint={card.meetingPoint}
                 rating={card.rating ?? undefined}
                 badges={card.badges}
+                timeSlots={card.timeSlots}
               />
             </div>
           ))}
@@ -226,6 +228,7 @@ export default function HomePage() {
                 meetingPoint={card.meetingPoint}
                 rating={card.rating ?? undefined}
                 badges={card.badges}
+                timeSlots={card.timeSlots}
               />
             ))}
           </div>

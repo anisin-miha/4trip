@@ -23,6 +23,7 @@ export default function RelatedTours({ currentSlug, limit = 3 }: Props) {
       meetingPoint: tour.meetingPoint.address,
       badges: tour.badges,
       rating: tour.rating,
+      timeSlots: tour.meetingPoint.timeSlots,
     }))
     .slice(0, limit);
 
@@ -47,6 +48,7 @@ export default function RelatedTours({ currentSlug, limit = 3 }: Props) {
             meetingPoint={tour.meetingPoint}
             badges={tour.badges}
             rating={tour.rating ?? undefined}
+            timeSlots={tour.timeSlots}
           />
         ))}
       </div>
