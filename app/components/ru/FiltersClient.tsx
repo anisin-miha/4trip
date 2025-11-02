@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 type Props = {
   targetGridId: string;
@@ -21,10 +21,10 @@ export default function FiltersClient({
   const [cat, setCat] = useState("Все");
   const [price, setPrice] = useState<[number, number]>([minPrice, maxPrice]);
 
-  const grid = useMemo(() => {
-    if (typeof document === "undefined") return null;
-    return document.getElementById(targetGridId);
-  }, [targetGridId]);
+  const grid =
+    typeof document === "undefined"
+      ? null
+      : document.getElementById(targetGridId);
 
   useEffect(() => {
     if (!grid) return;

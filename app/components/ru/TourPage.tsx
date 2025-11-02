@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import SiteHeader from "@/app/components/ru/SiteHeader";
 import { Footer } from "@/packages/shared-ui/src/ru";
@@ -257,35 +257,18 @@ export default function TourPageSEO({ data }: { data: TourData }) {
   const expectations = data.expectations || data.hero.description;
 
   const primarySlot = data.meetingPoint?.timeSlots?.[0];
-  const nearestExcursion = useMemo(
-    () =>
-      pickNearestExcursionDate({
-        availableDates,
-        timeSlots: data.meetingPoint?.timeSlots,
-      }),
-    [data.meetingPoint?.timeSlots],
-  );
-  const nearestExcursionIso = useMemo(
-    () => nearestExcursion?.date?.toISOString(),
-    [nearestExcursion],
-  );
-  const tourJsonLd = useMemo(
-    () => buildTourJsonLd(data, nearestExcursionIso),
-    [data, nearestExcursionIso],
-  );
-  const breadcrumbsJsonLd = useMemo(() => buildBreadcrumbsJsonLd(data), [data]);
-  const faqJsonLd = useMemo(() => buildFaqJsonLd(data.faq || []), [data.faq]);
-  const articleJsonLd = useMemo(
-    () => buildArticleJsonLd(data, nearestExcursionIso),
-    [data, nearestExcursionIso],
-  );
-  const friendlyNearestDate = useMemo(
-    () =>
-      formatExcursionDateFriendly(
-        nearestExcursion?.date,
-        nearestExcursion?.slot ?? primarySlot,
-      ),
-    [nearestExcursion, primarySlot],
+  const nearestExcursion = pickNearestExcursionDate({
+    availableDates,
+    timeSlots: data.meetingPoint?.timeSlots,
+  });
+  const nearestExcursionIso = nearestExcursion?.date?.toISOString();
+  const tourJsonLd = buildTourJsonLd(data, nearestExcursionIso);
+  const breadcrumbsJsonLd = buildBreadcrumbsJsonLd(data);
+  const faqJsonLd = buildFaqJsonLd(data.faq || []);
+  const articleJsonLd = buildArticleJsonLd(data, nearestExcursionIso);
+  const friendlyNearestDate = formatExcursionDateFriendly(
+    nearestExcursion?.date,
+    nearestExcursion?.slot ?? primarySlot,
   );
 
   return (

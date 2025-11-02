@@ -1,6 +1,5 @@
 "use client";
 import NextLink from "next/link";
-import { useMemo } from "react";
 import {
   Home,
   Newspaper,
@@ -56,13 +55,9 @@ export default function Footer({
   }>;
 }) {
   const currentYear = new Date().getFullYear();
-  const { tripUrl, busUrl } = useMemo(() => {
-    const isProd = process.env.NODE_ENV === "production";
-    return {
-      tripUrl: isProd ? "https://4-trip.ru/ru" : "http://localhost:3000/ru",
-      busUrl: isProd ? "https://4-bus.ru/" : "http://localhost:3001/",
-    };
-  }, []);
+  const isProd = process.env.NODE_ENV === "production";
+  const tripUrl = isProd ? "https://4-trip.ru/ru" : "http://localhost:3000/ru";
+  const busUrl = isProd ? "https://4-bus.ru/" : "http://localhost:3001/";
   const LinkTag: any = LinkComponent || NextLink;
   // Если используем intl-Link, он сам добавит локаль → префикс не нужен
   const prefix = LinkComponent ? "" : project === "trip" ? "/ru" : "";

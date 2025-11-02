@@ -1,5 +1,5 @@
 "use client";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
 type BusClass = "mini" | "mid" | "big";
 
@@ -19,24 +19,14 @@ export default function BusCalculator() {
   const [outOfMkad, setOutOfMkad] = useState<boolean>(false);
   const [kmOutside, setKmOutside] = useState<number>(0);
 
-  const { rate, billedWorkHours, extraOutsideHours, billedTotalHours, total } =
-    useMemo(() => {
-      const rate = RATES[bus];
-      const billedWorkHours = Math.max(workHours, MIN_WORK_HOURS);
-      const extraOutsideHours = outOfMkad
-        ? Math.ceil(Math.max(0, kmOutside) / KM_PER_EXTRA_HOUR)
-        : 0;
-      const billedTotalHours =
-        billedWorkHours + DELIVERY_HOURS + extraOutsideHours;
-      const total = billedTotalHours * rate;
-      return {
-        rate,
-        billedWorkHours,
-        extraOutsideHours,
-        billedTotalHours,
-        total,
-      };
-    }, [bus, workHours, outOfMkad, kmOutside]);
+  const rate = RATES[bus];
+  const billedWorkHours = Math.max(workHours, MIN_WORK_HOURS);
+  const extraOutsideHours = outOfMkad
+    ? Math.ceil(Math.max(0, kmOutside) / KM_PER_EXTRA_HOUR)
+    : 0;
+  const billedTotalHours =
+    billedWorkHours + DELIVERY_HOURS + extraOutsideHours;
+  const total = billedTotalHours * rate;
 
   const nf = (n: number) =>
     new Intl.NumberFormat("ru-RU").format(Math.round(n));

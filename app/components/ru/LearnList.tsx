@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useInView } from "@/hooks/use-in-view";
 
 type LearnListItem = string | { title?: string; text?: string | null };
@@ -33,14 +33,10 @@ export default function LearnList({
   const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
   useScrollDrive(cardRefs, true);
 
-  const enriched = useMemo(
-    () =>
-      items.map((item, idx) => {
-        const { heading, body } = normalizeItem(item);
-        return { heading, body, delay: 220 * idx };
-      }),
-    [items],
-  );
+  const enriched = items.map((item, idx) => {
+    const { heading, body } = normalizeItem(item);
+    return { heading, body, delay: 220 * idx };
+  });
 
   return (
     <div ref={ref} className="rounded-2xl">
