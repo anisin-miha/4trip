@@ -17,7 +17,6 @@ const price = 900;
 const duration = "1,5–2 часа";
 const groupSize = "до 25 человек";
 const ageLimit = TourAgeLimit.TwelvePlus;
-const schedule = "по пятницам и субботам (вечерние экскурсии)";
 
 const meetingPoint = createMeetingPoint({
   mapSrc: "https://www.google.com/maps?q=Маяковская+метро,+Москва&output=embed",
@@ -79,15 +78,6 @@ export const tour = defineTour({
   currency: Currency.RUB,
   duration,
   languages: [TourLanguage.Russian],
-  schedule,
-  nextDates: [
-    "2025-09-19",
-    "2025-09-20",
-    "2025-09-26",
-    "2025-09-27",
-    "2025-10-03",
-    "2025-10-04",
-  ],
   groupSize,
   ageLimit,
   visibility: false,

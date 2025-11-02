@@ -548,6 +548,7 @@ export default function ExcursionsClient({
                 badges={t.badges}
                 rating={t.rating ?? undefined}
                 description={(t as any).description ?? ""}
+                timeSlots={t.meetingPoint?.timeSlots}
               />
             );
           })}

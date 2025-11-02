@@ -109,8 +109,6 @@ export type TourData = {
   city: TourCity;
   price: number;
   currency: Currency;
-  schedule: string;
-  nextDates: string[];
   duration: string;
   languages: TourLanguage[];
   hero: Hero;
@@ -149,6 +147,7 @@ export type ExcursionCard = {
   meetingPoint: string;
   badges: string[];
   rating: Rating | null;
+  timeSlots?: string[];
 };
 
 export function defineTour<T extends TourData>(tour: T): T {

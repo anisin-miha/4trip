@@ -37,6 +37,7 @@ export default function HomePage() {
                 meetingPoint: tour.meetingPoint?.address,
                 rating: tour.rating,
                 badges: tour.badges,
+                timeSlots: tour.meetingPoint?.timeSlots,
               };
             })
             .map((card) => (
@@ -54,6 +55,7 @@ export default function HomePage() {
                 meetingPoint={card.meetingPoint}
                 rating={card.rating ?? undefined}
                 badges={card.badges}
+                timeSlots={card.timeSlots}
               />
             ))}
         </div>
