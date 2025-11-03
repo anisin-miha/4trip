@@ -13,7 +13,7 @@ const ARTICLE_DESC =
 const ARTICLE_IMAGE =
   "https://4-trip.ru/images/tours/patriot/cathedral-hero.png";
 
-const articleStructuredData = {
+const baseStructuredData = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   headline: ARTICLE_TITLE,
@@ -28,7 +28,7 @@ const articleStructuredData = {
   mainEntityOfPage: { "@type": "WebPage", "@id": ARTICLE_URL },
 };
 
-const parkPatriotFaqItems: FAQSectionItem[] = [
+const faqItems: FAQSectionItem[] = [
   {
     question: "Сколько времени закладывать на Парк «Патриот»?",
     answer:
@@ -51,10 +51,10 @@ const parkPatriotFaqItems: FAQSectionItem[] = [
   },
 ];
 
-const faqStructuredData = {
+const faqPageStructuredData = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: parkPatriotFaqItems.map((faq) => ({
+  mainEntity: faqItems.map((faq) => ({
     "@type": "Question",
     name: faq.question,
     acceptedAnswer: {
@@ -64,7 +64,7 @@ const faqStructuredData = {
   })),
 };
 
-const parkPatriotArticle: BlogArticleData = {
+const articleData: BlogArticleData = {
   visibility: true,
   slug: ARTICLE_SLUG,
   locale: "ru",
@@ -121,7 +121,7 @@ const parkPatriotArticle: BlogArticleData = {
       images: [ARTICLE_IMAGE],
     },
   },
-  structuredData: [articleStructuredData, faqStructuredData],
+  structuredData: [baseStructuredData, faqPageStructuredData],
   toc: [
     {
       id: "must-see",
@@ -428,8 +428,8 @@ const parkPatriotArticle: BlogArticleData = {
       </div>
     </section>
   ),
-  faq: parkPatriotFaqItems,
+  faq: faqItems,
   discussionId: "fourtrip/13",
 };
 
-export default parkPatriotArticle;
+export default articleData;
