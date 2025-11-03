@@ -1,7 +1,7 @@
 "use client";
 
 import { Link } from "@/i18n/navigation";
-import React, { memo, useEffect, useMemo, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import {
   SiTelegram,
   SiVk,
@@ -131,12 +131,9 @@ function SocialShareCmp({
     }
   }, []);
 
-  const urlWithUtm = useMemo(() => withUtm(url, utm), [url, utm]);
-  const links = useMemo(
-    () => buildShareLinks(urlWithUtm, title, { image }),
-    [urlWithUtm, title, image],
-  );
-  const dzenUrl = useMemo(() => normalizeDzenUrl(dzenChannel), [dzenChannel]);
+  const urlWithUtm = withUtm(url, utm);
+  const links = buildShareLinks(urlWithUtm, title, { image });
+  const dzenUrl = normalizeDzenUrl(dzenChannel);
 
   // размеры/стили
   const baseBtn =
@@ -151,19 +148,17 @@ function SocialShareCmp({
   const iconSize = size === "sm" ? 18 : 20;
 
   // итоговый список с учётом платформы и наличия dzen-канала + ДЕДУП
-  const networksToRender = useMemo(() => {
-    const filtered = (networks ?? DEFAULT_NETWORKS).filter((n) => {
-      if (n === "viber" && !isMobile) return false;
-      if (n === "dzen" && !dzenUrl) return false;
-      return true;
-    });
-    const seen = new Set<string>();
-    return filtered.filter((n) => {
-      if (seen.has(n)) return false;
-      seen.add(n);
-      return true;
-    });
-  }, [networks, isMobile, dzenUrl]);
+  const filteredNetworks = (networks ?? DEFAULT_NETWORKS).filter((n) => {
+    if (n === "viber" && !isMobile) return false;
+    if (n === "dzen" && !dzenUrl) return false;
+    return true;
+  });
+  const seenNetworks = new Set<string>();
+  const networksToRender = filteredNetworks.filter((n) => {
+    if (seenNetworks.has(n)) return false;
+    seenNetworks.add(n);
+    return true;
+  });
 
   async function handleNativeShare() {
     try {

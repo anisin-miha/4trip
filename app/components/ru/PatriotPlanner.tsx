@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 type Pace = "fast" | "normal" | "relaxed";
 
@@ -96,12 +96,9 @@ export default function PatriotPlanner() {
     } catch {}
   }, [selected]);
 
-  const chosen = useMemo(
-    () => ALL_ATTRACTIONS.filter((a) => selected[a.id]),
-    [selected],
-  );
+  const chosen = ALL_ATTRACTIONS.filter((a) => selected[a.id]);
 
-  const schedule = useMemo(() => {
+  const schedule = (() => {
     const items: {
       id: string;
       name: string;
@@ -125,7 +122,6 @@ export default function PatriotPlanner() {
     };
 
     chosen.forEach((a, idx) => {
-      // Перерыв примерно каждые 120 минут или перед 3-м крупным блоком
       if (minutesSinceBreak >= 120 && idx > 0) addBreak();
 
       const duration = Math.round(a.baseMinutes * PACE_FACTOR[pace]);
@@ -137,12 +133,9 @@ export default function PatriotPlanner() {
     });
 
     return items;
-  }, [chosen, pace, startTime]);
+  })();
 
-  const totalMinutes = useMemo(
-    () => schedule.reduce((acc, s) => acc + (s.end - s.start), 0),
-    [schedule],
-  );
+  const totalMinutes = schedule.reduce((acc, s) => acc + (s.end - s.start), 0);
 
   const copyText = async () => {
     const lines = [

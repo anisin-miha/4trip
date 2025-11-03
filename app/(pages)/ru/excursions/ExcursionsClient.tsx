@@ -1,6 +1,4 @@
 "use client";
-
-import { useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import { Link as IntlLink } from "@/i18n/navigation";
 import TourCard from "@/app/components/ru/TourCard";
@@ -46,9 +44,7 @@ function languagesOf(t: TourListItem): string[] {
   return Array.from(set);
 }
 
-function typeOfTour(
-  t: TourListItem,
-): "Групповой" | "Сборная" | undefined {
+function typeOfTour(t: TourListItem): "Групповой" | "Сборная" | undefined {
   if (t.movementType === MovementType.Bus) return "Групповой";
   if (t.movementType === MovementType.Pedestrian) return "Сборная";
   return undefined;
@@ -154,64 +150,46 @@ export default function ExcursionsClient({
     ...((tagsSingle && tagsSingle.split(",")) || []),
   ]).filter(Boolean) as string[];
 
-  const allCities = useMemo(
-    () => uniq(allTours.map((t) => t.city).filter(Boolean) as string[]).sort(),
-    [allTours],
-  );
-  const allTags = useMemo(
-    () => uniq(allTours.flatMap(tagsOf)).sort(),
-    [allTours],
-  );
+  const allCities = uniq(
+    allTours.map((t) => t.city).filter(Boolean) as string[],
+  ).sort();
+  const allTags = uniq(allTours.flatMap(tagsOf)).sort();
 
-  const results = useMemo(() => {
-    return allTours.filter((t) => {
-      if (q) {
-        const text = extractText(t);
-        if (!text.includes(q)) return false;
-      }
-      if (city && t.city !== city) return false;
-      if (typeof priceMin === "number" && (t.price ?? Infinity) < priceMin)
-        return false;
-      if (typeof priceMax === "number" && (t.price ?? -Infinity) > priceMax)
-        return false;
-      if (typeof ratingGte === "number" && ((t as any).rating ?? 0) < ratingGte)
-        return false;
-      if (lang.length) {
-        const ls = languagesOf(t);
-        if (!lang.some((l) => ls.includes(l))) return false;
-      }
-      if (type.length) {
-        const tt = typeOfTour(t);
-        if (!tt || !type.includes(tt)) return false;
-      }
-      if (start) {
-        const firstSlot = t.meetingPoint?.timeSlots?.[0];
-        const bucket = startBucket(parseFirstTimeToMinutes(firstSlot));
-        if (bucket !== start) return false;
-      }
-      if (dur) {
-        const b = durationBucket(parseDurationHoursRange(t.duration));
-        if (b !== dur) return false;
-      }
-      if (tags.length) {
-        const ts = tagsOf(t);
-        if (!tags.every((tag) => ts.includes(tag))) return false; // require all
-      }
-      return true;
-    });
-  }, [
-    allTours,
-    q,
-    city,
-    priceMin,
-    priceMax,
-    ratingGte,
-    lang,
-    type,
-    start,
-    dur,
-    tags,
-  ]);
+  const results = allTours.filter((t) => {
+    if (q) {
+      const text = extractText(t);
+      if (!text.includes(q)) return false;
+    }
+    if (city && t.city !== city) return false;
+    if (typeof priceMin === "number" && (t.price ?? Infinity) < priceMin)
+      return false;
+    if (typeof priceMax === "number" && (t.price ?? -Infinity) > priceMax)
+      return false;
+    if (typeof ratingGte === "number" && ((t as any).rating ?? 0) < ratingGte)
+      return false;
+    if (lang.length) {
+      const ls = languagesOf(t);
+      if (!lang.some((l) => ls.includes(l))) return false;
+    }
+    if (type.length) {
+      const tt = typeOfTour(t);
+      if (!tt || !type.includes(tt)) return false;
+    }
+    if (start) {
+      const firstSlot = t.meetingPoint?.timeSlots?.[0];
+      const bucket = startBucket(parseFirstTimeToMinutes(firstSlot));
+      if (bucket !== start) return false;
+    }
+    if (dur) {
+      const b = durationBucket(parseDurationHoursRange(t.duration));
+      if (b !== dur) return false;
+    }
+    if (tags.length) {
+      const ts = tagsOf(t);
+      if (!tags.every((tag) => ts.includes(tag))) return false;
+    }
+    return true;
+  });
 
   const activeCount =
     (q ? 1 : 0) +

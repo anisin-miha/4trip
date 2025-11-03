@@ -79,4 +79,6 @@ i18n/.cache/
 i18n/*.docx
 
 blog-topics-msk.txt
-seo-core.txt
+blog-seo-core.txt
+blog-tags.txt
+blog-prompt.txt

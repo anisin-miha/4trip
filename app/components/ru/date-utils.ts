@@ -54,7 +54,9 @@ export function pickNearestExcursionDate({
         const normalized = normalize(parsed);
         return { day: normalized, original: parsed };
       })
-      .filter((entry): entry is { day: Date; original: Date } => Boolean(entry)),
+      .filter((entry): entry is { day: Date; original: Date } =>
+        Boolean(entry),
+      ),
   ];
 
   if (candidates.length === 0) return null;

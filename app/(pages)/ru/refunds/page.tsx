@@ -5,8 +5,7 @@ import contactInfo from "@/app/config/contactInfo";
 
 export const metadata: Metadata = {
   title: "Правила возврата – 4-trip",
-  description:
-    "Правила возврата и отмены бронирований на экскурсии 4-trip.ru.",
+  description: "Правила возврата и отмены бронирований на экскурсии 4-trip.ru.",
   openGraph: {
     title: "Правила возврата – 4-trip",
     description:

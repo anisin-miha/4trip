@@ -1,6 +1,6 @@
 "use client";
 import NextLink from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { SHOW_BUS_LINKS } from "./config";
 
 export type NavLink = { href: string; label: string };
@@ -52,14 +52,10 @@ export default function Header({
     { href: "#", label: "Разделы" },
   ];
 
-  const { tripUrl, busUrl, logoBase } = useMemo(() => {
-    const isProd = process.env.NODE_ENV === "production";
-    return {
-      tripUrl: isProd ? "https://4-trip.ru/ru" : "http://localhost:3000/ru",
-      busUrl: isProd ? "https://4-bus.ru/" : "http://localhost:3001/",
-      logoBase: isProd ? "https://4-trip.ru" : "http://localhost:3000",
-    };
-  }, []);
+  const isProd = process.env.NODE_ENV === "production";
+  const tripUrl = isProd ? "https://4-trip.ru/ru" : "http://localhost:3000/ru";
+  const busUrl = isProd ? "https://4-bus.ru/" : "http://localhost:3001/";
+  const logoBase = isProd ? "https://4-trip.ru" : "http://localhost:3000";
 
   const forceDark = main;
   const showWhiteBg = isScrolled || forceDark;

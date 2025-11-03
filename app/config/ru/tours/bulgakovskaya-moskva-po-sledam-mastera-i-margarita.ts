@@ -196,7 +196,10 @@ export const tour = defineTour({
       src: "/images/tours/moscow/bulgakov-gallery/3.webp",
       alt: "Особняк Маргариты",
     },
-    { src: "/images/tours/moscow/bulgakov-gallery/4.webp", alt: "Театр Сатиры" },
+    {
+      src: "/images/tours/moscow/bulgakov-gallery/4.webp",
+      alt: "Театр Сатиры",
+    },
   ],
   faq: [
     {
