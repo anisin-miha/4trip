@@ -1,4 +1,3 @@
-"use client";
 import NextLink from "next/link";
 import {
   Home,
@@ -14,7 +13,7 @@ import {
   Send,
   Link as LinkIcon,
   FileText,
-  QrCode, // для СБП (монохромный fallback)
+  QrCode,
   ShieldCheck,
 } from "lucide-react";
 import { SiVisa, SiMastercard } from "react-icons/si";

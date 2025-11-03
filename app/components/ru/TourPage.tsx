@@ -15,6 +15,7 @@ import {
 
 import RelatedTours from "./RelatedTours";
 import { type FAQItem, type TourData } from "@/app/config/ru/tours/types";
+import FAQSection from "@/app/components/ru/FAQSection";
 
 // Yandex Maps loader and interactive map with numbered markers
 function useYandexMaps() {
@@ -763,32 +764,14 @@ export default function TourPageSEO({ data }: { data: TourData }) {
           </div>
         </section>
 
-        {/* FAQ */}
-        {data.faq?.length ? (
-          <section id="faq" className="py-16 bg-white scroll-mt-24">
-            <div className="container mx-auto px-4">
-              <h2 className="text-3xl font-bold text-center mb-12">
-                Часто задаваемые вопросы
-              </h2>
-              <div className="space-y-6 max-w-3xl mx-auto">
-                {data.faq.map((faq, idx) => (
-                  <details
-                    key={idx}
-                    className="group rounded-xl border p-4 open:shadow"
-                  >
-                    <summary className="cursor-pointer select-none text-lg font-semibold flex items-center justify-between">
-                      {faq.question}
-                      <span className="ml-3 text-gray-400 group-open:rotate-180 transition">
-                        ▾
-                      </span>
-                    </summary>
-                    <div className="mt-3 text-gray-700">{faq.answer}</div>
-                  </details>
-                ))}
-              </div>
-            </div>
-          </section>
-        ) : null}
+        <FAQSection
+          id="faq"
+          headingClassName="text-center"
+          items={data.faq?.map((item) => ({
+            question: item.question,
+            answer: item.answer,
+          })) ?? []}
+        />
 
         {/* Related tours */}
         <section id="related" className="py-16 bg-white scroll-mt-24">
