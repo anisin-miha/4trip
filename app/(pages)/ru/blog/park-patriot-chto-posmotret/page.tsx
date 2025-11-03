@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import BlogArticlePage from "@/app/components/ru/blog/BlogArticlePage";
-import parkPatriotArticle from "./article.data";
+import article from "./article.data";
 
-export const metadata: Metadata = parkPatriotArticle.metadata;
+export const metadata: Metadata = article.metadata;
 
-export default function ParkPatriotArticlePage() {
-  return <BlogArticlePage article={parkPatriotArticle} />;
+export default function articlePage() {
+  return <BlogArticlePage article={article} />;
 }
