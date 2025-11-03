@@ -8,13 +8,11 @@ import { Link } from "@/i18n/navigation";
 import type { BlogArticleData } from "@/app/components/ru/blog/types";
 
 export const metadata: Metadata = {
-  title:
-    "Блог о путешествиях и экскурсиях – советы и идеи от 4-trip.ru",
+  title: "Блог о путешествиях и экскурсиях – советы и идеи от 4-trip.ru",
   description:
     "Статьи о лучших экскурсиях по Москве и Подмосковью, советы путешественникам и идеи для туров выходного дня. Читайте блог 4-trip.ru и планируйте путешествия!",
   openGraph: {
-    title:
-      "Блог о путешествиях и экскурсиях – советы и идеи от 4-trip.ru",
+    title: "Блог о путешествиях и экскурсиях – советы и идеи от 4-trip.ru",
     description:
       "Статьи о лучших экскурсиях по Москве и Подмосковью, советы путешественникам и идеи для туров выходного дня. Читайте блог 4-trip.ru и планируйте путешествия!",
     url: "https://4-trip.ru/ru/blog",
@@ -68,6 +66,7 @@ async function loadRuArticles(): Promise<BlogArticleData[]> {
 
 export default async function BlogPage() {
   const articles = await loadRuArticles();
+  const visibleArticles = articles.filter((article) => article.visibility);
 
   return (
     <div className="font-sans bg-white text-gray-900 scroll-smooth min-h-screen flex flex-col">
@@ -87,9 +86,9 @@ export default async function BlogPage() {
         <h1 className="text-4xl font-bold text-center mb-12">
           Блог об экскурсиях и путешествиях
         </h1>
-        {articles.length ? (
+        {visibleArticles.length ? (
           <div className="grid md:grid-cols-2 gap-10">
-            {articles.map((article) => (
+            {visibleArticles.map((article) => (
               <Link
                 key={article.slug}
                 href={`/blog/${article.slug}`}

@@ -22,7 +22,10 @@ export default function RelatedArticles({
         : "md:grid-cols-1";
 
   return (
-    <section className="py-16 bg-white scroll-mt-24" aria-labelledby="related-articles-heading">
+    <section
+      className="py-16 bg-white scroll-mt-24"
+      aria-labelledby="related-articles-heading"
+    >
       <div className="container mx-auto px-4">
         <h2
           id="related-articles-heading"
@@ -47,9 +50,7 @@ export default function RelatedArticles({
                     <span>{article.badge.text}</span>
                   </div>
                 ) : null}
-                <p className="text-gray-600 text-sm mb-4">
-                  {article.excerpt}
-                </p>
+                <p className="text-gray-600 text-sm mb-4">{article.excerpt}</p>
                 <span className="text-blue-600 text-sm font-medium">
                   Читать далее →
                 </span>

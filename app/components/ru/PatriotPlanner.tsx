@@ -135,10 +135,7 @@ export default function PatriotPlanner() {
     return items;
   })();
 
-  const totalMinutes = schedule.reduce(
-    (acc, s) => acc + (s.end - s.start),
-    0,
-  );
+  const totalMinutes = schedule.reduce((acc, s) => acc + (s.end - s.start), 0);
 
   const copyText = async () => {
     const lines = [

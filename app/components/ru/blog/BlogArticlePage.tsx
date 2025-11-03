@@ -48,7 +48,9 @@ async function loadRuArticles(): Promise<BlogArticleData[]> {
   const articles = await Promise.all(
     slugs.map(async (slug) => {
       try {
-        const mod = (await import(`@/app/(pages)/ru/blog/${slug}/article.data`)) as {
+        const mod = (await import(
+          `@/app/(pages)/ru/blog/${slug}/article.data`
+        )) as {
           default: BlogArticleData;
         };
         return mod.default;
@@ -81,7 +83,9 @@ async function resolveRelatedArticles(
       config.slugs.map(async (slug) => {
         if (slug === currentSlug) return null;
         try {
-          const mod = (await import(`@/app/(pages)/ru/blog/${slug}/article.data`)) as {
+          const mod = (await import(
+            `@/app/(pages)/ru/blog/${slug}/article.data`
+          )) as {
             default: BlogArticleData;
           };
           return mod.default;
@@ -91,7 +95,9 @@ async function resolveRelatedArticles(
         }
       }),
     );
-    candidates = items.filter((article): article is BlogArticleData => article !== null);
+    candidates = items.filter(
+      (article): article is BlogArticleData => article !== null,
+    );
   } else {
     const all = await loadRuArticles();
     candidates = all.filter((article) => article.locale === currentLocale);
@@ -100,6 +106,7 @@ async function resolveRelatedArticles(
   const seen = new Set<string>();
 
   return candidates
+    .filter((article) => article.visibility)
     .filter((article) => {
       if (seen.has(article.slug)) return false;
       seen.add(article.slug);
@@ -116,13 +123,16 @@ async function resolveRelatedArticles(
       locale: article.locale,
       publishedAt: article.publishedAt,
       updatedAt: article.updatedAt,
+      visibility: article.visibility,
       tags: article.tags,
       coverImage: article.coverImage,
       badge: article.badge,
     }));
 }
 
-export default async function BlogArticlePage({ article }: BlogArticlePageProps) {
+export default async function BlogArticlePage({
+  article,
+}: BlogArticlePageProps) {
   const shareImage = article.coverImage?.url;
   const relatedArticles = await resolveRelatedArticles(
     article.slug,

@@ -862,6 +862,7 @@ export type BlogArticleSummary = {
   locale: BlogArticleLocale;
   publishedAt: string;
   updatedAt: string;
+  visibility: boolean;
   tags: readonly BlogTag[];
   coverImage?: {
     url: string;

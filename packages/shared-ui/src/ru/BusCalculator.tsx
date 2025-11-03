@@ -24,8 +24,7 @@ export default function BusCalculator() {
   const extraOutsideHours = outOfMkad
     ? Math.ceil(Math.max(0, kmOutside) / KM_PER_EXTRA_HOUR)
     : 0;
-  const billedTotalHours =
-    billedWorkHours + DELIVERY_HOURS + extraOutsideHours;
+  const billedTotalHours = billedWorkHours + DELIVERY_HOURS + extraOutsideHours;
   const total = billedTotalHours * rate;
 
   const nf = (n: number) =>

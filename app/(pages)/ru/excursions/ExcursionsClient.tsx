@@ -44,9 +44,7 @@ function languagesOf(t: TourListItem): string[] {
   return Array.from(set);
 }
 
-function typeOfTour(
-  t: TourListItem,
-): "Групповой" | "Сборная" | undefined {
+function typeOfTour(t: TourListItem): "Групповой" | "Сборная" | undefined {
   if (t.movementType === MovementType.Bus) return "Групповой";
   if (t.movementType === MovementType.Pedestrian) return "Сборная";
   return undefined;

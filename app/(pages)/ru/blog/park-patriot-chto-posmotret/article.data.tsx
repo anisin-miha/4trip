@@ -65,6 +65,7 @@ const faqStructuredData = {
 };
 
 const parkPatriotArticle: BlogArticleData = {
+  visibility: true,
   slug: ARTICLE_SLUG,
   locale: "ru",
   url: ARTICLE_URL,
@@ -217,9 +218,7 @@ const parkPatriotArticle: BlogArticleData = {
           </p>
           <p className="font-medium">Что не пропустить:</p>
           <ul>
-            <li>
-              Иммерсивные залы с реконструкциями ключевых эпизодов войны.
-            </li>
+            <li>Иммерсивные залы с реконструкциями ключевых эпизодов войны.</li>
             <li>Поиск участников в цифровой базе.</li>
             <li>Связка «храм → галерея → открытые площадки».</li>
           </ul>
@@ -271,9 +270,7 @@ const parkPatriotArticle: BlogArticleData = {
               Реактивные самолёты: МиГ-17, МиГ-19, МиГ-29; фронтовые
               бомбардировщики Су-24 и штурмовики Су-25.
             </li>
-            <li>
-              Военно-транспортная авиация (Ан-12, Ан-26) и средства ПВО.
-            </li>
+            <li>Военно-транспортная авиация (Ан-12, Ан-26) и средства ПВО.</li>
           </ul>
           <p className="text-sm text-gray-600">
             Время: 60–90 минут (до 2–3 часов для энтузиастов).
@@ -347,10 +344,13 @@ const parkPatriotArticle: BlogArticleData = {
 
         <div className="grid md:grid-cols-2 gap-8 mt-6">
           <div>
-            <h3 className="text-xl font-semibold">Билеты и форматы посещения</h3>
+            <h3 className="text-xl font-semibold">
+              Билеты и форматы посещения
+            </h3>
             <ul className="mt-2">
               <li>
-                <strong>Единый билет</strong> на территорию + музейные комплексы.
+                <strong>Единый билет</strong> на территорию + музейные
+                комплексы.
               </li>
               <li>
                 Разделение по зонам (храм, «Дорога Памяти», Кубинка, авиация и

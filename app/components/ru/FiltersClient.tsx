@@ -28,7 +28,9 @@ export default function FiltersClient({
 
   useEffect(() => {
     if (!grid) return;
-    const items = Array.from(grid.querySelectorAll<HTMLElement>("[data-price]"));
+    const items = Array.from(
+      grid.querySelectorAll<HTMLElement>("[data-price]"),
+    );
     items.forEach((el) => {
       const p = Number(el.dataset.price || "0");
       const locs = (el.dataset.locs || "").split("||").filter(Boolean);
@@ -83,7 +85,9 @@ export default function FiltersClient({
       {/* Цена */}
       <div className="mt-4 grid gap-3 md:grid-cols-[1fr_auto_auto] items-center">
         <div>
-          <label className="block text-sm text-gray-600 mb-1">Диапазон цены</label>
+          <label className="block text-sm text-gray-600 mb-1">
+            Диапазон цены
+          </label>
           <div className="flex items-center gap-3">
             <input
               type="range"
@@ -112,7 +116,8 @@ export default function FiltersClient({
           </div>
         </div>
         <div className="text-right text-sm text-gray-700">
-          {price[0].toLocaleString("ru-RU")} ₽ — {price[1].toLocaleString("ru-RU")} ₽
+          {price[0].toLocaleString("ru-RU")} ₽ —{" "}
+          {price[1].toLocaleString("ru-RU")} ₽
         </div>
         <div className="text-right">
           <button

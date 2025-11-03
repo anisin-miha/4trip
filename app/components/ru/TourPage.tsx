@@ -541,7 +541,10 @@ export default function TourPageSEO({ data }: { data: TourData }) {
                                 className="p-4 rounded-lg bg-gray-50 border"
                               >
                                 <div className="flex items-start gap-4">
-                                  <div className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-blue-600 text-white font-bold" style={{minWidth: 32}}>
+                                  <div
+                                    className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-blue-600 text-white font-bold"
+                                    style={{ minWidth: 32 }}
+                                  >
                                     {idx + 1}
                                   </div>
                                   <div>
@@ -767,10 +770,12 @@ export default function TourPageSEO({ data }: { data: TourData }) {
         <FAQSection
           id="faq"
           headingClassName="text-center"
-          items={data.faq?.map((item) => ({
-            question: item.question,
-            answer: item.answer,
-          })) ?? []}
+          items={
+            data.faq?.map((item) => ({
+              question: item.question,
+              answer: item.answer,
+            })) ?? []
+          }
         />
 
         {/* Related tours */}

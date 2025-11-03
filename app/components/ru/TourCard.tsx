@@ -104,7 +104,9 @@ export default function TourCard({
         )}
       </div>
 
-      <div className={`tour-card__content p-4 flex flex-col gap-3 flex-1 w-full`}>
+      <div
+        className={`tour-card__content p-4 flex flex-col gap-3 flex-1 w-full`}
+      >
         {friendlyDate && (
           <span className="inline-flex items-center self-start rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-blue-700">
             {friendlyDate}
@@ -115,7 +117,9 @@ export default function TourCard({
           className="block w-full"
           onClick={(e) => e.stopPropagation()}
         >
-          <h3 className="tour-card__title text-xl font-semibold tracking-tight text-gray-900">{title}</h3>
+          <h3 className="tour-card__title text-xl font-semibold tracking-tight text-gray-900">
+            {title}
+          </h3>
         </Link>
         <p className="tour-card__description text-gray-600">{description}</p>
 

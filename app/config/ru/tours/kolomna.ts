@@ -12,15 +12,13 @@ import {
 } from "./types";
 
 export const kolomnaTourMetadata: Metadata = {
-  title:
-    "Экскурсия в Коломну из Москвы — кремль, пастила и свежий калач",
+  title: "Экскурсия в Коломну из Москвы — кремль, пастила и свежий калач",
   description:
     "Старинная Коломна на Оке: прогулка по кремлю, дегустация коломенской пастилы и тёплый калач «на руку». Однодневный автобусный тур из Москвы (≈12 часов).",
   keywords:
     "Коломна, экскурсия Коломна, тур из Москвы, Коломенский кремль, музей пастилы, Калачная, автобусный тур",
   openGraph: {
-    title:
-      "Экскурсия в Коломну из Москвы — кремль, пастила и свежий калач",
+    title: "Экскурсия в Коломну из Москвы — кремль, пастила и свежий калач",
     description:
       "Старинная Коломна на Оке: прогулка по кремлю, дегустация коломенской пастилы и тёплый калач «на руку». Однодневный автобусный тур из Москвы (≈12 часов).",
     images: ["/images/tours/kolomna/hero.webp"],
@@ -61,11 +59,7 @@ export const kolomnaTour = defineTour({
   groupSize: "До 50 человек",
   ageLimit: TourAgeLimit.FamilyFriendly,
   rating: null,
-  season: [
-    TourSeason.Spring,
-    TourSeason.Summer,
-    TourSeason.Autumn,
-  ],
+  season: [TourSeason.Spring, TourSeason.Summer, TourSeason.Autumn],
   hero: {
     image: "/images/tours/kolomna/hero.webp",
     description:

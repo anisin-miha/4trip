@@ -5,7 +5,8 @@ import contactInfo from "@/app/config/contactInfo";
 import HomePage from "@/app/components/ru/HomePage";
 
 export const metadata: Metadata = {
-  title: "Экскурсии по Москве и Подмосковью — групповые автобусные туры от 4-trip.ru",
+  title:
+    "Экскурсии по Москве и Подмосковью — групповые автобусные туры от 4-trip.ru",
   description:
     "Групповые экскурсии по Москве и Подмосковью от 4-trip: обзорная по столице, Парк «Патриот», Сергиев Посад, Коломна и другие маршруты с профессиональными гидами.",
   openGraph: {

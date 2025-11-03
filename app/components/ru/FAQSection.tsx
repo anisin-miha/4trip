@@ -42,16 +42,20 @@ const DEFAULT_ANSWER_CLASSES = "mt-3 text-gray-700";
 function renderAnswer(answer: ReactNode, answerClassName?: string) {
   if (typeof answer === "string") {
     return (
-      <div className={cn(DEFAULT_ANSWER_CLASSES, "whitespace-pre-line", answerClassName)}>
+      <div
+        className={cn(
+          DEFAULT_ANSWER_CLASSES,
+          "whitespace-pre-line",
+          answerClassName,
+        )}
+      >
         {answer}
       </div>
     );
   }
 
   return (
-    <div className={cn(DEFAULT_ANSWER_CLASSES, answerClassName)}>
-      {answer}
-    </div>
+    <div className={cn(DEFAULT_ANSWER_CLASSES, answerClassName)}>{answer}</div>
   );
 }
 
@@ -87,7 +91,10 @@ export function FAQSection({
     <>
       {title ? (
         <Heading
-          className={cn("text-3xl font-bold text-center mb-12", headingClassName)}
+          className={cn(
+            "text-3xl font-bold text-center mb-12",
+            headingClassName,
+          )}
         >
           {title}
         </Heading>
@@ -119,9 +126,7 @@ export function FAQSection({
   return (
     <Wrapper id={id} className={cn(DEFAULT_WRAPPER_CLASSES, className)}>
       {shouldWrapContainer ? (
-        <div className={cn(resolvedContainerClassName)}>
-          {content}
-        </div>
+        <div className={cn(resolvedContainerClassName)}>{content}</div>
       ) : (
         content
       )}

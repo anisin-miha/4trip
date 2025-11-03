@@ -21,10 +21,12 @@ export const metadata: Metadata = {
 type ExcursionListItem = Tour & { href: string };
 
 function getAllTours(): ExcursionListItem[] {
-  return excursions.map((tour) => ({
-    ...tour,
-    href: `/excursions/${tour.slug}`,
-  }));
+  return excursions
+    .filter((tour) => tour.visibility)
+    .map((tour) => ({
+      ...tour,
+      href: `/excursions/${tour.slug}`,
+    }));
 }
 
 export default function ExcursionsPage() {

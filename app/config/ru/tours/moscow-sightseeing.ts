@@ -330,7 +330,10 @@ export const moscowSightseeingTour = defineTour({
     { src: "/images/tours/moscow/gallery/1.webp", alt: "Красная площадь" },
     { src: "/images/tours/moscow/gallery/2.webp", alt: "Москва-Сити" },
     { src: "/images/tours/moscow/gallery/3.webp", alt: "Воробьёвы горы" },
-    { src: "/images/tours/moscow/gallery/4.webp", alt: "Храм Христа Спасителя" },
+    {
+      src: "/images/tours/moscow/gallery/4.webp",
+      alt: "Храм Христа Спасителя",
+    },
   ],
   faq: [
     {
