@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import type {
-  FAQSectionItem,
-  FAQSectionProps,
-} from "@/app/components/ru/FAQSection";
+import type { FAQSectionItem } from "@/app/components/ru/FAQSection";
+export type { FAQSectionItem } from "@/app/components/ru/FAQSection";
 
 export type BlogArticleLocale = "ru" | (string & {});
 
@@ -874,10 +872,6 @@ export type BlogArticleSummary = {
   badge?: BlogArticleBadge;
 };
 
-type BlogArticleFaq = Omit<FAQSectionProps, "items"> & {
-  items: readonly FAQSectionItem[];
-};
-
 export type BlogArticleData = BlogArticleSummary & {
   metadata: Metadata;
   toc?: BlogArticleTocItem[];
@@ -887,9 +881,8 @@ export type BlogArticleData = BlogArticleSummary & {
   content: ReactNode;
   afterContent?: ReactNode;
   relatedArticles?: {
-    title?: string;
     limit?: number;
     slugs?: readonly string[];
   };
-  faq?: BlogArticleFaq;
+  faq?: readonly FAQSectionItem[];
 };

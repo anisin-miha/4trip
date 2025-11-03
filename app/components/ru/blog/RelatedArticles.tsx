@@ -4,19 +4,13 @@ import type { BlogArticleSummary } from "./types";
 type RelatedArticlesProps = {
   currentSlug: string;
   articles: readonly BlogArticleSummary[];
-  title?: string;
-  limit?: number;
 };
 
 export default function RelatedArticles({
   currentSlug,
   articles,
-  title = "Похожие статьи",
-  limit = 3,
 }: RelatedArticlesProps) {
-  const related = articles
-    .filter((article) => article.slug !== currentSlug)
-    .slice(0, limit);
+  const related = articles.filter((article) => article.slug !== currentSlug);
 
   if (!related.length) return null;
 
@@ -34,7 +28,7 @@ export default function RelatedArticles({
           id="related-articles-heading"
           className="text-3xl font-bold text-center mb-10"
         >
-          {title}
+          Читайте дальше
         </h2>
         <div className={`grid gap-8 ${columnsClass}`}>
           {related.map((article) => (

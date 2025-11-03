@@ -214,12 +214,23 @@ export default async function BlogArticlePage({ article }: BlogArticlePageProps)
           <RelatedArticles
             currentSlug={article.slug}
             articles={relatedArticles}
-            title={article.relatedArticles?.title}
-            limit={article.relatedArticles?.limit}
           />
         ) : null}
 
-        {article.faq ? <FAQSection {...article.faq} /> : null}
+        {article.faq?.length ? (
+          <FAQSection
+            id="faq"
+            title="FAQ"
+            headingClassName="text-left"
+            className="mt-16 py-0 bg-transparent not-prose"
+            containerClassName={null}
+            listClassName="mt-6 space-y-4"
+            itemClassName="group rounded border p-4"
+            summaryClassName="cursor-pointer select-none text-lg font-semibold flex items-center justify-between"
+            answerClassName="mt-2 text-gray-700"
+            items={article.faq}
+          />
+        ) : null}
       </main>
 
       <SiteFooter

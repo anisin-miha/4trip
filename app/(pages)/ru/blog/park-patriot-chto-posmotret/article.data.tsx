@@ -1,8 +1,8 @@
 import PatriotPlanner from "@/app/components/ru/PatriotPlanner";
-import type { FAQSectionItem } from "@/app/components/ru/FAQSection";
 import {
   BLOG_TAGS_MAP,
   type BlogArticleData,
+  type FAQSectionItem,
 } from "@/app/components/ru/blog/types";
 
 const ARTICLE_SLUG = "park-patriot-chto-posmotret";
@@ -428,25 +428,7 @@ const parkPatriotArticle: BlogArticleData = {
       </div>
     </section>
   ),
-  relatedArticles: {
-    title: "Читайте также",
-    limit: 3,
-  },
-  faq: {
-    id: "faq",
-    title: "FAQ",
-    headingTag: "h2",
-    headingClassName: "text-left",
-    className: "mt-16 py-0 bg-transparent not-prose",
-    containerClassName: null,
-    listClassName: "mt-6 space-y-4",
-    itemClassName: "group rounded border p-4",
-    summaryClassName:
-      "cursor-pointer select-none text-lg font-semibold flex items-center justify-between",
-    answerClassName: "mt-2 text-gray-700",
-    chevron: "▾",
-    items: parkPatriotFaqItems,
-  },
+  faq: parkPatriotFaqItems,
   discussionId: "fourtrip/13",
 };
 
