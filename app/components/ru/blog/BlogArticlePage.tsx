@@ -115,6 +115,7 @@ async function resolveRelatedArticles(
     .filter((article) => article.slug !== currentSlug)
     .slice(0, limit)
     .map((article) => ({
+      id: article.id ?? article.slug,
       slug: article.slug,
       title: article.title,
       url: article.url,

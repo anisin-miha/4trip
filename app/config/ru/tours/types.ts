@@ -1,3 +1,9 @@
+import type { BlogArticleId } from "@/app/components/ru/blog/types";
+import {
+  getBlogArticleSummaries,
+  type BlogArticleSummaryLite,
+} from "@/app/config/blog/articles";
+
 export enum MovementType {
   Bus = "bus",
   Pedestrian = "pedestrian",
@@ -131,6 +137,7 @@ export type TourData = {
   groupSize: string;
   ageLimit: TourAgeLimit;
   season: TourSeason[];
+  relatedBlogArticles?: BlogArticleSummaryLite[];
 };
 
 export type ExcursionCard = {
@@ -150,6 +157,17 @@ export type ExcursionCard = {
   timeSlots?: string[];
 };
 
-export function defineTour<T extends TourData>(tour: T): T {
-  return tour;
+type TourInput = Omit<TourData, "relatedBlogArticles"> & {
+  relatedBlogIds?: BlogArticleId[];
+};
+
+export function defineTour<T extends TourInput>(tour: T): TourData {
+  const { relatedBlogIds, ...rest } = tour as TourInput;
+  const relatedBlogArticles = relatedBlogIds
+    ? getBlogArticleSummaries(relatedBlogIds)
+    : undefined;
+  return {
+    ...rest,
+    relatedBlogArticles,
+  };
 }

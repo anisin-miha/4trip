@@ -3,6 +3,7 @@
 // configs/tours/sergiev-posad-tour-metadata.ts
 
 import { Metadata } from "next";
+import { composeMetaDescription, composeMetaTitle } from "@/lib/seo/meta";
 import { createMeetingPoint } from "./helpers";
 import {
   Currency,
@@ -14,29 +15,36 @@ import {
   defineTour,
 } from "./types";
 
+const SERGIEV_CANONICAL = "https://4-trip.ru/ru/excursions/sergiev-posad";
+const SERGIEV_TITLE = composeMetaTitle(
+  "Экскурсия в Сергиев Посад | Однодневный тур",
+);
+const SERGIEV_DESCRIPTION = composeMetaDescription(
+  "Автобусный тур в Сергиев Посад: Троице-Сергиева Лавра, старинные улочки и мастерская фарфора. 8-часовая экскурсия из Москвы с опытным гидом.",
+);
+
 export const sergievPosadTourMetadata: Metadata = {
-  title:
-    "Экскурсия в Сергиев Посад | Однодневный тур из Москвы – Лавра, улочки и фарфор",
-  description:
-    "Троице-Сергиева Лавра, старинные улочки и мастерская фарфора в Сергиевом Посаде – автобусная экскурсия из Москвы (≈8 часов с гидом, по выходным).",
+  title: SERGIEV_TITLE,
+  description: SERGIEV_DESCRIPTION,
   keywords:
     "Сергиев Посад, экскурсия Сергиев Посад, автобусный тур, Троице-Сергиева лавра, музей фарфора, тур из Москвы",
   openGraph: {
-    title:
-      "Экскурсия в Сергиев Посад | Однодневный тур из Москвы – Лавра, улочки и фарфор",
-    description:
-      "Троице-Сергиева Лавра, старинные улочки и мастерская фарфора в Сергиевом Посаде – автобусная экскурсия из Москвы (≈8 часов с гидом, по выходным).",
+    title: SERGIEV_TITLE,
+    description: SERGIEV_DESCRIPTION,
+    url: SERGIEV_CANONICAL,
     images: ["/images/tours/sergiev_posad/hero.webp"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Экскурсия в Сергиев Посад",
-    description:
-      "Троице-Сергиева Лавра, старинные улочки и мастерская фарфора в Сергиевом Посаде – автобусная экскурсия из Москвы (≈8 часов с гидом, по выходным).",
+    title: SERGIEV_TITLE,
+    description: composeMetaDescription(
+      "Автобусный тур в Сергиев Посад: Лавра, старинные улочки и мастерская фарфора.",
+      { min: 40 },
+    ),
     images: ["/images/tours/sergiev_posad/hero.webp"],
   },
-  icons: {
-    // icon: "/images/4trip-logo-black.svg",
+  alternates: {
+    canonical: SERGIEV_CANONICAL,
   },
 };
 

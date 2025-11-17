@@ -11,7 +11,7 @@ export default function Header({
   links,
   project,
   logoSrc = "/images/4trip-logo.svg",
-  logoAlt = "4‑trip logo",
+  logoAlt = "Логотип 4-trip.ru",
   Logo,
   LinkComponent,
 }: {

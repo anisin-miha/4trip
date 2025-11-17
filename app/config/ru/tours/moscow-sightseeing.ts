@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { composeMetaDescription, composeMetaTitle } from "@/lib/seo/meta";
 import { createMeetingPoint } from "./helpers";
 import {
   Currency,
@@ -29,18 +30,21 @@ const moscowSightseeingMeetingPoint = createMeetingPoint({
   lng: 37.595752,
 });
 
+const MOSCOW_META_TITLE = composeMetaTitle(
+  "Обзорная автобусная экскурсия по Москве",
+);
+const MOSCOW_META_DESCRIPTION = composeMetaDescription(
+  "Обзорная экскурсия по Москве: Кремль, Красная площадь, Воробьёвы горы и другие знаковые места столицы за 3–4 часа. Комфортабельный автобус, пешеходные остановки, профессиональный гид.",
+);
+
 export const moscowSightseeingMetadata: Metadata = {
-  title:
-    "Обзорная экскурсия по Москве — история и культура столицы | Автобус + прогулки",
-  description:
-    "Обзорная экскурсия по Москве: Кремль, Воробьёвы горы, Храм Христа Спасителя и другие знаковые места за 3–4 часа. Комфортабельный автобус + пешеходные остановки с гидом.",
+  title: MOSCOW_META_TITLE,
+  description: MOSCOW_META_DESCRIPTION,
   keywords:
     "обзорная экскурсия Москва, автобусно‑пешеходная экскурсия Москва, Триумфальная площадь, Тверская улица, Кремль, Храм Василия Блаженного, Китайгородская стена, Парк Зарядье, Пушкинский музей, Храм Христа Спасителя, Дом Перцовой, Музей‑усадьба Льва Толстого, Музей Булгакова, Новодевичий монастырь, Лужники, Президиум РАН, Воробьёвы горы, здание МГУ, Мосфильм, Поклонная гора, Новый Арбат, Никитский бульвар, Церковь Большого Вознесения, Большая Никитская, Дом‑музей Чехова, Grace Bistro",
   openGraph: {
-    title:
-      "Обзорная экскурсия по Москве — история и культура столицы | Автобус + прогулки",
-    description:
-      "Обзорная экскурсия по Москве: Кремль, Воробьёвы горы, Храм Христа Спасителя и другие знаковые места за 3–4 часа. Комфортабельный автобус + пешеходные остановки с гидом.",
+    title: MOSCOW_META_TITLE,
+    description: MOSCOW_META_DESCRIPTION,
     url: `https://4-trip.ru/ru/excursions/${slug}`,
     type: "article",
     images: [
@@ -54,9 +58,11 @@ export const moscowSightseeingMetadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Обзорная экскурсия по Москве",
-    description:
-      "Обзорная экскурсия по Москве: Кремль, Воробьёвы горы, Храм Христа Спасителя и другие знаковые места за 3–4 часа. Комфортабельный автобус + пешеходные остановки с гидом.",
+    title: MOSCOW_META_TITLE,
+    description: composeMetaDescription(
+      "Кремль, Красная площадь, Воробьёвы горы и другие знаковые места столицы за 3–4 часа.",
+      { min: 40 },
+    ),
     images: [`https://4-trip.ru${heroImage}`],
   },
   alternates: {

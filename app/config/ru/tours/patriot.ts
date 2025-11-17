@@ -3,6 +3,7 @@
 // configs/tours/patriot-tour-metadata.ts
 
 import { Metadata } from "next";
+import { composeMetaDescription, composeMetaTitle } from "@/lib/seo/meta";
 import { createMeetingPoint } from "./helpers";
 import {
   Currency,
@@ -14,28 +15,35 @@ import {
   defineTour,
 } from "./types";
 
+const PATRIOT_CANONICAL = "https://4-trip.ru/ru/excursions/patriot";
+const PATRIOT_META_TITLE = composeMetaTitle("Экскурсия в парк «Патриот»");
+const PATRIOT_META_DESCRIPTION = composeMetaDescription(
+  "Однодневная экскурсия в парк «Патриот» (Кубинка): военная техника, интерактивные музеи и масштабные экспозиции. Трансфер из Москвы, гид – история военной славы.",
+);
+
 export const patriotTourMetadata: Metadata = {
-  title:
-    "Экскурсия в Парк «Патриот» | Автобусный тур из Москвы – музей, храм, история",
-  description:
-    "Посетите Главный храм Вооружённых Сил и комплекс «Дорога памяти» – автобусная экскурсия в парк «Патриот» из Москвы (≈6 часов с гидом, билет включён).",
+  title: PATRIOT_META_TITLE,
+  description: PATRIOT_META_DESCRIPTION,
   keywords:
-    "Парк Патриот, экскурсия Парк Патриот, тур Москва, храм Вооруженных сил, музей Дорога памяти, автобусный тур",
+    "Парк Патриот, экскурсия Парк Патриот, тур Москва, храм Вооруженных Сил, музей Дорога памяти, автобусный тур",
   openGraph: {
-    title:
-      "Экскурсия в Парк «Патриот» | Автобусный тур из Москвы – музей, храм, история",
-    description:
-      "Посетите Главный храм Вооружённых Сил и комплекс «Дорога памяти» – автобусная экскурсия в парк «Патриот» из Москвы (≈6 часов с гидом, билет включён).",
+    title: PATRIOT_META_TITLE,
+    description: PATRIOT_META_DESCRIPTION,
+    url: PATRIOT_CANONICAL,
     images: ["/images/tours/patriot/cathedral-hero.webp"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Экскурсия в Парк «Патриот»",
-    description:
-      "Посетите Главный храм Вооружённых Сил и комплекс «Дорога памяти» – автобусная экскурсия в парк «Патриот» из Москвы (≈6 часов с гидом, билет включён).",
+    title: PATRIOT_META_TITLE,
+    description: composeMetaDescription(
+      "Однодневная экскурсия в парк «Патриот» (Кубинка): военная техника, интерактивные музеи и масштабные экспозиции.",
+      { min: 40 },
+    ),
     images: ["/images/tours/patriot/cathedral-hero.webp"],
   },
-  icons: {},
+  alternates: {
+    canonical: PATRIOT_CANONICAL,
+  },
 };
 
 const cost = 2500;
@@ -216,6 +224,7 @@ export const patriotTour = defineTour({
         "Да, экскурсия подходит для всей семьи. Дети до 7 лет могут посетить парк по согласованию, а дети от 7 до 18 лет — только в сопровождении законных представителей.",
     },
   ],
+  relatedBlogIds: ["park-patriot-guide"],
 });
 
 export const patriotTourWithMeta = {

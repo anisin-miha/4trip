@@ -1,5 +1,6 @@
 // config/tours/kolomna-metadata.ts
 import type { Metadata } from "next";
+import { composeMetaDescription, composeMetaTitle } from "@/lib/seo/meta";
 import { createMeetingPoint } from "./helpers";
 import {
   Currency,
@@ -11,26 +12,35 @@ import {
   defineTour,
 } from "./types";
 
+const KOLOMNA_CANONICAL = "https://4-trip.ru/ru/excursions/kolomna";
+const KOLOMNA_TITLE = composeMetaTitle("Экскурсия в Коломну | Однодневный тур");
+const KOLOMNA_DESCRIPTION = composeMetaDescription(
+  "Экскурсия в Коломну: прогулка по Коломенскому кремлю, дегустация пастилы и свежего калача. Однодневный тур из Москвы с экскурсоводом.",
+);
+
 export const kolomnaTourMetadata: Metadata = {
-  title: "Экскурсия в Коломну из Москвы — кремль, пастила и свежий калач",
-  description:
-    "Старинная Коломна на Оке: прогулка по кремлю, дегустация коломенской пастилы и тёплый калач «на руку». Однодневный автобусный тур из Москвы (≈12 часов).",
+  title: KOLOMNA_TITLE,
+  description: KOLOMNA_DESCRIPTION,
   keywords:
     "Коломна, экскурсия Коломна, тур из Москвы, Коломенский кремль, музей пастилы, Калачная, автобусный тур",
   openGraph: {
-    title: "Экскурсия в Коломну из Москвы — кремль, пастила и свежий калач",
-    description:
-      "Старинная Коломна на Оке: прогулка по кремлю, дегустация коломенской пастилы и тёплый калач «на руку». Однодневный автобусный тур из Москвы (≈12 часов).",
+    title: KOLOMNA_TITLE,
+    description: KOLOMNA_DESCRIPTION,
+    url: KOLOMNA_CANONICAL,
     images: ["/images/tours/kolomna/hero.webp"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Экскурсия в Коломну — кремль, пастила и свежий калач",
-    description:
-      "Старинная Коломна на Оке: прогулка по кремлю, дегустация коломенской пастилы и тёплый калач «на руку». Однодневный автобусный тур из Москвы (≈12 часов).",
+    title: KOLOMNA_TITLE,
+    description: composeMetaDescription(
+      "Прогулка по Коломенскому кремлю, пастила и калач в однодневном туре из Москвы.",
+      { min: 40 },
+    ),
     images: ["/images/tours/kolomna/hero.webp"],
   },
-  icons: {},
+  alternates: {
+    canonical: KOLOMNA_CANONICAL,
+  },
 };
 
 const kolomnaMeetingPoint = createMeetingPoint({

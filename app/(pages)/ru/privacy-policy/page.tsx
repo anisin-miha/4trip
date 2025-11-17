@@ -3,15 +3,19 @@ import SiteHeader from "@/app/components/ru/SiteHeader";
 import SiteFooter from "@/app/components/ru/SiteFooter";
 import { Link as IntlLink } from "@/i18n/navigation";
 import contactInfo from "@/app/config/contactInfo";
+import { composeMetaDescription, composeMetaTitle } from "@/lib/seo/meta";
+
+const PRIVACY_TITLE = composeMetaTitle("Политика конфиденциальности");
+const PRIVACY_DESCRIPTION = composeMetaDescription(
+  "Политика конфиденциальности 4-trip: как собираются и используются персональные данные пользователей, меры защиты информации, права посетителей сайта.",
+);
 
 export const metadata: Metadata = {
-  title: "Политика конфиденциальности – 4-trip",
-  description:
-    "Политика обработки и защиты персональных данных пользователей сайта 4-trip.ru.",
+  title: PRIVACY_TITLE,
+  description: PRIVACY_DESCRIPTION,
   openGraph: {
-    title: "Политика конфиденциальности – 4-trip",
-    description:
-      "Политика обработки и защиты персональных данных пользователей сайта 4-trip.ru.",
+    title: PRIVACY_TITLE,
+    description: PRIVACY_DESCRIPTION,
     url: "https://4-trip.ru/ru/privacy-policy",
     type: "website",
     images: [
@@ -132,12 +136,12 @@ export default function PrivacyPolicyPage() {
                 <p>
                   2.3 Сайт использует сервис{" "}
                   <a
-                    href="https://metrika.yandex.ru/"
+                    href="https://mc.yandex.ru/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-blue-600 underline hover:text-blue-800"
                   >
-                    Yandex.Metrika
+                    Yandex.Metrica
                   </a>
                   , который собирает следующие обезличенные данные:
                 </p>
