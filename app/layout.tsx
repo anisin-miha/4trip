@@ -13,22 +13,16 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { GoogleAnalytics } from "@next/third-parties/google";
-import { composeMetaDescription, composeMetaTitle } from "@/lib/seo/meta";
 
-const DEFAULT_META_TITLE = composeMetaTitle(
-  "Экскурсионные туры по Москве и Подмосковью",
-);
-const DEFAULT_META_DESCRIPTION = composeMetaDescription(
-  "Групповые и индивидуальные экскурсии по Москве и Подмосковью. Удобное расписание туров, опытные гиды и онлайн-бронирование на 4-trip.ru.",
-);
+const DEFAULT_META_TITLE =
+  "Экскурсионные туры по Москве и Подмосковью | 4-trip.ru";
+const DEFAULT_META_DESCRIPTION =
+  "Групповые и индивидуальные экскурсии по Москве и Подмосковью. Удобное расписание туров, опытные гиды и онлайн-бронирование на 4-trip.ru.";
 
 // Базовые метаданные/OG по умолчанию для всех страниц (можно переопределить на уровне страницы)
 export const metadata: Metadata = {
   metadataBase: new URL("https://4-trip.ru"),
-  title: {
-    default: DEFAULT_META_TITLE,
-    template: "%s | 4-trip.ru",
-  },
+  title: DEFAULT_META_TITLE,
   description: DEFAULT_META_DESCRIPTION,
   openGraph: {
     type: "website",
