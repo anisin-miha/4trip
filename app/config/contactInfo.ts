@@ -24,7 +24,7 @@ const contactInfo = {
   site: {
     url: "https://4-trip.ru",
     brand: "4-trip.ru",
-    privacyPath: "/privacy-policy",
+    privacyPath: "/ru/privacy-policy",
   },
   policy: {
     refundProcessingDays: 10,

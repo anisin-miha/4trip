@@ -16,6 +16,7 @@ import {
 import RelatedTours from "./RelatedTours";
 import { type FAQItem, type TourData } from "@/app/config/ru/tours/types";
 import FAQSection from "@/app/components/ru/FAQSection";
+import { Link as IntlLink } from "@/i18n/navigation";
 
 // Yandex Maps loader and interactive map with numbered markers
 function useYandexMaps() {
@@ -467,6 +468,30 @@ export default function TourPageSEO({ data }: { data: TourData }) {
                     return <p key={idx}>{p}</p>;
                   })}
                 </div>
+                {data.relatedBlogArticles?.length ? (
+                  <aside className="mt-8 rounded-xl border border-gray-200 bg-gray-50 p-5">
+                    <h3 className="text-xl font-semibold mb-3">
+                      Читайте в блоге 4-trip
+                    </h3>
+                    <ul className="space-y-3">
+                      {data.relatedBlogArticles.map((article) => (
+                        <li key={article.id}>
+                          <IntlLink
+                            href={`/blog/${article.slug}`}
+                            className="text-blue-600 underline hover:text-blue-800 font-medium"
+                          >
+                            {article.title}
+                          </IntlLink>
+                          {article.excerpt ? (
+                            <p className="text-sm text-gray-600 mt-1">
+                              {article.excerpt}
+                            </p>
+                          ) : null}
+                        </li>
+                      ))}
+                    </ul>
+                  </aside>
+                ) : null}
 
                 {/* Перенесено из сайдбара: ожидания, включено/не включено */}
                 {/* Expectations moved to the top info box */}

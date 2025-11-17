@@ -6,15 +6,19 @@ import SiteFooter from "@/app/components/ru/SiteFooter";
 import contactInfo from "@/app/config/contactInfo";
 import { Link } from "@/i18n/navigation";
 import type { BlogArticleData } from "@/app/components/ru/blog/types";
+import { composeMetaDescription, composeMetaTitle } from "@/lib/seo/meta";
+
+const BLOG_TITLE = composeMetaTitle("Блог о путешествиях и экскурсиях");
+const BLOG_DESCRIPTION = composeMetaDescription(
+  "Блог 4-trip: статьи о достопримечательностях, советах путешественникам и обзоры экскурсионных маршрутов по Москве и Подмосковью.",
+);
 
 export const metadata: Metadata = {
-  title: "Блог о путешествиях и экскурсиях – советы и идеи от 4-trip.ru",
-  description:
-    "Статьи о лучших экскурсиях по Москве и Подмосковью, советы путешественникам и идеи для туров выходного дня. Читайте блог 4-trip.ru и планируйте путешествия!",
+  title: BLOG_TITLE,
+  description: BLOG_DESCRIPTION,
   openGraph: {
-    title: "Блог о путешествиях и экскурсиях – советы и идеи от 4-trip.ru",
-    description:
-      "Статьи о лучших экскурсиях по Москве и Подмосковью, советы путешественникам и идеи для туров выходного дня. Читайте блог 4-trip.ru и планируйте путешествия!",
+    title: BLOG_TITLE,
+    description: BLOG_DESCRIPTION,
     url: "https://4-trip.ru/ru/blog",
     type: "website",
     images: [

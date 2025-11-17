@@ -3,17 +3,20 @@ import SiteHeader from "@/app/components/ru/SiteHeader";
 import SiteFooter from "@/app/components/ru/SiteFooter";
 import contactInfo from "@/app/config/contactInfo";
 import HomePage from "@/app/components/ru/HomePage";
+import { composeMetaDescription, composeMetaTitle } from "@/lib/seo/meta";
+
+const HOME_META_TITLE = composeMetaTitle("Экскурсионные туры по Москве и Подмосковью");
+const HOME_META_DESCRIPTION = composeMetaDescription(
+  "Групповые и индивидуальные экскурсии по Москве и Подмосковью. Удобное расписание туров, опытные гиды и онлайн-бронирование на 4-trip.ru.",
+);
 
 export const metadata: Metadata = {
-  title:
-    "Экскурсии по Москве и Подмосковью — групповые автобусные туры от 4-trip.ru",
-  description:
-    "Групповые экскурсии по Москве и Подмосковью от 4-trip: обзорная по столице, Парк «Патриот», Сергиев Посад, Коломна и другие маршруты с профессиональными гидами.",
+  title: HOME_META_TITLE,
+  description: HOME_META_DESCRIPTION,
   openGraph: {
-    title: "Экскурсии по Москве и Подмосковью — 4-trip.ru",
-    description:
-      "Групповые туры по Москве и Подмосковью: обзорная по столице, Парк «Патриот», Сергиев Посад и другие направления.",
-    url: "https://4-trip.ru/",
+    title: HOME_META_TITLE,
+    description: HOME_META_DESCRIPTION,
+    url: "https://4-trip.ru/ru/",
     type: "website",
     images: [
       {
@@ -25,7 +28,7 @@ export const metadata: Metadata = {
     ],
   },
   alternates: {
-    canonical: "https://4-trip.ru/",
+    canonical: "https://4-trip.ru/ru/",
   },
 };
 

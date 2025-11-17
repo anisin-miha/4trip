@@ -4,6 +4,7 @@ import type { FAQSectionItem } from "@/app/components/ru/FAQSection";
 export type { FAQSectionItem } from "@/app/components/ru/FAQSection";
 
 export type BlogArticleLocale = "ru" | (string & {});
+export type BlogArticleId = string;
 
 const BLOG_TAG_CATEGORY_DEFINITIONS = {
   theme: { label: "Тематические кластеры" },
@@ -854,6 +855,7 @@ export type BlogArticleBadge = {
 export type BlogArticleStructuredData = Record<string, unknown>;
 
 export type BlogArticleSummary = {
+  id: BlogArticleId;
   slug: string;
   title: string;
   url: string;

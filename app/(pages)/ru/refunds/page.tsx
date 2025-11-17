@@ -2,14 +2,19 @@ import { Metadata } from "next";
 import SiteHeader from "@/app/components/ru/SiteHeader";
 import SiteFooter from "@/app/components/ru/SiteFooter";
 import contactInfo from "@/app/config/contactInfo";
+import { composeMetaDescription, composeMetaTitle } from "@/lib/seo/meta";
+
+const REFUND_TITLE = composeMetaTitle("Правила возврата средств");
+const REFUND_DESCRIPTION = composeMetaDescription(
+  "Правила возврата средств при отмене тура: сроки возврата, условия получения компенсации и порядок действий для клиентов 4-trip.",
+);
 
 export const metadata: Metadata = {
-  title: "Правила возврата – 4-trip",
-  description: "Правила возврата и отмены бронирований на экскурсии 4-trip.ru.",
+  title: REFUND_TITLE,
+  description: REFUND_DESCRIPTION,
   openGraph: {
-    title: "Правила возврата – 4-trip",
-    description:
-      "Правила возврата и отмены бронирований на экскурсии 4-trip.ru.",
+    title: REFUND_TITLE,
+    description: REFUND_DESCRIPTION,
     url: "https://4-trip.ru/ru/refunds",
     type: "website",
     images: [

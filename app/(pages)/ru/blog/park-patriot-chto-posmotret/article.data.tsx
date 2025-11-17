@@ -4,21 +4,22 @@ import {
   type BlogArticleData,
   type FAQSectionItem,
 } from "@/app/components/ru/blog/types";
-
+import { Link as IntlLink } from "@/i18n/navigation";
+const ARTICLE_ID = "park-patriot-guide";
 const ARTICLE_SLUG = "park-patriot-chto-posmotret";
 const ARTICLE_URL = `https://4-trip.ru/ru/blog/${ARTICLE_SLUG}`;
 const ARTICLE_TITLE = "Что посмотреть в Парке «Патриот»: обзор всех экспозиций";
+const ARTICLE_META_TITLE = "Парк «Патриот»: что посмотреть | Блог 4-trip";
 const ARTICLE_DESC =
-  "Полный гид по Парку «Патриот»: Главный храм ВС РФ, «Дорога Памяти», Танковый музей (Кубинка), авиация и ПВО, «Партизанская деревня», маршрут на 1 день, советы и билеты.";
+  "Парк «Патриот» в Кубинке – гид по главным экспозициям: танки, авиация, музей ВОВ. Что посмотреть и как планировать визит: советы путешественникам.";
 const ARTICLE_IMAGE =
   "https://4-trip.ru/images/tours/patriot/cathedral-hero.png";
 
 const baseStructuredData = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  headline: ARTICLE_TITLE,
-  description:
-    "Полный гид по Парку «Патриот»: Главный храм ВС РФ, «Дорога Памяти», Танковый музей (Кубинка), авиация и ПВО, «Партизанская деревня», маршруты на 1 день, советы и билеты.",
+  headline: ARTICLE_META_TITLE,
+  description: ARTICLE_DESC,
   inLanguage: "ru-RU",
   isPartOf: { "@type": "Blog", name: "4-trip.ru" },
   datePublished: "2025-08-14",
@@ -66,6 +67,7 @@ const faqPageStructuredData = {
 
 const articleData: BlogArticleData = {
   visibility: true,
+  id: ARTICLE_ID,
   slug: ARTICLE_SLUG,
   locale: "ru",
   url: ARTICLE_URL,
@@ -94,13 +96,13 @@ const articleData: BlogArticleData = {
     BLOG_TAGS_MAP["with-kids"],
   ],
   metadata: {
-    title: ARTICLE_TITLE,
+    title: ARTICLE_META_TITLE,
     description: ARTICLE_DESC,
     alternates: { canonical: ARTICLE_URL },
     openGraph: {
       type: "article",
       url: ARTICLE_URL,
-      title: ARTICLE_TITLE,
+      title: ARTICLE_META_TITLE,
       description: ARTICLE_DESC,
       publishedTime: "2025-08-14",
       modifiedTime: "2025-08-14",
@@ -116,7 +118,7 @@ const articleData: BlogArticleData = {
     },
     twitter: {
       card: "summary_large_image",
-      title: ARTICLE_TITLE,
+      title: ARTICLE_META_TITLE,
       description: ARTICLE_DESC,
       images: [ARTICLE_IMAGE],
     },
@@ -166,6 +168,17 @@ const articleData: BlogArticleData = {
         оптимально выстроить маршрут на один день, сколько времени закладывать
         на ключевые экспозиции и на что обратить внимание, чтобы поездка прошла
         идеально.
+      </p>
+      <p className="text-lg mb-4 text-gray-800">
+        Если хотите поехать в парк с опытным гидом и без забот о логистике,
+        бронируйте{" "}
+        <IntlLink
+          href="/excursions/patriot"
+          className="text-blue-600 underline hover:text-blue-800"
+        >
+          автобусную экскурсию 4-trip
+        </IntlLink>{" "}
+        — трансфер из Москвы, билеты и сопровождение уже включены.
       </p>
 
       <blockquote className="p-4 border-l-4 border-gray-200 bg-gray-50 rounded">

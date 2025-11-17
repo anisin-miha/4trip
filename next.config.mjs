@@ -131,6 +131,21 @@ let nextConfig = (phase) => {
       nextImageExportOptimizer_generateAndUseBlurImages: "true",
       nextImageExportOptimizer_remoteImageCacheTTL: "0",
     },
+    async redirects() {
+      return [
+        {
+          source: "/",
+          destination: "/ru/",
+          permanent: false,
+        },
+        {
+          source:
+            "/:path((?!ru(?:/|$))(?!_next)(?!api)(?!favicon)(?!proxy).+)",
+          destination: "/ru/:path",
+          permanent: false,
+        },
+      ];
+    },
   };
 };
 

@@ -2,15 +2,19 @@ import { Metadata } from "next";
 import SiteHeader from "@/app/components/ru/SiteHeader";
 import SiteFooter from "@/app/components/ru/SiteFooter";
 import contactInfo from "@/app/config/contactInfo";
+import { composeMetaDescription, composeMetaTitle } from "@/lib/seo/meta";
+
+const OFFER_TITLE = composeMetaTitle("Договор оферты");
+const OFFER_DESCRIPTION = composeMetaDescription(
+  "Договор оферты: условия предоставления экскурсионных услуг на 4-trip.ru. Все права и обязанности сторон, порядок оплаты и возврата.",
+);
 
 export const metadata: Metadata = {
-  title: "Договор оферты – 4-trip",
-  description:
-    "Публичная оферта 4-trip.ru на оказание экскурсионных услуг и организацию туров.",
+  title: OFFER_TITLE,
+  description: OFFER_DESCRIPTION,
   openGraph: {
-    title: "Договор оферты – 4-trip",
-    description:
-      "Публичная оферта 4-trip.ru на оказание экскурсионных услуг и организацию туров.",
+    title: OFFER_TITLE,
+    description: OFFER_DESCRIPTION,
     url: "https://4-trip.ru/ru/offer",
     type: "website",
     images: [
