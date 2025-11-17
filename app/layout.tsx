@@ -27,7 +27,6 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://4-trip.ru"),
   title: {
     default: DEFAULT_META_TITLE,
-    template: "%s | 4-trip.ru",
   },
   description: DEFAULT_META_DESCRIPTION,
   openGraph: {
