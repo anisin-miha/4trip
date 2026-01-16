@@ -1,5 +1,5 @@
 {
-  "name": "four-trip-static",
+  "name": "4-trip",
   "compatibility_date": "2025-08-17",
   "main": "worker.mjs",
   "assets": {
